@@ -91,5 +91,47 @@ class Bridge(unittest.TestCase):
             jur_to_arrangement("scope nation { law transit: preempt }", DEFAULT_WORLD)
 
 
+class RegionalProductivity(unittest.TestCase):
+    """Validation tests 2 and 3 found Canadians move for income and richer provinces spend more."""
+
+    def _run(self, world, arrangement=None, seed=0):
+        from tiebout.model import _Run
+        run = _Run(world, arrangement or {}, seed)
+        run.run()
+        return run
+
+    def test_off_by_default(self):
+        w = world(Domain("a"))
+        self.assertEqual(w.productivity_sd, 0.0)
+        self.assertEqual(Domain("a").capacity_elasticity, 0.0)
+
+    def test_richer_regions_provide_more_when_capacity_matters(self):
+        w = world(Domain("a", heterogeneity=0.0, within=0.0, capacity_elasticity=1.0),
+                  productivity_sd=0.3, move_share=0.0)
+        from tiebout.model import _Run
+        run = _Run(w, {}, 0)
+        residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+        p = run.region_state(residents)[0][-1]
+        rich = max(range(run.R), key=lambda r: run.regional_income[r])
+        poor = min(range(run.R), key=lambda r: run.regional_income[r])
+        self.assertGreater(p[rich], p[poor])
+
+    def test_without_capacity_income_does_not_change_provision(self):
+        w = world(Domain("a", heterogeneity=0.0, within=0.0), productivity_sd=0.3, move_share=0.0)
+        from tiebout.model import _Run
+        run = _Run(w, {}, 0)
+        residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+        p = run.region_state(residents)[0][-1]
+        self.assertAlmostEqual(max(p), min(p))
+
+    def test_people_move_toward_productive_regions(self):
+        w = world(Domain("a", heterogeneity=0.0), productivity_sd=0.3, move_share=0.5, moving_cost=0.0, steps=12)
+        run = self._run(w)
+        pops = [run.region.count(r) for r in range(run.R)]
+        best = max(range(run.R), key=lambda r: run.productivity[r])
+        worst = min(range(run.R), key=lambda r: run.productivity[r])
+        self.assertGreater(pops[best], pops[worst])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -73,11 +73,19 @@ def canada_ranges() -> dict:
       overheads      provincial and federal marginal costs of public funds are
                      both well above 1 with no systematic ordering, so the two are
                      tied: local = national * overhead_ratio, ratio 0.6 to 1.5
+      fiscal capacity  richer provinces spend more per person (income elasticity
+                     of spending 0.41 schools, 0.32 environment, 0.05 transit,
+                     validation/migration_and_capacity.py); halved for p squared
       deadweight     0.4 to 0.9 gives a marginal cost of funds of about 1.3 to 2.2
                      at a 30% tax rate
     Not calibrated (no Canadian data): spillover, scale, congestion.
     """
-    targets = json.loads((Path(__file__).resolve().parent.parent / "data" / "targets.json").read_text())
+    root = Path(__file__).resolve().parent.parent
+    targets = json.loads((root / "data" / "targets.json").read_text())
+    # Fiscal capacity: income elasticity of provincial spending (validation test 3),
+    # halved because spending is the model's cost, p squared. Spread +/- 25% for
+    # year-to-year variation in the estimate.
+    capacity = json.loads((root / "validation" / "migration_and_capacity.json").read_text())["fiscal_capacity"]
     het = {k: tuple(v["heterogeneity_range"]) for k, v in targets["disagreement"].items()}
     sigma = targets["inequality"]["income_sigma"]
     domains = {name: dict(r) for name, r in WIDE["domains"].items()}
@@ -85,6 +93,8 @@ def canada_ranges() -> dict:
         lo, hi = het[name]
         domains[name]["heterogeneity"] = (lo, hi)
         domains[name]["within"] = (0.25, 0.30)
+        k = max(capacity[name]["income_elasticity"], 0.0) / 2
+        domains[name]["capacity_elasticity"] = (round(0.75 * k, 4), round(1.25 * k, 4))
     mobility = {"move_share": (0.02, 0.50), "moving_cost": (0.08, 0.15)}
     return {
         "domains": domains,

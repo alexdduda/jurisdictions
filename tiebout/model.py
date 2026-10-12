@@ -56,6 +56,10 @@ class Domain:
     spillover: float = 0.0      # share of provision felt by neighbours
     scale: float = 0.0          # unit-cost saving under central provision
     weight: float = 1.0
+    # How much harder a poorer region finds it to pay for this good: its local
+    # cost is scaled by (national mean income / regional mean income) ** this.
+    # Elasticity of the provided level with respect to regional income.
+    capacity_elasticity: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -95,6 +99,10 @@ class World:
     local_overhead: float = 0.0    # extra cost per unit of money raised and spent locally
     max_level: float = 1.5
     max_tax: float = 0.9
+    # Regional productivity: an agent's income is skill * productivity of the
+    # region they live in, so moving changes income. 0 means every region is
+    # equally productive (the original model).
+    productivity_sd: float = 0.0
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -109,7 +117,7 @@ class Outcome:
     components: dict[str, float] = field(default_factory=dict)
     policy_mean: dict[str, float] = field(default_factory=dict)
     policy_sd: dict[str, float] = field(default_factory=dict)
-    income_sorting: float = 0.0    # sd of regional mean income / national mean
+    income_sorting: float = 0.0    # sd of regional mean income / national mean (regional income spread)
     crowding: float = 0.0          # largest region / average region
     migration: float = 0.0         # share of agents who changed region per round
 
@@ -172,7 +180,8 @@ class _Run:
         self.nbrs = torus_neighbors(world.grid)
         self.N = self.R * world.agents_per_region
         self.region = [i // world.agents_per_region for i in range(self.N)]
-        self.income = [math.exp(rng.gauss(0, world.income_sigma)) for _ in range(self.N)]
+        # Skill is portable; income also depends on the region's productivity.
+        self.skill = [math.exp(rng.gauss(0, world.income_sigma)) for _ in range(self.N)]
         self.tastes: dict[str, list[float]] = {}
         for d in world.domains:
             if d.kind == "public_good":
@@ -181,7 +190,18 @@ class _Run:
                     _clamp(centres[self.region[i]] + rng.gauss(0, d.within), 0, 1)
                     for i in range(self.N)
                 ]
-        self.national_income = _mean(self.income)
+        sd = world.productivity_sd
+        prod_rng = random.Random(seed * 104729 + 3)  # separate stream: sd = 0 reproduces the original draws
+        self.productivity = (
+            [math.exp(prod_rng.gauss(0, sd) - sd * sd / 2) for _ in range(self.R)] if sd > 0 else [1.0] * self.R
+        )
+        # With no redistribution domain, income would never enter utility; add it so
+        # agents can move for higher incomes. (Redistribution's log consumption covers it otherwise.)
+        self.private_consumption = sd > 0 and not any(d.kind == "redistribution" for d in world.domains)
+        self.national_income = _mean(self.skill[i] * self.productivity[self.region[i]] for i in range(self.N))
+
+    def income(self, i: int, r: int) -> float:
+        return self.skill[i] * self.productivity[r]
 
     # --- government ---
 
@@ -189,6 +209,11 @@ class _Run:
         """Per-domain, per-region quantities agents need to evaluate a region."""
         w = self.world
         pops = [len(res) for res in residents]
+        self.national_income = _mean(self.income(i, self.region[i]) for i in range(self.N))
+        self.regional_income = [
+            _mean(self.income(i, r) for i in res) if res else self.national_income
+            for r, res in enumerate(residents)
+        ]
         state = []
         for d in w.domains:
             policy = self.arrangement.get(d.name, LOCAL)
@@ -203,6 +228,13 @@ class _Run:
     def _public_good(self, d: Domain, policy: Policy, residents, pops) -> tuple:
         w, s = self.world, d.spillover
         theta = self.tastes[d.name]
+        # Fiscal capacity: local money is dearer, in utility, where incomes are lower.
+        # National taxes are paid in proportion to income, so they carry no such penalty.
+        k = d.capacity_elasticity
+        burden = [
+            (self.national_income / self.regional_income[r]) ** k if k and self.regional_income[r] > 0 else 1.0
+            for r in range(self.R)
+        ]
         if policy.mode == "central":
             p = [_clamp(policy.level, 0, w.max_level)] * self.R
             unit, local_share = 1.0 - d.scale, 0.0
@@ -212,8 +244,8 @@ class _Run:
             unit = 1.0
             price = max(local_share, 0.05) * (1 + w.local_overhead)
             local = [
-                _clamp(_median([theta[i] for i in res]) * (1 - s) / price, 0, w.max_level) if res else 0.0
-                for res in residents
+                _clamp(_median([theta[i] for i in res]) * (1 - s) / (price * burden[r]), 0, w.max_level) if res else 0.0
+                for r, res in enumerate(residents)
             ]
             p = _bound(local, policy)
 
@@ -224,7 +256,7 @@ class _Run:
         national_tax = national_spend * (1 + w.national_overhead)
         gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
         local_cost = unit * local_share * (1 + w.local_overhead)
-        cost = [d.weight * (local_cost * p[r] ** 2 + national_tax) for r in range(self.R)]
+        cost = [d.weight * (local_cost * burden[r] * p[r] ** 2 + national_tax) for r in range(self.R)]
         return ("pg", d.name, theta, gain, cost, p)
 
     def _redistribution(self, d: Domain, policy: Policy, residents) -> tuple:
@@ -233,7 +265,7 @@ class _Run:
             t = [_clamp(policy.level, 0, w.max_tax)] * self.R
             pool = [self.national_income] * self.R
         else:
-            pool = [_mean(self.income[i] for i in res) for res in residents]
+            pool = [_mean(self.income(i, r) for i in res) if res else 0.0 for r, res in enumerate(residents)]
             local = []
             for r, res in enumerate(residents):
                 if not res or pool[r] <= 0:
@@ -241,7 +273,7 @@ class _Run:
                     continue
                 # Ideal rate of the median earner (Meltzer-Richard): falls to 0 as
                 # the region becomes homogeneous in income.
-                median_income = _median([self.income[i] for i in res])
+                median_income = _median([self.income(i, r) for i in res])
                 local.append(_clamp((1 - median_income / pool[r]) / (2 * eta), 0, w.max_tax))
             t = _bound(local, policy)
         transfer = [t[r] * pool[r] * (1 - eta * t[r]) for r in range(self.R)]
@@ -253,13 +285,18 @@ class _Run:
     def utility(self, i: int, r: int, state: list[tuple], pops: list[int], parts: dict | None = None) -> float:
         avg = self.N / self.R
         u = -self.world.congestion * pops[r] / avg
+        if self.private_consumption:
+            v = math.log(self.income(i, r))
+            u += v
+            if parts is not None:
+                parts["consumption"] = parts.get("consumption", 0.0) + v
         for entry in state:
             if entry[0] == "pg":
                 _, name, theta, gain, cost, _ = entry
                 v = gain[r] * theta[i] - cost[r]
             else:
                 _, name, weight, keep, transfer, _ = entry
-                v = weight * math.log(self.income[i] * keep[r] + transfer[r])
+                v = weight * math.log(self.income(i, r) * keep[r] + transfer[r])
             u += v
             if parts is not None:
                 parts[name] = parts.get(name, 0.0) + v
@@ -299,7 +336,7 @@ class _Run:
             levels = entry[-1]
             out.policy_mean[entry[1]] = sum(levels[r] * pops[r] for r in range(self.R)) / self.N
             out.policy_sd[entry[1]] = _sd(levels[r] for r in populated)
-        regional_income = [_mean(self.income[i] for i in residents[r]) for r in populated]
+        regional_income = [_mean(self.income(i, r) for i in residents[r]) for r in populated]
         out.income_sorting = _sd(regional_income) / self.national_income
         out.crowding = max(pops) / (self.N / self.R)
         return out

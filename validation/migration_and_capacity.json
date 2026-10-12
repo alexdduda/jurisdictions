@@ -1,0 +1,49 @@
+{
+  "migration": {
+    "between_provinces": {
+      "observations": 160,
+      "standardized_effect_income": 0.236,
+      "standardized_effect_services": -0.538,
+      "r2_both": 0.211,
+      "r2_income_only": 0.003,
+      "r2_services_only": 0.171
+    },
+    "within_provinces_over_time": {
+      "observations": 160,
+      "standardized_effect_income": 0.319,
+      "standardized_effect_services": -0.224,
+      "r2_both": 0.107,
+      "r2_income_only": 0.062,
+      "r2_services_only": 0.016
+    },
+    "model_predicts": "services matter, income does not (the model has no wages)"
+  },
+  "fiscal_capacity": {
+    "schools": {
+      "income_elasticity": 0.406,
+      "years": 17,
+      "share_of_years_positive": 0.94
+    },
+    "environment": {
+      "income_elasticity": 0.32,
+      "years": 17,
+      "share_of_years_positive": 0.76
+    },
+    "transit": {
+      "income_elasticity": 0.052,
+      "years": 17,
+      "share_of_years_positive": 0.59
+    },
+    "social protection": {
+      "income_elasticity": 0.671,
+      "years": 17,
+      "share_of_years_positive": 1.0
+    },
+    "health": {
+      "income_elasticity": 0.012,
+      "years": 17,
+      "share_of_years_positive": 0.71
+    },
+    "model_predicts": "0 for every function (regions start equally rich)"
+  }
+}

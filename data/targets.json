@@ -12,14 +12,14 @@
         "per_child": 0.1012
       },
       "heterogeneity": {
-        "levels": 0.0721,
-        "shares": 0.0609,
-        "residual": 0.0724,
-        "per_child": 0.0506
+        "levels": 0.036,
+        "shares": 0.0304,
+        "residual": 0.0362,
+        "per_child": 0.0253
       },
       "heterogeneity_range": [
-        0.0506,
-        0.0724
+        0.0253,
+        0.0362
       ]
     },
     "environment": {
@@ -32,13 +32,13 @@
         "residual": 0.295
       },
       "heterogeneity": {
-        "levels": 0.1468,
-        "shares": 0.1522,
-        "residual": 0.1475
+        "levels": 0.0734,
+        "shares": 0.0761,
+        "residual": 0.0738
       },
       "heterogeneity_range": [
-        0.1468,
-        0.1522
+        0.0734,
+        0.0761
       ]
     },
     "transit": {
@@ -51,13 +51,13 @@
         "residual": 0.3294
       },
       "heterogeneity": {
-        "levels": 0.1384,
-        "shares": 0.1409,
-        "residual": 0.1647
+        "levels": 0.0692,
+        "shares": 0.0704,
+        "residual": 0.0824
       },
       "heterogeneity_range": [
-        0.1384,
-        0.1647
+        0.0692,
+        0.0824
       ]
     },
     "social protection": {
@@ -70,13 +70,13 @@
         "residual": 0.27
       },
       "heterogeneity": {
-        "levels": 0.1344,
-        "shares": 0.1203,
-        "residual": 0.135
+        "levels": 0.0672,
+        "shares": 0.0602,
+        "residual": 0.0675
       },
       "heterogeneity_range": [
-        0.1203,
-        0.135
+        0.0602,
+        0.0675
       ]
     }
   },

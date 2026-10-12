@@ -18,8 +18,10 @@ measured three ways and the spread between them is reported:
             with more children are not mistaken for provinces that care more
 
 In the model, a region left alone provides p = taste * (1 - s) / price, so the
-spread of provision across regions is the spread of tastes: CV(p) = sd/0.5.
-Hence heterogeneity = CV / 2.
+spread of provision across regions is the spread of tastes: CV(p) = sd / 0.5.
+What a province *spends* is the model's cost, which grows with p squared, so
+CV(spending) = 2 CV(p). Hence heterogeneity = CV(spending) / 4.
+(An earlier version used CV / 2, overstating disagreement by a factor of two.)
 """
 
 import csv
@@ -150,8 +152,8 @@ def disagreement(pop, gdp, spend, kids) -> dict:
             "years": len(per_year["levels"]),
             "mean_per_capita": round(mean(per_year["per_capita"])),
             "cv": {m: round(v, 4) for m, v in cvs.items()},
-            "heterogeneity": {m: round(v / 2, 4) for m, v in cvs.items()},
-            "heterogeneity_range": [round(min(cvs.values()) / 2, 4), round(max(cvs.values()) / 2, 4)],
+            "heterogeneity": {m: round(v / 4, 4) for m, v in cvs.items()},
+            "heterogeneity_range": [round(min(cvs.values()) / 4, 4), round(max(cvs.values()) / 4, 4)],
         }
     return out
 
