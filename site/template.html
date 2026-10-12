@@ -281,34 +281,20 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
 
   <section class="wide stack" aria-labelledby="s5">
     <div class="col sec-head"><span class="sec-num">§ 6</span><h2 id="s5">Where the answer flips</h2></div>
-    <p class="col">The same question asked of an abstract public service, varying two properties at a time. Each cell is the winning rule. A <strong>≈</strong> marks a winner that beat the runner-up by less than two standard errors. These maps come from the first, fixed-parameter study, so they show the shape of the trade-off more than exact boundaries.</p>
-    <div class="two">
-      <figure>
-        <div class="fig-title">Spillovers vs. regional disagreement</div>
-        <div id="phase-spill"></div>
-        <figcaption>Scale savings held at zero. Any spillover at all ends pure local control.</figcaption>
-      </figure>
-      <figure>
-        <div class="fig-title">Scale savings vs. regional disagreement</div>
-        <div id="phase-scale"></div>
-        <figcaption>Spillovers held at zero. Centralising pays only when the savings outweigh how much regions disagree.</figcaption>
-      </figure>
+    <div class="col stack">
+      <p>Some numbers no Canadian source measures: how much of a service's benefit spills into other provinces, and how much one national system saves. A verdict that depends on them is only as good as the guess. So instead of a verdict, these maps show the winning rule across those numbers, with everything that <em>is</em> measured held at its Canadian value. If you know the real number, read off the answer.</p>
     </div>
+    <div class="two" id="threshold-maps"></div>
   </section>
 
-  <section class="wide stack" aria-labelledby="s6">
-    <div class="col sec-head"><span class="sec-num">§ 7</span><h2 id="s6">Mobility and redistribution</h2></div>
-    <p class="col">Redistribution is where moving matters most. With nobody moving, a national floor does about as well as a national scheme. As people move more, high earners gather in low-tax regions, regional tax bases split apart, and regional redistribution stops working.</p>
-    <figure>
-      <div class="fig-title">Average welfare by rule, as mobility rises</div>
-      <div class="legend" id="mob-legend"></div>
-      <div id="mobility"></div>
-      <figcaption>Welfare is average log consumption, so only differences between lines mean anything. Each rule is shown at its best level. Horizontal axis: the share of people who consider moving each round.</figcaption>
-    </figure>
-    <details class="col">
-      <summary>Table: welfare and income sorting by mobility</summary>
-      <div class="table-wrap"><table id="mob-table"></table></div>
-    </details>
+  <section class="col stack" aria-labelledby="s6">
+    <div class="sec-head"><span class="sec-num">§ 7</span><h2 id="s6">Does the model reproduce Canada?</h2></div>
+    <p>Calibration fits the model to Canadian inputs. Validation asks whether it then reproduces Canadian <em>outcomes</em> it was never fitted to. The calibrated model was run under Canada's arrangement (provinces run schools, the environment and transit; redistribution is a national floor provinces can top up), and its simulated regions were put through the same statistical tests as the ten provinces.</p>
+    <div class="table-wrap"><table id="validation-table"></table></div>
+    <div class="stack" id="validation-text"></div>
+    <div class="callout">
+      <p><strong>A correction.</strong> An earlier version of this page overstated how much provinces disagree by a factor of two. Provincial spending measures what a service costs, and in the model cost grows with the square of the service level, so spending varies twice as much as the level does. The figures in § 3 and everything after them use the corrected values.</p>
+    </div>
   </section>
 
   <section class="col stack" aria-labelledby="s7">
@@ -620,107 +606,73 @@ legend(document.getElementById("mode-legend"), MODES);
   render();
 })();
 
-/* phase maps */
-function parseCell(label) {
-  const tie = label.endsWith("≈");
-  const clean = label.replace(" ≈", "");
-  const mode = clean.split(" ")[0];
-  let text = MODE_NAME[mode];
-  const rest = clean.slice(mode.length).trim();
-  if (rest) text += ` ${rest}`;
-  return { mode, text, tie, raw: clean };
-}
-function phase(containerId, ph, rowName, colName) {
-  const host = document.getElementById(containerId);
-  el("div", { class: "axis-cap", text: `Rows: ${rowName}. Columns: ${colName}.` }, host);
-  const wrap = el("div", { class: "table-wrap" }, host);
-  const grid = el("div", { class: "phase", style: { gridTemplateColumns: `3.4rem repeat(${ph.cols.length}, minmax(4.6rem, 1fr))`, minWidth: "22rem" } }, wrap);
-  el("div", { class: "corner", text: "" }, grid);
-  ph.cols.forEach((c) => el("div", { class: "hdr", text: c }, grid));
-  ph.rows.forEach((r, i) => {
-    el("div", { class: "hdr", text: r }, grid);
-    ph.cells[i].forEach((label, j) => {
-      const c = parseCell(label);
-      const light = ["floor", "ceiling", "matched"].includes(c.mode);
-      const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
-      const short = c.mode === "local" ? "Regions" : c.text.replace("National ", "").replace("Matching grant", "grant");
-      el("span", { text: short.charAt(0).toUpperCase() + short.slice(1) + (c.tie ? " ≈" : "") }, cell);
-      hoverable(cell, (e) =>
-        showTip(e, c.text + (c.tie ? " (near tie)" : ""), [
-          { color: modeColor(c.mode), text: `${rowName} ${r}, ${colName} ${ph.cols[j]}` },
-        ]),
-      );
+(function thresholds() {
+  const host = document.getElementById("threshold-maps");
+  const T = DATA.thresholds;
+  if (!T) { host.closest("section").hidden = true; return; }
+  const AXIS = {
+    scale: "savings from one national system", spillover: "share of benefit leaking to other provinces",
+    overhead_ratio: "provincial cost of raising a dollar, relative to federal", move_share: "share of people considering a move each year",
+    deadweight: "efficiency cost of taxes",
+  };
+  // Written from results/thresholds.json; rewrite if the maps change.
+  const CAPTION = {
+    transit: "National once one system saves 5 to 10% or more, whatever the spillovers. With no savings at all, provinces run it, with a federal matching grant if benefits cross borders.",
+    environment: "The column decides it. Where provinces raise money 40% more cheaply than Ottawa, a national floor wins; otherwise a national standard. Provinces alone only win when almost nothing crosses borders.",
+    schools: "Mostly a question of which level raises money more cheaply: a floor or provincial control where provinces are cheaper, a national standard where they are not. The stakes here are the smallest of the four.",
+    redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
+  };
+  for (const [name, m] of Object.entries(T.maps)) {
+    const fig = el("figure", {}, host);
+    el("div", { class: "fig-title", text: DOMAIN_NAME[name] }, fig);
+    const cap = el("div", { class: "axis-cap", text: `Rows: ${AXIS[m.row_param] || m.row_param}. Columns: ${AXIS[m.col_param] || m.col_param}.` }, fig);
+    const wrap = el("div", { class: "table-wrap" }, fig);
+    const grid = el("div", { class: "phase", style: { gridTemplateColumns: `3.4rem repeat(${m.cols.length}, minmax(4.6rem, 1fr))`, minWidth: "20rem" } }, wrap);
+    el("div", { class: "corner" }, grid);
+    m.cols.forEach((c) => el("div", { class: "hdr", text: c }, grid));
+    m.rows.forEach((r, i) => {
+      el("div", { class: "hdr", text: r }, grid);
+      m.cells[i].forEach((c, j) => {
+        const light = ["floor", "ceiling", "matched"].includes(c.mode);
+        const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
+        const text = c.mode === "local" ? "Regions" : c.mode === "central" ? "Standard" : c.mode === "matched" ? "Grant" : c.mode === "floor" ? "Floor" : "Cap";
+        el("span", { text }, cell);
+        hoverable(cell, (e) => showTip(e, policyText({ mode: c.mode, level: parseFloat(c.label.split(" ")[1]) || 0 }), [
+          { color: modeColor(c.mode), text: `${AXIS[m.row_param] || m.row_param} ${r}, ${AXIS[m.col_param] || m.col_param} ${m.cols[j]}` },
+          { text: c.margin != null ? `beats the next rule by ${(c.margin * 1000).toFixed(1)} thousandths of a util` : "" },
+        ]));
+      });
     });
-  });
-}
-phase("phase-spill", DATA.study.phase_spillover, "spillover", "regional disagreement");
-phase("phase-scale", DATA.study.phase_scale, "scale savings", "regional disagreement");
-
-/* mobility lines */
-(function mobility() {
-  const rows = DATA.study.mobility;
-  const modes = ["local", "floor", "central"];
-  legend(document.getElementById("mob-legend"), modes, "line");
-  const host = document.getElementById("mobility");
-  const W = 900, H = 320, m = { l: 64, r: 120, t: 14, b: 44 };
-  const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Welfare by rule as mobility rises" }, host);
-  const xs = rows.map((r) => r.move_share);
-  const all = rows.flatMap((r) => modes.map((k) => r.welfare[k]));
-  const tickStep = 0.01;
-  const lo = Math.floor(Math.min(...all) / tickStep) * tickStep, hi = Math.ceil(Math.max(...all) / tickStep) * tickStep;
-  const x0 = 0, x1 = Math.max(...xs);
-  const sx = (v) => m.l + ((v - x0) / (x1 - x0)) * (W - m.l - m.r);
-  const sy = (v) => H - m.b - ((v - lo) / (hi - lo)) * (H - m.t - m.b);
-  for (let v = lo; v <= hi + 1e-9; v += tickStep) {
-    el("svg:line", { class: "grid", x1: m.l, x2: W - m.r, y1: sy(v), y2: sy(v) }, svg);
-    el("svg:text", { x: m.l - 8, y: sy(v) + 4, "text-anchor": "end", text: v.toFixed(2) }, svg);
+    el("figcaption", { text: CAPTION[name] || "" }, fig);
   }
-  xs.forEach((v) => el("svg:text", { x: sx(v), y: H - m.b + 18, "text-anchor": "middle", text: v }, svg));
-  el("svg:text", { class: "axis-title", x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", text: "Share of people considering a move each round" }, svg);
-  const surface = css("--surface") || "#fff";
-  const ends = [];
-  modes.forEach((k) => {
-    const pts = rows.map((r) => [sx(r.move_share), sy(r.welfare[k])]);
-    el("svg:path", { d: pts.map((p, i) => `${i ? "L" : "M"}${p[0]},${p[1]}`).join(" "), fill: "none", stroke: modeColor(k), "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
-    const last = pts[pts.length - 1];
-    el("svg:circle", { cx: last[0], cy: last[1], r: 4, fill: modeColor(k), stroke: surface, "stroke-width": 2 }, svg);
-    ends.push({ k, y: last[1], x: last[0] });
-  });
-  ends.sort((a, b) => a.y - b.y);
-  for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 15) ends[i].ly = ends[i - 1].ly + 15;
-  ends.forEach((e) => {
-    const ly = e.ly ?? e.y;
-    e.ly = ly;
-    if (Math.abs(ly - e.y) > 1) el("svg:line", { x1: e.x + 6, x2: e.x + 14, y1: e.y, y2: ly, stroke: css("--ink-3"), "stroke-width": 1 }, svg);
-    el("svg:text", { x: e.x + 16, y: ly + 4, text: MODE_NAME[e.k], style: { fill: css("--ink-2") } }, svg);
-  });
-  const cross = el("svg:line", { x1: 0, x2: 0, y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-width": 1, visibility: "hidden" }, svg);
-  const hit = el("svg:rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
-  hit.addEventListener("pointermove", (e) => {
-    const box = svg.getBoundingClientRect();
-    const px = ((e.clientX - box.left) / box.width) * W;
-    let best = 0;
-    rows.forEach((r, i) => { if (Math.abs(sx(r.move_share) - px) < Math.abs(sx(rows[best].move_share) - px)) best = i; });
-    const r = rows[best];
-    cross.setAttribute("x1", sx(r.move_share)); cross.setAttribute("x2", sx(r.move_share)); cross.setAttribute("visibility", "visible");
-    showTip(e, `Mobility ${r.move_share}`, modes.map((k) => ({ color: modeColor(k), text: `${MODE_NAME[k]}: ${r.welfare[k].toFixed(4)}` })));
-  });
-  hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); hideTip(); });
-
-  const table = document.getElementById("mob-table");
-  const h = el("tr", {}, el("thead", {}, table));
-  ["Mobility", "Winner", ...modes.map((k) => MODE_NAME[k]), "Regional tax rate", "Income sorting (regional)"].forEach((t, i) => el("th", { class: i > 1 ? "num" : "", text: t }, h));
-  const tb = el("tbody", {}, table);
-  rows.forEach((r) => {
-    const tr = el("tr", {}, tb);
-    el("td", { text: r.move_share }, tr);
-    el("td", { text: parseCell(r.winner).text + (r.winner.endsWith("≈") ? " (near tie)" : "") }, tr);
-    modes.forEach((k) => el("td", { class: "num", text: r.welfare[k].toFixed(4) }, tr));
-    el("td", { class: "num", text: r.local_tax.toFixed(3) }, tr);
-    el("td", { class: "num", text: r.local_sorting.toFixed(3) }, tr);
-  });
 })();
 
+(function validation() {
+  const V = DATA.validation;
+  const table = document.getElementById("validation-table");
+  if (!V) { table.closest("section").hidden = true; return; }
+  const rows = [
+    ["People move toward higher incomes", "migration_effect_income"],
+    ["People move toward better services", "migration_effect_services"],
+    ["More unequal regions want more redistribution", "inequality_to_wanting"],
+    ["More unequal regions spend more on it", "inequality_to_spending"],
+  ];
+  const h = el("tr", {}, el("thead", {}, table));
+  ["Pattern", "Canada", "Model before", "Model now"].forEach((t, i) => el("th", { class: i ? "num" : "", text: t }, h));
+  const tb = el("tbody", {}, table);
+  const f = (x) => (x > 0 ? "+" : "") + x.toFixed(2);
+  rows.forEach(([label, k]) => {
+    const tr = el("tr", {}, tb);
+    el("td", { text: label }, tr);
+    el("td", { class: "num", text: f(V.canada[k]) }, tr);
+    el("td", { class: "num", text: f(V.model_without_productivity[k]) }, tr);
+    el("td", { class: "num", text: f(V.model_with_productivity[k]) }, tr);
+  });
+  const txt = document.getElementById("validation-text");
+  el("p", { text: "Migration: both versions match. Canadians move toward higher incomes, not better services, and so do the model's agents. An earlier reading of the data claimed the original model got this wrong; running the same test on the model showed it didn't." }, txt);
+  el("p", { text: "Fiscal capacity: richer provinces spend more per person on schools, the environment and social protection. The original model, with equally rich regions, couldn't produce that, so regions now differ in productivity and poorer ones find local money dearer. This is calibrated from the same data, so matching it confirms the wiring, not the theory." }, txt);
+  el("p", { text: "Redistribution still fails. In the model, more unequal regions want and get more redistribution. In Canada the most unequal provinces are the poorer ones and lean on federal programs, so they spend less. The model therefore makes regional redistribution look better than it is. That error works against this page's conclusion that redistribution should be national, so the conclusion survives it; fixing the model would only strengthen it." }, txt);
+})();
 
 /* calibration to Canada */
 (function calibration() {
@@ -735,7 +687,9 @@ phase("phase-scale", DATA.study.phase_scale, "scale savings", "regional disagree
     ["Transit: how much provinces disagree", "0.05 to 0.20", het("transit"), "Spending, three measures (no survey question)", "Stats Can 10-10-0005"],
     ["Disagreement within a province", "0.05 to 0.15", "0.25 to 0.30", "5 to 12 times the between-province spread; capped at the model's scale", "CES 2019"],
     ["Income inequality (log spread)", "0.40 to 1.00", `${r2(T.inequality.income_sigma - 0.03)} to ${r2(T.inequality.income_sigma + 0.03)}`, `Market-income Gini ${r2(T.inequality.market_gini)}`, "Stats Can 11-10-0134"],
-    ["People moving between regions per year", "up to 1.8%", "0.1% to 0.76%", `Canada: ${(T.migration.annual_rate * 100).toFixed(2)}% of people move province each year, for any reason`, "Stats Can 17-10-0022"],
+    ["How unequal regions are in productivity", "all equal", "calibrated jointly with mobility", `Provincial average market incomes differ by ${(T.regional_income.market_income_cv * 100).toFixed(0)}%`, "Stats Can 11-10-0190"],
+    ["People moving between regions per year", "up to 1.8%", "0.3% to 0.75%", `Canada: ${(T.migration.annual_rate * 100).toFixed(2)}% of people move province each year; the model's movers now follow jobs as well as services`, "Stats Can 17-10-0022"],
+    ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
     ["Cost of raising a dollar, national vs. provincial", "independent, 0 to 35% extra", "both 20% to 100% extra, provincial 0.6 to 1.5 times national", "Federal income tax about $2.86 per dollar raised (2021); provincial $1.44 to $3.81 (2006)", "Dahlby and Ferede 2012, 2022"],
     ["Spillovers to neighbours; savings from one national system; crowding", "guessed", "still guessed", "No Canadian measurement exists", "none"],
   ];
@@ -782,6 +736,8 @@ phase("phase-scale", DATA.study.phase_scale, "scale savings", "regional disagree
     const notes = document.getElementById("calib-notes");
     el("p", { text: `Two independent sources agree on the ordering. In spending, provinces differ ${(T.disagreement.environment.cv.levels / T.disagreement.schools.cv.levels).toFixed(1)} times more on the environment than on schools; in the survey, ${(S.environment.rho / S.schools.rho).toFixed(1)} times more.` }, notes);
     el("p", { text: "The bigger surprise is how little provinces differ compared with people. Between-province disagreement is only 8% of within-province disagreement for education and 20% for the environment. Much of the case for regional control rests on regions wanting different things, and in Canada they mostly don't." }, notes);
+    const on = Object.entries(DATA.unc.domains).map(([k, d]) => `${DOMAIN_NAME[k].toLowerCase()} ${pct(d.on_target ?? 0)}`);
+    el("p", { text: `Each sampled world is checked against the two Canadian targets it was calibrated to (provincial income spread of 12 to 19%, migration of at most 0.75% a year). Share of worlds on target: ${on.join(", ")}.` }, notes);
     el("p", { text: "Equalization payments push provincial spending toward the national average, which could hide real differences in what people want. The survey is not affected by that, and it agrees with the spending data." }, notes);
   }
 })();

@@ -1,0 +1,860 @@
+{
+  "seeds": 3,
+  "maps": {
+    "schools": {
+      "row_param": "spillover",
+      "rows": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3
+      ],
+      "col_param": "overhead_ratio",
+      "cols": [
+        0.6,
+        0.9,
+        1.2,
+        1.5
+      ],
+      "held_at": {
+        "national_overhead": 0.6,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.0307,
+        "scale": 0.05,
+        "within": 0.275,
+        "capacity_elasticity": 0.203
+      },
+      "cells": [
+        [
+          {
+            "mode": "ceiling",
+            "label": "ceiling 0.5",
+            "margin": 2e-05
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.2",
+            "margin": 1e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01388
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0275
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.2",
+            "margin": 9e-05
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.2",
+            "margin": 3e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01425
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02787
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.2",
+            "margin": 0.00022
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00118
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01521
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02726
+          }
+        ],
+        [
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00128
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0009
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01528
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02733
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00088
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00166
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01602
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02663
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00296
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00254
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01585
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02648
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00532
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00266
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01642
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02584
+          }
+        ]
+      ]
+    },
+    "environment": {
+      "row_param": "spillover",
+      "rows": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "col_param": "overhead_ratio",
+      "cols": [
+        0.6,
+        0.9,
+        1.2,
+        1.5
+      ],
+      "held_at": {
+        "national_overhead": 0.6,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.0748,
+        "scale": 0.05,
+        "within": 0.275,
+        "capacity_elasticity": 0.16
+      },
+      "cells": [
+        [
+          {
+            "mode": "local",
+            "label": "local",
+            "margin": 0.0
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00186
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01164
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02389
+          }
+        ],
+        [
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00227
+          },
+          {
+            "mode": "matched",
+            "label": "matched 20%",
+            "margin": 0.00215
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01311
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02394
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00284
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00086
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01322
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0232
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00692
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00206
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01301
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02144
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01123
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00265
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0127
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0208
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01594
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00265
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01248
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02021
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01857
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00265
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01174
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01812
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01857
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00265
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01121
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01608
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01857
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00265
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01027
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01384
+          }
+        ]
+      ]
+    },
+    "transit": {
+      "row_param": "scale",
+      "rows": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "col_param": "spillover",
+      "cols": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ],
+      "held_at": {
+        "national_overhead": 0.6,
+        "overhead_ratio": 1.05,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.0758,
+        "within": 0.275,
+        "capacity_elasticity": 0.026
+      },
+      "cells": [
+        [
+          {
+            "mode": "local",
+            "label": "local",
+            "margin": 0.0
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00279
+          },
+          {
+            "mode": "matched",
+            "label": "matched 20%",
+            "margin": 0.00342
+          },
+          {
+            "mode": "matched",
+            "label": "matched 30%",
+            "margin": 0.00283
+          },
+          {
+            "mode": "matched",
+            "label": "matched 40%",
+            "margin": 0.00234
+          }
+        ],
+        [
+          {
+            "mode": "local",
+            "label": "local",
+            "margin": 0.0
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00229
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00378
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00437
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00486
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00713
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00949
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01098
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01157
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01206
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.01992
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.02228
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.02377
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.02436
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.02485
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03272
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03508
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03657
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03716
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03765
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.04552
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.04788
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.04937
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.04996
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.05045
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.05832
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06068
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06217
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06276
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06325
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.09832
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.10068
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.10217
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.10276
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.10324
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.15111
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.15347
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.15496
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.15555
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.15604
+          }
+        ]
+      ]
+    },
+    "redistribution": {
+      "row_param": "move_share",
+      "rows": [
+        0.0,
+        0.02,
+        0.05,
+        0.1,
+        0.2,
+        0.3
+      ],
+      "col_param": "deadweight",
+      "cols": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "held_at": {
+        "income_sigma": 0.809,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.0525,
+        "congestion": 0.115
+      },
+      "cells": [
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.00378
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.00198
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.00194
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00164
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.00808
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.00422
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.00302
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00227
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.01793
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.01153
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.00814
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00513
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.01844
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.01453
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.00997
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00638
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.02779
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.01408
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.01009
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00813
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.45",
+            "margin": 0.02115
+          },
+          {
+            "mode": "central",
+            "label": "central 0.35",
+            "margin": 0.01558
+          },
+          {
+            "mode": "central",
+            "label": "central 0.25",
+            "margin": 0.01033
+          },
+          {
+            "mode": "central",
+            "label": "central 0.2",
+            "margin": 0.00865
+          }
+        ]
+      ]
+    }
+  },
+  "seconds": 162.1
+}

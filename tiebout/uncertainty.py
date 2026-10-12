@@ -58,12 +58,11 @@ def canada_ranges() -> dict:
     Measured from Statistics Canada (see tiebout/canada.py, data/targets.json):
       heterogeneity  spread of provincial spending on each function, three ways
       income_sigma   market-income Gini, mapped to a log-normal
-      mobility       moving_cost 0.08 to 0.15 keeps the model's moves per round
-                     between 0.1% and 0.76% at every move_share, i.e. at or below
-                     Canada's 0.75% interprovincial migration per year, an upper
-                     bound since most real moves are for jobs and family
-                     (checked with the calibrated within-province disagreement,
-                     which raises churn)
+      mobility and   regions differ in productivity, so people move for jobs.
+      productivity   productivity_sd, moving_cost and move_share are calibrated
+                     jointly so the model matches two Canadian targets at once:
+                     provincial market-income spread 12-19% (11-10-0190) and
+                     interprovincial migration 0.3-0.75% a year (17-10-0022)
       within         the 2019 Canadian Election Study puts between-province
                      disagreement at only 8% (schools) to 20% (environment) of
                      within-province disagreement, so within = heterogeneity / rho
@@ -95,13 +94,19 @@ def canada_ranges() -> dict:
         domains[name]["within"] = (0.25, 0.30)
         k = max(capacity[name]["income_elasticity"], 0.0) / 2
         domains[name]["capacity_elasticity"] = (round(0.75 * k, 4), round(1.25 * k, 4))
-    mobility = {"move_share": (0.02, 0.50), "moving_cost": (0.08, 0.15)}
+    # Jointly calibrated (validation/README): with people moving for jobs, these keep
+    # provincial market-income spread at 12-19% and migration at 0.3-0.75% a year.
+    mobility = {"move_share": (0.02, 0.10), "moving_cost": (0.05, 0.08), "productivity_sd": (0.035, 0.07)}
+    # Worlds with only a public good have no redistribution, so high earners don't
+    # sort and regional incomes spread less for the same productivity gap. They
+    # need their own calibration to hit the same 12-19% income spread.
+    public_good_mobility = {**mobility, "productivity_sd": (0.09, 0.17)}
     return {
         "domains": domains,
         "public_good_world": {
             "national_overhead": (0.20, 1.00),
             "overhead_ratio": (0.60, 1.50),
-            **mobility,
+            **public_good_mobility,
             "congestion": (0.03, 0.20),
         },
         "redistribution_world": {
@@ -149,9 +154,10 @@ def build(base: World, domain: Domain, params: dict[str, float]) -> tuple[World,
     return replace(base, domains=(d,), **world_fields), d
 
 
-def _task(args) -> float:
+def _task(args) -> tuple[float, float, float]:
     world, items, seed = args
-    return simulate(world, dict(items), seed).welfare
+    o = simulate(world, dict(items), seed)
+    return o.welfare, o.migration, o.income_sorting
 
 
 def _winner(cands: list[Policy], welfare: list[float]) -> int:
@@ -178,10 +184,13 @@ def analyse_domain(pool, base: World, domain: Domain, draws: int, seeds: int, rn
 
     # welfare[j][i] = mean over seeds for draw j, candidate i
     per = len(cands) * seeds
-    welfare = []
+    welfare, realised = [], []
+    local_index = cands.index(LOCAL)
     for j in range(draws):
         block = flat[j * per:(j + 1) * per]
-        welfare.append([sum(block[i * seeds:(i + 1) * seeds]) / seeds for i in range(len(cands))])
+        welfare.append([sum(b[0] for b in block[i * seeds:(i + 1) * seeds]) / seeds for i in range(len(cands))])
+        loc = block[local_index * seeds:(local_index + 1) * seeds]
+        realised.append({"migration": sum(b[1] for b in loc) / seeds, "income_spread": sum(b[2] for b in loc) / seeds})
 
     local_i = cands.index(LOCAL)
     winners = [_winner(cands, w) for w in welfare]
@@ -226,16 +235,19 @@ def analyse_domain(pool, base: World, domain: Domain, draws: int, seeds: int, rn
 
     points = [
         {**{k: round(v, 4) for k, v in samples[j].items()},
-         "winner": cands[winners[j]].label(), "mode": modes[j], "gain": gain[j]}
+         "winner": cands[winners[j]].label(), "mode": modes[j], "gain": gain[j],
+         "realised_migration": round(realised[j]["migration"], 5),
+         "realised_income_spread": round(realised[j]["income_spread"], 4)}
         for j in range(draws)
     ]
+    on_target = sum(0.12 <= r["income_spread"] <= 0.19 and r["migration"] <= 0.0075 for r in realised) / draws
     log(f"      wins: " + ", ".join(f"{m} {v:.0%}" for m, v in share.items())
         + f" | robust: {robust['policy']} (captures {robust['gain_captured']:.0%} of the tailored gain)")
     return {
         "domain": domain.name, "draws": draws, "seeds": seeds, "ranges": ranges,
         "win_share": share, "robust": robust, "cautious": cautious,
         "best_per_mode": best_per_mode, "mean_gain_over_local": mean_gain,
-        "drivers": drivers, "points": points,
+        "drivers": drivers, "points": points, "share_on_canadian_targets": on_target,
     }
 
 
@@ -245,6 +257,9 @@ def separability_check(pool, base: World, n: int, seeds: int, rng: random.Random
     rs_ = range_set_ or WIDE
     red = rs_["redistribution_world"]
     ranges = {**rs_["public_good_world"], "income_sigma": red["income_sigma"], "deadweight": red["deadweight"]}
+    if "productivity_sd" in red:
+        # The joint world contains redistribution, so it uses that world's calibration.
+        ranges["productivity_sd"] = red["productivity_sd"]
     for name, rs in rs_["domains"].items():
         for k, v in rs.items():
             ranges[f"{name}.{k}"] = v

@@ -34,6 +34,7 @@ def main() -> None:
                 "best_per_mode": d["best_per_mode"],
                 "drivers": d["drivers"],
                 "stakes": d["mean_gain_over_local"],
+                "on_target": d.get("share_on_canadian_targets"),
                 "ranges": d["ranges"],
                 "points": trim_points(d["points"], params + ["mode", "winner", "gain"]),
             }
@@ -57,6 +58,8 @@ def main() -> None:
                  for name, d in wide["domains"].items()},
         "targets": json.loads((ROOT / "data" / "targets.json").read_text()) if (ROOT / "data" / "targets.json").exists() else None,
         "survey": json.loads((ROOT / "data" / "ces_disagreement.json").read_text()) if (ROOT / "data" / "ces_disagreement.json").exists() else None,
+        "thresholds": json.loads((RESULTS / "thresholds.json").read_text()) if (RESULTS / "thresholds.json").exists() else None,
+        "validation": json.loads((ROOT / "validation" / "model_vs_canada.json").read_text()) if (ROOT / "validation" / "model_vs_canada.json").exists() else None,
     }
     template = (ROOT / "site" / "template.html").read_text()
     payload = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")

@@ -190,8 +190,35 @@ def migration(pop) -> dict:
 
 
 def regional_income(gdp) -> dict:
+    """How far apart provincial incomes are.
+
+    GDP per person overstates it (resource profits mostly don't reach residents),
+    so the calibration target is household market income (table 11-10-0190):
+    average market income of economic families and unattached individuals.
+    """
     cvs = [cv([gdp[(p, y)] for p in PROVINCES]) for y in YEARS if all((p, y) in gdp for p in PROVINCES)]
-    return {"gdp_per_capita_cv": round(mean(cvs), 4), "years": len(cvs)}
+    market = defaultdict(dict)
+    for r in rows("11100190.csv"):
+        if (r["GEO"] in PROVINCES and r["REF_DATE"] in YEARS
+                and r["Economic family type"] == "Economic families and persons not in an economic family"
+                and r["Income concept"] in ("Average market income", "Median market income")):
+            v = value(r)
+            if v is not None:
+                market[(r["REF_DATE"], r["Income concept"])][r["GEO"]] = v
+    avg_cvs = [cv(list(market[(y, "Average market income")].values())) for y in YEARS
+               if len(market[(y, "Average market income")]) == len(PROVINCES)]
+    median_to_mean = {
+        p: round(mean(market[(y, "Median market income")][p] / market[(y, "Average market income")][p]
+                      for y in YEARS if p in market[(y, "Median market income")] and p in market[(y, "Average market income")]), 4)
+        for p in PROVINCES
+    }
+    return {
+        "gdp_per_capita_cv": round(mean(cvs), 4),
+        "market_income_cv": round(mean(avg_cvs), 4),
+        "market_income_cv_range": [round(min(avg_cvs), 4), round(max(avg_cvs), 4)],
+        "median_to_mean_market_income": median_to_mean,
+        "years": len(avg_cvs),
+    }
 
 
 def main() -> None:
@@ -200,7 +227,7 @@ def main() -> None:
     spend = spending()
     kids = school_age(pop)
     targets = {
-        "source": "Statistics Canada tables 10-10-0005, 17-10-0005, 17-10-0009, 17-10-0022, 11-10-0134, 36-10-0222; ten provinces, 2015-2024",
+        "source": "Statistics Canada tables 10-10-0005, 11-10-0134, 11-10-0190, 17-10-0005, 17-10-0009, 17-10-0022, 36-10-0222; ten provinces, 2015-2024",
         "disagreement": disagreement(pop, gdp, spend, kids),
         "inequality": inequality(),
         "migration": migration(pop),

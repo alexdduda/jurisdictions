@@ -26,6 +26,9 @@ python3 -m scopelang examples/min_wage.jur --tree
 python3 -m tiebout study            # one hand-picked world + phase maps (~7 min on 8 cores)
 python3 -m tiebout uncertainty      # 200 sampled worlds per policy area (~25 min)
 python3 -m tiebout evaluate results/robust_arrangement.jur
+python3 -m tiebout uncertainty --ranges canada   # the same, calibrated to Canadian data
+python3 -m tiebout.thresholds       # where each verdict flips on the unmeasured numbers
+python3 validation/model_vs_canada.py   # does the model reproduce Canadian patterns?
 python3 site/build.py               # rebuild the results page from results/
 python3 -m unittest discover -s tests -t .
 ```

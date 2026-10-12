@@ -1,5 +1,5 @@
 {
-  "source": "Statistics Canada tables 10-10-0005, 17-10-0005, 17-10-0009, 17-10-0022, 11-10-0134, 36-10-0222; ten provinces, 2015-2024",
+  "source": "Statistics Canada tables 10-10-0005, 11-10-0134, 11-10-0190, 17-10-0005, 17-10-0009, 17-10-0022, 36-10-0222; ten provinces, 2015-2024",
   "disagreement": {
     "schools": {
       "function": "Primary and secondary education [7092]",
@@ -93,6 +93,23 @@
   },
   "regional_income": {
     "gdp_per_capita_cv": 0.1831,
+    "market_income_cv": 0.1434,
+    "market_income_cv_range": [
+      0.1226,
+      0.1881
+    ],
+    "median_to_mean_market_income": {
+      "Newfoundland and Labrador": 0.6669,
+      "Prince Edward Island": 0.7429,
+      "Nova Scotia": 0.7202,
+      "New Brunswick": 0.7249,
+      "Quebec": 0.7241,
+      "Ontario": 0.7109,
+      "Manitoba": 0.7511,
+      "Saskatchewan": 0.7579,
+      "Alberta": 0.756,
+      "British Columbia": 0.7159
+    },
     "years": 10
   },
   "survey": {
