@@ -1,0 +1,18 @@
+A. sampling worlds per policy area (canada ranges)
+    schools: 29400 runs in 1230s
+      wins: local 10%, central 58%, floor 4%, ceiling 0%, matched 28% | robust: matched 10% (captures 18% of the tailored gain)
+    environment: 29400 runs in 1200s
+      wins: central 72%, floor 25%, matched 2% | robust: central 0.3 (captures 89% of the tailored gain)
+    transit: 29400 runs in 412s
+      wins: central 97%, floor 0%, matched 2% | robust: central 0.4 (captures 84% of the tailored gain)
+    redistribution: 31200 runs in 11947s
+      wins: central 92%, floor 8% | robust: central 0.25 (captures 78% of the tailored gain)
+B. checking one-domain-at-a-time against joint optimisation
+    world 1/8: modes agree 4/4, one-at-a-time keeps 98% of the joint gain
+    world 2/8: modes agree 3/4, one-at-a-time keeps 94% of the joint gain
+    world 3/8: modes agree 2/4, one-at-a-time keeps 98% of the joint gain
+    world 4/8: modes agree 4/4, one-at-a-time keeps 96% of the joint gain
+    world 5/8: modes agree 2/4, one-at-a-time keeps 87% of the joint gain
+    world 6/8: modes agree 4/4, one-at-a-time keeps 100% of the joint gain
+    world 7/8: modes agree 3/4, one-at-a-time keeps 98% of the joint gain
+    world 8/8: modes agree 4/4, one-at-a-time keeps 99% of the joint gain

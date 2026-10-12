@@ -1,0 +1,9 @@
+# The policy per domain with the lowest expected regret across all sampled worlds.
+# 200 sampled worlds per domain, 3 seeds each.
+
+scope nation {
+  law schools: shadow                   # no rule clearly wins; best (matched 10%) keeps 4%
+  law environment: preempt = 0.4        # wins 67% of worlds; keeps 88% of the tailored gain
+  law transit: preempt = 0.6            # wins 94% of worlds; keeps 89% of the tailored gain
+  law redistribution: preempt = 0.3     # wins 100% of worlds; keeps 77% of the tailored gain
+}

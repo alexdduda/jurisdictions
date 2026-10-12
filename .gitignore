@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+results/study.log
+data/raw/
+audit/__pycache__/

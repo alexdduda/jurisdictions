@@ -1,0 +1,13 @@
+# Best arrangement found by tiebout.
+# Welfare 0.8123 ± 0.0292 over 6 seeds.
+# Re-score after editing: python -m tiebout evaluate results/best_arrangement.jur
+
+scope nation {
+  law schools: shadow                   # regions decide; next best: floor 0 (+0.0 milli-utils)
+  law environment: floor = 0.5          # regions decide, never below this; next best: matched 50% (-20.7 milli-utils)
+  law transit: preempt = 0.65           # one national level everywhere; next best: matched 10% (-70.4 milli-utils)
+  law redistribution: preempt = 0.225   # one national level everywhere; next best: floor 0.25 (-0.7 milli-utils)
+
+  # A region trying to undercut a floor is struck down, e.g.:
+  # scope region_7 { environment = 0 }
+}

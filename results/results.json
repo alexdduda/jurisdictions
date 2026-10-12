@@ -1,0 +1,360 @@
+{
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "quick": false,
+  "best": {
+    "schools": "local",
+    "environment": "floor 0.5",
+    "transit": "central 0.65",
+    "redistribution": "central 0.225"
+  },
+  "best_welfare": [
+    0.8123462563719551,
+    0.02924779626981786
+  ],
+  "baselines": {
+    "all local": [
+      0.617994531285142,
+      0.027182436422342936
+    ],
+    "all central (best levels)": [
+      0.7215948079383895,
+      0.02787656561682353
+    ],
+    "best local-or-central per domain": [
+      0.7873462563719551,
+      0.029247796269817876
+    ],
+    "optimum": [
+      0.8123462563719551,
+      0.02924779626981786
+    ]
+  },
+  "binary": {
+    "schools": "local",
+    "environment": "central 0.5",
+    "transit": "central 0.65",
+    "redistribution": "central 0.225"
+  },
+  "by_mode": {
+    "schools": {
+      "local": {
+        "policy": "local",
+        "welfare": 0.8123462563719551
+      },
+      "central": {
+        "policy": "central 0.5",
+        "welfare": 0.7465948079383895
+      },
+      "floor": {
+        "policy": "floor 0",
+        "welfare": 0.8123462563719551
+      },
+      "ceiling": {
+        "policy": "ceiling 1",
+        "welfare": 0.8123462563719551
+      },
+      "matched": {
+        "policy": "matched 10%",
+        "welfare": 0.8086621621253922
+      }
+    },
+    "environment": {
+      "local": {
+        "policy": "local",
+        "welfare": 0.7220856004728652
+      },
+      "central": {
+        "policy": "central 0.5",
+        "welfare": 0.7873462563719551
+      },
+      "floor": {
+        "policy": "floor 0.5",
+        "welfare": 0.8123462563719551
+      },
+      "ceiling": {
+        "policy": "ceiling 0.3",
+        "welfare": 0.7220856004728652
+      },
+      "matched": {
+        "policy": "matched 50%",
+        "welfare": 0.7916854165743147
+      }
+    },
+    "transit": {
+      "local": {
+        "policy": "local",
+        "welfare": 0.7370660702578785
+      },
+      "central": {
+        "policy": "central 0.65",
+        "welfare": 0.8123462563719551
+      },
+      "floor": {
+        "policy": "floor 0.4",
+        "welfare": 0.739832685028626
+      },
+      "ceiling": {
+        "policy": "ceiling 0.6",
+        "welfare": 0.7370662874469519
+      },
+      "matched": {
+        "policy": "matched 10%",
+        "welfare": 0.7419356836987534
+      }
+    },
+    "redistribution": {
+      "local": {
+        "policy": "local",
+        "welfare": 0.7820798749882342
+      },
+      "central": {
+        "policy": "central 0.225",
+        "welfare": 0.8123462563719551
+      },
+      "floor": {
+        "policy": "floor 0.25",
+        "welfare": 0.8116062850466043
+      },
+      "ceiling": {
+        "policy": "ceiling 0.1",
+        "welfare": 0.7983825945377888
+      }
+    }
+  },
+  "trace": [
+    "pass 1: environment: local -> floor 0.5 (welfare 0.7094)",
+    "pass 1: transit: local -> central 0.65 (welfare 0.7821)",
+    "pass 1: redistribution: local -> central 0.225 (welfare 0.8123)"
+  ],
+  "phase_spillover": {
+    "rows": [
+      0.0,
+      0.1,
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "cols": [
+      0.0,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "row_label": "spillover",
+    "col_label": "heterogeneity",
+    "cells": [
+      [
+        "local",
+        "local",
+        "local",
+        "local"
+      ],
+      [
+        "matched 10%",
+        "floor 0.3 \u2248",
+        "floor 0.1 \u2248",
+        "floor 0.1"
+      ],
+      [
+        "floor 0.5",
+        "matched 10%",
+        "matched 10%",
+        "matched 10%"
+      ],
+      [
+        "floor 0.5",
+        "floor 0.5",
+        "matched 30% \u2248",
+        "matched 30%"
+      ],
+      [
+        "floor 0.5",
+        "floor 0.5",
+        "floor 0.5",
+        "floor 0.5"
+      ],
+      [
+        "floor 0.5",
+        "floor 0.5",
+        "floor 0.5",
+        "floor 0.5"
+      ]
+    ]
+  },
+  "phase_scale": {
+    "rows": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "cols": [
+      0.0,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "row_label": "scale",
+    "col_label": "heterogeneity",
+    "cells": [
+      [
+        "local",
+        "local",
+        "local",
+        "local"
+      ],
+      [
+        "local",
+        "local",
+        "local",
+        "local"
+      ],
+      [
+        "central 0.6",
+        "central 0.6",
+        "local",
+        "local"
+      ],
+      [
+        "central 0.6",
+        "central 0.7",
+        "central 0.7",
+        "local"
+      ],
+      [
+        "central 0.9",
+        "central 0.9",
+        "central 0.9",
+        "central 0.9"
+      ]
+    ]
+  },
+  "mobility": [
+    {
+      "move_share": 0.0,
+      "winner": "central 0.25",
+      "welfare": {
+        "local": -0.06000035869149467,
+        "floor": -0.05610092252225254,
+        "central": -0.055351996847018914
+      },
+      "local_tax": 0.15755581172466537,
+      "local_sorting": 0.06469496787492958
+    },
+    {
+      "move_share": 0.05,
+      "winner": "central 0.25",
+      "welfare": {
+        "local": -0.07844421985935357,
+        "floor": -0.05630555783009161,
+        "central": -0.055351996847018914
+      },
+      "local_tax": 0.1690580294238605,
+      "local_sorting": 0.23333856187955082
+    },
+    {
+      "move_share": 0.1,
+      "winner": "central 0.25 \u2248",
+      "welfare": {
+        "local": -0.09470630959353611,
+        "floor": -0.05614926109584888,
+        "central": -0.055351996847018914
+      },
+      "local_tax": 0.16215483190798438,
+      "local_sorting": 0.2762274636153002
+    },
+    {
+      "move_share": 0.25,
+      "winner": "central 0.25 \u2248",
+      "welfare": {
+        "local": -0.08518528592072867,
+        "floor": -0.05740277363624738,
+        "central": -0.055351996847018914
+      },
+      "local_tax": 0.15184890990755895,
+      "local_sorting": 0.262621843965406
+    },
+    {
+      "move_share": 0.5,
+      "winner": "central 0.25",
+      "welfare": {
+        "local": -0.09005645805260522,
+        "floor": -0.07364489350152849,
+        "central": -0.055351996847018914
+      },
+      "local_tax": 0.13725365447880863,
+      "local_sorting": 0.2893662054753951
+    }
+  ],
+  "robustness": {
+    "baseline": {
+      "schools": "local",
+      "environment": "floor 0.5",
+      "transit": "central 0.65",
+      "redistribution": "central 0.225"
+    },
+    "no national overhead": {
+      "schools": "local",
+      "environment": "central 0.5",
+      "transit": "central 0.7",
+      "redistribution": "central 0.225"
+    },
+    "heavy national overhead (0.3)": {
+      "schools": "local",
+      "environment": "floor 0.5",
+      "transit": "central 0.55",
+      "redistribution": "central 0.225"
+    },
+    "no mobility": {
+      "schools": "floor 0.075",
+      "environment": "floor 0.5",
+      "transit": "central 0.65",
+      "redistribution": "central 0.225"
+    },
+    "high mobility (0.5)": {
+      "schools": "local",
+      "environment": "floor 0.5",
+      "transit": "central 0.65",
+      "redistribution": "central 0.225"
+    },
+    "more income inequality": {
+      "schools": "local",
+      "environment": "floor 0.5",
+      "transit": "central 0.65",
+      "redistribution": "central 0.375"
+    }
+  },
+  "outcome": {
+    "policy_mean": {
+      "schools": 0.4784152551307226,
+      "environment": 0.5,
+      "transit": 0.65,
+      "redistribution": 0.225
+    },
+    "policy_sd": {
+      "schools": 0.19477981181331472,
+      "environment": 0.0,
+      "transit": 0.0,
+      "redistribution": 0.0
+    },
+    "income_sorting": 0.06885065392181076,
+    "local_policy_mean": {
+      "schools": 0.47853940128959516,
+      "environment": 0.20112690666922714,
+      "transit": 0.3969582209086029,
+      "redistribution": 0.15405978765040843
+    },
+    "local_income_sorting": 0.21253072596072284
+  },
+  "runs": 2154,
+  "seconds": 400.8
+}

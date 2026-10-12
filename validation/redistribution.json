@@ -1,0 +1,16 @@
+{
+  "inequality_to_wanting": {
+    "spearman": 0.576,
+    "p": 0.0884,
+    "model_predicts": "positive"
+  },
+  "inequality_to_spending": {
+    "spearman": -0.188,
+    "p": 0.5993,
+    "model_predicts": "positive"
+  },
+  "wanting_to_spending": {
+    "spearman": -0.406,
+    "p": 0.2428
+  }
+}

@@ -1,0 +1,21 @@
+# The St. Lawrence as a commons: every city can change it, everyone lives with it.
+# Numbers are illustrative.
+
+scope quebec {
+  shared river_pollution = 10
+  law sewage_treatment: shadow = 0.5
+
+  scope montreal {
+    sewage_treatment = 0.3
+    river_pollution += 6 * (1 - sewage_treatment)
+  }
+  scope laval {
+    sewage_treatment = 0.8
+    river_pollution += 4 * (1 - sewage_treatment)
+  }
+  scope trois_rivieres {
+    if river_pollution > 12 { show "downstream and paying for it" }
+    show river_pollution
+  }
+  scope quebec_city { }
+}

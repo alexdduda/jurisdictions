@@ -1,0 +1,15 @@
+# Montreal answers to two bodies: the province and the metropolitan community (CMM).
+# When both set the same variable, reading it is a jurisdiction dispute until
+# Montreal says whose word counts. Values are illustrative.
+
+scope quebec {
+  law transit_fare: shadow = 3.75
+  scope cmm { transit_fare = 3.5 }
+}
+
+scope montreal in quebec, cmm {
+  show transit_fare                 # dispute: quebec says 3.75, cmm says 3.5
+  defer transit_fare to cmm
+  show transit_fare                 # 3.5
+  explain transit_fare
+}

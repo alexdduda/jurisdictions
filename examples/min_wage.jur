@@ -1,0 +1,22 @@
+# A hypothetical economy-wide federal minimum wage (in reality Canada's
+# federal minimum only covers federally regulated sectors).
+
+scope canada {
+  law min_wage: floor = 15
+
+  scope quebec {
+    min_wage = 16
+    scope montreal { min_wage = 14 }       # struck down: below Quebec's 16
+    scope gatineau { min_wage = 16.5 }     # fine: raising the floor is allowed
+  }
+
+  scope alberta {
+    min_wage = 15
+    law overtime_multiplier: preempt = 1.5 # Alberta takes this one over entirely
+    scope calgary { overtime_multiplier = 2 }   # struck down: preempted
+  }
+
+  # Ottawa raises the floor after the provinces acted.
+  min_wage = 16.25
+}
+# End-of-run validation will flag Quebec (16) and Alberta (15) as now invalid.

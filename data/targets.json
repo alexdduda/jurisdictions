@@ -1,0 +1,115 @@
+{
+  "source": "Statistics Canada tables 10-10-0005, 17-10-0005, 17-10-0009, 17-10-0022, 11-10-0134, 36-10-0222; ten provinces, 2015-2024",
+  "disagreement": {
+    "schools": {
+      "function": "Primary and secondary education [7092]",
+      "years": 10,
+      "mean_per_capita": 1799,
+      "cv": {
+        "levels": 0.1441,
+        "shares": 0.1218,
+        "residual": 0.1448,
+        "per_child": 0.1012
+      },
+      "heterogeneity": {
+        "levels": 0.0721,
+        "shares": 0.0609,
+        "residual": 0.0724,
+        "per_child": 0.0506
+      },
+      "heterogeneity_range": [
+        0.0506,
+        0.0724
+      ]
+    },
+    "environment": {
+      "function": "Environmental protection [705]",
+      "years": 10,
+      "mean_per_capita": 310,
+      "cv": {
+        "levels": 0.2935,
+        "shares": 0.3044,
+        "residual": 0.295
+      },
+      "heterogeneity": {
+        "levels": 0.1468,
+        "shares": 0.1522,
+        "residual": 0.1475
+      },
+      "heterogeneity_range": [
+        0.1468,
+        0.1522
+      ]
+    },
+    "transit": {
+      "function": "Transport [7045]",
+      "years": 10,
+      "mean_per_capita": 644,
+      "cv": {
+        "levels": 0.2767,
+        "shares": 0.2818,
+        "residual": 0.3294
+      },
+      "heterogeneity": {
+        "levels": 0.1384,
+        "shares": 0.1409,
+        "residual": 0.1647
+      },
+      "heterogeneity_range": [
+        0.1384,
+        0.1647
+      ]
+    },
+    "social protection": {
+      "function": "Social protection [710]",
+      "years": 10,
+      "mean_per_capita": 1915,
+      "cv": {
+        "levels": 0.2688,
+        "shares": 0.2407,
+        "residual": 0.27
+      },
+      "heterogeneity": {
+        "levels": 0.1344,
+        "shares": 0.1203,
+        "residual": 0.135
+      },
+      "heterogeneity_range": [
+        0.1203,
+        0.135
+      ]
+    }
+  },
+  "inequality": {
+    "market_gini": 0.4326,
+    "after_tax_gini": 0.301,
+    "income_sigma": 0.8088
+  },
+  "migration": {
+    "annual_rate": 0.00748,
+    "min": 0.00643,
+    "max": 0.00893,
+    "years": 10
+  },
+  "regional_income": {
+    "gdp_per_capita_cv": 0.1831,
+    "years": 10
+  },
+  "survey": {
+    "schools": {
+      "rho": 0.0795,
+      "respondents": 36848,
+      "question": "cps19_spend_educ"
+    },
+    "environment": {
+      "rho": 0.2011,
+      "respondents": 36768,
+      "question": "cps19_spend_env"
+    },
+    "redistribution": {
+      "rho": 0.2064,
+      "respondents": 9906,
+      "question": "pes19_gap"
+    }
+  }
+}

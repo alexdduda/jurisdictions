@@ -1,0 +1,56 @@
+{
+  "schools": {
+    "question": "cps19_spend_educ",
+    "respondents": 36848,
+    "province_means": {
+      "Newfoundland and Labrador": 1.221,
+      "Prince Edward Island": 0.983,
+      "Nova Scotia": 1.169,
+      "New Brunswick": 1.307,
+      "Quebec": 1.181,
+      "Ontario": 1.077,
+      "Manitoba": 1.085,
+      "Saskatchewan": 1.268,
+      "Alberta": 1.012,
+      "British Columbia": 1.142
+    },
+    "rho_raw": 0.1006,
+    "rho": 0.0795
+  },
+  "environment": {
+    "question": "cps19_spend_env",
+    "respondents": 36768,
+    "province_means": {
+      "Newfoundland and Labrador": 0.823,
+      "Prince Edward Island": 0.986,
+      "Nova Scotia": 0.934,
+      "New Brunswick": 0.875,
+      "Quebec": 1.071,
+      "Ontario": 0.861,
+      "Manitoba": 0.806,
+      "Saskatchewan": 0.427,
+      "Alberta": 0.409,
+      "British Columbia": 0.838
+    },
+    "rho_raw": 0.2071,
+    "rho": 0.2011
+  },
+  "redistribution": {
+    "question": "pes19_gap",
+    "respondents": 9906,
+    "province_means": {
+      "Newfoundland and Labrador": 1.444,
+      "Prince Edward Island": 1.213,
+      "Nova Scotia": 1.429,
+      "New Brunswick": 1.633,
+      "Quebec": 1.496,
+      "Ontario": 1.172,
+      "Manitoba": 1.133,
+      "Saskatchewan": 1.042,
+      "Alberta": 0.779,
+      "British Columbia": 1.088
+    },
+    "rho_raw": 0.2425,
+    "rho": 0.2064
+  }
+}

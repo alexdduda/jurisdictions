@@ -1,0 +1,25 @@
+# Cannabis legal age in Canada: a real-world floor.
+# Ottawa sets a national minimum of 18; provinces may go higher, never lower.
+# (Ages reflect provincial law as of 2025; the city attempt is hypothetical.)
+
+scope canada {
+  law cannabis_age: floor = 18
+
+  scope quebec  { cannabis_age = 21 }
+  scope ontario { cannabis_age = 19 }
+  scope alberta { }                      # leaves it at the federal floor
+
+  scope quebec {
+    scope montreal {
+      cannabis_age = 18                  # below Quebec's 21: struck down
+      show cannabis_age
+    }
+  }
+}
+
+scope alberta { show cannabis_age }       # error: alberta lives inside canada, not root
+
+scope canada {
+  scope alberta  { show cannabis_age }
+  scope ontario  { explain cannabis_age }
+}

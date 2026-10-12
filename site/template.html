@@ -1,0 +1,807 @@
+<title>Who Should Decide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of statute-numbered sections (§), with figures breaking out wider. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #fcfcfb;
+  --ink: #12161d;
+  --ink-2: #4a5160;
+  --ink-3: #737a88;
+  --rule: #dde1e7;
+  --accent: #2d3a8c;
+  --code-bg: #e9edf2;
+  --struck: #b4232c;
+  --grid: #e6e9ee;
+  --m-local: #2a78d6;
+  --m-central: #eb6834;
+  --m-floor: #1baf7a;
+  --m-ceiling: #eda100;
+  --m-matched: #e87ba4;
+  --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --col: 42rem;
+  --wide: 68rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
+    --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
+    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
+  --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
+  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 1.125rem; line-height: 1.6;
+  padding-inline: 16px; padding-block: 0 4rem;
+}
+main { display: grid; gap: 4.5rem; }
+.col { max-width: var(--col); margin-inline: auto; width: 100%; min-width: 0; }
+.wide { max-width: var(--wide); margin-inline: auto; width: 100%; min-width: 0; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 600; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.stack { display: grid; gap: 1.1rem; }
+.lede { font-size: 1.3rem; color: var(--ink-2); }
+.eyebrow {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.8rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+.sec-head { display: grid; gap: 0.5rem; }
+.sec-num { font-family: var(--font-mono); color: var(--accent); font-size: 0.95rem; }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+small, .note { font-size: 0.92rem; color: var(--ink-3); }
+
+/* hero */
+header.hero { padding-block: 4.5rem 1rem; display: grid; gap: 1.5rem; }
+.hero-grid { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 860px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* code: a statute book written as a program */
+pre.code {
+  margin: 0; background: var(--code-bg); border-radius: 6px; padding: 1.1rem 1.2rem;
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.65; overflow-x: auto;
+  color: var(--ink);
+}
+.tok-k { color: var(--accent); font-weight: 500; }
+.tok-c { color: var(--ink-3); }
+.tok-m { font-weight: 500; }
+.struck { color: var(--struck); }
+
+/* analogy table */
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.98rem; }
+th, td { text-align: left; padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; color: var(--ink-2); letter-spacing: 0.02em; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 0.85rem; }
+
+/* verdict rows */
+.verdicts { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.verdict {
+  display: grid; gap: 1rem 2rem; padding-block: 1.4rem; border-bottom: 1px solid var(--rule);
+  grid-template-columns: 11rem minmax(0, 1fr) 15rem; align-items: center;
+}
+@media (max-width: 860px) { .verdict { grid-template-columns: minmax(0, 1fr); } }
+.verdict h3 { font-size: 1.25rem; }
+.verdict .sub { font-size: 0.9rem; color: var(--ink-3); }
+.pick { display: grid; gap: 0.2rem; }
+.pick .policy { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; display: flex; gap: 0.5rem; align-items: center; }
+.pick .why { font-size: 0.92rem; color: var(--ink-2); }
+.swatch { width: 0.8rem; height: 0.8rem; border-radius: 3px; flex: none; }
+.bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--ink-3); font-family: var(--font-display); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-family: var(--font-display); font-size: 0.88rem; color: var(--ink-2); }
+.legend span { display: inline-flex; gap: 0.4rem; align-items: center; }
+
+/* figure */
+figure { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.9rem; min-width: 0; }
+.two > *, .verdict > * { min-width: 0; }
+figcaption { font-size: 0.95rem; color: var(--ink-2); max-width: var(--col); }
+.fig-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+svg text { font-family: var(--font-display); fill: var(--ink-2); font-size: 12px; }
+svg .axis-title { fill: var(--ink-3); font-size: 12px; }
+svg .grid { stroke: var(--grid); stroke-width: 1; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tabs button {
+  font-family: var(--font-display); font-size: 0.92rem; font-weight: 500;
+  background: transparent; color: var(--ink-2); border: 1px solid var(--rule);
+  border-radius: 999px; padding: 0.35rem 0.9rem; cursor: pointer;
+}
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.two { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+.drivers { display: grid; gap: 0.9rem; }
+.driver { display: grid; gap: 0.3rem; }
+.driver .name { font-family: var(--font-display); font-weight: 500; font-size: 0.98rem; display: flex; justify-content: space-between; gap: 1rem; }
+.driver .name span:last-child { font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-3); }
+.driver .track { height: 8px; background: var(--grid); border-radius: 4px; overflow: hidden; }
+.driver .fill { height: 100%; background: var(--accent); border-radius: 0 4px 4px 0; }
+.driver .shift { font-size: 0.88rem; color: var(--ink-2); }
+
+/* phase grid */
+.phase { display: grid; gap: 2px; font-family: var(--font-display); font-size: 0.8rem; }
+.phase .cell {
+  border-radius: 3px; min-height: 3rem; display: grid; place-items: center; text-align: center;
+  padding: 0.2rem; color: #fff; font-weight: 600; line-height: 1.15; cursor: default;
+}
+.phase .cell.light-text { color: #12161d; }
+.phase .hdr { color: var(--ink-3); display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.phase .corner { color: var(--ink-3); font-size: 0.72rem; display: grid; place-items: end start; }
+.axis-cap { font-family: var(--font-display); font-size: 0.82rem; color: var(--ink-3); }
+
+details { border-top: 1px solid var(--rule); padding-top: 0.6rem; }
+summary { cursor: pointer; font-family: var(--font-display); font-size: 0.9rem; color: var(--ink-2); }
+details .table-wrap { margin-top: 0.8rem; max-height: 22rem; overflow: auto; }
+
+.callout { border-left: 3px solid var(--accent); padding: 0.2rem 0 0.2rem 1.1rem; display: grid; gap: 0.6rem; }
+.stats { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; }
+.stat { display: grid; gap: 0.1rem; }
+.stat .v { font-family: var(--font-display); font-weight: 600; font-size: 2rem; font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 0.9rem; color: var(--ink-3); max-width: 16rem; }
+
+ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
+
+#tip {
+  position: fixed; pointer-events: none; z-index: 10; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 6px; padding: 0.5rem 0.7rem; font-family: var(--font-display);
+  font-size: 0.85rem; box-shadow: 0 4px 16px rgb(0 0 0 / 0.12); max-width: 18rem; display: grid; gap: 0.15rem;
+}
+#tip strong { font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+#tip .row { display: flex; gap: 0.45rem; align-items: center; color: var(--ink-2); }
+#tip .key { width: 12px; height: 2px; border-radius: 1px; flex: none; }
+@media (prefers-reduced-motion: no-preference) { .tabs button { transition: background 120ms, color 120ms; } }
+</style>
+
+<main>
+  <header class="hero wide">
+    <div class="eyebrow">Fiscal federalism, simulated</div>
+    <div class="hero-grid">
+      <div class="stack">
+        <h1>Who should decide?</h1>
+        <p class="lede">Programming languages settled long ago which scope wins: the innermost one. Federations still argue about it. This project writes the argument down twice: as a programming language, and as a simulation that searches for the split of power that leaves people best off.</p>
+        <p id="hero-answer"></p>
+      </div>
+      <figure>
+        <pre class="code" id="robust-code" aria-label="The robust arrangement as a scopelang program"></pre>
+        <figcaption>The arrangement that held up best across <span data-fill="draws"></span> simulated worlds per policy area, written in the project's own language.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section class="col stack" aria-labelledby="s1">
+    <div class="sec-head"><span class="sec-num">§ 1</span><h2 id="s1">Scope is jurisdiction</h2></div>
+    <p>A variable in code and a rule in politics raise the same question: who can set it, and whose setting wins? In most languages the answer is fixed. A function's local variable <em>shadows</em> the global one, and that's the end of it. In Canada it depends on the subject. Ottawa preempts on criminal law. It sets a floor on the cannabis age (18) that Quebec raised to 21. And it pays part of the bill for health care while the provinces run it.</p>
+    <p><strong>scopelang</strong> makes each of those a rule a variable can carry. A write that breaks the rule is <em>struck down</em>: reported, not applied, and the program carries on, the way a court voids one law without stopping the government.</p>
+    <pre class="code" aria-label="scopelang example"><span class="tok-k">scope</span> canada {
+  <span class="tok-k">law</span> cannabis_age: <span class="tok-m">floor</span> = 18
+
+  <span class="tok-k">scope</span> quebec  { cannabis_age = 21 }
+  <span class="tok-k">scope</span> quebec  {
+    <span class="tok-k">scope</span> montreal { cannabis_age = 18 }
+  }
+}
+<span class="struck">✗ line 6 STRUCK DOWN: montreal cannot set cannabis_age = 18:
+  below the floor of 21 from quebec (floor law of canada, line 2)</span></pre>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rule</th><th>What lower levels may do</th><th>Canadian example</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mono">shadow</span></td><td>Set their own value; the nearest one wins</td><td>Municipal parking rules</td></tr>
+          <tr><td><span class="mono">preempt</span></td><td>Nothing; only the declaring level sets it</td><td>Criminal law</td></tr>
+          <tr><td><span class="mono">floor</span></td><td>Go higher, never lower than they inherit</td><td>Cannabis age</td></tr>
+          <tr><td><span class="mono">ceiling</span></td><td>Go lower, never higher than they inherit</td><td>Caps on rent increases</td></tr>
+          <tr><td><span class="mono">matched</span></td><td>Choose freely while the higher level pays a share</td><td>Health transfers</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The language also handles a city with two parents (Montreal answers to both Quebec and the metropolitan community), and <span class="mono">shared</span> variables like river pollution, where the run ends with a report of who changed the commons and who lives with the result.</p>
+  </section>
+
+  <section class="col stack" aria-labelledby="s2">
+    <div class="sec-head"><span class="sec-num">§ 2</span><h2 id="s2">A model of the trade-off</h2></div>
+    <p>The simulation is a grid of 16 regions and 1,600 people. Each person has an income and a taste for each public service. Every round, each region's government does what its median resident wants, within the national rules. Then people look around and move if another region suits them better and the move is worth its cost.</p>
+    <p>For each policy area, a search picks one of the five rules above and its level. It's balancing forces that pull in opposite directions:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Pushes power down to regions</th><th>Pushes power up to the nation</th></tr></thead>
+        <tbody>
+          <tr><td>Regions want different things, so one national level fits nobody exactly</td><td>Benefits leak to neighbours (clean air, rivers), which a region ignores, so it under-provides</td></tr>
+          <tr><td>People can move to the region that suits them</td><td>One national network can be cheaper than sixteen</td></tr>
+          <tr><td>Money run through the national budget has overhead</td><td>Mobile high earners can escape regional redistribution, which shrinks local tax bases</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>These are the ingredients of Wallace Oates' decentralisation theorem and the standard objections to it. The tests check that the model reproduces the textbook results. Left alone, a region provides only <em>taste × (1 − spillover)</em>, and a matching grant at the spillover rate restores the best level.</p>
+  </section>
+
+  <section class="wide stack" aria-labelledby="s-canada">
+    <div class="col sec-head"><span class="sec-num">§ 3</span><h2 id="s-canada">Calibrated to Canada</h2></div>
+    <div class="col stack">
+      <p>An automated review of the first version made the obvious objection: with every number guessed, the verdicts mostly restate the guesses. So wherever Canadian evidence exists, the guess is replaced by a measurement. Spending by function in every province (Statistics Canada, 2015 to 2024), interprovincial migration, income inequality, published estimates of what it costs to raise a dollar federally and provincially, and 37,000 respondents to the 2019 Canadian Election Study.</p>
+      <p>Disagreement between provinces is the hard one to measure, because what a province spends mixes what its people want with what things cost and what it can afford. It is measured five ways: spending per person, spending as a share of the budget, spending after removing the effect of provincial income, education spending per school-age child, and what people say in the survey. They agree.</p>
+    </div>
+    <div class="table-wrap">
+      <table id="calib-table"></table>
+    </div>
+    <div class="two">
+      <figure>
+        <div class="fig-title">What people say they want, by province</div>
+        <div id="survey-chart"></div>
+        <figcaption id="survey-caption"></figcaption>
+      </figure>
+      <div class="stack" id="calib-notes"></div>
+    </div>
+  </section>
+
+  <section class="wide stack" aria-labelledby="s3">
+    <div class="col sec-head"><span class="sec-num">§ 4</span><h2 id="s3">The answer, across <span data-fill="draws"></span> possible worlds per policy area</h2></div>
+    <div class="col stack">
+      <p>Even calibrated, some numbers are only known as a range, and some (how much benefit spills across borders, how much one national system saves) have no Canadian data at all. So the model is solved in <span data-fill="draws"></span> worlds per policy area, sampled evenly across what remains uncertain, with every candidate policy scored in every world on the same random seeds. Each row also shows what the same method concluded when every number was a wide guess.</p>
+      <p>Committing to one policy without knowing the true numbers is also what a real government does. So the recommendation for each area answers a harder question than "what wins most often": which <em>single</em> rule, at one fixed level, loses least across the whole range? Levels are on the model's own scale, where 0.5 is what an average resident would choose if their region kept every benefit for itself.</p>
+    </div>
+    <div class="legend" id="mode-legend" aria-label="Legend"></div>
+    <div class="verdicts" id="verdicts"></div>
+    <details class="col">
+      <summary>Table: share of worlds each rule wins</summary>
+      <div class="table-wrap"><table id="win-table"></table></div>
+    </details>
+  </section>
+
+  <section class="wide stack" aria-labelledby="s4">
+    <div class="col sec-head"><span class="sec-num">§ 5</span><h2 id="s4">Which assumptions decide it</h2></div>
+    <p class="col">For each parameter, the bar shows how much the winning rule changes between the low half of its range and the high half (0 means no change, 100 means a different winner every time). These are the numbers worth arguing about. The rest barely matter.</p>
+    <div class="tabs" role="tablist" id="domain-tabs"></div>
+    <div class="two">
+      <div class="drivers" id="drivers"></div>
+      <figure>
+        <div class="fig-title" id="scatter-title"></div>
+        <div id="scatter"></div>
+        <figcaption id="scatter-caption"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wide stack" aria-labelledby="s5">
+    <div class="col sec-head"><span class="sec-num">§ 6</span><h2 id="s5">Where the answer flips</h2></div>
+    <p class="col">The same question asked of an abstract public service, varying two properties at a time. Each cell is the winning rule. A <strong>≈</strong> marks a winner that beat the runner-up by less than two standard errors. These maps come from the first, fixed-parameter study, so they show the shape of the trade-off more than exact boundaries.</p>
+    <div class="two">
+      <figure>
+        <div class="fig-title">Spillovers vs. regional disagreement</div>
+        <div id="phase-spill"></div>
+        <figcaption>Scale savings held at zero. Any spillover at all ends pure local control.</figcaption>
+      </figure>
+      <figure>
+        <div class="fig-title">Scale savings vs. regional disagreement</div>
+        <div id="phase-scale"></div>
+        <figcaption>Spillovers held at zero. Centralising pays only when the savings outweigh how much regions disagree.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="wide stack" aria-labelledby="s6">
+    <div class="col sec-head"><span class="sec-num">§ 7</span><h2 id="s6">Mobility and redistribution</h2></div>
+    <p class="col">Redistribution is where moving matters most. With nobody moving, a national floor does about as well as a national scheme. As people move more, high earners gather in low-tax regions, regional tax bases split apart, and regional redistribution stops working.</p>
+    <figure>
+      <div class="fig-title">Average welfare by rule, as mobility rises</div>
+      <div class="legend" id="mob-legend"></div>
+      <div id="mobility"></div>
+      <figcaption>Welfare is average log consumption, so only differences between lines mean anything. Each rule is shown at its best level. Horizontal axis: the share of people who consider moving each round.</figcaption>
+    </figure>
+    <details class="col">
+      <summary>Table: welfare and income sorting by mobility</summary>
+      <div class="table-wrap"><table id="mob-table"></table></div>
+    </details>
+  </section>
+
+  <section class="col stack" aria-labelledby="s7">
+    <div class="sec-head"><span class="sec-num">§ 8</span><h2 id="s7">Checks on the method</h2></div>
+    <div class="stats" id="checks"></div>
+    <div class="stack" id="check-text"></div>
+  </section>
+
+  <section class="col stack" aria-labelledby="s8">
+    <div class="sec-head"><span class="sec-num">§ 9</span><h2 id="s8">What the model can't tell you</h2></div>
+    <p>Sampling ranges fixes uncertainty about the <em>numbers</em>. It can't fix the model's <em>structure</em>. These would each move the answer, and none of them is in the simulation:</p>
+    <ul class="plain">
+      <li><strong>Politics.</strong> Governments here are honest median voters. Capture by industry, lobbying, and the gap between what voters want and what they get at each level are all absent.</li>
+      <li><strong>Learning.</strong> Regions can't copy each other's successful experiments. That's one of the strongest real arguments for decentralisation, so the model probably understates it.</li>
+      <li><strong>Uniformity.</strong> National policy has to be the same everywhere. Real national programs tailor somewhat, which narrows the case for regional control.</li>
+      <li><strong>Who pays.</strong> Public service costs aren't tied to regional income, so the model ignores poorer regions struggling to meet a national floor (the real problem with unfunded mandates).</li>
+      <li><strong>Scale.</strong> Sixteen regions on a grid is not ten provinces of very different sizes.</li>
+    </ul>
+    <h3>What an automated review challenged</h3>
+    <p>The study's claims were run through <a href="https://github.com/alexdduda/ai-auditor">ai-auditor</a>, which extracts assumptions, searches for counter-evidence and proposes alternative answers. It is one model reviewing another, so these are challenges to take seriously, not verified findings. Calibration answered the first; the rest stand.</p>
+    <ul class="plain">
+      <li><strong>"The verdicts restate the guesses."</strong> Answered where data exists (§ 3). Still true for spillovers and scale savings, which no Canadian source measures.</li>
+      <li><strong>Transit belongs to metropolitan areas.</strong> Real transit savings come from coordinating fares and networks within a city region. The model only offers region or nation, so its national verdict for transit is the least trustworthy result on this page.</li>
+      <li><strong>National redistribution partly reflects how welfare is measured.</strong> Valuing income on a log scale rewards pooling across regions even when nobody moves, so mobility is not the only reason redistribution goes national here.</li>
+      <li><strong>Provinces want different amounts of redistribution.</strong> The survey confirms it: the spread between provinces is about a fifth of the spread within them, similar to the environment. The model sets regional tax rates from income alone.</li>
+      <li><strong>Environmental policy can use prices.</strong> A national carbon price with provincial implementation is neither a uniform standard nor a floor, and the model can't represent it.</li>
+    </ul>
+    <p>Read the results as a map of <em>which features of a policy area</em> push it up or down a level. They are not a verdict on any particular country.</p>
+  </section>
+
+  <section class="col stack" aria-labelledby="s9">
+    <div class="sec-head"><span class="sec-num">§ 10</span><h2 id="s9">Run it yourself</h2></div>
+    <p>Plain Python, standard library only. The optimised arrangement is saved as a scopelang program, so you can edit a law and re-score it.</p>
+    <pre class="code">python3 -m scopelang examples/min_wage.jur --tree
+python3 -m tiebout study          <span class="tok-c"># one hand-picked world, phase maps</span>
+python3 -m tiebout uncertainty    <span class="tok-c"># sampled ranges, robust policies</span>
+python3 -m tiebout evaluate results/robust_arrangement.jur</pre>
+  </section>
+</main>
+<div id="tip" hidden role="tooltip"></div>
+
+<script>
+const DATA = /*__DATA__*/null;
+
+const MODES = ["local", "central", "floor", "ceiling", "matched"];
+const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant" };
+const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched" };
+const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution" };
+const PARAM = {
+  heterogeneity: "How much regions disagree",
+  spillover: "Benefit leaking to neighbours",
+  scale: "Savings from one national system",
+  within: "Disagreement inside a region",
+  national_overhead: "Overhead on national money",
+  local_overhead: "Overhead on local money",
+  overhead_ratio: "Provincial vs. national cost of raising money",
+  move_share: "How mobile people are",
+  moving_cost: "Cost of moving",
+  congestion: "Cost of crowding",
+  income_sigma: "Income inequality",
+  deadweight: "Efficiency cost of taxes",
+};
+const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross" };
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const modeColor = (m) => `var(--m-${m})`;
+const pct = (x) => `${Math.round(x * 100)}%`;
+const SVGNS = "http://www.w3.org/2000/svg";
+
+function el(tag, attrs = {}, parent) {
+  const node = tag.startsWith("svg:") ? document.createElementNS(SVGNS, tag.slice(4)) : document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "text") node.textContent = v;
+    else if (k === "style" && typeof v === "object") Object.assign(node.style, v);
+    else node.setAttribute(k, v);
+  }
+  if (parent) parent.appendChild(node);
+  return node;
+}
+
+const WEAK = 0.1;  // a fixed rule keeping under 10% of the tailored gain is no clear winner
+function verdictText(d) {
+  return d.robust.gain_captured < WEAK ? "Regions decide" : policyText(d.robust);
+}
+function verdictMode(d) {
+  return d.robust.gain_captured < WEAK ? "local" : d.robust.mode;
+}
+function policyText(f) {
+  if (f.mode === "local") return "Regions decide";
+  if (f.mode === "matched") return `Matching grant, ${Math.round(f.level * 100)}%`;
+  return `${MODE_NAME[f.mode]} at ${+f.level.toFixed(3)}`;
+}
+
+/* tooltip */
+const tip = document.getElementById("tip");
+function showTip(evt, value, rows = []) {
+  tip.replaceChildren();
+  el("strong", { text: value }, tip);
+  for (const r of rows) {
+    const row = el("div", { class: "row" }, tip);
+    if (r.color) el("span", { class: "key", style: { background: r.color } }, row);
+    el("span", { text: r.text }, row);
+  }
+  tip.hidden = false;
+  const rect = evt.target.getBoundingClientRect ? evt.target.getBoundingClientRect() : { left: 0, top: 0, width: 0 };
+  const x = evt.clientX ?? rect.left + rect.width / 2;
+  const y = evt.clientY ?? rect.top;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = `${Math.min(window.innerWidth - w - 8, Math.max(8, x + 12))}px`;
+  tip.style.top = `${Math.max(8, y - h - 12)}px`;
+}
+function hideTip() { tip.hidden = true; }
+function hoverable(node, fn) {
+  node.setAttribute("tabindex", "0");
+  node.addEventListener("pointermove", (e) => fn(e));
+  node.addEventListener("focus", (e) => fn(e));
+  node.addEventListener("pointerleave", hideTip);
+  node.addEventListener("blur", hideTip);
+}
+
+/* fills */
+document.querySelectorAll('[data-fill="draws"]').forEach((n) => (n.textContent = DATA.unc.draws));
+
+/* hero code: highlight the generated .jur */
+(function renderCode() {
+  const pre = document.getElementById("robust-code");
+  for (const line of DATA.jur.robust.trimEnd().split("\n")) {
+    const hash = line.indexOf("#");
+    const code = hash >= 0 ? line.slice(0, hash) : line;
+    const comment = hash >= 0 ? line.slice(hash) : "";
+    const parts = code.split(/\b(scope|law|shadow|preempt|floor|ceiling|matched)\b/);
+    parts.forEach((p, i) => {
+      if (i % 2 === 1) el("span", { class: ["scope", "law"].includes(p) ? "tok-k" : "tok-m", text: p }, pre);
+      else pre.appendChild(document.createTextNode(p));
+    });
+    if (comment) el("span", { class: "tok-c", text: comment }, pre);
+    pre.appendChild(document.createTextNode("\n"));
+  }
+})();
+
+/* hero answer */
+(function heroAnswer() {
+  const d = DATA.unc.domains;
+  const parts = Object.keys(d).map((k) => `${DOMAIN_NAME[k].toLowerCase()}: ${verdictText(d[k]).toLowerCase()}`);
+  document.getElementById("hero-answer").textContent =
+    `The short answer: split power by policy area, not by ideology. Across hundreds of worlds with different assumptions, the choices that hold up are ${parts.join("; ")}.`;
+})();
+
+/* legend */
+function legend(container, modes, kind = "rect") {
+  for (const m of modes) {
+    const s = el("span", {}, container);
+    if (kind === "line") el("span", { class: "swatch", style: { background: modeColor(m), height: "3px", borderRadius: "2px" } }, s);
+    else el("span", { class: "swatch", style: { background: modeColor(m) } }, s);
+    el("span", { text: MODE_NAME[m] }, s);
+  }
+}
+legend(document.getElementById("mode-legend"), MODES);
+
+/* verdict rows with stacked share bars */
+(function verdicts() {
+  const box = document.getElementById("verdicts");
+  const table = document.getElementById("win-table");
+  const head = el("tr", {}, el("thead", {}, table));
+  el("th", { text: "Policy area" }, head);
+  MODES.forEach((m) => el("th", { class: "num", text: MODE_NAME[m] }, head));
+  el("th", { text: "Lowest-regret single rule" }, head);
+  el("th", { class: "num", text: "Gain kept" }, head);
+  const tbody = el("tbody", {}, table);
+
+  for (const [name, d] of Object.entries(DATA.unc.domains)) {
+    const row = el("div", { class: "verdict" }, box);
+    const t = el("div", {}, row);
+    el("h3", { text: DOMAIN_NAME[name] }, t);
+    el("div", { class: "sub", text: `${DATA.unc.draws} sampled worlds` }, t);
+
+    const mid = el("div", { style: { display: "grid", gap: "0.35rem" } }, row);
+    el("div", { class: "bar-label", text: "Which rule wins, by share of worlds" }, mid);
+    const W = 600, H = 26;
+    const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": `${DOMAIN_NAME[name]}: share of worlds won by each rule` }, mid);
+    let x = 0;
+    const present = MODES.filter((m) => d.win_share[m]);
+    present.forEach((m, i) => {
+      const w = d.win_share[m] * W;
+      const gap = i < present.length - 1 ? 2 : 0;
+      const r = el("svg:rect", { x, y: 0, width: Math.max(0, w - gap), height: H, fill: modeColor(m), rx: 0 }, svg);
+      hoverable(r, (e) => showTip(e, pct(d.win_share[m]), [{ color: modeColor(m), text: `${MODE_NAME[m]} wins this share of worlds` }]));
+      if (w > 46) {
+        const light = m === "ceiling" || m === "floor" || m === "matched";
+        el("svg:text", { x: x + 8, y: H / 2 + 4.5, text: pct(d.win_share[m]), style: { fill: light ? "#12161d" : "#ffffff", fontWeight: 600, pointerEvents: "none" } }, svg);
+      }
+      x += w;
+    });
+
+    const pick = el("div", { class: "pick" }, row);
+    const pol = el("div", { class: "policy" }, pick);
+    el("span", { class: "swatch", style: { background: modeColor(verdictMode(d)) } }, pol);
+    el("span", { text: verdictText(d) }, pol);
+    const maxStakes = Math.max(...Object.values(DATA.unc.domains).map((x) => x.stakes));
+    const stakes = d.stakes / maxStakes;
+    const why = d.robust.gain_captured < WEAK
+      ? `No single national rule clearly beats this. The best one (${policyText(d.robust).toLowerCase()}) keeps ${pct(d.robust.gain_captured)} of a small prize. The rule to avoid: ${MODE_NAME.central.toLowerCase()}.`
+      : `Keeps ${pct(d.robust.gain_captured)} of what perfect knowledge of the parameters would gain over regions deciding alone.`;
+    el("div", { class: "why", text: why }, pick);
+    el("div", { class: "why", text: `Stakes: ${stakes > 0.66 ? "high" : stakes > 0.25 ? "medium" : "low"} (${pct(stakes)} of the largest area's).` }, pick);
+    if (DATA.calibrated && DATA.wide[name]) {
+      const before = verdictText(DATA.wide[name]);
+      const now = verdictText(d);
+      el("div", { class: "why", text: before === now ? `Same as with guessed ranges.` : `With guessed ranges: ${before.toLowerCase()}.` }, pick);
+    }
+
+    const tr = el("tr", {}, tbody);
+    el("td", { text: DOMAIN_NAME[name] }, tr);
+    MODES.forEach((m) => el("td", { class: "num", text: d.win_share[m] ? pct(d.win_share[m]) : "–" }, tr));
+    el("td", { text: policyText(d.robust) }, tr);
+    el("td", { class: "num", text: pct(d.robust.gain_captured) }, tr);
+  }
+})();
+
+/* drivers + scatter, per domain tab */
+(function driversAndScatter() {
+  const tabs = document.getElementById("domain-tabs");
+  const names = Object.keys(DATA.unc.domains);
+  let active = names[0];
+  try { const saved = localStorage.getItem("wsd-domain"); if (names.includes(saved)) active = saved; } catch (e) {}
+
+  names.forEach((n) => {
+    const b = el("button", { role: "tab", id: `tab-${n}`, "aria-selected": String(n === active), text: DOMAIN_NAME[n] }, tabs);
+    b.addEventListener("click", () => {
+      active = n;
+      try { localStorage.setItem("wsd-domain", n); } catch (e) {}
+      tabs.querySelectorAll("button").forEach((x) => x.setAttribute("aria-selected", String(x.id === `tab-${n}`)));
+      render();
+    });
+  });
+
+  function shiftText(dr) {
+    const top = (dist) => Object.entries(dist).sort((a, b) => b[1] - a[1])[0] || ["local", 0];
+    const [lm, lv] = top(dr.low), [hm, hv] = top(dr.high);
+    if (lm === hm) return `Mostly ${MODE_NAME[lm].toLowerCase()} either way (${pct(lv)} low, ${pct(hv)} high).`;
+    return `Low: ${MODE_NAME[lm].toLowerCase()} wins ${pct(lv)}. High: ${MODE_NAME[hm].toLowerCase()} wins ${pct(hv)}.`;
+  }
+
+  function render() {
+    const d = DATA.unc.domains[active];
+    const box = document.getElementById("drivers");
+    box.replaceChildren();
+    d.drivers.forEach((dr) => {
+      const item = el("div", { class: "driver" }, box);
+      const nm = el("div", { class: "name" }, item);
+      el("span", { text: PARAM[dr.parameter] || dr.parameter }, nm);
+      el("span", { text: `${Math.round(dr.importance * 100)} · range ${dr.range[0]}–${dr.range[1]}` }, nm);
+      const track = el("div", { class: "track" }, item);
+      el("div", { class: "fill", style: { width: `${dr.importance * 100}%` } }, track);
+      el("div", { class: "shift", text: shiftText(dr) }, item);
+    });
+    scatter(d);
+  }
+
+  function scatter(d) {
+    const [xp, yp] = d.drivers.slice(0, 2).map((x) => x.parameter);
+    document.getElementById("scatter-title").textContent = `${DOMAIN_NAME[active]}: winner in each sampled world`;
+    document.getElementById("scatter-caption").textContent =
+      `Each mark is one of ${d.points.length} worlds, placed by the two parameters that matter most here. Colour and shape show which rule won there.`;
+    const host = document.getElementById("scatter");
+    host.replaceChildren();
+    const present = MODES.filter((m) => d.points.some((p) => p.mode === m));
+    legend(el("div", { class: "legend", style: { marginBottom: "0.4rem" } }, host), present);
+    const W = 520, H = 360, m = { l: 52, r: 14, t: 10, b: 46 };
+    const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": `Scatter of winners by ${PARAM[xp]} and ${PARAM[yp]}` }, host);
+    const [x0, x1] = d.ranges[xp], [y0, y1] = d.ranges[yp];
+    const sx = (v) => m.l + ((v - x0) / (x1 - x0)) * (W - m.l - m.r);
+    const sy = (v) => H - m.b - ((v - y0) / (y1 - y0)) * (H - m.t - m.b);
+    const ticks = (a, b) => [0, 0.25, 0.5, 0.75, 1].map((f) => a + f * (b - a));
+    ticks(x0, x1).forEach((v) => {
+      el("svg:line", { class: "grid", x1: sx(v), x2: sx(v), y1: m.t, y2: H - m.b }, svg);
+      el("svg:text", { x: sx(v), y: H - m.b + 16, "text-anchor": "middle", text: +v.toFixed(2) }, svg);
+    });
+    ticks(y0, y1).forEach((v) => {
+      el("svg:line", { class: "grid", x1: m.l, x2: W - m.r, y1: sy(v), y2: sy(v) }, svg);
+      el("svg:text", { x: m.l - 8, y: sy(v) + 4, "text-anchor": "end", text: +v.toFixed(2) }, svg);
+    });
+    el("svg:text", { class: "axis-title", x: (m.l + W - m.r) / 2, y: H - 8, "text-anchor": "middle", text: PARAM[xp] }, svg);
+    el("svg:text", { class: "axis-title", x: 14, y: (m.t + H - m.b) / 2, "text-anchor": "middle", transform: `rotate(-90 14 ${(m.t + H - m.b) / 2})`, text: PARAM[yp] }, svg);
+    const surface = css("--surface") || "#fff";
+    d.points.forEach((p) => {
+      const cx = sx(p[xp]), cy = sy(p[yp]);
+      const g = el("svg:g", {}, svg);
+      drawShape(g, SHAPES[p.mode], cx, cy, 5, modeColor(p.mode), surface);
+      const hit = el("svg:circle", { cx, cy, r: 12, fill: "transparent" }, g);
+      hoverable(hit, (e) =>
+        showTip(e, p.winner, [
+          { color: modeColor(p.mode), text: MODE_NAME[p.mode] },
+          { text: `${PARAM[xp]}: ${p[xp]}` },
+          { text: `${PARAM[yp]}: ${p[yp]}` },
+        ]),
+      );
+    });
+  }
+
+  function drawShape(g, shape, x, y, r, fill, ring) {
+    const common = { fill, stroke: ring, "stroke-width": 2, "paint-order": "stroke" };
+    if (shape === "circle") el("svg:circle", { cx: x, cy: y, r, ...common }, g);
+    else if (shape === "square") el("svg:rect", { x: x - r, y: y - r, width: 2 * r, height: 2 * r, rx: 1.5, ...common }, g);
+    else if (shape === "triangle") el("svg:path", { d: `M${x},${y - r * 1.2} L${x + r * 1.1},${y + r * 0.8} L${x - r * 1.1},${y + r * 0.8} Z`, ...common }, g);
+    else if (shape === "diamond") el("svg:path", { d: `M${x},${y - r * 1.25} L${x + r * 1.25},${y} L${x},${y + r * 1.25} L${x - r * 1.25},${y} Z`, ...common }, g);
+    else el("svg:path", { d: `M${x - r},${y - r} L${x + r},${y + r} M${x + r},${y - r} L${x - r},${y + r}`, stroke: fill, "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, g);
+  }
+
+  render();
+})();
+
+/* phase maps */
+function parseCell(label) {
+  const tie = label.endsWith("≈");
+  const clean = label.replace(" ≈", "");
+  const mode = clean.split(" ")[0];
+  let text = MODE_NAME[mode];
+  const rest = clean.slice(mode.length).trim();
+  if (rest) text += ` ${rest}`;
+  return { mode, text, tie, raw: clean };
+}
+function phase(containerId, ph, rowName, colName) {
+  const host = document.getElementById(containerId);
+  el("div", { class: "axis-cap", text: `Rows: ${rowName}. Columns: ${colName}.` }, host);
+  const wrap = el("div", { class: "table-wrap" }, host);
+  const grid = el("div", { class: "phase", style: { gridTemplateColumns: `3.4rem repeat(${ph.cols.length}, minmax(4.6rem, 1fr))`, minWidth: "22rem" } }, wrap);
+  el("div", { class: "corner", text: "" }, grid);
+  ph.cols.forEach((c) => el("div", { class: "hdr", text: c }, grid));
+  ph.rows.forEach((r, i) => {
+    el("div", { class: "hdr", text: r }, grid);
+    ph.cells[i].forEach((label, j) => {
+      const c = parseCell(label);
+      const light = ["floor", "ceiling", "matched"].includes(c.mode);
+      const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
+      const short = c.mode === "local" ? "Regions" : c.text.replace("National ", "").replace("Matching grant", "grant");
+      el("span", { text: short.charAt(0).toUpperCase() + short.slice(1) + (c.tie ? " ≈" : "") }, cell);
+      hoverable(cell, (e) =>
+        showTip(e, c.text + (c.tie ? " (near tie)" : ""), [
+          { color: modeColor(c.mode), text: `${rowName} ${r}, ${colName} ${ph.cols[j]}` },
+        ]),
+      );
+    });
+  });
+}
+phase("phase-spill", DATA.study.phase_spillover, "spillover", "regional disagreement");
+phase("phase-scale", DATA.study.phase_scale, "scale savings", "regional disagreement");
+
+/* mobility lines */
+(function mobility() {
+  const rows = DATA.study.mobility;
+  const modes = ["local", "floor", "central"];
+  legend(document.getElementById("mob-legend"), modes, "line");
+  const host = document.getElementById("mobility");
+  const W = 900, H = 320, m = { l: 64, r: 120, t: 14, b: 44 };
+  const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Welfare by rule as mobility rises" }, host);
+  const xs = rows.map((r) => r.move_share);
+  const all = rows.flatMap((r) => modes.map((k) => r.welfare[k]));
+  const tickStep = 0.01;
+  const lo = Math.floor(Math.min(...all) / tickStep) * tickStep, hi = Math.ceil(Math.max(...all) / tickStep) * tickStep;
+  const x0 = 0, x1 = Math.max(...xs);
+  const sx = (v) => m.l + ((v - x0) / (x1 - x0)) * (W - m.l - m.r);
+  const sy = (v) => H - m.b - ((v - lo) / (hi - lo)) * (H - m.t - m.b);
+  for (let v = lo; v <= hi + 1e-9; v += tickStep) {
+    el("svg:line", { class: "grid", x1: m.l, x2: W - m.r, y1: sy(v), y2: sy(v) }, svg);
+    el("svg:text", { x: m.l - 8, y: sy(v) + 4, "text-anchor": "end", text: v.toFixed(2) }, svg);
+  }
+  xs.forEach((v) => el("svg:text", { x: sx(v), y: H - m.b + 18, "text-anchor": "middle", text: v }, svg));
+  el("svg:text", { class: "axis-title", x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle", text: "Share of people considering a move each round" }, svg);
+  const surface = css("--surface") || "#fff";
+  const ends = [];
+  modes.forEach((k) => {
+    const pts = rows.map((r) => [sx(r.move_share), sy(r.welfare[k])]);
+    el("svg:path", { d: pts.map((p, i) => `${i ? "L" : "M"}${p[0]},${p[1]}`).join(" "), fill: "none", stroke: modeColor(k), "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+    const last = pts[pts.length - 1];
+    el("svg:circle", { cx: last[0], cy: last[1], r: 4, fill: modeColor(k), stroke: surface, "stroke-width": 2 }, svg);
+    ends.push({ k, y: last[1], x: last[0] });
+  });
+  ends.sort((a, b) => a.y - b.y);
+  for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 15) ends[i].ly = ends[i - 1].ly + 15;
+  ends.forEach((e) => {
+    const ly = e.ly ?? e.y;
+    e.ly = ly;
+    if (Math.abs(ly - e.y) > 1) el("svg:line", { x1: e.x + 6, x2: e.x + 14, y1: e.y, y2: ly, stroke: css("--ink-3"), "stroke-width": 1 }, svg);
+    el("svg:text", { x: e.x + 16, y: ly + 4, text: MODE_NAME[e.k], style: { fill: css("--ink-2") } }, svg);
+  });
+  const cross = el("svg:line", { x1: 0, x2: 0, y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-width": 1, visibility: "hidden" }, svg);
+  const hit = el("svg:rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
+  hit.addEventListener("pointermove", (e) => {
+    const box = svg.getBoundingClientRect();
+    const px = ((e.clientX - box.left) / box.width) * W;
+    let best = 0;
+    rows.forEach((r, i) => { if (Math.abs(sx(r.move_share) - px) < Math.abs(sx(rows[best].move_share) - px)) best = i; });
+    const r = rows[best];
+    cross.setAttribute("x1", sx(r.move_share)); cross.setAttribute("x2", sx(r.move_share)); cross.setAttribute("visibility", "visible");
+    showTip(e, `Mobility ${r.move_share}`, modes.map((k) => ({ color: modeColor(k), text: `${MODE_NAME[k]}: ${r.welfare[k].toFixed(4)}` })));
+  });
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); hideTip(); });
+
+  const table = document.getElementById("mob-table");
+  const h = el("tr", {}, el("thead", {}, table));
+  ["Mobility", "Winner", ...modes.map((k) => MODE_NAME[k]), "Regional tax rate", "Income sorting (regional)"].forEach((t, i) => el("th", { class: i > 1 ? "num" : "", text: t }, h));
+  const tb = el("tbody", {}, table);
+  rows.forEach((r) => {
+    const tr = el("tr", {}, tb);
+    el("td", { text: r.move_share }, tr);
+    el("td", { text: parseCell(r.winner).text + (r.winner.endsWith("≈") ? " (near tie)" : "") }, tr);
+    modes.forEach((k) => el("td", { class: "num", text: r.welfare[k].toFixed(4) }, tr));
+    el("td", { class: "num", text: r.local_tax.toFixed(3) }, tr);
+    el("td", { class: "num", text: r.local_sorting.toFixed(3) }, tr);
+  });
+})();
+
+
+/* calibration to Canada */
+(function calibration() {
+  const T = DATA.targets, S = DATA.survey;
+  const sec = document.getElementById("s-canada")?.closest("section");
+  if (!T || !DATA.calibrated) { if (sec) sec.hidden = true; return; }
+  const r2 = (x) => (+x).toFixed(2);
+  const het = (k) => T.disagreement[k].heterogeneity_range.map(r2).join(" to ");
+  const rows = [
+    ["Schools: how much provinces disagree", "0.10 to 0.30", het("schools"), `Spending, four measures; survey ρ = ${S ? r2(S.schools.rho) : "n/a"}`, "Stats Can 10-10-0005, 17-10-0005; CES 2019"],
+    ["Environment: how much provinces disagree", "0.02 to 0.15", het("environment"), `Spending, three measures; survey ρ = ${S ? r2(S.environment.rho) : "n/a"}`, "Stats Can 10-10-0005; CES 2019"],
+    ["Transit: how much provinces disagree", "0.05 to 0.20", het("transit"), "Spending, three measures (no survey question)", "Stats Can 10-10-0005"],
+    ["Disagreement within a province", "0.05 to 0.15", "0.25 to 0.30", "5 to 12 times the between-province spread; capped at the model's scale", "CES 2019"],
+    ["Income inequality (log spread)", "0.40 to 1.00", `${r2(T.inequality.income_sigma - 0.03)} to ${r2(T.inequality.income_sigma + 0.03)}`, `Market-income Gini ${r2(T.inequality.market_gini)}`, "Stats Can 11-10-0134"],
+    ["People moving between regions per year", "up to 1.8%", "0.1% to 0.76%", `Canada: ${(T.migration.annual_rate * 100).toFixed(2)}% of people move province each year, for any reason`, "Stats Can 17-10-0022"],
+    ["Cost of raising a dollar, national vs. provincial", "independent, 0 to 35% extra", "both 20% to 100% extra, provincial 0.6 to 1.5 times national", "Federal income tax about $2.86 per dollar raised (2021); provincial $1.44 to $3.81 (2006)", "Dahlby and Ferede 2012, 2022"],
+    ["Spillovers to neighbours; savings from one national system; crowding", "guessed", "still guessed", "No Canadian measurement exists", "none"],
+  ];
+  const table = document.getElementById("calib-table");
+  const h = el("tr", {}, el("thead", {}, table));
+  ["Parameter", "Guessed", "Calibrated", "Evidence", "Source"].forEach((t) => el("th", { text: t }, h));
+  const tb = el("tbody", {}, table);
+  rows.forEach((r) => { const tr = el("tr", {}, tb); r.forEach((c, i) => el("td", { text: c, class: i === 1 || i === 2 ? "mono" : "" }, tr)); });
+
+  // survey dot plot: provincial means relative to the national average, in within-province sd units
+  if (S) {
+    const items = [["schools", "Education"], ["environment", "Environment"], ["redistribution", "Reducing the rich-poor gap"]];
+    const W = 560, rowH = 64, m = { l: 150, r: 16, t: 18, b: 34 };
+    const H = m.t + rowH * items.length + m.b;
+    const all = items.flatMap(([k]) => { const v = Object.values(S[k].province_means); const mu = v.reduce((a, b) => a + b) / v.length; return v.map((x) => x - mu); });
+    const ext = Math.max(0.5, Math.ceil(Math.max(...all.map(Math.abs)) * 10) / 10);
+    const sx = (v) => m.l + ((v + ext) / (2 * ext)) * (W - m.l - m.r);
+    const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Provincial averages on survey spending questions" }, document.getElementById("survey-chart"));
+    for (let v = -ext; v <= ext + 1e-9; v += ext / 2) {
+      el("svg:line", { class: "grid", x1: sx(v), x2: sx(v), y1: m.t, y2: H - m.b }, svg);
+      el("svg:text", { x: sx(v), y: H - m.b + 16, "text-anchor": "middle", text: (v > 0 ? "+" : "") + v.toFixed(2) }, svg);
+    }
+    el("svg:text", { class: "axis-title", x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle", text: "Province average minus national average, in units of within-province spread" }, svg);
+    const surface = css("--surface") || "#fff";
+    items.forEach(([k, label], i) => {
+      const y = m.t + rowH * i + rowH / 2;
+      el("svg:text", { x: m.l - 10, y: y + 4, "text-anchor": "end", text: label, style: { fill: css("--ink") } }, svg);
+      el("svg:line", { x1: sx(-ext), x2: sx(ext), y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+      const means = S[k].province_means; const vals = Object.values(means); const mu = vals.reduce((a, b) => a + b) / vals.length;
+      const sorted = Object.entries(means).map(([p, v]) => [p, v - mu]).sort((a, b) => a[1] - b[1]);
+      sorted.forEach(([p, v], j) => {
+        const cx = sx(v);
+        el("svg:circle", { cx, cy: y, r: 5, fill: css("--accent"), stroke: surface, "stroke-width": 2 }, svg);
+        const hit = el("svg:circle", { cx, cy: y, r: 12, fill: "transparent" }, svg);
+        hoverable(hit, (e) => showTip(e, `${v > 0 ? "+" : ""}${v.toFixed(2)}`, [{ text: `${p}: ${label.toLowerCase()}` }, { text: v > 0 ? "wants more than average" : "wants less than average" }]));
+        if (j === 0 || j === sorted.length - 1) {
+          const short = p.replace("Newfoundland and Labrador", "N.L.").replace("Prince Edward Island", "P.E.I.").replace("British Columbia", "B.C.").replace("New Brunswick", "N.B.").replace("Nova Scotia", "N.S.");
+          el("svg:text", { x: cx, y: y - 11, "text-anchor": "middle", text: short, style: { fill: css("--ink-2"), fontSize: "11px" } }, svg);
+        }
+      });
+    });
+    document.getElementById("survey-caption").textContent =
+      `Each dot is a province's average answer to "should government spend less, the same or more" (or do more to reduce the gap between rich and poor), from ${S.schools.respondents.toLocaleString()} respondents to the 2019 Canadian Election Study, weighted. A whole unit on this axis is the typical disagreement between two people in the same province. Provinces sit close together on education and apart on the environment.`;
+    const notes = document.getElementById("calib-notes");
+    el("p", { text: `Two independent sources agree on the ordering. In spending, provinces differ ${(T.disagreement.environment.cv.levels / T.disagreement.schools.cv.levels).toFixed(1)} times more on the environment than on schools; in the survey, ${(S.environment.rho / S.schools.rho).toFixed(1)} times more.` }, notes);
+    el("p", { text: "The bigger surprise is how little provinces differ compared with people. Between-province disagreement is only 8% of within-province disagreement for education and 20% for the environment. Much of the case for regional control rests on regions wanting different things, and in Canada they mostly don't." }, notes);
+    el("p", { text: "Equalization payments push provincial spending toward the national average, which could hide real differences in what people want. The survey is not affected by that, and it agrees with the spending data." }, notes);
+  }
+})();
+
+/* checks */
+(function checks() {
+  const s = DATA.unc.separability;
+  const box = document.getElementById("checks");
+  const stat = (v, l) => { const n = el("div", { class: "stat" }, box); el("div", { class: "v", text: v }, n); el("div", { class: "l", text: l }, n); };
+  stat(pct(s.mode_agreement), `of policy areas get the same rule when solved one at a time as when solved jointly (${s.worlds} test worlds)`);
+  stat(pct(s.min_gain_kept), "of the joint optimum's gain kept by the one-at-a-time shortcut, in the worst test world");
+  stat(`${DATA.unc.draws * Object.keys(DATA.unc.domains).length}`, "sampled worlds, every candidate policy scored on the same seeds in each");
+  const txt = document.getElementById("check-text");
+  el("p", { text: "Solving each policy area on its own is what made 200 worlds per area affordable. The joint check shows how much that shortcut costs: the policy areas only interact through where people choose to live." }, txt);
+  const rob = DATA.unc.domains;
+  if (DATA.calibrated) {
+    el("p", { text: `With calibrated mobility the shortcut is less exact: it picked the same rule as joint optimisation for ${pct(s.mode_agreement)} of policy areas and kept at least ${pct(s.min_gain_kept)} of the joint gain. More realistic sorting makes the policy areas interact more, so treat close calls between two rules with care.` }, txt);
+    const het = DATA.targets.disagreement.schools.heterogeneity_range;
+    el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor, but it charged overhead on national money and none on provincial money, which flattered floors (a floor that binds everywhere is a national rule that provinces pay for). With both costs tied to the published estimates, the environment gets a national standard. " +
+      `Schools moved because of data. With guessed ranges, no national rule clearly beat leaving schools to the regions. Measured, provinces disagree about schools far less than guessed (${het[0].toFixed(2)} to ${het[1].toFixed(2)} against a guess of 0.10 to 0.30), and the survey agrees, so a modest federal role starts to pay. Whether it does depends mostly on whether Ottawa or the provinces raise money more cheaply, which the published estimates leave open.` }, txt);
+  }
+})();
+</script>
