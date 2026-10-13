@@ -10,6 +10,8 @@ so scopelang lets a scope declare a *law* that picks the rule for one name:
     ceiling  lower levels may lower it, never go above what they inherit
     matched  lower levels choose freely; the declaring scope pays a share of
              the cost (the law's value is that match rate, not a level)
+    equalized lower levels choose freely; the declaring scope tops up poorer
+             ones' ability to pay (the value is the share of the gap closed)
 
 Illegal writes are "struck down": reported and not applied, and the program
 keeps running, the way a court voids one statute without stopping the state.
@@ -36,6 +38,7 @@ MODE_MEANING = {
     "floor": "lower levels may raise it but never go below what they inherit",
     "ceiling": "lower levels may lower it but never go above what they inherit",
     "matched": "lower levels choose freely; {owner} pays {rate} of the cost",
+    "equalized": "lower levels choose freely; {owner} closes {rate} of poorer ones' gap in ability to pay",
 }
 
 
@@ -59,7 +62,7 @@ class Law:
     mode: str
     owner: "Scope"
     line: int
-    rate: float | None = None  # only for `matched`
+    rate: float | None = None  # only for `matched` and `equalized`
 
 
 @dataclass
@@ -228,9 +231,9 @@ class Interpreter:
         law = Law(stmt.name, stmt.mode, scope, stmt.line)
         if stmt.value is not None:
             value = self.eval(stmt.value, scope)
-            if stmt.mode == "matched":
+            if stmt.mode in ("matched", "equalized"):
                 if not _is_number(value) or not 0 <= value <= 1:
-                    raise ScopeError(stmt.line, f"a matched law's value is a match rate between 0 and 1, got {fmt(value)}")
+                    raise ScopeError(stmt.line, f"a {stmt.mode} law's value is a rate between 0 and 1, got {fmt(value)}")
                 law.rate = float(value)
             else:
                 scope.vars[stmt.name] = Binding(value, stmt.line)
@@ -494,8 +497,8 @@ class Interpreter:
     def _annotations(self, scope: Scope) -> str:
         parts = []
         for name, law in scope.laws.items():
-            if law.mode == "matched":
-                parts.append(f"law {name}: matched {fmt(law.rate) if law.rate is not None else ''}".rstrip())
+            if law.mode in ("matched", "equalized"):
+                parts.append(f"law {name}: {law.mode} {fmt(law.rate) if law.rate is not None else ''}".rstrip())
             elif name in scope.vars:
                 parts.append(f"law {name}: {law.mode} = {fmt(scope.vars[name].value)}")
             else:
@@ -600,7 +603,7 @@ class Result:
         s = self.interp.scopes[scope]
         out = {}
         for name, law in s.laws.items():
-            if law.mode == "matched":
+            if law.mode in ("matched", "equalized"):
                 out[name] = (law.mode, law.rate)
             else:
                 out[name] = (law.mode, s.vars[name].value if name in s.vars else None)

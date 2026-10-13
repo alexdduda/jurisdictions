@@ -44,7 +44,7 @@ import math
 import random
 from dataclasses import dataclass, field
 
-MODES = ("local", "central", "floor", "ceiling", "matched")
+MODES = ("local", "central", "floor", "ceiling", "matched", "equalized")
 
 
 @dataclass(frozen=True)
@@ -65,7 +65,7 @@ class Domain:
 @dataclass(frozen=True)
 class Policy:
     mode: str = "local"
-    level: float = 0.0  # central level, floor, ceiling, or match rate
+    level: float = 0.0  # central level, floor, ceiling, match rate, or equalization rate
 
     def __post_init__(self):
         if self.mode not in MODES:
@@ -76,6 +76,8 @@ class Policy:
             return "local"
         if self.mode == "matched":
             return f"matched {self.level:.0%}"
+        if self.mode == "equalized":
+            return f"equalized {self.level:.0%}"
         return f"{self.mode} {self.level:.3g}"
 
 
@@ -99,6 +101,9 @@ class World:
     local_overhead: float = 0.0    # extra cost per unit of money raised and spent locally
     max_level: float = 1.5
     max_tax: float = 0.9
+    # Inequality aversion in redistribution: utility of consumption is
+    # (c^(1-a) - 1) / (1-a); a = 1 is log utility (the default).
+    inequality_aversion: float = 1.0
     # Regional productivity: an agent's income is skill * productivity of the
     # region they live in, so moving changes income. 0 means every region is
     # equally productive (the original model).
@@ -249,11 +254,33 @@ class _Run:
             ]
             p = _bound(local, policy)
 
+        # Equalization: regions decide, but the nation tops up each poorer region's
+        # ability to pay by a share q of its gap to the national mean, and pays the
+        # difference in cost at the national cost of funds. With no fiscal-capacity
+        # effect (k = 0) it is identical to letting regions decide.
+        equalization_spend = 0.0
+        if policy.mode == "equalized" and k:
+            q = _clamp(policy.level, 0.0, 1.0)
+            topped = [
+                self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
+                for r in range(self.R)
+            ]
+            eq_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(self.R)]
+            local = [
+                _clamp(_median([theta[i] for i in res]) * (1 - s) / (price * eq_burden[r]), 0, w.max_level) if res else 0.0
+                for r, res in enumerate(residents)
+            ]
+            p = local
+            equalization_spend = sum(
+                pops[r] * unit * local_share * (burden[r] - eq_burden[r]) * p[r] ** 2 for r in range(self.R)
+            ) / self.N
+            burden = eq_burden
+
         experienced = [
             (1 - s) * p[r] + s * _mean(p[n] for n in self.nbrs[r]) for r in range(self.R)
         ]
         national_spend = sum(pops[r] * unit * (1 - local_share) * p[r] ** 2 for r in range(self.R)) / self.N
-        national_tax = national_spend * (1 + w.national_overhead)
+        national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
         gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
         local_cost = unit * local_share * (1 + w.local_overhead)
         cost = [d.weight * (local_cost * burden[r] * p[r] ** 2 + national_tax) for r in range(self.R)]
@@ -296,7 +323,9 @@ class _Run:
                 v = gain[r] * theta[i] - cost[r]
             else:
                 _, name, weight, keep, transfer, _ = entry
-                v = weight * math.log(self.income(i, r) * keep[r] + transfer[r])
+                c = self.income(i, r) * keep[r] + transfer[r]
+                a = self.world.inequality_aversion
+                v = weight * (math.log(c) if a == 1.0 else (c ** (1 - a) - 1) / (1 - a))
             u += v
             if parts is not None:
                 parts[name] = parts.get(name, 0.0) + v

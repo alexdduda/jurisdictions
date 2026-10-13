@@ -20,24 +20,31 @@ from .uncertainty import build, canada_ranges, world_ranges
 
 # For each policy area, the two axes that decide it and that data can't pin down
 # (or, for redistribution, that the uncertainty analysis found most influential).
-MAPS = {
-    "transit": {
+RATIOS = [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.75]  # provincial / federal cost of raising a dollar
+MAPS = [
+    ("transit", {
         "rows": ("scale", [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]),
         "cols": ("spillover", [0.0, 0.1, 0.2, 0.3, 0.4]),
-    },
-    "environment": {
+    }),
+    ("environment", {
         "rows": ("spillover", [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]),
-        "cols": ("overhead_ratio", [0.6, 0.9, 1.2, 1.5]),
-    },
-    "schools": {
+        "cols": ("overhead_ratio", RATIOS),
+    }),
+    ("schools", {
         "rows": ("spillover", [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]),
-        "cols": ("overhead_ratio", [0.6, 0.9, 1.2, 1.5]),
-    },
-    "redistribution": {
+        "cols": ("overhead_ratio", RATIOS),
+    }),
+    ("redistribution", {
         "rows": ("move_share", [0.0, 0.02, 0.05, 0.1, 0.2, 0.3]),
         "cols": ("deadweight", [0.3, 0.5, 0.7, 0.9]),
-    },
-}
+    }),
+    # Sensitivity to the welfare measure: 1.0 is log utility, the model's default.
+    ("redistribution", {
+        "key": "redistribution_inequality",
+        "rows": ("inequality_aversion", [0.5, 0.75, 1.0, 1.5, 2.0, 2.5]),
+        "cols": ("deadweight", [0.3, 0.5, 0.7, 0.9]),
+    }),
+]
 SEEDS = [0, 1, 2]
 
 
@@ -50,8 +57,9 @@ def run_thresholds(out_dir: Path, log=print) -> dict:
     started = time.time()
     out = {"seeds": len(SEEDS), "maps": {}}
     with make_pool() as pool:
-        for d in DEFAULT_WORLD.domains:
-            spec = MAPS[d.name]
+        domains = {d.name: d for d in DEFAULT_WORLD.domains}
+        for name, spec in MAPS:
+            d = domains[name]
             (rname, rvals), (cname, cvals) = spec["rows"], spec["cols"]
             base = midpoints(d.name, ranges)
             cells = []
@@ -67,8 +75,9 @@ def run_thresholds(out_dir: Path, log=print) -> dict:
                         "margin": round(winner.welfare - rivals[0], 5) if rivals else None,
                     })
                 cells.append(row)
-                log(f"  {d.name} {rname}={rv}: " + " | ".join(c["label"] for c in row))
-            out["maps"][d.name] = {
+                log(f"  {spec.get('key', d.name)} {rname}={rv}: " + " | ".join(c["label"] for c in row))
+            out["maps"][spec.get("key", d.name)] = {
+                "domain": d.name,
                 "row_param": rname, "rows": rvals, "col_param": cname, "cols": cvals,
                 "held_at": {k: round(v, 4) for k, v in base.items() if k not in (rname, cname)},
                 "cells": cells,

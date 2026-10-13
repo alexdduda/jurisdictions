@@ -133,5 +133,47 @@ class RegionalProductivity(unittest.TestCase):
         self.assertGreater(pops[best], pops[worst])
 
 
+
+class EqualizationAndInequality(unittest.TestCase):
+    """Added after the second audit: Canada's actual rule, and a sensitivity check."""
+
+    def test_equalization_does_nothing_without_capacity_effects(self):
+        w = world(Domain("a", heterogeneity=0.2), productivity_sd=0.2, move_share=0.0)
+        a = simulate(w, {}, 0).welfare
+        b = simulate(w, {"a": Policy("equalized", 1.0)}, 0).welfare
+        self.assertAlmostEqual(a, b, places=12)
+
+    def test_equalization_raises_provision_in_poor_regions(self):
+        w = world(Domain("a", heterogeneity=0.0, within=0.0, capacity_elasticity=1.0),
+                  productivity_sd=0.3, move_share=0.0)
+        from tiebout.model import _Run
+        runs = {}
+        for mode in ("local", "equalized"):
+            run = _Run(w, {"a": Policy(mode, 1.0)}, 0)
+            residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+            runs[mode] = (run, run.region_state(residents)[0][-1])
+        run, local = runs["local"]
+        _, equalized = runs["equalized"]
+        poor = min(range(run.R), key=lambda r: run.regional_income[r])
+        rich = max(range(run.R), key=lambda r: run.regional_income[r])
+        self.assertGreater(equalized[poor], local[poor])
+        self.assertAlmostEqual(equalized[rich], local[rich])
+
+    def test_log_utility_is_the_default(self):
+        red = Domain("redistribution", kind="redistribution")
+        w = world(red, move_share=0.0)
+        self.assertEqual(w.inequality_aversion, 1.0)
+        self.assertAlmostEqual(simulate(w, {}, 0).welfare, simulate(replace(w, inequality_aversion=1.0), {}, 0).welfare)
+
+    def test_more_inequality_aversion_favours_more_redistribution(self):
+        red = Domain("redistribution", kind="redistribution")
+        gains = []
+        for a in (0.5, 2.0):
+            w = world(red, move_share=0.0, inequality_aversion=a)
+            gains.append(simulate(w, {"redistribution": Policy("central", 0.4)}, 0).welfare
+                         - simulate(w, {"redistribution": Policy("central", 0.1)}, 0).welfare)
+        self.assertGreater(gains[1], gains[0])
+
+
 if __name__ == "__main__":
     unittest.main()

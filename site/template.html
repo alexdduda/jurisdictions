@@ -20,6 +20,7 @@
   --m-floor: #1baf7a;
   --m-ceiling: #eda100;
   --m-matched: #e87ba4;
+  --m-equalized: #008300;
   --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -30,14 +31,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
     --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181;
+    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
   --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181;
+  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300;
   color-scheme: dark;
 }
 
@@ -293,7 +294,12 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
     <div class="table-wrap"><table id="validation-table"></table></div>
     <div class="stack" id="validation-text"></div>
     <div class="callout">
-      <p><strong>A correction.</strong> An earlier version of this page overstated how much provinces disagree by a factor of two. Provincial spending measures what a service costs, and in the model cost grows with the square of the service level, so spending varies twice as much as the level does. The figures in § 3 and everything after them use the corrected values.</p>
+      <p><strong>Corrections.</strong> Three errors in earlier versions of this page were found and fixed:</p>
+      <ul class="plain">
+        <li>How much provinces disagree was overstated by a factor of two. Provincial spending measures what a service costs, and in the model cost grows with the square of the service level, so spending varies twice as much as the level does.</li>
+        <li>The calibration of regional productivity, done in a model with all four policy areas, didn't carry over to the single-area worlds the analysis uses: almost none of them matched Canada's regional income gaps. They now have their own calibration.</li>
+        <li>The cost of raising money was sampled over ranges that excluded the study's own cited sources (found by the automated review below). The federal range was 20% to 100% extra per dollar against a cited 102% to 186%, and the provincial range was tied to the federal one. Both now span the published estimates. A first fix sampled the two over ranges of different widths, which quietly made provincial money 40% dearer on average; the provincial-to-federal ratio is now symmetric, so neither level is cheaper in expectation.</li>
+      </ul>
     </div>
   </section>
 
@@ -310,17 +316,26 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
       <li><strong>Politics.</strong> Governments here are honest median voters. Capture by industry, lobbying, and the gap between what voters want and what they get at each level are all absent.</li>
       <li><strong>Learning.</strong> Regions can't copy each other's successful experiments. That's one of the strongest real arguments for decentralisation, so the model probably understates it.</li>
       <li><strong>Uniformity.</strong> National policy has to be the same everywhere. Real national programs tailor somewhat, which narrows the case for regional control.</li>
-      <li><strong>Who pays.</strong> Public service costs aren't tied to regional income, so the model ignores poorer regions struggling to meet a national floor (the real problem with unfunded mandates).</li>
+      <li><strong>Who pays.</strong> Poorer regions now find local money dearer, and equalization is one of the rules tested. But equalization here tops up one service at a time; Canada's is unconditional and covers everything at once.</li>
       <li><strong>Scale.</strong> Sixteen regions on a grid is not ten provinces of very different sizes.</li>
     </ul>
-    <h3>What an automated review challenged</h3>
-    <p>The study's claims were run through <a href="https://github.com/alexdduda/ai-auditor">ai-auditor</a>, which extracts assumptions, searches for counter-evidence and proposes alternative answers. It is one model reviewing another, so these are challenges to take seriously, not verified findings. Calibration answered the first; the rest stand.</p>
+    <h3>What two automated reviews challenged</h3>
+    <p>The study's claims were run twice through <a href="https://github.com/alexdduda/ai-auditor">ai-auditor</a>, which extracts assumptions, searches for counter-evidence and proposes alternative answers. It is one model reviewing another, so its points are challenges, not verified findings, and studies it cites are checked against their sources before this page uses them. The second review gave the recommendations a confidence of 0.15 out of 1.</p>
+    <p><strong>Fixed:</strong></p>
     <ul class="plain">
-      <li><strong>"The verdicts restate the guesses."</strong> Answered where data exists (§ 3). Still true for spillovers and scale savings, which no Canadian source measures.</li>
-      <li><strong>Transit belongs to metropolitan areas.</strong> Real transit savings come from coordinating fares and networks within a city region. The model only offers region or nation, so its national verdict for transit is the least trustworthy result on this page.</li>
-      <li><strong>National redistribution partly reflects how welfare is measured.</strong> Valuing income on a log scale rewards pooling across regions even when nobody moves, so mobility is not the only reason redistribution goes national here.</li>
-      <li><strong>Provinces want different amounts of redistribution.</strong> The survey confirms it: the spread between provinces is about a fifth of the spread within them, similar to the environment. The model sets regional tax rates from income alone.</li>
-      <li><strong>Environmental policy can use prices.</strong> A national carbon price with provincial implementation is neither a uniform standard nor a floor, and the model can't represent it.</li>
+      <li><strong>The verdicts restated guessed ranges.</strong> Replaced by Canadian measurements wherever any exist (§ 3); where none exist, verdicts are shown as thresholds (§ 6).</li>
+      <li><strong>The cost-of-funds ranges excluded the cited evidence.</strong> A real error; corrected and re-run (see Corrections in § 7).</li>
+      <li><strong>Equalization was never tested,</strong> though it is how Canada actually handles provinces' different ability to pay. Now one of the six rules.</li>
+      <li><strong>The welfare measure was untested.</strong> Redistribution is now mapped across a range of weights on inequality (§ 6).</li>
+      <li><strong>Overclaims.</strong> The page called the services-migration test a match (it isn't), presented an argument about the redistribution failure as if shown, and gave schools a verdict that is really a close call. All three are corrected.</li>
+    </ul>
+    <p><strong>Still open:</strong></p>
+    <ul class="plain">
+      <li><strong>Transit belongs to cities.</strong> Transit is mostly municipal in Canada and commuting between provinces is close to zero. The model has no metropolitan level, so its transit verdict is the least trustworthy on this page.</li>
+      <li><strong>Environmental policy works through prices.</strong> Canada uses a national carbon-price floor with provincial design, and provinces' emissions per person differ several-fold. The model has neither prices nor different abatement costs.</li>
+      <li><strong>Schools are about more than spending.</strong> Language and denominational school systems are constitutionally protected and concentrated by province. A small cost of imposing one national model could reverse a close call.</li>
+      <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move less. Together these could favour a national floor with provincial top-ups.</li>
+      <li><strong>Constitutional jurisdiction and Quebec's place in the federation</strong> are not welfare questions. A simulation can inform one consideration among several; it can't settle what Canada should do.</li>
     </ul>
     <p>Read the results as a map of <em>which features of a policy area</em> push it up or down a level. They are not a verdict on any particular country.</p>
   </section>
@@ -339,9 +354,9 @@ python3 -m tiebout evaluate results/robust_arrangement.jur</pre>
 <script>
 const DATA = /*__DATA__*/null;
 
-const MODES = ["local", "central", "floor", "ceiling", "matched"];
-const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant" };
-const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched" };
+const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized"];
+const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization" };
+const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized" };
 const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution" };
 const PARAM = {
   heterogeneity: "How much regions disagree",
@@ -357,7 +372,7 @@ const PARAM = {
   income_sigma: "Income inequality",
   deadweight: "Efficiency cost of taxes",
 };
-const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross" };
+const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross", equalized: "ring" };
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const modeColor = (m) => `var(--m-${m})`;
 const pct = (x) => `${Math.round(x * 100)}%`;
@@ -375,8 +390,10 @@ function el(tag, attrs = {}, parent) {
 }
 
 const WEAK = 0.1;  // a fixed rule keeping under 10% of the tailored gain is no clear winner
+const CLOSE = 0.3; // under 30% it wins, but only just: say so
 function verdictText(d) {
-  return d.robust.gain_captured < WEAK ? "Regions decide" : policyText(d.robust);
+  if (d.robust.gain_captured < WEAK) return "Regions decide";
+  return d.robust.gain_captured < CLOSE ? `${policyText(d.robust)} (close call)` : policyText(d.robust);
 }
 function verdictMode(d) {
   return d.robust.gain_captured < WEAK ? "local" : d.robust.mode;
@@ -384,6 +401,7 @@ function verdictMode(d) {
 function policyText(f) {
   if (f.mode === "local") return "Regions decide";
   if (f.mode === "matched") return `Matching grant, ${Math.round(f.level * 100)}%`;
+  if (f.mode === "equalized") return `Equalization, ${Math.round(f.level * 100)}% of the gap`;
   return `${MODE_NAME[f.mode]} at ${+f.level.toFixed(3)}`;
 }
 
@@ -600,6 +618,7 @@ legend(document.getElementById("mode-legend"), MODES);
     else if (shape === "square") el("svg:rect", { x: x - r, y: y - r, width: 2 * r, height: 2 * r, rx: 1.5, ...common }, g);
     else if (shape === "triangle") el("svg:path", { d: `M${x},${y - r * 1.2} L${x + r * 1.1},${y + r * 0.8} L${x - r * 1.1},${y + r * 0.8} Z`, ...common }, g);
     else if (shape === "diamond") el("svg:path", { d: `M${x},${y - r * 1.25} L${x + r * 1.25},${y} L${x},${y + r * 1.25} L${x - r * 1.25},${y} Z`, ...common }, g);
+    else if (shape === "ring") el("svg:circle", { cx: x, cy: y, r: r - 0.5, fill: "none", stroke: fill, "stroke-width": 3 }, g);
     else el("svg:path", { d: `M${x - r},${y - r} L${x + r},${y + r} M${x + r},${y - r} L${x - r},${y + r}`, stroke: fill, "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, g);
   }
 
@@ -613,18 +632,19 @@ legend(document.getElementById("mode-legend"), MODES);
   const AXIS = {
     scale: "savings from one national system", spillover: "share of benefit leaking to other provinces",
     overhead_ratio: "provincial cost of raising a dollar, relative to federal", move_share: "share of people considering a move each year",
-    deadweight: "efficiency cost of taxes",
+    deadweight: "efficiency cost of taxes", inequality_aversion: "weight on inequality (1 = log utility; estimates center near 1.26)",
   };
   // Written from results/thresholds.json; rewrite if the maps change.
   const CAPTION = {
-    transit: "National once one system saves 5 to 10% or more, whatever the spillovers. With no savings at all, provinces run it, with a federal matching grant if benefits cross borders.",
-    environment: "The column decides it. Where provinces raise money 40% more cheaply than Ottawa, a national floor wins; otherwise a national standard. Provinces alone only win when almost nothing crosses borders.",
-    schools: "Mostly a question of which level raises money more cheaply: a floor or provincial control where provinces are cheaper, a national standard where they are not. The stakes here are the smallest of the four.",
+    transit: "National once one system saves about 10%, or 5% if a fifth or more of the benefit crosses provincial borders. With no savings at all, provinces run it, with a federal matching grant if benefits cross borders or equalization if they don't.",
+    environment: "The column decides it. Where provinces raise money more cheaply than Ottawa, a national floor wins, or equalization when little pollution crosses borders. Where they don't, a national standard.",
+    schools: "The column decides it again. Where provinces raise money more cheaply, provinces decide with an equalization top-up or a floor; where they don't, a national standard. The stakes are smaller than for the environment or transit.",
     redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
+    redistribution_inequality: "National at every weight up to 1.5, which includes the estimated 1.26. A national floor with provincial top-ups wins only at weights of 2 or more, and only where taxes are cheap.",
   };
   for (const [name, m] of Object.entries(T.maps)) {
     const fig = el("figure", {}, host);
-    el("div", { class: "fig-title", text: DOMAIN_NAME[name] }, fig);
+    el("div", { class: "fig-title", text: name === "redistribution_inequality" ? "Redistribution, by how much weight inequality gets" : DOMAIN_NAME[m.domain || name] }, fig);
     const cap = el("div", { class: "axis-cap", text: `Rows: ${AXIS[m.row_param] || m.row_param}. Columns: ${AXIS[m.col_param] || m.col_param}.` }, fig);
     const wrap = el("div", { class: "table-wrap" }, fig);
     const grid = el("div", { class: "phase", style: { gridTemplateColumns: `3.4rem repeat(${m.cols.length}, minmax(4.6rem, 1fr))`, minWidth: "20rem" } }, wrap);
@@ -635,7 +655,7 @@ legend(document.getElementById("mode-legend"), MODES);
       m.cells[i].forEach((c, j) => {
         const light = ["floor", "ceiling", "matched"].includes(c.mode);
         const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
-        const text = c.mode === "local" ? "Regions" : c.mode === "central" ? "Standard" : c.mode === "matched" ? "Grant" : c.mode === "floor" ? "Floor" : "Cap";
+        const text = { local: "Regions", central: "Standard", matched: "Grant", floor: "Floor", ceiling: "Cap", equalized: "Equalize" }[c.mode];
         el("span", { text }, cell);
         hoverable(cell, (e) => showTip(e, policyText({ mode: c.mode, level: parseFloat(c.label.split(" ")[1]) || 0 }), [
           { color: modeColor(c.mode), text: `${AXIS[m.row_param] || m.row_param} ${r}, ${AXIS[m.col_param] || m.col_param} ${m.cols[j]}` },
@@ -669,9 +689,9 @@ legend(document.getElementById("mode-legend"), MODES);
     el("td", { class: "num", text: f(V.model_with_productivity[k]) }, tr);
   });
   const txt = document.getElementById("validation-text");
-  el("p", { text: "Migration: both versions match. Canadians move toward higher incomes, not better services, and so do the model's agents. An earlier reading of the data claimed the original model got this wrong; running the same test on the model showed it didn't." }, txt);
+  el("p", { text: "Migration toward income matches (+0.30 against Canada's +0.32). Migration and service spending does not: in Canada, provinces lose people in years their service spending rises (−0.22), and the model barely shows this (−0.04). That may be ageing populations and recession-era spending rather than people fleeing services, but the model doesn't reproduce it, so it may understate how much provinces compete for residents. An earlier reading of the data also claimed the original model got income-driven migration wrong; testing the model showed it didn't." }, txt);
   el("p", { text: "Fiscal capacity: richer provinces spend more per person on schools, the environment and social protection. The original model, with equally rich regions, couldn't produce that, so regions now differ in productivity and poorer ones find local money dearer. This is calibrated from the same data, so matching it confirms the wiring, not the theory." }, txt);
-  el("p", { text: "Redistribution still fails. In the model, more unequal regions want and get more redistribution. In Canada the most unequal provinces are the poorer ones and lean on federal programs, so they spend less. The model therefore makes regional redistribution look better than it is. That error works against this page's conclusion that redistribution should be national, so the conclusion survives it; fixing the model would only strengthen it." }, txt);
+  el("p", { text: "Redistribution still fails. In the model, more unequal regions want and get more redistribution. In Canada the most unequal provinces are the poorer ones and lean on federal programs, so they spend less. The model therefore makes regional redistribution look better than it is. We argue this works against the page's conclusion that redistribution should be national, so the conclusion would survive the fix. That is an argument, not a demonstration: the gap could instead come from provincial politics the model doesn't capture, which could bias the comparison either way. With ten provinces, none of these correlations is statistically solid." }, txt);
 })();
 
 /* calibration to Canada */
@@ -690,7 +710,8 @@ legend(document.getElementById("mode-legend"), MODES);
     ["How unequal regions are in productivity", "all equal", "calibrated jointly with mobility", `Provincial average market incomes differ by ${(T.regional_income.market_income_cv * 100).toFixed(0)}%`, "Stats Can 11-10-0190"],
     ["People moving between regions per year", "up to 1.8%", "0.3% to 0.75%", `Canada: ${(T.migration.annual_rate * 100).toFixed(2)}% of people move province each year; the model's movers now follow jobs as well as services`, "Stats Can 17-10-0022"],
     ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
-    ["Cost of raising a dollar, national vs. provincial", "independent, 0 to 35% extra", "both 20% to 100% extra, provincial 0.6 to 1.5 times national", "Federal income tax about $2.86 per dollar raised (2021); provincial $1.44 to $3.81 (2006)", "Dahlby and Ferede 2012, 2022"],
+    ["Cost of raising a dollar, national vs. provincial", "0 to 35% extra each", "federal 20% to 190% extra; provincial 1/4 to 4 times federal, symmetric so neither is cheaper on average", "Federal: corporate tax $2.02, income tax $2.86 per dollar raised (2021). Provincial income tax $1.44 to $3.81 (2006). Lower bounds allow for cheaper sales taxes, for which no federal figure is published", "Dahlby and Ferede 2012, 2022"],
+    ["Weight on inequality (redistribution)", "log utility only", "log utility, with 0.5 to 2.5 tested in § 6", "Estimated at 1.26 (1.19 to 1.34 across six surveys)", "Layard, Mayraz and Nickell 2008"],
     ["Spillovers to neighbours; savings from one national system; crowding", "guessed", "still guessed", "No Canadian measurement exists", "none"],
   ];
   const table = document.getElementById("calib-table");
@@ -756,8 +777,7 @@ legend(document.getElementById("mode-legend"), MODES);
   if (DATA.calibrated) {
     el("p", { text: `With calibrated mobility the shortcut is less exact: it picked the same rule as joint optimisation for ${pct(s.mode_agreement)} of policy areas and kept at least ${pct(s.min_gain_kept)} of the joint gain. More realistic sorting makes the policy areas interact more, so treat close calls between two rules with care.` }, txt);
     const het = DATA.targets.disagreement.schools.heterogeneity_range;
-    el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor, but it charged overhead on national money and none on provincial money, which flattered floors (a floor that binds everywhere is a national rule that provinces pay for). With both costs tied to the published estimates, the environment gets a national standard. " +
-      `Schools moved because of data. With guessed ranges, no national rule clearly beat leaving schools to the regions. Measured, provinces disagree about schools far less than guessed (${het[0].toFixed(2)} to ${het[1].toFixed(2)} against a guess of 0.10 to 0.30), and the survey agrees, so a modest federal role starts to pay. Whether it does depends mostly on whether Ottawa or the provinces raise money more cheaply, which the published estimates leave open.` }, txt);
+    el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor and left schools to the provinces. Calibrating to Canada made both national standards. Correcting the cost of raising money (now centred on neither level being cheaper) sent schools back: on average no fixed national rule beats provincial control, and equalization does marginally best. For schools and the environment, the answer turns almost entirely on one number, whether Ottawa or the provinces raise a dollar more cheaply, which the published estimates don't settle." }, txt);
   }
 })();
 </script>

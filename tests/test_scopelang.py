@@ -75,6 +75,11 @@ class Matched(unittest.TestCase):
         self.assertEqual(r.value("qc", "env"), 0.2)
         self.assertEqual(kinds(run("scope ca { law env: matched = 0.6  scope on { show env } }")), ["error"])
 
+    def test_equalized_carries_a_rate(self):
+        r = run("scope ca { law schools: equalized = 0.5  scope qc { schools = 0.3 } }")
+        self.assertEqual(r.diagnostics, [])
+        self.assertEqual(r.laws("ca"), {"schools": ("equalized", 0.5)})
+
     def test_rate_must_be_a_share(self):
         self.assertEqual(kinds(run("law env: matched = 2")), ["error"])
 

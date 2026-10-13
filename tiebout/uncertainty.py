@@ -17,6 +17,7 @@ gets a plausible *range* instead, and we:
 """
 
 import json
+import math
 import random
 import time
 from dataclasses import replace
@@ -66,12 +67,23 @@ def canada_ranges() -> dict:
       within         the 2019 Canadian Election Study puts between-province
                      disagreement at only 8% (schools) to 20% (environment) of
                      within-province disagreement, so within = heterogeneity / rho
-                     is 0.7 to 0.9, more than a 0-1 taste scale can hold; the
-                     model's ceiling (0.25 to 0.30, near a uniform spread) is used
+                     is about 0.35 to 0.45, more than a 0-1 taste scale can hold;
+                     the model's ceiling (0.25 to 0.30, near a uniform spread) is used
     From published estimates (Dahlby and Ferede 2012, 2022):
-      overheads      provincial and federal marginal costs of public funds are
-                     both well above 1 with no systematic ordering, so the two are
-                     tied: local = national * overhead_ratio, ratio 0.6 to 1.5
+      overheads      marginal cost of public funds minus one. Federal: 1.02
+                     (corporate tax) to 1.86 (personal income tax), 2021.
+                     Provincial personal income tax: 0.44 to 2.81 across
+                     provinces, 2006. No systematic ordering between levels, so
+                     national is sampled over its range (down to 0.2 to allow a
+                     cheaper marginal tax mix; sales taxes cost least in these
+                     studies but no federal figure is published) and the
+                     provincial/federal ratio is log-uniform on 1/4 to 4:
+                     symmetric, so neither level is cheaper on average, and wide
+                     enough to cover the published 0.24 to 2.75.
+                     Earlier versions excluded the cited federal estimate (found
+                     by audit), then sampled the two independently over ranges of
+                     different widths, which made provincial money 40% dearer on
+                     average without evidence.
       fiscal capacity  richer provinces spend more per person (income elasticity
                      of spending 0.41 schools, 0.32 environment, 0.05 transit,
                      validation/migration_and_capacity.py); halved for p squared
@@ -104,8 +116,8 @@ def canada_ranges() -> dict:
     return {
         "domains": domains,
         "public_good_world": {
-            "national_overhead": (0.20, 1.00),
-            "overhead_ratio": (0.60, 1.50),
+            "national_overhead": (0.20, 1.90),
+            "overhead_log_ratio": (-math.log(4), math.log(4)),
             **public_good_mobility,
             "congestion": (0.03, 0.20),
         },
@@ -127,7 +139,7 @@ def range_set(name: str) -> dict:
 
 
 WEAK_WINNER = 0.1  # a fixed rule keeping under 10% of the tailored gain is no clear winner
-SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4}
+SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5}
 
 
 def latin_hypercube(ranges: dict[str, tuple[float, float]], n: int, rng: random.Random) -> list[dict[str, float]]:
@@ -146,6 +158,9 @@ def world_ranges(domain_name: str, ranges: dict) -> dict:
 
 
 def build(base: World, domain: Domain, params: dict[str, float]) -> tuple[World, Domain]:
+    if "overhead_log_ratio" in params and "overhead_ratio" not in params:
+        # An explicit ratio (a threshold-map axis) takes precedence over the sampled log ratio.
+        params = {**params, "overhead_ratio": math.exp(params["overhead_log_ratio"])}
     if "overhead_ratio" in params:
         params = {**params, "local_overhead": params["national_overhead"] * params["overhead_ratio"]}
     domain_fields = {k: v for k, v in params.items() if k in Domain.__dataclass_fields__}
@@ -265,9 +280,9 @@ def separability_check(pool, base: World, n: int, seeds: int, rng: random.Random
             ranges[f"{name}.{k}"] = v
     rows = []
     for j, params in enumerate(latin_hypercube(ranges, n, rng)):
-        world_fields = {k: v for k, v in params.items() if "." not in k and k != "overhead_ratio"}
-        if "overhead_ratio" in params:
-            world_fields["local_overhead"] = params["national_overhead"] * params["overhead_ratio"]
+        world_fields = {k: v for k, v in params.items() if "." not in k and k not in ("overhead_ratio", "overhead_log_ratio")}
+        if "overhead_log_ratio" in params:
+            world_fields["local_overhead"] = params["national_overhead"] * math.exp(params["overhead_log_ratio"])
         domains = []
         for d in base.domains:
             fields = {k.split(".", 1)[1]: v for k, v in params.items() if k.startswith(d.name + ".")}
