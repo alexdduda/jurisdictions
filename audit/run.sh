@@ -5,11 +5,11 @@
 set -e
 cd "$(dirname "$0")/.."
 ~/ai-auditor/.venv/bin/ai-auditor \
-  "Under fiscal federalism, which level of government should control transit, environmental protection, redistribution and schools, and how much should we trust a simulation-based answer to that question?" \
+  "In Canada, which level of government should control transit, environmental protection, redistribution and schools, and how much should we trust a calibrated simulation-based answer to that question?" \
   --solution @audit/claims.md \
   --plugin audit/structural_gaps.py \
   --skip external_test \
   --model claude-opus-5-5 \
   --continue-on-error -v \
-  --json -o audit/result.json
-echo "wrote audit/result.json"
+  --json -o audit/result-v2.json
+echo "wrote audit/result-v2.json"

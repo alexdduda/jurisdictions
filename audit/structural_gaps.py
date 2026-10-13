@@ -13,6 +13,9 @@ from typing import Literal
 from pydantic import BaseModel
 
 from ai_auditor import Auditor, stage
+from ai_auditor.stages import (
+    VerificationList, _render_verifications, format_verifications,
+)
 
 AREAS = ("transit", "environment", "redistribution", "schools", "general")
 
@@ -77,9 +80,32 @@ def structural_gaps(ctx) -> GapList:
         "dashes.\n\n"
         f"Problem:\n{ctx.problem}\n\nSolution:\n{ctx.solution}\n\n"
         f"Gathered evidence:\n{ctx['evidence'] or '(none gathered)'}",
-        GapList, effort="high", max_tokens=6000,
+        GapList, effort="high", max_tokens=16000,
     )
+
+
+# The built-in stage allows 4000 output tokens at high effort; on Opus 5.5 the
+# thinking alone can use that up, and the JSON gets cut off (it failed this way
+# on the first run). Same prompt, more room.
+@stage(name="verifications", requires=("assumptions",), evidence=True, title="ASSUMPTIONS", order=20,
+       render=_render_verifications, summarize=format_verifications)
+def verifications_roomier(ctx) -> list:
+    """Judge whether each assumption holds."""
+    items = ctx["assumptions"]
+    if not items:
+        return []
+    numbered = "\n".join(f"{i + 1}. {a}" for i, a in enumerate(items))
+    return ctx.llm.parse(
+        "For each assumption below, judge whether it holds given the "
+        "problem and solution. Use 'invalid' if the assumption is false, "
+        "'questionable' if it's uncertain or only partially true, 'valid' "
+        "if it clearly holds.\n\n"
+        f"Problem:\n{ctx.problem}\n\nSolution:\n{ctx.solution}\n\n"
+        f"Assumptions:\n{numbered}",
+        VerificationList, effort="high", max_tokens=16000,
+    ).verifications
 
 
 def register(auditor: Auditor) -> None:
     auditor.add(structural_gaps)
+    auditor.replace(verifications_roomier)
