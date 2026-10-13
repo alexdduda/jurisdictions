@@ -52,5 +52,23 @@
     },
     "rho_raw": 0.2425,
     "rho": 0.2064
+  },
+  "climate": {
+    "question": "cps19_pos_carbon",
+    "respondents": 12116,
+    "province_means": {
+      "Newfoundland and Labrador": -0.096,
+      "Prince Edward Island": -0.031,
+      "Nova Scotia": 0.112,
+      "New Brunswick": 0.066,
+      "Quebec": 0.503,
+      "Ontario": 0.019,
+      "Manitoba": -0.022,
+      "Saskatchewan": -0.449,
+      "Alberta": -0.366,
+      "British Columbia": 0.01
+    },
+    "rho_raw": 0.2471,
+    "rho": 0.2351
   }
 }

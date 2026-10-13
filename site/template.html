@@ -22,6 +22,8 @@
   --m-matched: #e87ba4;
   --m-equalized: #008300;
   --m-city: #4a3aa7;
+  --m-price: #e34948;
+  --m-price_floor: var(--m-floor);
   --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -32,14 +34,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
     --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9;
+    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
   --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9;
+  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767;
   color-scheme: dark;
 }
 
@@ -190,7 +192,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
 
   <section class="col stack" aria-labelledby="s1">
     <div class="sec-head"><span class="sec-num">§ 1</span><h2 id="s1">Scope is jurisdiction</h2></div>
-    <p>A variable in code and a rule in politics raise the same question: who can set it, and whose setting wins? In most languages the answer is fixed. A function's local variable <em>shadows</em> the global one, and that's the end of it. In Canada it depends on the subject. Ottawa preempts on criminal law. It sets a floor on the cannabis age (18) that Quebec raised to 21. And it pays part of the bill for health care while the provinces run it.</p>
+    <p>A variable in code and a rule in politics raise the same question: who can set it, and whose setting wins? In most languages the answer is fixed. A function's local variable <em>shadows</em> the global one, and that's the end of it. In Canada it depends on the subject. Ottawa preempts on criminal law. It sets a floor on the cannabis age (18) that Quebec raised to 21. And from 1966 to 1996 it paid half of provinces' social assistance costs while they ran the programs (the Canada Assistance Plan).</p>
     <p><strong>scopelang</strong> makes each of those a rule a variable can carry. A write that breaks the rule is <em>struck down</em>: reported, not applied, and the program carries on, the way a court voids one law without stopping the government.</p>
     <pre class="code" aria-label="scopelang example"><span class="tok-k">scope</span> canada {
   <span class="tok-k">law</span> cannabis_age: <span class="tok-m">floor</span> = 18
@@ -209,8 +211,8 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
           <tr><td><span class="mono">shadow</span></td><td>Set their own value; the nearest one wins</td><td>Municipal parking rules</td></tr>
           <tr><td><span class="mono">preempt</span></td><td>Nothing; only the declaring level sets it</td><td>Criminal law</td></tr>
           <tr><td><span class="mono">floor</span></td><td>Go higher, never lower than they inherit</td><td>Cannabis age</td></tr>
-          <tr><td><span class="mono">ceiling</span></td><td>Go lower, never higher than they inherit</td><td>Caps on rent increases</td></tr>
-          <tr><td><span class="mono">matched</span></td><td>Choose freely while the higher level pays a share</td><td>Health transfers</td></tr>
+          <tr><td><span class="mono">ceiling</span></td><td>Go lower, never higher than they inherit</td><td>Ontario's annual cap on rent increases</td></tr>
+          <tr><td><span class="mono">matched</span></td><td>Choose freely while the higher level pays a share</td><td>Canada Assistance Plan, 1966 to 1996</td></tr>
           <tr><td><span class="mono">equalized</span></td><td>Choose freely while the higher level tops up poorer members' ability to pay</td><td>Equalization payments</td></tr>
           <tr><td><span class="mono">devolved</span></td><td>The level below the next decides; the one in between may not</td><td>Transit run by city regions (hypothetical rule)</td></tr>
         </tbody>
@@ -233,6 +235,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
         </tbody>
       </table>
     </div>
+    <p>A fifth area, climate, works differently: cutting emissions is paid for by emitters rather than budgets, and costs differ widely between provinces. There the choice is between letting provinces decide, one national quantity standard, and a carbon price, either uniform or as a national floor provinces can exceed.</p>
     <p>These are the ingredients of Wallace Oates' decentralisation theorem and the standard objections to it. The tests check that the model reproduces the textbook results. Left alone, a region provides only <em>taste × (1 − spillover)</em>, and a matching grant at the spillover rate restores the best level.</p>
   </section>
 
@@ -335,9 +338,9 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
     <p><strong>Still open:</strong></p>
     <ul class="plain">
       <li><strong>Transit and cities: partly addressed.</strong> Each province now has a city and a countryside, and "cities decide" is a rule (§ 6). Cities win only when almost no commuting crosses the metro boundary, and national wins only if one national system saves 5 to 10% or more, a number nobody has measured for Canada. Still missing: more than one city per province, and how transit costs change with network size.</li>
-      <li><strong>Environmental policy works through prices.</strong> Canada uses a national carbon-price floor with provincial design, and provinces' emissions per person differ several-fold. The model has neither prices nor different abatement costs.</li>
-      <li><strong>Schools are about more than spending.</strong> Language and denominational school systems are constitutionally protected and concentrated by province. A small cost of imposing one national model could reverse a close call.</li>
-      <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move less. Together these could favour a national floor with provincial top-ups.</li>
+      <li><strong>Carbon pricing: now modelled</strong> as a separate climate area with prices, price floors and provincial differences in abatement costs (§ 4). Canada set its consumer carbon charge to zero on April 1, 2025; industrial pricing for large emitters continues under a national benchmark. Still missing: revenue use, trade exposure, and emissions leaking abroad.</li>
+      <li><strong>Schools are about more than spending.</strong> Education is provincial under section 93 of the Constitution Act, 1867, which also protects denominational schools in some provinces (Quebec removed its guarantee in 1997); section 23 of the Charter protects minority-language schooling. A national model would run into both, and a small cost of imposing one could change a close call.</li>
+      <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move least: 0.35% a year leave for another province, against 0.55% to 1.99% elsewhere. Together these could favour a national floor with provincial top-ups.</li>
       <li><strong>Constitutional jurisdiction and Quebec's place in the federation</strong> are not welfare questions. A simulation can inform one consideration among several; it can't settle what Canada should do.</li>
     </ul>
     <p>Read the results as a map of <em>which features of a policy area</em> push it up or down a level. They are not a verdict on any particular country.</p>
@@ -357,10 +360,10 @@ python3 -m tiebout evaluate results/robust_arrangement.jur</pre>
 <script>
 const DATA = /*__DATA__*/null;
 
-const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized", "city"];
-const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization", city: "Cities decide" };
-const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized", city: "devolved" };
-const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution" };
+const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized", "city", "price", "price_floor"];
+const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization", city: "Cities decide", price: "National carbon price", price_floor: "Carbon price floor" };
+const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized", city: "devolved", price: "preempt (price)", price_floor: "floor (price)" };
+const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
 const PARAM = {
   heterogeneity: "How much regions disagree",
   spillover: "Benefit leaking to neighbours",
@@ -372,15 +375,30 @@ const PARAM = {
   overhead_log_ratio: "Provincial vs. national cost of raising money",
   urban_premium: "How much more cities want it than the countryside",
   metro_spillover: "Benefit commuters carry between city and suburbs",
+  abatement_sd: "How much abatement costs differ between provinces",
+  abatement_taste_corr: "How much high-cost provinces want less",
   move_share: "How mobile people are",
   moving_cost: "Cost of moving",
   congestion: "Cost of crowding",
   income_sigma: "Income inequality",
   deadweight: "Efficiency cost of taxes",
 };
-const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross", equalized: "ring", city: "down" };
+const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross", equalized: "ring", city: "down", price: "cross", price_floor: "ring" };
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const modeColor = (m) => `var(--m-${m})`;
+// The price floor shares the floor hue and adds a hatch, so nine rules use eight hues.
+const HATCH = "repeating-linear-gradient(45deg, var(--m-floor) 0 6px, var(--surface) 6px 8px)";
+const modeBg = (m) => (m === "price_floor" ? HATCH : modeColor(m));
+let hatchIds = 0;
+function svgFill(svg, m) {
+  if (m !== "price_floor") return modeColor(m);
+  const id = `hatch-${++hatchIds}`;
+  const defs = svg.querySelector("defs") || svg.insertBefore(document.createElementNS(SVGNS, "defs"), svg.firstChild);
+  const pat = el("svg:pattern", { id, width: 8, height: 8, patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" }, defs);
+  el("svg:rect", { width: 8, height: 8, fill: "var(--m-floor)" }, pat);
+  el("svg:rect", { x: 6, width: 2, height: 8, fill: "var(--surface)" }, pat);
+  return `url(#${id})`;
+}
 const pct = (x) => `${Math.round(x * 100)}%`;
 const SVGNS = "http://www.w3.org/2000/svg";
 
@@ -409,6 +427,8 @@ function policyText(f) {
   if (f.mode === "matched") return `Matching grant, ${Math.round(f.level * 100)}%`;
   if (f.mode === "equalized") return `Equalization, ${Math.round(f.level * 100)}% of the gap`;
   if (f.mode === "city") return f.level ? `Cities decide, ${Math.round(f.level * 100)}% federal grant` : "Cities decide";
+  if (f.mode === "price") return `National carbon price at ${+f.level.toFixed(3)}`;
+  if (f.mode === "price_floor") return `Carbon price floor at ${+f.level.toFixed(3)}, provinces may go higher`;
   return `${MODE_NAME[f.mode]} at ${+f.level.toFixed(3)}`;
 }
 
@@ -472,7 +492,7 @@ function legend(container, modes, kind = "rect") {
   for (const m of modes) {
     const s = el("span", {}, container);
     if (kind === "line") el("span", { class: "swatch", style: { background: modeColor(m), height: "3px", borderRadius: "2px" } }, s);
-    else el("span", { class: "swatch", style: { background: modeColor(m) } }, s);
+    else el("span", { class: "swatch", style: { background: modeBg(m) } }, s);
     el("span", { text: MODE_NAME[m] }, s);
   }
 }
@@ -504,10 +524,10 @@ legend(document.getElementById("mode-legend"), MODES);
     present.forEach((m, i) => {
       const w = d.win_share[m] * W;
       const gap = i < present.length - 1 ? 2 : 0;
-      const r = el("svg:rect", { x, y: 0, width: Math.max(0, w - gap), height: H, fill: modeColor(m), rx: 0 }, svg);
+      const r = el("svg:rect", { x, y: 0, width: Math.max(0, w - gap), height: H, fill: svgFill(svg, m), rx: 0 }, svg);
       hoverable(r, (e) => showTip(e, pct(d.win_share[m]), [{ color: modeColor(m), text: `${MODE_NAME[m]} wins this share of worlds` }]));
       if (w > 46) {
-        const light = m === "ceiling" || m === "floor" || m === "matched";
+        const light = ["ceiling", "floor", "matched", "price_floor"].includes(m);
         el("svg:text", { x: x + 8, y: H / 2 + 4.5, text: pct(d.win_share[m]), style: { fill: light ? "#12161d" : "#ffffff", fontWeight: 600, pointerEvents: "none" } }, svg);
       }
       x += w;
@@ -515,7 +535,7 @@ legend(document.getElementById("mode-legend"), MODES);
 
     const pick = el("div", { class: "pick" }, row);
     const pol = el("div", { class: "policy" }, pick);
-    el("span", { class: "swatch", style: { background: modeColor(verdictMode(d)) } }, pol);
+    el("span", { class: "swatch", style: { background: modeBg(verdictMode(d)) } }, pol);
     el("span", { text: verdictText(d) }, pol);
     const maxStakes = Math.max(...Object.values(DATA.unc.domains).map((x) => x.stakes));
     const stakes = d.stakes / maxStakes;
@@ -570,7 +590,10 @@ legend(document.getElementById("mode-legend"), MODES);
       const item = el("div", { class: "driver" }, box);
       const nm = el("div", { class: "name" }, item);
       el("span", { text: PARAM[dr.parameter] || dr.parameter }, nm);
-      el("span", { text: `${Math.round(dr.importance * 100)} · range ${dr.range[0]}–${dr.range[1]}` }, nm);
+      const fmtRange = dr.parameter === "overhead_log_ratio"
+        ? `${Math.exp(dr.range[0]).toFixed(2)} to ${Math.exp(dr.range[1]).toFixed(2)} times federal`
+        : `${+dr.range[0].toFixed(3)} to ${+dr.range[1].toFixed(3)}`;
+      el("span", { text: `${Math.round(dr.importance * 100)} · range ${fmtRange}` }, nm);
       const track = el("div", { class: "track" }, item);
       el("div", { class: "fill", style: { width: `${dr.importance * 100}%` } }, track);
       el("div", { class: "shift", text: shiftText(dr) }, item);
@@ -642,6 +665,7 @@ legend(document.getElementById("mode-legend"), MODES);
     overhead_ratio: "provincial cost of raising a dollar, relative to federal", move_share: "share of people considering a move each year",
     deadweight: "efficiency cost of taxes", inequality_aversion: "weight on inequality (1 = log utility; estimates center near 1.26)",
     urban_premium: "how much more city residents want it than the countryside", metro_spillover: "share of benefit commuters carry between city and suburbs",
+    abatement_sd: "how much cutting emissions costs differ between provinces (log spread; emissions per person: 0.66)",
   };
   // Written from results/thresholds.json; rewrite if the maps change.
   const CAPTION = {
@@ -650,6 +674,7 @@ legend(document.getElementById("mode-legend"), MODES);
     environment: "The column decides it. Where provinces raise money more cheaply than Ottawa, a national floor wins, or equalization when little pollution crosses borders. Where they don't, a national standard.",
     schools: "The column decides it again. Where provinces raise money more cheaply, provinces decide with an equalization top-up or a floor; where they don't, a national standard. The stakes are smaller than for the environment or transit.",
     redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
+    climate: "With equal abatement costs a price and a uniform quantity standard are the same thing. With any difference in costs, a carbon price wins, because each province cuts where cutting is cheapest. Where less of the benefit spreads beyond the province, a price floor provinces can exceed does slightly better. Canada's spread in emissions per person (log 0.66) is far past the threshold. Left out: trade exposure, emissions leaking abroad, what the revenue pays for, and the politics, which ended Canada's consumer price in 2025.",
     redistribution_inequality: "National at every weight up to 1.5, which includes the estimated 1.26. A national floor with provincial top-ups wins only at weights of 2 or more, and only where taxes are cheap.",
   };
   for (const [name, m] of Object.entries(T.maps)) {
@@ -658,6 +683,7 @@ legend(document.getElementById("mode-legend"), MODES);
       transit: "Transit, by density gap and commuting",
       transit_scale: "Transit, by savings from one national system",
       redistribution_inequality: "Redistribution, by how much weight inequality gets",
+      climate: "Climate, by cost differences and how far the benefit spreads",
     };
     el("div", { class: "fig-title", text: TITLES[name] || DOMAIN_NAME[m.domain || name] }, fig);
     const cap = el("div", { class: "axis-cap", text: `Rows: ${AXIS[m.row_param] || m.row_param}. Columns: ${AXIS[m.col_param] || m.col_param}.` }, fig);
@@ -668,10 +694,11 @@ legend(document.getElementById("mode-legend"), MODES);
     m.rows.forEach((r, i) => {
       el("div", { class: "hdr", text: r }, grid);
       m.cells[i].forEach((c, j) => {
-        const light = ["floor", "ceiling", "matched"].includes(c.mode);
-        const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
-        const text = c.mode === "city" ? (c.label.startsWith("city +") ? "Cities + grant" : "Cities") : { local: "Regions", central: "Standard", matched: "Grant", floor: "Floor", ceiling: "Cap", equalized: "Equalize" }[c.mode];
-        el("span", { text }, cell);
+        const light = ["floor", "ceiling", "matched", "price_floor"].includes(c.mode);
+        const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeBg(c.mode) } }, grid);
+        const text = c.mode === "city" ? (c.label.startsWith("city +") ? "Cities + grant" : "Cities") : { local: "Regions", central: "Standard", matched: "Grant", floor: "Floor", ceiling: "Cap", equalized: "Equalize", price: "Price", price_floor: "Price floor" }[c.mode];
+        // On the hatched price-floor cells, sit the label on a solid chip so it stays legible.
+        el("span", { text, style: c.mode === "price_floor" ? { background: "var(--m-floor)", padding: "0 4px", borderRadius: "3px" } : {} }, cell);
         hoverable(cell, (e) => showTip(e, policyText({ mode: c.mode, level: parseFloat(c.label.split(" ")[1]) || 0 }), [
           { color: modeColor(c.mode), text: `${AXIS[m.row_param] || m.row_param} ${r}, ${AXIS[m.col_param] || m.col_param} ${m.cols[j]}` },
           { text: c.margin != null ? `beats the next rule by ${(c.margin * 1000).toFixed(1)} thousandths of a util` : "" },
@@ -727,6 +754,9 @@ legend(document.getElementById("mode-legend"), MODES);
     ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
     ["Cost of raising a dollar, national vs. provincial", "0 to 35% extra each", "federal 20% to 190% extra; provincial 1/4 to 4 times federal, symmetric so neither is cheaper on average", "Federal: corporate tax $2.02, income tax $2.86 per dollar raised (2021). Provincial income tax $1.44 to $3.81 (2006). Lower bounds allow for cheaper sales taxes, for which no federal figure is published", "Dahlby and Ferede 2012, 2022"],
     ["Weight on inequality (redistribution)", "log utility only", "log utility, with 0.5 to 2.5 tested in § 6", "Estimated at 1.26 (1.19 to 1.34 across six surveys)", "Layard, Mayraz and Nickell 2008"],
+    ["Climate: how much provinces disagree", "no climate area", "0.05 to 0.08", `Survey: between-province spread is ${S && S.climate ? r2(S.climate.rho) : "0.24"} of within-province spread on keeping the carbon tax, the largest of any question`, "CES 2019"],
+    ["Climate: how much abatement costs differ", "no climate area", "log spread 0.33 to 0.99", "2024 emissions per person range from 8.4 t (PEI) and 8.6 t (Quebec) to 53 t (Alberta) and 58 t (Saskatchewan), a log spread of 0.66; used to inform the range, not fitted to it", "ECCC 2024; Stats Can 17-10-0009"],
+    ["Climate: do high-emitting provinces want less?", "no climate area", "link 0.6 to 0.9", "Across the ten provinces, emissions per person and support for the carbon tax correlate at -0.82 (p = 0.003)", "ECCC 2024; CES 2019"],
     ["Share of people living in a city (transit's city level)", "no city level", "72%", "71.8% of Canadians lived in a census metropolitan area (July 2021)", "Stats Can 91-214-X"],
     ["Transit benefit commuters carry across the metro boundary", "no city level", "0 to 20%", "Statistics Canada adds a municipality to a metro area when at least 50% of its workers commute to the core, so fewer than half of those left outside commute in", "Census of Population 2021 Dictionary"],
     ["Spillovers to neighbours; savings from one national system; crowding; how much more cities want transit", "guessed", "still guessed", "No clean Canadian measurement. Transit use is far higher in big cities (Vancouver 22.5%, Toronto 20.6%, Montréal 16.4% of commuters), but that doesn't translate directly into a taste gap", "Stats Can Labour Force Survey, May 2023"],
@@ -739,7 +769,7 @@ legend(document.getElementById("mode-legend"), MODES);
 
   // survey dot plot: provincial means relative to the national average, in within-province sd units
   if (S) {
-    const items = [["schools", "Education"], ["environment", "Environment"], ["redistribution", "Reducing the rich-poor gap"]];
+    const items = [["schools", "Education"], ["environment", "Environment"], ["redistribution", "Reducing the rich-poor gap"], ["climate", "Keeping the carbon tax"]].filter(([k]) => S[k]);
     const W = 560, rowH = 64, m = { l: 150, r: 16, t: 18, b: 34 };
     const H = m.t + rowH * items.length + m.b;
     const all = items.flatMap(([k]) => { const v = Object.values(S[k].province_means); const mu = v.reduce((a, b) => a + b) / v.length; return v.map((x) => x - mu); });

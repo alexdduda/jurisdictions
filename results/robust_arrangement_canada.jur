@@ -6,4 +6,5 @@ scope nation {
   law environment: preempt = 0.3        # wins 57% of worlds; keeps 59% of the tailored gain
   law transit: preempt = 0.4            # wins 77% of worlds; keeps 57% of the tailored gain
   law redistribution: preempt = 0.25    # wins 98% of worlds; keeps 87% of the tailored gain
+  law climate_price: preempt = 1.2      # wins 100% of worlds; keeps 99% of the tailored gain
 }

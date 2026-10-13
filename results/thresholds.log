@@ -35,6 +35,12 @@
   redistribution move_share=0.1: central 0.45 | central 0.35 | central 0.25 | central 0.2
   redistribution move_share=0.2: central 0.45 | central 0.35 | central 0.25 | central 0.2
   redistribution move_share=0.3: central 0.45 | central 0.35 | central 0.25 | central 0.2
+  climate abatement_sd=0.0: floor 0.5 | central 0.5 | central 0.5 | central 0.5 | central 0.5
+  climate abatement_sd=0.2: price floor 1 | price 1 | price 1 | price 1 | price 1
+  climate abatement_sd=0.4: price floor 1 | price 1 | price 1 | price 1.2 | price 1.2
+  climate abatement_sd=0.6: price floor 1 | price 1 | price 1 | price 1 | price 1
+  climate abatement_sd=0.8: price floor 1 | price 1 | price 1 | price 1 | price 1.2
+  climate abatement_sd=1.0: price 1 | price 1.2 | price 1.2 | price 1.2 | price 1.2
   redistribution_inequality inequality_aversion=0.5: central 0.3 | central 0.2 | central 0.15 | central 0.15
   redistribution_inequality inequality_aversion=0.75: central 0.4 | central 0.3 | central 0.2 | central 0.2
   redistribution_inequality inequality_aversion=1.0: central 0.45 | central 0.35 | central 0.25 | central 0.2

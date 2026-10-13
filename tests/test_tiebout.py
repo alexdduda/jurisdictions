@@ -213,5 +213,46 @@ class CityLevel(unittest.TestCase):
         self.assertTrue(any(p.mode == "city" for p in candidates(build(DEFAULT_WORLD, TRANSIT, sample)[1])))
 
 
+
+class CarbonPricing(unittest.TestCase):
+    """Regulatory goods: private abatement costs that differ by region, priced or mandated."""
+
+    def climate(self, **kw):
+        return Domain("c", heterogeneity=0.0, within=0.05, spillover=0.8, private_costs=True, **kw)
+
+    def best(self, w, mode, levels):
+        return max(simulate(w, {"c": Policy(mode, lv)}, 0).welfare for lv in levels)
+
+    def test_price_beats_uniform_standard_when_costs_differ(self):
+        w = world(self.climate(abatement_sd=0.8), move_share=0.0)
+        price = self.best(w, "price", [0.2 * k for k in range(1, 9)])
+        standard = self.best(w, "central", [0.1 * k for k in range(1, 9)])
+        self.assertGreater(price, standard)
+
+    def test_price_and_standard_tie_when_costs_are_equal(self):
+        w = world(self.climate(abatement_sd=0.0), move_share=0.0)
+        price = simulate(w, {"c": Policy("price", 0.8)}, 0).welfare
+        standard = simulate(w, {"c": Policy("central", 0.4)}, 0).welfare
+        self.assertAlmostEqual(price, standard, places=9)
+
+    def test_high_cost_regions_want_less(self):
+        from tiebout.model import _Run
+        from statistics import mean
+        w = world(self.climate(abatement_sd=0.8, abatement_taste_corr=0.9), move_share=0.0, grid=4)
+        w = replace(w, domains=(replace(w.domains[0], heterogeneity=0.2),))
+        run = _Run(w, {}, 0)
+        a = run.abatement["c"]
+        taste = [mean(run.tastes["c"][i] for i in range(run.N) if run.region[i] == r) for r in range(run.R)]
+        hi, lo = max(range(run.R), key=lambda r: a[r]), min(range(run.R), key=lambda r: a[r])
+        self.assertLess(taste[hi], taste[lo])
+
+    def test_no_cost_of_public_funds_for_private_costs(self):
+        w0 = world(self.climate(abatement_sd=0.5), move_share=0.0)
+        w1 = replace(w0, national_overhead=2.0, local_overhead=2.0)
+        for mode, lv in (("price", 0.8), ("central", 0.4), ("local", 0.0)):
+            self.assertAlmostEqual(simulate(w0, {"c": Policy(mode, lv)}, 0).welfare,
+                                   simulate(w1, {"c": Policy(mode, lv)}, 0).welfare, places=12)
+
+
 if __name__ == "__main__":
     unittest.main()

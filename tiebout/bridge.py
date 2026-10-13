@@ -26,7 +26,19 @@ COMMENTS = {
     "matched": "regions decide; the nation pays this share of the cost",
     "equalized": "regions decide; the nation closes this share of poorer regions' capacity gap",
     "city": "cities decide, skipping the provinces; the nation pays this share of their cost",
+    "price": "one national carbon price; provinces may not change it",
+    "price_floor": "a national minimum carbon price; provinces may go higher",
 }
+
+
+def law_line(name: str, p: Policy) -> str:
+    """A policy as a scopelang law. Carbon prices are laws on `<name>_price`:
+    a uniform national price preempts, a price floor is a floor."""
+    if p.mode == "price":
+        return f"law {name}_price: preempt = {p.level:g}"
+    if p.mode == "price_floor":
+        return f"law {name}_price: floor = {p.level:g}"
+    return f"law {name}: {TO_LAW[p.mode]}" + ("" if p.mode == "local" else f" = {p.level:g}")
 
 
 def arrangement_to_jur(best, search, world: World) -> str:
@@ -39,8 +51,7 @@ def arrangement_to_jur(best, search, world: World) -> str:
     ]
     for d in world.domains:
         p = best.arrangement[d.name]
-        law = TO_LAW[p.mode]
-        decl = f"  law {d.name}: {law}" + ("" if p.mode == "local" else f" = {p.level:g}")
+        decl = "  " + law_line(d.name, p)
         table = search.by_mode.get(d.name, {})
         rivals = sorted(
             ((m, s) for m, s in table.items() if m != p.mode),
@@ -69,6 +80,12 @@ def jur_to_arrangement(source: str, world: World, scope: str = "nation") -> tupl
     known = {d.name for d in world.domains}
     arrangement = {d.name: LOCAL for d in world.domains}
     for name, (law, value) in result.laws(scope).items():
+        if name.endswith("_price") and name[: -len("_price")] in known:
+            area = name[: -len("_price")]
+            if law not in ("preempt", "floor") or value is None:
+                raise ValueError(f"law {name}: a carbon price is preempt or floor, with a value")
+            arrangement[area] = Policy("price" if law == "preempt" else "price_floor", float(value))
+            continue
         if name not in known:
             warnings.append(f"ignoring law {name}: not a domain in this world ({', '.join(sorted(known))})")
             continue

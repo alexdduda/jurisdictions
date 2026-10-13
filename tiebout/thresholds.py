@@ -49,6 +49,12 @@ MAPS = [
         "rows": ("move_share", [0.0, 0.02, 0.05, 0.1, 0.2, 0.3]),
         "cols": ("deadweight", [0.3, 0.5, 0.7, 0.9]),
     }),
+    # Climate: price or quantity, uniform or a floor. Decided by how much abatement
+    # costs differ between provinces and how much of the benefit spills over.
+    ("climate", {
+        "rows": ("abatement_sd", [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]),
+        "cols": ("spillover", [0.3, 0.45, 0.6, 0.75, 0.9]),
+    }),
     # Sensitivity to the welfare measure: 1.0 is log utility, the model's default.
     ("redistribution", {
         "key": "redistribution_inequality",

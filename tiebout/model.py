@@ -44,7 +44,7 @@ import math
 import random
 from dataclasses import dataclass, field
 
-MODES = ("local", "central", "floor", "ceiling", "matched", "equalized", "city")
+MODES = ("local", "central", "floor", "ceiling", "matched", "equalized", "city", "price", "price_floor")
 
 
 @dataclass(frozen=True)
@@ -68,6 +68,13 @@ class Domain:
     #   internalises and a city does not.
     urban_premium: float = 0.0
     metro_spillover: float = 0.0
+    # Regulatory goods (climate): abatement is paid by emitters, not budgets, so
+    # no cost of public funds applies, and costs differ by region. abatement_sd is
+    # the log-sd of each region's cost multiplier (0 = equal costs);
+    # abatement_taste_corr links high-cost regions to lower taste for the good.
+    private_costs: bool = False
+    abatement_sd: float = 0.0
+    abatement_taste_corr: float = 0.0
 
     @property
     def two_tier(self) -> bool:
@@ -77,7 +84,7 @@ class Domain:
 @dataclass(frozen=True)
 class Policy:
     mode: str = "local"
-    level: float = 0.0  # central level, floor, ceiling, match rate, equalization rate, or city grant rate
+    level: float = 0.0  # central level, floor, ceiling, match rate, equalization rate, city grant rate, or carbon price
 
     def __post_init__(self):
         if self.mode not in MODES:
@@ -92,6 +99,10 @@ class Policy:
             return f"equalized {self.level:.0%}"
         if self.mode == "city":
             return "city" if not self.level else f"city + {self.level:.0%} grant"
+        if self.mode == "price":
+            return f"price {self.level:.3g}"
+        if self.mode == "price_floor":
+            return f"price floor {self.level:.3g}"
         return f"{self.mode} {self.level:.3g}"
 
 
@@ -205,9 +216,20 @@ class _Run:
         # Skill is portable; income also depends on the region's productivity.
         self.skill = [math.exp(rng.gauss(0, world.income_sigma)) for _ in range(self.N)]
         self.tastes: dict[str, list[float]] = {}
+        self.abatement: dict[str, list[float]] = {}
         for d in world.domains:
             if d.kind == "public_good":
-                centres = [_clamp(0.5 + rng.gauss(0, d.heterogeneity), 0, 1) for _ in range(self.R)]
+                draws = [rng.gauss(0, d.heterogeneity) for _ in range(self.R)]
+                if d.abatement_sd > 0:
+                    # Separate stream, so goods without regional cost differences are unchanged.
+                    cost_rng = random.Random(f"{seed}:abatement:{d.name}")
+                    z = [cost_rng.gauss(0, 1) for _ in range(self.R)]
+                    sd = d.abatement_sd
+                    self.abatement[d.name] = [math.exp(sd * zr - sd * sd / 2) for zr in z]
+                    c = _clamp(d.abatement_taste_corr, -1.0, 1.0)
+                    # High-cost regions want less of the good (corr > 0 means that).
+                    draws = [-c * d.heterogeneity * z[r] + math.sqrt(1 - c * c) * draws[r] for r in range(self.R)]
+                centres = [_clamp(0.5 + g, 0, 1) for g in draws]
                 self.tastes[d.name] = [
                     _clamp(centres[self.region[i]] + rng.gauss(0, d.within), 0, 1)
                     for i in range(self.N)
@@ -269,6 +291,28 @@ class _Run:
             (self.national_income / self.regional_income[r]) ** k if k and self.regional_income[r] > 0 else 1.0
             for r in range(self.R)
         ]
+        # Regional cost multipliers (1 everywhere unless the good has abatement_sd).
+        a = self.abatement.get(d.name, [1.0] * self.R)
+        if d.private_costs:
+            # Emitters pay; no budget, so no cost of public funds at either level.
+            unit, local_share = 1.0, 1.0
+            local = [
+                _clamp(_median([theta[i] for i in res]) * (1 - s) / (burden[r] * a[r]), 0, w.max_level) if res else 0.0
+                for r, res in enumerate(residents)
+            ]
+            if policy.mode == "central":
+                p = [_clamp(policy.level, 0, w.max_level)] * self.R       # one quantity everywhere
+            elif policy.mode == "price":
+                # Every region abates until marginal cost 2 * a * p equals the price.
+                p = [_clamp(policy.level / (2 * a[r]), 0, w.max_level) for r in range(self.R)]
+            elif policy.mode == "price_floor":
+                p = [max(local[r], _clamp(policy.level / (2 * a[r]), 0, w.max_level)) for r in range(self.R)]
+            else:
+                p = _bound(local, policy)
+            experienced = [(1 - s) * p[r] + s * _mean(p[n] for n in self.nbrs[r]) for r in range(self.R)]
+            gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
+            cost = [d.weight * a[r] * burden[r] * p[r] ** 2 for r in range(self.R)]
+            return ("pg", d.name, theta, gain, cost, p)
         if policy.mode == "central":
             p = [_clamp(policy.level, 0, w.max_level)] * self.R
             unit, local_share = 1.0 - d.scale, 0.0
@@ -409,8 +453,9 @@ class _Run:
                 if not res or pool[r] <= 0:
                     local.append(0.0)
                     continue
-                # Ideal rate of the median earner (Meltzer-Richard): falls to 0 as
-                # the region becomes homogeneous in income.
+                # Ideal rate of the median earner (Meltzer and Richard 1981, Journal of
+                # Political Economy 89: 914-927; empirical support is mixed, e.g. Dao
+                # 2001): falls to 0 as the region becomes homogeneous in income.
                 median_income = _median([self.income(i, r) for i in res])
                 local.append(_clamp((1 - median_income / pool[r]) / (2 * eta), 0, w.max_tax))
             t = _bound(local, policy)

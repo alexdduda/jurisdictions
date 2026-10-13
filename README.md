@@ -115,8 +115,8 @@ A 4×4 grid of regions holds 1,600 agents. Each agent has an income and a taste
 for each public good. Every step, each region's government picks what its
 median resident wants, within the national rules. Then a quarter of the agents
 look at a few other regions and move if it's worth the moving cost
-([Tiebout](https://en.wikipedia.org/wiki/Tiebout_model): "voting with your
-feet").
+(Tiebout, "A Pure Theory of Local Expenditures", *Journal of Political
+Economy* 64(5), 1956: "voting with your feet").
 
 The optimizer chooses, for every policy domain, one of the same five modes as
 scopelang (local, central, floor, ceiling, matched) plus its level. It uses
@@ -215,6 +215,25 @@ provincial systems, a number nobody has measured; the transit verdict rests on
 it. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
 transit`.
 
+### Climate and carbon pricing
+
+Climate is a fifth area, separate from public environmental spending, because
+it works through regulation: emitters pay, so no cost of public funds applies,
+and abatement costs differ by province. Rules: provinces decide, a uniform
+national quantity standard, a quantity floor, a national carbon price, or a
+price floor provinces may exceed. Calibration: provincial disagreement from
+the 2019 Canadian Election Study carbon-tax question; abatement-cost spread
+informed by 2024 emissions per person (ECCC, log spread 0.66); and the link
+between high emissions and low support (r = -0.82 across provinces).
+
+A carbon price wins 99% of sampled worlds and keeps 99% of the attainable
+gain; a uniform quantity standard keeps 44%. With equal costs the two are
+identical; any cost difference favours the price. The model leaves out trade
+exposure, emissions leaking abroad, revenue use and the politics that ended
+Canada's consumer carbon charge in April 2025.
+
+See [VERIFICATION.md](VERIFICATION.md) for every factual claim and its sources.
+
 ### What it leaves out
 
 Governments are honest median voters, the centre knows the spillover rates,
@@ -234,11 +253,13 @@ tests/
 ## Data sources and licences
 
 - **Statistics Canada** tables 10-10-0005, 11-10-0134, 11-10-0190,
-  17-10-0005, 17-10-0009, 17-10-0022 and 36-10-0222. Source: Statistics
-  Canada. Reproduced and distributed on an "as is" basis with the permission
-  of Statistics Canada, under the Statistics Canada Open Licence. This does
-  not constitute an endorsement by Statistics Canada of this product. Raw
-  tables are not committed; `data/targets.json` holds the derived values.
+  17-10-0005, 17-10-0009, 17-10-0022 and 36-10-0222, reference years 2008 to
+  2024. Adapted from Statistics Canada, under the Statistics Canada Open
+  Licence. This does not constitute an endorsement by Statistics Canada of
+  this product. Raw tables are not committed; `data/targets.json` holds the
+  derived values.
+- **Environment and Climate Change Canada**, greenhouse gas emissions by
+  province, 2024 (Canadian Environmental Sustainability Indicators).
 - **2019 Canadian Election Study, online survey.** Stephenson, Laura B.;
   Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, Harvard
   Dataverse, [doi:10.7910/DVN/DUS88V](https://doi.org/10.7910/DVN/DUS88V),
@@ -250,5 +271,10 @@ tests/
   Finance* 19(6): 844-883; Dahlby, B. and Ferede, E. (2022), "What Are the
   Economic Costs of Raising Revenue by the Canadian Federal Government?",
   Fraser Institute.
+- **Inequality aversion:** Layard, R., Mayraz, G. and Nickell, S. (2008), "The
+  Marginal Utility of Income", *Journal of Public Economics* 92(8-9):
+  1846-1857 (combined estimate 1.26).
+- **Industrial carbon price path** ($95 per tonne in 2026 to $140 in 2040): as
+  reported by the International Carbon Action Partnership and EY, May 2026.
 - `audit/` holds automated reviews by [ai-auditor](https://github.com/alexdduda/ai-auditor)
   (model-generated; challenges to check, not verified findings).

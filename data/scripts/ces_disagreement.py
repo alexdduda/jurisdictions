@@ -27,6 +27,9 @@ ITEMS = {
     # "How much should be done to reduce the gap between the rich and the poor?"
     # 1 much more ... 5 much less; collapsed to more / same / less.
     "redistribution": ("pes19_gap", "pes19_weight_general_all", {1: "high", 2: "high", 3: "mid", 4: "low", 5: "low"}),
+    # "To help reduce greenhouse gas emissions, the federal government should
+    # continue the carbon tax." 1 strongly disagree ... 5 strongly agree.
+    "climate": ("cps19_pos_carbon", "cps19_weight_general_all", {1: "low", 2: "low", 3: "mid", 4: "high", 5: "high"}),
 }
 inv = NormalDist().inv_cdf
 

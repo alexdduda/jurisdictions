@@ -29,5 +29,14 @@ TRANSIT = Domain(
     scale=0.30,          # networks are cheaper to build as one system
 )
 REDISTRIBUTION = Domain("redistribution", kind="redistribution")
+CLIMATE = Domain(
+    "climate",
+    heterogeneity=0.06,
+    within=0.28,
+    spillover=0.8,        # most of the benefit of cutting emissions lands elsewhere
+    private_costs=True,   # emitters pay, not budgets
+    abatement_sd=0.66,    # spread of provincial emissions per person (log sd)
+    abatement_taste_corr=0.82,
+)
 
-DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION))
+DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE))

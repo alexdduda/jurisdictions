@@ -18,6 +18,14 @@ Arrangement = dict[str, Policy]
 
 def candidates(domain: Domain) -> list[Policy]:
     out = [LOCAL]
+    if domain.private_costs:
+        # Regulation, not spending: quantity standards and floors, or a carbon price,
+        # uniform or as a floor provinces may exceed. Grants don't apply.
+        levels = [round(0.1 * k, 3) for k in range(1, 13)]
+        prices = [round(0.2 * k, 3) for k in range(1, 13)]
+        out += [Policy("central", lv) for lv in levels] + [Policy("floor", lv) for lv in levels]
+        out += [Policy("price", t) for t in prices] + [Policy("price_floor", t) for t in prices]
+        return out
     if domain.kind == "public_good":
         levels = [round(0.1 * k, 3) for k in range(13)]  # 0.0 .. 1.2
         for mode in ("central", "floor", "ceiling"):
@@ -38,7 +46,7 @@ def refinements(domain: Domain, best: Policy) -> list[Policy]:
     if best.mode == "local":
         return []
     step = 0.025
-    top = 0.95 if best.mode in ("matched", "city") else 1.0 if best.mode == "equalized" else (1.5 if domain.kind == "public_good" else 0.9)
+    top = 0.95 if best.mode in ("matched", "city") else 1.0 if best.mode == "equalized" else 3.0 if best.mode.startswith("price") else (1.5 if domain.kind == "public_good" else 0.9)
     levels = {round(min(max(best.level + k * step, 0.0), top), 4) for k in (-2, -1, 1, 2)}
     return [Policy(best.mode, lv) for lv in sorted(levels - {best.level})]
 

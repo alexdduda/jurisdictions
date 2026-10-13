@@ -1383,6 +1383,201 @@
         ]
       ]
     },
+    "climate": {
+      "domain": "climate",
+      "row_param": "abatement_sd",
+      "rows": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "col_param": "spillover",
+      "cols": [
+        0.3,
+        0.45,
+        0.6,
+        0.75,
+        0.9
+      ],
+      "held_at": {
+        "national_overhead": 1.05,
+        "overhead_log_ratio": 0.0,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.065,
+        "within": 0.275,
+        "abatement_taste_corr": 0.75
+      },
+      "cells": [
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.5",
+            "margin": 0.0
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.0
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.0
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.0
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.0
+          }
+        ],
+        [
+          {
+            "mode": "price_floor",
+            "label": "price floor 1",
+            "margin": 0.0006
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          }
+        ],
+        [
+          {
+            "mode": "price_floor",
+            "label": "price floor 1",
+            "margin": 0.00186
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          }
+        ],
+        [
+          {
+            "mode": "price_floor",
+            "label": "price floor 1",
+            "margin": 0.0002
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          }
+        ],
+        [
+          {
+            "mode": "price_floor",
+            "label": "price floor 1",
+            "margin": 0.00018
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          }
+        ],
+        [
+          {
+            "mode": "price",
+            "label": "price 1",
+            "margin": 3e-05
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          },
+          {
+            "mode": "price",
+            "label": "price 1.2",
+            "margin": 0.0
+          }
+        ]
+      ]
+    },
     "redistribution_inequality": {
       "domain": "redistribution",
       "row_param": "inequality_aversion",
@@ -1544,5 +1739,5 @@
       ]
     }
   },
-  "seconds": 336.7
+  "seconds": 356.9
 }

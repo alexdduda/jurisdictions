@@ -35,6 +35,8 @@ WIDE = {
         "environment": {"heterogeneity": (0.02, 0.15), "spillover": (0.30, 0.80), "scale": (0.00, 0.10), "within": (0.05, 0.15)},
         "transit": {"heterogeneity": (0.05, 0.20), "spillover": (0.05, 0.35), "scale": (0.10, 0.45), "within": (0.05, 0.15)},
         "redistribution": {},
+        "climate": {"heterogeneity": (0.02, 0.15), "spillover": (0.3, 0.95), "within": (0.05, 0.15),
+                    "abatement_sd": (0.0, 1.0), "abatement_taste_corr": (0.0, 0.9)},
     },
     "public_good_world": {
         "national_overhead": (0.00, 0.35),
@@ -121,6 +123,19 @@ def canada_ranges() -> dict:
     # inside a metro area is handled by the metro-level body and doesn't count here.
     domains["transit"]["metro_spillover"] = (0.00, 0.20)
     domains["transit"]["spillover"] = (0.00, 0.10)
+    # Climate (a regulatory good; emitters pay). From the 2019 Canadian Election
+    # Study carbon-tax question, between-province spread is 0.235 of within-province
+    # spread, so heterogeneity = 0.235 x within (0.25 to 0.30), widened a little.
+    # Abatement cost spread is informed by, not fitted to, the log sd of 2024
+    # emissions per person across provinces (0.66; ECCC emissions / Statistics
+    # Canada population), sampled at half to one and a half times that. Provinces
+    # that emit more per person support the carbon tax less (r = -0.82 on logs,
+    # p = 0.003, n = 10), sampled 0.6 to 0.9. Spillover is unmeasured: most of the
+    # benefit of cutting emissions lands outside the emitting province.
+    domains["climate"] = {
+        "heterogeneity": (0.05, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
+        "abatement_sd": (0.33, 0.99), "abatement_taste_corr": (0.60, 0.90),
+    }
     # Jointly calibrated (validation/README): with people moving for jobs, these keep
     # provincial market-income spread at 12-19% and migration at 0.3-0.75% a year.
     mobility = {"move_share": (0.02, 0.10), "moving_cost": (0.05, 0.08), "productivity_sd": (0.035, 0.07)}
@@ -154,7 +169,8 @@ def range_set(name: str) -> dict:
 
 
 WEAK_WINNER = 0.1  # a fixed rule keeping under 10% of the tailored gain is no clear winner
-SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5, "city": 6}
+SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5, "city": 6,
+              "price": 7, "price_floor": 8}
 
 
 def latin_hypercube(ranges: dict[str, tuple[float, float]], n: int, rng: random.Random) -> list[dict[str, float]]:
@@ -375,7 +391,7 @@ def run_uncertainty(out_dir: Path, draws: int = 200, seeds: int = 3, check_world
 
 
 def robust_jur(out: dict) -> str:
-    from .bridge import TO_LAW
+    from .bridge import law_line
 
     lines = [
         "# The policy per domain with the lowest expected regret across all sampled worlds.",
@@ -390,7 +406,7 @@ def robust_jur(out: dict) -> str:
             # dressing up a near-tie as a recommendation.
             lines.append(f"{'  law ' + name + ': shadow':<40}# no rule clearly wins; best ({f['policy']}) keeps {f['gain_captured']:.0%}")
             continue
-        decl = f"  law {name}: {TO_LAW[f['mode']]}" + ("" if f["mode"] == "local" else f" = {f['level']:g}")
+        decl = "  " + law_line(name, Policy(f["mode"], f["level"]))
         lines.append(f"{decl:<40}# wins {r['win_share'].get(f['mode'], 0):.0%} of worlds; keeps {f['gain_captured']:.0%} of the tailored gain")
     lines.append("}")
     return "\n".join(lines) + "\n"
