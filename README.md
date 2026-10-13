@@ -213,3 +213,25 @@ tiebout/     model.py (simulation), optimize.py (search), experiments.py (study 
 examples/    cannabis.jur, min_wage.jur, river.jur, dispute.jur
 tests/
 ```
+
+## Data sources and licences
+
+- **Statistics Canada** tables 10-10-0005, 11-10-0134, 11-10-0190,
+  17-10-0005, 17-10-0009, 17-10-0022 and 36-10-0222. Source: Statistics
+  Canada. Reproduced and distributed on an "as is" basis with the permission
+  of Statistics Canada, under the Statistics Canada Open Licence. This does
+  not constitute an endorsement by Statistics Canada of this product. Raw
+  tables are not committed; `data/targets.json` holds the derived values.
+- **2019 Canadian Election Study, online survey.** Stephenson, Laura B.;
+  Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, Harvard
+  Dataverse, [doi:10.7910/DVN/DUS88V](https://doi.org/10.7910/DVN/DUS88V),
+  licensed CC BY-NC 4.0. Only derived provincial aggregates are committed
+  (`data/ces_disagreement.json`); the survey file is not.
+- **Marginal cost of public funds:** Dahlby, B. and Ferede, E. (2012), "The
+  Effects of Tax Rate Changes on Tax Bases and the Marginal Cost of Public
+  Funds for Canadian Provincial Governments", *International Tax and Public
+  Finance* 19(6): 844-883; Dahlby, B. and Ferede, E. (2022), "What Are the
+  Economic Costs of Raising Revenue by the Canadian Federal Government?",
+  Fraser Institute.
+- `audit/` holds automated reviews by [ai-auditor](https://github.com/alexdduda/ai-auditor)
+  (model-generated; challenges to check, not verified findings).
