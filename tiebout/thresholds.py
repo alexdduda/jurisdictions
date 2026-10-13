@@ -22,9 +22,20 @@ from .uncertainty import build, canada_ranges, world_ranges
 # (or, for redistribution, that the uncertainty analysis found most influential).
 RATIOS = [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.75]  # provincial / federal cost of raising a dollar
 MAPS = [
+    # Transit has a city level: who should run it depends on how differently city
+    # and countryside want it, how much commuting carries it between them, and
+    # how much one national system would save.
     ("transit", {
-        "rows": ("scale", [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]),
-        "cols": ("spillover", [0.0, 0.1, 0.2, 0.3, 0.4]),
+        # National savings held at zero to isolate the city-versus-province question;
+        # the next map shows where national savings take over.
+        "rows": ("urban_premium", [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]),
+        "cols": ("metro_spillover", [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]),
+        "fixed": {"scale": 0.0},
+    }),
+    ("transit", {
+        "key": "transit_scale",
+        "rows": ("scale", [0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]),
+        "cols": ("metro_spillover", [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]),
     }),
     ("environment", {
         "rows": ("spillover", [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]),
@@ -61,7 +72,7 @@ def run_thresholds(out_dir: Path, log=print) -> dict:
         for name, spec in MAPS:
             d = domains[name]
             (rname, rvals), (cname, cvals) = spec["rows"], spec["cols"]
-            base = midpoints(d.name, ranges)
+            base = {**midpoints(d.name, ranges), **spec.get("fixed", {})}
             cells = []
             for rv in rvals:
                 row = []

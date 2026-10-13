@@ -175,5 +175,43 @@ class EqualizationAndInequality(unittest.TestCase):
         self.assertGreater(gains[1], gains[0])
 
 
+
+class CityLevel(unittest.TestCase):
+    """Two tiers inside each region: city and countryside."""
+
+    def test_off_unless_configured(self):
+        self.assertFalse(Domain("t").two_tier)
+        self.assertTrue(Domain("t", metro_spillover=0.2).two_tier)
+
+    def test_province_rule_matches_one_tier_when_city_effects_vanish(self):
+        one = world(Domain("t", heterogeneity=0.1), move_share=0.0)
+        two = world(Domain("t", heterogeneity=0.1, metro_spillover=1e-9), move_share=0.0)
+        self.assertAlmostEqual(simulate(one, {}, 0).welfare, simulate(two, {}, 0).welfare, places=6)
+
+    def test_cities_win_when_density_differs_and_commuting_does_not_spill(self):
+        w = world(Domain("t", heterogeneity=0.0, within=0.05, urban_premium=0.6, metro_spillover=1e-9), move_share=0.0)
+        self.assertGreater(simulate(w, {"t": Policy("city")}, 0).welfare, simulate(w, {}, 0).welfare)
+
+    def test_provinces_win_when_commuting_spills_and_density_is_equal(self):
+        w = world(Domain("t", heterogeneity=0.0, within=0.05, metro_spillover=0.6), move_share=0.0)
+        self.assertGreater(simulate(w, {}, 0).welfare, simulate(w, {"t": Policy("city")}, 0).welfare)
+
+    def test_federal_grant_to_cities_corrects_their_spillover_blind_spot(self):
+        w = world(Domain("t", heterogeneity=0.0, within=0.05, urban_premium=0.4, metro_spillover=0.4),
+                  move_share=0.0, national_overhead=0.0)
+        self.assertGreater(simulate(w, {"t": Policy("city", 0.4)}, 0).welfare, simulate(w, {"t": Policy("city")}, 0).welfare)
+
+
+    def test_uncertainty_offers_city_rules_for_transit(self):
+        # Regression: candidates were once built from the base domain, which has no
+        # city level, so "cities decide" was never tried in the uncertainty analysis.
+        import random
+        from tiebout.uncertainty import build, canada_ranges, latin_hypercube, world_ranges
+        from tiebout.optimize import candidates
+        from tiebout.config import TRANSIT
+        sample = latin_hypercube(world_ranges("transit", canada_ranges()), 1, random.Random(0))[0]
+        self.assertTrue(any(p.mode == "city" for p in candidates(build(DEFAULT_WORLD, TRANSIT, sample)[1])))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -21,6 +21,7 @@
   --m-ceiling: #eda100;
   --m-matched: #e87ba4;
   --m-equalized: #008300;
+  --m-city: #4a3aa7;
   --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -31,14 +32,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
     --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300;
+    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
   --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300;
+  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9;
   color-scheme: dark;
 }
 
@@ -210,6 +211,8 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
           <tr><td><span class="mono">floor</span></td><td>Go higher, never lower than they inherit</td><td>Cannabis age</td></tr>
           <tr><td><span class="mono">ceiling</span></td><td>Go lower, never higher than they inherit</td><td>Caps on rent increases</td></tr>
           <tr><td><span class="mono">matched</span></td><td>Choose freely while the higher level pays a share</td><td>Health transfers</td></tr>
+          <tr><td><span class="mono">equalized</span></td><td>Choose freely while the higher level tops up poorer members' ability to pay</td><td>Equalization payments</td></tr>
+          <tr><td><span class="mono">devolved</span></td><td>The level below the next decides; the one in between may not</td><td>Transit run by city regions (hypothetical rule)</td></tr>
         </tbody>
       </table>
     </div>
@@ -331,7 +334,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
     </ul>
     <p><strong>Still open:</strong></p>
     <ul class="plain">
-      <li><strong>Transit belongs to cities.</strong> Transit is mostly municipal in Canada and commuting between provinces is close to zero. The model has no metropolitan level, so its transit verdict is the least trustworthy on this page.</li>
+      <li><strong>Transit and cities: partly addressed.</strong> Each province now has a city and a countryside, and "cities decide" is a rule (§ 6). Cities win only when almost no commuting crosses the metro boundary, and national wins only if one national system saves 5 to 10% or more, a number nobody has measured for Canada. Still missing: more than one city per province, and how transit costs change with network size.</li>
       <li><strong>Environmental policy works through prices.</strong> Canada uses a national carbon-price floor with provincial design, and provinces' emissions per person differ several-fold. The model has neither prices nor different abatement costs.</li>
       <li><strong>Schools are about more than spending.</strong> Language and denominational school systems are constitutionally protected and concentrated by province. A small cost of imposing one national model could reverse a close call.</li>
       <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move less. Together these could favour a national floor with provincial top-ups.</li>
@@ -354,9 +357,9 @@ python3 -m tiebout evaluate results/robust_arrangement.jur</pre>
 <script>
 const DATA = /*__DATA__*/null;
 
-const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized"];
-const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization" };
-const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized" };
+const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized", "city"];
+const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization", city: "Cities decide" };
+const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized", city: "devolved" };
 const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution" };
 const PARAM = {
   heterogeneity: "How much regions disagree",
@@ -366,13 +369,16 @@ const PARAM = {
   national_overhead: "Overhead on national money",
   local_overhead: "Overhead on local money",
   overhead_ratio: "Provincial vs. national cost of raising money",
+  overhead_log_ratio: "Provincial vs. national cost of raising money",
+  urban_premium: "How much more cities want it than the countryside",
+  metro_spillover: "Benefit commuters carry between city and suburbs",
   move_share: "How mobile people are",
   moving_cost: "Cost of moving",
   congestion: "Cost of crowding",
   income_sigma: "Income inequality",
   deadweight: "Efficiency cost of taxes",
 };
-const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross", equalized: "ring" };
+const SHAPES = { local: "circle", central: "square", floor: "triangle", ceiling: "diamond", matched: "cross", equalized: "ring", city: "down" };
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const modeColor = (m) => `var(--m-${m})`;
 const pct = (x) => `${Math.round(x * 100)}%`;
@@ -402,6 +408,7 @@ function policyText(f) {
   if (f.mode === "local") return "Regions decide";
   if (f.mode === "matched") return `Matching grant, ${Math.round(f.level * 100)}%`;
   if (f.mode === "equalized") return `Equalization, ${Math.round(f.level * 100)}% of the gap`;
+  if (f.mode === "city") return f.level ? `Cities decide, ${Math.round(f.level * 100)}% federal grant` : "Cities decide";
   return `${MODE_NAME[f.mode]} at ${+f.level.toFixed(3)}`;
 }
 
@@ -618,6 +625,7 @@ legend(document.getElementById("mode-legend"), MODES);
     else if (shape === "square") el("svg:rect", { x: x - r, y: y - r, width: 2 * r, height: 2 * r, rx: 1.5, ...common }, g);
     else if (shape === "triangle") el("svg:path", { d: `M${x},${y - r * 1.2} L${x + r * 1.1},${y + r * 0.8} L${x - r * 1.1},${y + r * 0.8} Z`, ...common }, g);
     else if (shape === "diamond") el("svg:path", { d: `M${x},${y - r * 1.25} L${x + r * 1.25},${y} L${x},${y + r * 1.25} L${x - r * 1.25},${y} Z`, ...common }, g);
+    else if (shape === "down") el("svg:path", { d: `M${x},${y + r * 1.2} L${x + r * 1.1},${y - r * 0.8} L${x - r * 1.1},${y - r * 0.8} Z`, ...common }, g);
     else if (shape === "ring") el("svg:circle", { cx: x, cy: y, r: r - 0.5, fill: "none", stroke: fill, "stroke-width": 3 }, g);
     else el("svg:path", { d: `M${x - r},${y - r} L${x + r},${y + r} M${x + r},${y - r} L${x - r},${y + r}`, stroke: fill, "stroke-width": 3, "stroke-linecap": "round", fill: "none" }, g);
   }
@@ -633,10 +641,12 @@ legend(document.getElementById("mode-legend"), MODES);
     scale: "savings from one national system", spillover: "share of benefit leaking to other provinces",
     overhead_ratio: "provincial cost of raising a dollar, relative to federal", move_share: "share of people considering a move each year",
     deadweight: "efficiency cost of taxes", inequality_aversion: "weight on inequality (1 = log utility; estimates center near 1.26)",
+    urban_premium: "how much more city residents want it than the countryside", metro_spillover: "share of benefit commuters carry between city and suburbs",
   };
   // Written from results/thresholds.json; rewrite if the maps change.
   const CAPTION = {
-    transit: "National once one system saves about 10%, or 5% if a fifth or more of the benefit crosses provincial borders. With no savings at all, provinces run it, with a federal matching grant if benefits cross borders or equalization if they don't.",
+    transit: "With no savings from one national system, the choice is cities or provinces. Cities win when city and countryside want different amounts of transit and almost no commuting crosses the metro boundary. Once a tenth of the benefit crosses it, provinces win, with a small federal grant or equalization (the two are nearly tied).",
+    transit_scale: "National beats both once one national system saves about 5 to 10% over separate city or provincial systems, at any level of commuting. Whether it does is unmeasured; the national verdict for transit rests on it.",
     environment: "The column decides it. Where provinces raise money more cheaply than Ottawa, a national floor wins, or equalization when little pollution crosses borders. Where they don't, a national standard.",
     schools: "The column decides it again. Where provinces raise money more cheaply, provinces decide with an equalization top-up or a floor; where they don't, a national standard. The stakes are smaller than for the environment or transit.",
     redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
@@ -644,7 +654,12 @@ legend(document.getElementById("mode-legend"), MODES);
   };
   for (const [name, m] of Object.entries(T.maps)) {
     const fig = el("figure", {}, host);
-    el("div", { class: "fig-title", text: name === "redistribution_inequality" ? "Redistribution, by how much weight inequality gets" : DOMAIN_NAME[m.domain || name] }, fig);
+    const TITLES = {
+      transit: "Transit, by density gap and commuting",
+      transit_scale: "Transit, by savings from one national system",
+      redistribution_inequality: "Redistribution, by how much weight inequality gets",
+    };
+    el("div", { class: "fig-title", text: TITLES[name] || DOMAIN_NAME[m.domain || name] }, fig);
     const cap = el("div", { class: "axis-cap", text: `Rows: ${AXIS[m.row_param] || m.row_param}. Columns: ${AXIS[m.col_param] || m.col_param}.` }, fig);
     const wrap = el("div", { class: "table-wrap" }, fig);
     const grid = el("div", { class: "phase", style: { gridTemplateColumns: `3.4rem repeat(${m.cols.length}, minmax(4.6rem, 1fr))`, minWidth: "20rem" } }, wrap);
@@ -655,7 +670,7 @@ legend(document.getElementById("mode-legend"), MODES);
       m.cells[i].forEach((c, j) => {
         const light = ["floor", "ceiling", "matched"].includes(c.mode);
         const cell = el("div", { class: `cell${light ? " light-text" : ""}`, style: { background: modeColor(c.mode) } }, grid);
-        const text = { local: "Regions", central: "Standard", matched: "Grant", floor: "Floor", ceiling: "Cap", equalized: "Equalize" }[c.mode];
+        const text = c.mode === "city" ? (c.label.startsWith("city +") ? "Cities + grant" : "Cities") : { local: "Regions", central: "Standard", matched: "Grant", floor: "Floor", ceiling: "Cap", equalized: "Equalize" }[c.mode];
         el("span", { text }, cell);
         hoverable(cell, (e) => showTip(e, policyText({ mode: c.mode, level: parseFloat(c.label.split(" ")[1]) || 0 }), [
           { color: modeColor(c.mode), text: `${AXIS[m.row_param] || m.row_param} ${r}, ${AXIS[m.col_param] || m.col_param} ${m.cols[j]}` },
@@ -712,7 +727,9 @@ legend(document.getElementById("mode-legend"), MODES);
     ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
     ["Cost of raising a dollar, national vs. provincial", "0 to 35% extra each", "federal 20% to 190% extra; provincial 1/4 to 4 times federal, symmetric so neither is cheaper on average", "Federal: corporate tax $2.02, income tax $2.86 per dollar raised (2021). Provincial income tax $1.44 to $3.81 (2006). Lower bounds allow for cheaper sales taxes, for which no federal figure is published", "Dahlby and Ferede 2012, 2022"],
     ["Weight on inequality (redistribution)", "log utility only", "log utility, with 0.5 to 2.5 tested in § 6", "Estimated at 1.26 (1.19 to 1.34 across six surveys)", "Layard, Mayraz and Nickell 2008"],
-    ["Spillovers to neighbours; savings from one national system; crowding", "guessed", "still guessed", "No Canadian measurement exists", "none"],
+    ["Share of people living in a city (transit's city level)", "no city level", "72%", "71.8% of Canadians lived in a census metropolitan area (July 2021)", "Stats Can 91-214-X"],
+    ["Transit benefit commuters carry across the metro boundary", "no city level", "0 to 20%", "Statistics Canada adds a municipality to a metro area when at least 50% of its workers commute to the core, so fewer than half of those left outside commute in", "Census of Population 2021 Dictionary"],
+    ["Spillovers to neighbours; savings from one national system; crowding; how much more cities want transit", "guessed", "still guessed", "No clean Canadian measurement. Transit use is far higher in big cities (Vancouver 22.5%, Toronto 20.6%, Montréal 16.4% of commuters), but that doesn't translate directly into a taste gap", "Stats Can Labour Force Survey, May 2023"],
   ];
   const table = document.getElementById("calib-table");
   const h = el("tr", {}, el("thead", {}, table));

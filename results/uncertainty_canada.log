@@ -1,18 +1,12 @@
 A. sampling worlds per policy area (canada ranges)
-    schools: 31800 runs in 1039s
-      wins: local 2%, central 52%, floor 13%, ceiling 1%, matched 2%, equalized 30% | robust: equalized 100% (captures 3% of the tailored gain)
-    environment: 31800 runs in 376s
-      wins: central 56%, floor 42%, matched 1% | robust: central 0.3 (captures 59% of the tailored gain)
-    transit: 31800 runs in 299s
-      wins: local 0%, central 78%, floor 18%, matched 2%, equalized 2% | robust: central 0.3 (captures 66% of the tailored gain)
-    redistribution: 31200 runs in 350s
-      wins: central 98%, floor 2% | robust: central 0.25 (captures 87% of the tailored gain)
+    transit: 34800 runs in 357s
+      wins: local 1%, central 77%, floor 8%, ceiling 2%, equalized 8%, city 4% | robust: central 0.4 (captures 57% of the tailored gain)
 B. checking one-domain-at-a-time against joint optimisation
     world 1/8: modes agree 4/4, one-at-a-time keeps 98% of the joint gain
     world 2/8: modes agree 4/4, one-at-a-time keeps 99% of the joint gain
-    world 3/8: modes agree 3/4, one-at-a-time keeps 98% of the joint gain
-    world 4/8: modes agree 4/4, one-at-a-time keeps 98% of the joint gain
-    world 5/8: modes agree 4/4, one-at-a-time keeps 100% of the joint gain
-    world 6/8: modes agree 3/4, one-at-a-time keeps 97% of the joint gain
-    world 7/8: modes agree 4/4, one-at-a-time keeps 97% of the joint gain
-    world 8/8: modes agree 4/4, one-at-a-time keeps 87% of the joint gain
+    world 3/8: modes agree 4/4, one-at-a-time keeps 98% of the joint gain
+    world 4/8: modes agree 4/4, one-at-a-time keeps 99% of the joint gain
+    world 5/8: modes agree 4/4, one-at-a-time keeps 99% of the joint gain
+    world 6/8: modes agree 4/4, one-at-a-time keeps 90% of the joint gain
+    world 7/8: modes agree 2/4, one-at-a-time keeps 94% of the joint gain
+    world 8/8: modes agree 3/4, one-at-a-time keeps 97% of the joint gain

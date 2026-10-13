@@ -89,7 +89,8 @@ def canada_ranges() -> dict:
                      validation/migration_and_capacity.py); halved for p squared
       deadweight     0.4 to 0.9 gives a marginal cost of funds of about 1.3 to 2.2
                      at a 30% tax rate
-    Not calibrated (no Canadian data): spillover, scale, congestion.
+    Not calibrated (no Canadian data): spillover, scale, congestion, and for
+    transit the city-countryside taste gap and commuting spillover.
     """
     root = Path(__file__).resolve().parent.parent
     targets = json.loads((root / "data" / "targets.json").read_text())
@@ -106,6 +107,20 @@ def canada_ranges() -> dict:
         domains[name]["within"] = (0.25, 0.30)
         k = max(capacity[name]["income_elasticity"], 0.0) / 2
         domains[name]["capacity_elasticity"] = (round(0.75 * k, 4), round(1.25 * k, 4))
+    # Transit gets a city level. 72% of Canadians live in a census metropolitan area
+    # (World.urban_share). How much more city residents want transit, and how much of
+    # it commuters carry between city and suburbs, have no clean Canadian measure:
+    # wide ranges here, and threshold maps on both. Transit spillover between
+    # provinces is assumed small (commuting rarely crosses provincial lines; not
+    # measured here).
+    domains["transit"]["urban_premium"] = (0.10, 0.50)
+    # "City" is the whole metropolitan region. Statistics Canada adds a municipality to
+    # a census metropolitan area when at least 50% of its workers commute to the core
+    # (or 25% of its jobs are held by core residents), so by construction fewer than
+    # half of the workers left outside commute in. Commuting between municipalities
+    # inside a metro area is handled by the metro-level body and doesn't count here.
+    domains["transit"]["metro_spillover"] = (0.00, 0.20)
+    domains["transit"]["spillover"] = (0.00, 0.10)
     # Jointly calibrated (validation/README): with people moving for jobs, these keep
     # provincial market-income spread at 12-19% and migration at 0.3-0.75% a year.
     mobility = {"move_share": (0.02, 0.10), "moving_cost": (0.05, 0.08), "productivity_sd": (0.035, 0.07)}
@@ -139,7 +154,7 @@ def range_set(name: str) -> dict:
 
 
 WEAK_WINNER = 0.1  # a fixed rule keeping under 10% of the tailored gain is no clear winner
-SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5}
+SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5, "city": 6}
 
 
 def latin_hypercube(ranges: dict[str, tuple[float, float]], n: int, rng: random.Random) -> list[dict[str, float]]:
@@ -186,7 +201,10 @@ def analyse_domain(pool, base: World, domain: Domain, draws: int, seeds: int, rn
                    range_set_: dict | None = None) -> dict:
     ranges = world_ranges(domain.name, range_set_ or WIDE)
     samples = latin_hypercube(ranges, draws, rng)
-    cands = candidates(domain)
+    # Candidates depend on the domain's structure (a city level adds city rules), so
+    # build them from a sampled domain, not the base one. Every sample shares the
+    # same structure because the ranges are the same for all of them.
+    cands = candidates(build(base, domain, samples[0])[1])
     tasks = []
     for j, params in enumerate(samples):
         world, d = build(base, domain, params)
@@ -322,21 +340,36 @@ def separability_check(pool, base: World, n: int, seeds: int, rng: random.Random
 
 
 def run_uncertainty(out_dir: Path, draws: int = 200, seeds: int = 3, check_worlds: int = 8,
-                    workers: int | None = None, log=print, ranges: str = "wide") -> dict:
+                    workers: int | None = None, log=print, ranges: str = "wide",
+                    only: list[str] | None = None) -> dict:
+    """Run the analysis. With `only`, re-run just those policy areas (and the
+    cross-check) and keep the others from the saved results; safe because each
+    area draws from its own random stream."""
     out_dir.mkdir(parents=True, exist_ok=True)
     rs = range_set(ranges)
-    rng = random.Random(20261008)
+    # One random stream per policy area (and one for the cross-check), so changing
+    # one area's ranges can't shift another area's samples.
+    stream = lambda name: random.Random(f"20261008:{name}")
     started = time.time()
+    suffix = "" if ranges == "wide" else f"_{ranges}"
+    saved = out_dir / f"uncertainty{suffix}.json"
     out = {"draws": draws, "seeds": seeds, "ranges": ranges, "domains": {}}
+    if only:
+        previous = json.loads(saved.read_text())
+        if (previous["draws"], previous["seeds"]) != (draws, seeds):
+            raise ValueError("--only needs the same --draws and --seeds as the saved run")
+        out["domains"] = previous["domains"]
     with make_pool(workers) as pool:
         log(f"A. sampling worlds per policy area ({ranges} ranges)")
         for d in DEFAULT_WORLD.domains:
-            out["domains"][d.name] = analyse_domain(pool, DEFAULT_WORLD, d, draws, seeds, rng, log, rs)
+            if only and d.name not in only:
+                continue
+            out["domains"][d.name] = analyse_domain(pool, DEFAULT_WORLD, d, draws, seeds, stream(d.name), log, rs)
         log("B. checking one-domain-at-a-time against joint optimisation")
-        out["separability"] = separability_check(pool, DEFAULT_WORLD, check_worlds, seeds, rng, log, rs)
+        out["separability"] = separability_check(pool, DEFAULT_WORLD, check_worlds, seeds, stream("separability"), log, rs)
     out["seconds"] = round(time.time() - started, 1)
-    suffix = "" if ranges == "wide" else f"_{ranges}"
-    (out_dir / f"uncertainty{suffix}.json").write_text(json.dumps(out, indent=2))
+    out["domains"] = {d.name: out["domains"][d.name] for d in DEFAULT_WORLD.domains}  # keep a stable order
+    saved.write_text(json.dumps(out, indent=2))
     (out_dir / f"robust_arrangement{suffix}.jur").write_text(robust_jur(out))
     return out
 

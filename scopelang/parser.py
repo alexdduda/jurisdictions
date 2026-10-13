@@ -28,7 +28,7 @@ from dataclasses import dataclass, field
 
 from .lexer import Token, tokenize
 
-MODES = ("shadow", "preempt", "floor", "ceiling", "matched", "equalized")
+MODES = ("shadow", "preempt", "floor", "ceiling", "matched", "equalized", "devolved")
 
 
 class ParseError(Exception):

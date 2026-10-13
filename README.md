@@ -198,6 +198,23 @@ above, CSVs from statcan.gc.ca, the survey from Harvard Dataverse
 doi:10.7910/DVN/DUS88V). The survey script needs pandas and pyreadstat; the
 simulation itself does not.
 
+### A city level for transit
+
+Transit gets two tiers inside each region: the metropolitan region (72% of
+people, as in Canada) and the countryside. "Cities decide" lets each set its
+own level, tailored to density but blind to commuting across the metro
+boundary; every other rule is set by the province or nation at one level for
+both, which counts that commuting but can't tailor. scopelang's `devolved`
+rule expresses the same thing: the level two below decides, and the province
+in between is struck down if it tries.
+
+Cities win only when almost no commuting crosses the metro boundary
+(Statistics Canada draws metro areas so that most of it doesn't). National
+transit wins only if one national system saves 5 to 10% or more over city or
+provincial systems, a number nobody has measured; the transit verdict rests on
+it. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
+transit`.
+
 ### What it leaves out
 
 Governments are honest median voters, the centre knows the spillover rates,

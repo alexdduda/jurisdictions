@@ -83,3 +83,13 @@ regional inequality. Public-goods worlds now have their own productivity range
 the original one. The earlier error understated fiscal-capacity differences,
 which favour national financing, so it had made national verdicts harder to
 reach, not easier.
+
+## A bug caught before publishing
+
+The first run with a city level offered "cities decide" in the threshold maps
+but never in the uncertainty analysis: the list of candidate rules was built
+from the base transit settings, which have no city level, instead of from the
+sampled worlds. Cities therefore won 0 of 200 worlds by construction. Fixed
+in `tiebout/uncertainty.py`, with a regression test
+(`test_uncertainty_offers_city_rules_for_transit`). Each policy area also now
+draws from its own random stream, so re-running one area can't change another.

@@ -7,6 +7,7 @@
     ceiling   ceiling
     matched   matched
     equalized equalized
+    city      devolved
 """
 
 from scopelang import run
@@ -14,7 +15,7 @@ from scopelang import run
 from .model import LOCAL, Policy, World
 
 TO_LAW = {"local": "shadow", "central": "preempt", "floor": "floor", "ceiling": "ceiling", "matched": "matched",
-          "equalized": "equalized"}
+          "equalized": "equalized", "city": "devolved"}
 FROM_LAW = {v: k for k, v in TO_LAW.items()}
 
 COMMENTS = {
@@ -24,6 +25,7 @@ COMMENTS = {
     "ceiling": "regions decide, never above this",
     "matched": "regions decide; the nation pays this share of the cost",
     "equalized": "regions decide; the nation closes this share of poorer regions' capacity gap",
+    "city": "cities decide, skipping the provinces; the nation pays this share of their cost",
 }
 
 

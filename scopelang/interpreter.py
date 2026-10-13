@@ -12,6 +12,9 @@ so scopelang lets a scope declare a *law* that picks the rule for one name:
              the cost (the law's value is that match rate, not a level)
     equalized lower levels choose freely; the declaring scope tops up poorer
              ones' ability to pay (the value is the share of the gap closed)
+    devolved the level two below decides (say, cities), skipping the one in
+             between (provinces), whose writes are struck down; the value is
+             the share of cost the declaring scope pays
 
 Illegal writes are "struck down": reported and not applied, and the program
 keeps running, the way a court voids one statute without stopping the state.
@@ -39,6 +42,7 @@ MODE_MEANING = {
     "ceiling": "lower levels may lower it but never go above what they inherit",
     "matched": "lower levels choose freely; {owner} pays {rate} of the cost",
     "equalized": "lower levels choose freely; {owner} closes {rate} of poorer ones' gap in ability to pay",
+    "devolved": "the level below the next decides; the level in between may not; {owner} pays {rate} of the cost",
 }
 
 
@@ -231,7 +235,7 @@ class Interpreter:
         law = Law(stmt.name, stmt.mode, scope, stmt.line)
         if stmt.value is not None:
             value = self.eval(stmt.value, scope)
-            if stmt.mode in ("matched", "equalized"):
+            if stmt.mode in ("matched", "equalized", "devolved"):
                 if not _is_number(value) or not 0 <= value <= 1:
                     raise ScopeError(stmt.line, f"a {stmt.mode} law's value is a rate between 0 and 1, got {fmt(value)}")
                 law.rate = float(value)
@@ -354,6 +358,8 @@ class Interpreter:
         for law in self.ancestor_laws(scope, name):
             if law.mode == "preempt":
                 return f"preempted by {law.owner.name} (law at line {law.line})"
+            if law.mode == "devolved" and law.owner in scope.parents:
+                return f"devolved by {law.owner.name} past {scope.name} to the level below (law at line {law.line})"
             if law.mode not in ("floor", "ceiling"):
                 continue
             inherited = [
@@ -497,7 +503,7 @@ class Interpreter:
     def _annotations(self, scope: Scope) -> str:
         parts = []
         for name, law in scope.laws.items():
-            if law.mode in ("matched", "equalized"):
+            if law.mode in ("matched", "equalized", "devolved"):
                 parts.append(f"law {name}: {law.mode} {fmt(law.rate) if law.rate is not None else ''}".rstrip())
             elif name in scope.vars:
                 parts.append(f"law {name}: {law.mode} = {fmt(scope.vars[name].value)}")
@@ -603,7 +609,7 @@ class Result:
         s = self.interp.scopes[scope]
         out = {}
         for name, law in s.laws.items():
-            if law.mode in ("matched", "equalized"):
+            if law.mode in ("matched", "equalized", "devolved"):
                 out[name] = (law.mode, law.rate)
             else:
                 out[name] = (law.mode, s.vars[name].value if name in s.vars else None)

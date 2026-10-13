@@ -44,7 +44,7 @@ import math
 import random
 from dataclasses import dataclass, field
 
-MODES = ("local", "central", "floor", "ceiling", "matched", "equalized")
+MODES = ("local", "central", "floor", "ceiling", "matched", "equalized", "city")
 
 
 @dataclass(frozen=True)
@@ -60,12 +60,24 @@ class Domain:
     # cost is scaled by (national mean income / regional mean income) ** this.
     # Elasticity of the provided level with respect to regional income.
     capacity_elasticity: float = 0.0
+    # City level (two tiers inside each region). Off when both are 0.
+    # urban_premium: how much more city residents value the good than the
+    #   countryside (taste shifted by +/- half of it), e.g. transit and density.
+    # metro_spillover: share of a place's provision felt by the other part of the
+    #   same region (commuting between city and suburbs), which a province
+    #   internalises and a city does not.
+    urban_premium: float = 0.0
+    metro_spillover: float = 0.0
+
+    @property
+    def two_tier(self) -> bool:
+        return self.urban_premium > 0 or self.metro_spillover > 0
 
 
 @dataclass(frozen=True)
 class Policy:
     mode: str = "local"
-    level: float = 0.0  # central level, floor, ceiling, match rate, or equalization rate
+    level: float = 0.0  # central level, floor, ceiling, match rate, equalization rate, or city grant rate
 
     def __post_init__(self):
         if self.mode not in MODES:
@@ -78,6 +90,8 @@ class Policy:
             return f"matched {self.level:.0%}"
         if self.mode == "equalized":
             return f"equalized {self.level:.0%}"
+        if self.mode == "city":
+            return "city" if not self.level else f"city + {self.level:.0%} grant"
         return f"{self.mode} {self.level:.3g}"
 
 
@@ -108,6 +122,9 @@ class World:
     # region they live in, so moving changes income. 0 means every region is
     # equally productive (the original model).
     productivity_sd: float = 0.0
+    # Share of each region's residents living in its city (used only by two-tier goods).
+    # Statistics Canada: 71.8% of Canadians lived in a census metropolitan area, July 2021.
+    urban_share: float = 0.72
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -195,6 +212,16 @@ class _Run:
                     _clamp(centres[self.region[i]] + rng.gauss(0, d.within), 0, 1)
                     for i in range(self.N)
                 ]
+        # City or countryside, fixed per person and kept when moving region.
+        urban_rng = random.Random(seed * 31337 + 5)  # separate stream: one-tier worlds are unchanged
+        self.urban = [1 if urban_rng.random() < world.urban_share else 0 for _ in range(self.N)]
+        self.place_tastes: dict[str, list[float]] = {}
+        for d in world.domains:
+            if d.kind == "public_good" and d.two_tier:
+                half = d.urban_premium / 2
+                self.place_tastes[d.name] = [
+                    _clamp(self.tastes[d.name][i] + (half if self.urban[i] else -half), 0, 1) for i in range(self.N)
+                ]
         sd = world.productivity_sd
         prod_rng = random.Random(seed * 104729 + 3)  # separate stream: sd = 0 reproduces the original draws
         self.productivity = (
@@ -222,7 +249,9 @@ class _Run:
         state = []
         for d in w.domains:
             policy = self.arrangement.get(d.name, LOCAL)
-            if d.kind == "public_good":
+            if d.kind == "public_good" and d.two_tier:
+                state.append(self._public_good_two_tier(d, policy, residents, pops))
+            elif d.kind == "public_good":
                 state.append(self._public_good(d, policy, residents, pops))
             elif d.kind == "redistribution":
                 state.append(self._redistribution(d, policy, residents))
@@ -286,6 +315,88 @@ class _Run:
         cost = [d.weight * (local_cost * burden[r] * p[r] ** 2 + national_tax) for r in range(self.R)]
         return ("pg", d.name, theta, gain, cost, p)
 
+    def _public_good_two_tier(self, d: Domain, policy: Policy, residents, pops) -> tuple:
+        """A good provided separately in each region's city (place 1) and countryside (place 0).
+
+        "city" lets each place decide for itself: tailored to its own residents, but
+        blind to the commuting spillover onto the other place. Every other rule is
+        decided by the province (or nation) at one level across both places, which
+        internalises that spillover but cannot tailor to density.
+        """
+        w, s, sm = self.world, d.spillover, d.metro_spillover
+        theta = self.place_tastes[d.name]
+        k = d.capacity_elasticity
+        R = self.R
+        places = [[] for _ in range(2 * R)]
+        for r, res in enumerate(residents):
+            for i in res:
+                places[2 * r + self.urban[i]].append(i)
+        place_pops = [len(x) for x in places]
+        burden = [
+            (self.national_income / self.regional_income[r]) ** k if k and self.regional_income[r] > 0 else 1.0
+            for r in range(R)
+        ]
+        equalization_spend = 0.0
+        if policy.mode == "central":
+            p = [_clamp(policy.level, 0, w.max_level)] * (2 * R)
+            unit, local_share = 1.0 - d.scale, 0.0
+            place_burden = [burden[j // 2] for j in range(2 * R)]
+        elif policy.mode == "city":
+            local_share = 1.0 - _clamp(policy.level, 0.0, 0.95)
+            unit = 1.0
+            price = max(local_share, 0.05) * (1 + w.local_overhead)
+            # Each place ignores what it gives the other place and neighbouring regions.
+            p = [
+                _clamp(_median([theta[i] for i in places[j]]) * (1 - s - sm) / (price * burden[j // 2]), 0, w.max_level)
+                if places[j] else 0.0
+                for j in range(2 * R)
+            ]
+            place_burden = [burden[j // 2] for j in range(2 * R)]
+        else:
+            match = policy.level if policy.mode == "matched" else 0.0
+            local_share = 1.0 - match
+            unit = 1.0
+            price = max(local_share, 0.05) * (1 + w.local_overhead)
+            eff_burden = burden
+            if policy.mode == "equalized" and k:
+                q = _clamp(policy.level, 0.0, 1.0)
+                topped = [
+                    self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
+                    for r in range(R)
+                ]
+                eff_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(R)]
+            # One level per province: it internalises the city-suburb spillover
+            # (a uniform level gives each place (1 - s) of its own provision).
+            regional = [
+                _clamp(_median([theta[i] for i in res]) * (1 - s) / (price * eff_burden[r]), 0, w.max_level)
+                if res else 0.0
+                for r, res in enumerate(residents)
+            ]
+            regional = _bound(regional, policy)
+            p = [regional[j // 2] for j in range(2 * R)]
+            if eff_burden is not burden:
+                equalization_spend = sum(
+                    place_pops[j] * unit * local_share * (burden[j // 2] - eff_burden[j // 2]) * p[j] ** 2
+                    for j in range(2 * R)
+                ) / self.N
+            place_burden = [eff_burden[j // 2] for j in range(2 * R)]
+
+        regional_level = [
+            (p[2 * r] * place_pops[2 * r] + p[2 * r + 1] * place_pops[2 * r + 1]) / pops[r] if pops[r] else 0.0
+            for r in range(R)
+        ]
+        experienced = []
+        for j in range(2 * R):
+            r, other = j // 2, j ^ 1
+            nbr = _mean(regional_level[n] for n in self.nbrs[r])
+            experienced.append((1 - s - sm) * p[j] + sm * p[other] + s * nbr)
+        national_spend = sum(place_pops[j] * unit * (1 - local_share) * p[j] ** 2 for j in range(2 * R)) / self.N
+        national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
+        local_cost = unit * local_share * (1 + w.local_overhead)
+        gain = [d.weight * 2 * experienced[j] for j in range(2 * R)]
+        cost = [d.weight * (local_cost * place_burden[j] * p[j] ** 2 + national_tax) for j in range(2 * R)]
+        return ("pg2", d.name, theta, gain, cost, regional_level)
+
     def _redistribution(self, d: Domain, policy: Policy, residents) -> tuple:
         w, eta = self.world, self.world.deadweight
         if policy.mode == "central":
@@ -321,6 +432,10 @@ class _Run:
             if entry[0] == "pg":
                 _, name, theta, gain, cost, _ = entry
                 v = gain[r] * theta[i] - cost[r]
+            elif entry[0] == "pg2":
+                _, name, theta, gain, cost, _ = entry
+                j = 2 * r + self.urban[i]
+                v = gain[j] * theta[i] - cost[j]
             else:
                 _, name, weight, keep, transfer, _ = entry
                 c = self.income(i, r) * keep[r] + transfer[r]

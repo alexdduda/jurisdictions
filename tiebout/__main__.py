@@ -31,6 +31,8 @@ def main(argv=None) -> int:
     un.add_argument("--out", default="results")
     un.add_argument("--ranges", choices=("wide", "canada"), default="wide",
                     help="wide: guessed ranges; canada: calibrated to Statistics Canada data where possible")
+    un.add_argument("--only", nargs="+", metavar="AREA",
+                    help="re-run only these policy areas (and the cross-check), keeping the rest")
 
     ev = sub.add_parser("evaluate", help="score the arrangement declared by a scopelang program")
     ev.add_argument("file")
@@ -52,7 +54,7 @@ def main(argv=None) -> int:
     if args.cmd == "uncertainty":
         from .uncertainty import run_uncertainty
 
-        run_uncertainty(Path(args.out), args.draws, args.seeds, args.check_worlds, ranges=args.ranges)
+        run_uncertainty(Path(args.out), args.draws, args.seeds, args.check_worlds, ranges=args.ranges, only=args.only)
         return 0
 
     source = Path(args.file).read_text(encoding="utf-8")

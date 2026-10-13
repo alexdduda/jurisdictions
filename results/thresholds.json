@@ -3,25 +3,24 @@
   "maps": {
     "transit": {
       "domain": "transit",
-      "row_param": "scale",
+      "row_param": "urban_premium",
       "rows": [
         0.0,
-        0.05,
         0.1,
-        0.15,
         0.2,
-        0.25,
         0.3,
         0.4,
-        0.5
+        0.5,
+        0.6
       ],
-      "col_param": "spillover",
+      "col_param": "metro_spillover",
       "cols": [
         0.0,
         0.1,
         0.2,
         0.3,
-        0.4
+        0.4,
+        0.5
       ],
       "held_at": {
         "national_overhead": 1.05,
@@ -31,251 +30,528 @@
         "productivity_sd": 0.13,
         "congestion": 0.115,
         "heterogeneity": 0.0758,
+        "spillover": 0.05,
+        "scale": 0.0,
         "within": 0.275,
         "capacity_elasticity": 0.026
       },
       "cells": [
         [
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.0001
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00056
+          },
+          {
+            "mode": "city",
+            "label": "city + 20% grant",
+            "margin": 0.00027
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00171
-          },
-          {
-            "mode": "matched",
-            "label": "matched 20%",
-            "margin": 0.00411
-          },
-          {
-            "mode": "matched",
-            "label": "matched 30%",
-            "margin": 0.00613
-          },
-          {
-            "mode": "matched",
-            "label": "matched 40%",
-            "margin": 0.00689
-          }
-        ],
-        [
-          {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.0001
+            "margin": 4e-05
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00101
+            "margin": 0.0005
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00056
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00056
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city + 10% grant",
+            "margin": 0.00085
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00049
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00049
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00049
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00049
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00049
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city + 10% grant",
+            "margin": 0.00231
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 3e-05
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.00441
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.00718
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00018
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00018
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00018
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00018
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00018
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.01063
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.01413
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 5e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 5e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 5e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 5e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 5e-05
+          }
+        ]
+      ]
+    },
+    "transit_scale": {
+      "domain": "transit",
+      "row_param": "scale",
+      "rows": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "col_param": "metro_spillover",
+      "cols": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5
+      ],
+      "held_at": {
+        "national_overhead": 1.05,
+        "overhead_log_ratio": 0.0,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.0758,
+        "spillover": 0.05,
+        "within": 0.275,
+        "capacity_elasticity": 0.026,
+        "urban_premium": 0.3
+      },
+      "cells": [
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.00441
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 9e-05
+          }
+        ],
+        [
+          {
+            "mode": "city",
+            "label": "city",
+            "margin": 0.00212
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.0
+            "margin": 0.00229
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00051
+            "margin": 0.00229
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00062
+            "margin": 0.00229
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00229
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00229
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00681
+            "margin": 0.00711
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00821
+            "margin": 0.01151
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00923
+            "margin": 0.01151
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00974
+            "margin": 0.01151
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00985
+            "margin": 0.01151
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01151
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01603
+            "margin": 0.01633
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01744
+            "margin": 0.02074
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01845
+            "margin": 0.02074
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01896
+            "margin": 0.02074
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01907
+            "margin": 0.02074
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02074
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.02526
+            "margin": 0.02556
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.02666
+            "margin": 0.02996
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.02768
+            "margin": 0.02996
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.02819
+            "margin": 0.02996
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.0283
-          }
-        ],
-        [
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03448
+            "margin": 0.02996
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.03589
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.0369
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03741
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03752
+            "margin": 0.02996
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.04405
+            "margin": 0.05682
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.04546
+            "margin": 0.06123
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.04647
+            "margin": 0.06123
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.04698
+            "margin": 0.06123
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.04709
-          }
-        ],
-        [
-          {
-            "mode": "central",
-            "label": "central 0.4",
-            "margin": 0.07685
+            "margin": 0.06123
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.07826
-          },
-          {
-            "mode": "central",
-            "label": "central 0.4",
-            "margin": 0.07927
-          },
-          {
-            "mode": "central",
-            "label": "central 0.4",
-            "margin": 0.07978
-          },
-          {
-            "mode": "central",
-            "label": "central 0.4",
-            "margin": 0.07989
+            "margin": 0.06123
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.1182
+            "margin": 0.09219
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.1196
+            "margin": 0.09659
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.12061
+            "margin": 0.09659
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.12112
+            "margin": 0.09659
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.12124
+            "margin": 0.09659
+          },
+          {
+            "mode": "central",
+            "label": "central 0.5",
+            "margin": 0.09659
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14395
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14836
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14836
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14836
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14836
+          },
+          {
+            "mode": "central",
+            "label": "central 0.6",
+            "margin": 0.14836
           }
         ]
       ]
@@ -1268,5 +1544,5 @@
       ]
     }
   },
-  "seconds": 299.1
+  "seconds": 336.7
 }

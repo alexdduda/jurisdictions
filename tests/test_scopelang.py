@@ -80,6 +80,15 @@ class Matched(unittest.TestCase):
         self.assertEqual(r.diagnostics, [])
         self.assertEqual(r.laws("ca"), {"schools": ("equalized", 0.5)})
 
+    def test_devolved_skips_the_middle_level(self):
+        r = run("""
+            scope ca { law transit: devolved = 0.2
+              scope on { transit = 0.5  scope toronto { transit = 0.9 } }
+            }""")
+        self.assertEqual([d.kind for d in r.diagnostics], ["struck_down"])  # Ontario may not set it
+        self.assertEqual(r.value("toronto", "transit"), 0.9)                # Toronto may
+        self.assertEqual(r.laws("ca"), {"transit": ("devolved", 0.2)})
+
     def test_rate_must_be_a_share(self):
         self.assertEqual(kinds(run("law env: matched = 2")), ["error"])
 

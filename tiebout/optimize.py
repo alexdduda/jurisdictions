@@ -24,6 +24,9 @@ def candidates(domain: Domain) -> list[Policy]:
             out += [Policy(mode, lv) for lv in levels]
         out += [Policy("matched", round(0.1 * k, 3)) for k in range(1, 10)]
         out += [Policy("equalized", q) for q in (0.25, 0.5, 0.75, 1.0)]
+        if domain.two_tier:
+            # Cities decide, optionally with a federal grant covering a share of their cost.
+            out += [Policy("city", m) for m in (0.0, 0.1, 0.2, 0.3, 0.5)]
     else:
         levels = [round(0.05 * k, 3) for k in range(17)]  # 0.0 .. 0.8
         for mode in ("central", "floor", "ceiling"):
@@ -35,7 +38,7 @@ def refinements(domain: Domain, best: Policy) -> list[Policy]:
     if best.mode == "local":
         return []
     step = 0.025
-    top = 0.95 if best.mode == "matched" else 1.0 if best.mode == "equalized" else (1.5 if domain.kind == "public_good" else 0.9)
+    top = 0.95 if best.mode in ("matched", "city") else 1.0 if best.mode == "equalized" else (1.5 if domain.kind == "public_good" else 0.9)
     levels = {round(min(max(best.level + k * step, 0.0), top), 4) for k in (-2, -1, 1, 2)}
     return [Policy(best.mode, lv) for lv in sorted(levels - {best.level})]
 
