@@ -1,0 +1,370 @@
+{
+  "problem": "In Canada, which level of government should control transit, environmental protection, redistribution and schools, and how much should we trust a calibrated simulation-based answer to that question?",
+  "solution": "# Claims to audit: which level of government should decide each policy area in Canada\n\nThese claims come from an agent-based simulation of fiscal federalism,\ncalibrated and partly validated against Canadian data. Audit the conclusions,\nwhether the model supports them, and whether the calibration and validation\nare sound. An earlier automated review of this study raised five challenges;\nwhat was done about each is listed at the end.\n\n## The model\n\n- 16 regions on a 4x4 torus, 100 agents each. Agents have a portable skill\n  (log-normal) and a taste in [0, 1] for each public good. Income is skill\n  times the productivity of the region the agent lives in, so moving changes\n  income.\n- Each round, each region's government sets the level its median resident\n  prefers, within the national rule. Then some agents compare their region\n  with 4 others and move if the utility gain beats a moving cost. Crowding\n  imposes a cost proportional to population.\n- Public good utility: 2 * taste * e - cost * burden * p^2, where\n  e = (1 - s) * p_own + s * mean(p_neighbours) and s is the spillover share.\n  burden = (national mean income / regional mean income) ^ k, so local money\n  is dearer where incomes are lower (fiscal capacity). National taxes are\n  paid in proportion to income and carry no such penalty. A region ignoring\n  spillovers chooses p = taste * (1 - s) / (price * burden).\n- Central provision can be cheaper per unit (scale economies). Money raised\n  nationally and locally each carry an overhead (marginal cost of public\n  funds minus one).\n- Redistribution: utility log(income * (1 - t) + transfer), with\n  transfer = t * mean income of the pool * (1 - deadweight * t). The pool is\n  the region, or the nation when redistribution is national. Regional rates\n  are set by the median earner. With no redistribution domain, utility\n  includes log(income) so agents still move for jobs.\n- Five rules per policy area: regions decide; one uniform national standard;\n  a national floor; a national cap; a matching grant. National policy is\n  uniform across regions. Welfare is the unweighted mean of agent utility.\n\n## Calibration to Canada\n\n| parameter | value | source |\n|---|---|---|\n| between-province disagreement about each service | schools 0.025 to 0.036, environment 0.073 to 0.076, transit 0.069 to 0.082 (sd of regional taste centres on a 0-1 scale) | Statistics Canada 10-10-0005 spending by function, 2015-2024, measured per person, as a budget share, net of provincial GDP, and per child aged 5-17. Spending is the model's cost (p squared), so taste spread = CV(spending) / 4 |\n| within-province disagreement | 0.25 to 0.30, the model's ceiling | 2019 Canadian Election Study (about 37,000 respondents): between-province spread is 8% (education) and 20% (environment) of within-province spread, from an ordered-probit reading of \"spend less / same / more\" with bootstrap noise correction |\n| fiscal capacity elasticity k | schools 0.15 to 0.25, environment 0.12 to 0.20, transit about 0.03 | Income elasticity of provincial spending across provinces, 2008-2024 (0.41, 0.32, 0.05), halved because spending is p squared |\n| income inequality | log-sd 0.78 to 0.84 | market-income Gini 0.43, Statistics Canada 11-10-0134 |\n| regional productivity and mobility | calibrated jointly | provincial average market-income spread 12-19% (11-10-0190) and interprovincial migration 0.75% a year (17-10-0022). 52-67% of sampled worlds land on both targets |\n| cost of raising a dollar | national overhead 0.2 to 1.0; provincial = national times 0.6 to 1.5 | Dahlby and Ferede (2012, 2022): federal personal income tax marginal cost of funds about 2.86 (2021); provincial 1.44 to 3.81 (2006); no systematic ordering |\n| tax deadweight (redistribution) | 0.4 to 0.9 | implies a marginal cost of funds of about 1.3 to 2.2 at a 30% rate |\n| spillovers, scale savings, crowding | not calibrated | no Canadian measurement found |\n\n## Method\n\n200 worlds per policy area sampled across the remaining ranges (Latin\nhypercube), every candidate rule and level scored in every world on 3 shared\nseeds. The recommended rule is the single fixed rule with the lowest expected\nregret. Areas are analysed separately; a joint optimisation over 8 worlds\nagreed on the rule in 94% of cases and kept at least 96% of the joint gain.\n\n## Validation (outcomes the model was not fitted to)\n\n| pattern across provinces | Canada | model |\n|---|---|---|\n| next-year net migration on provincial income, within provinces over time | +0.32 | +0.30 |\n| the same on spending for services | -0.22 | -0.04 |\n| market-income inequality and wanting redistribution (rank correlation, survey) | +0.58 (p = 0.09, n = 10) | +0.97 |\n| market-income inequality and spending on redistribution | -0.19 (p = 0.60) | +0.39 |\n\nThe last row fails. We argue the failure biases against our redistribution\nconclusion: the model makes regional redistribution look more effective than\nit is in Canada.\n\n## Conclusions\n\n1. **Redistribution should be national.** A national scheme wins 98% of\n   worlds and keeps 87% of the gain perfect knowledge would achieve. It wins\n   even with no mobility at all, because pooling across provinces with\n   different average incomes helps.\n2. **Transit should be national**, but only conditionally: it wins 97% of\n   sampled worlds, and the threshold map says a national standard wins once\n   one system saves more than 5 to 10%. Below that, provinces should run it.\n3. **Environmental protection should have a national standard** (wins 75%,\n   keeps 90%). If provinces raise money about 40% more cheaply than Ottawa, a\n   national floor wins instead.\n4. **Schools: a national standard is the lowest-regret rule** (wins 62%,\n   keeps only 21%), with the smallest stakes of the four. Which level raises\n   money more cheaply decides it.\n5. **General lesson:** in Canada, people within a province disagree five to\n   twelve times more than provinces disagree with each other, so the main\n   argument for provincial control (provinces wanting different things) is\n   weak. Fiscal capacity differences and spillovers push toward national\n   rules.\n\n## Challenges from the earlier review, and responses\n\n- \"The verdicts restate the guessed ranges\": ranges replaced by Canadian\n  measurements where any exist; unmeasured parameters reported as thresholds.\n- \"Transit belongs to metropolitan areas\": not addressed. The model has no\n  metropolitan level. We consider this the most serious open gap.\n- \"National redistribution partly reflects the log-utility welfare measure\":\n  not addressed; no sensitivity analysis on inequality aversion yet.\n- \"Provinces differ in taste for redistribution\": confirmed by the survey\n  (between/within spread 0.21) but not modelled.\n- \"Environmental policy can use prices\": not modelled.\n\n## Errors found and corrected during the study\n\n- Spending spread was first converted to taste spread as CV / 2 instead of\n  CV / 4, overstating disagreement by a factor of two.\n- Productivity was calibrated in a four-area world and reused in single-area\n  worlds, where no redistribution means no income sorting; almost no\n  single-area world matched the Canadian targets until recalibrated.\n- A first reading of the migration data concluded the original model got\n  migration wrong; testing the model showed it did not.\n",
+  "stages": {
+    "alternatives": [
+      "Separate financing from control: keep provinces in charge of schools, environment and transit, and handle fiscal-capacity gaps through federal equalization and conditional matching grants. Make only personal redistribution (tax-transfer, income support) national. The model's case for national standards rests mainly on the burden penalty for low-income provinces. A transfer that equalizes fiscal capacity removes that penalty directly, without imposing uniform levels, which is roughly Canada's current arrangement. Trust in the simulation should be moderate for redistribution and low for the rest, because the model never tests equalization as a candidate rule.",
+      "Assign each area to the level matching its actual spillover and scale geography. Transit goes to metropolitan or regional authorities with federal capital grants. Environmental protection uses a national carbon price or emissions backstop with provincial implementation, so the price-based policy the model omits does the work instead of a uniform spending standard. Schools stay provincial, with protected minority-language and Quebec-specific arrangements. Redistribution is national with provincial top-ups. Trust is low, because the transit and environment verdicts depend on uncalibrated spillover and scale parameters, and the missing metro level and missing price instruments are exactly the options that would win.",
+      "Within-province disagreement being 5 to 12 times larger than between-province disagreement argues for decentralizing further, not centralizing. That variation can be accommodated through municipal and school-board choice, local sorting (Tiebout at city scale) and service differentiation. Uniform national rules suppress all of it, and the model only hides this because it lets each province's median voter set one level. On this reading, schools and transit belong to local or board level within provincial frameworks, environment to a national floor, and redistribution to the nation. The simulation's general lesson is an artifact of having no sub-provincial level.",
+      "The honest answer is that the simulation cannot settle the question, so its verdicts should carry little weight beyond redistribution. Spillovers, scale economies and crowding are uncalibrated. The spending-migration response is badly missed (-0.04 vs -0.22). The redistribution spending pattern fails validation. The national redistribution result partly reflects the log-utility welfare choice. The schools result keeps only 21% of the attainable gain and flips on unmeasured cost-of-funds ordering. The defensible recommendation is to keep the existing constitutional division (provincial schools, environment shared, transit municipal/provincial, redistribution mostly federal with equalization). Revisit only after sensitivity analysis on inequality aversion, measured spillovers, and a metropolitan tier."
+    ],
+    "assumptions": [
+      "The 4x4 torus of 16 equal-sized regions with 100 agents each adequately represents Canada's 10 provinces and 3 territories, despite their very unequal populations (Ontario and Quebec versus PEI) and a geography that is a line along the US border rather than a torus where every region has 4 symmetric neighbours.",
+      "The unweighted mean of agent utility (with log utility for redistribution) is the appropriate welfare criterion. The national redistribution verdict partly depends on this implicit inequality aversion, and no sensitivity analysis was done.",
+      "Regional governments set policy at the median resident's preference. Real provincial choices (shaped by parties, lobbying, intergovernmental bargaining, and federal-provincial conflict) are assumed to be well approximated by median-voter outcomes.",
+      "National policy is uniform across regions. A real national policy could vary by region, and the comparison against regional control would change if it did.",
+      "The quadratic cost form (spending equals p squared) is correct. Both the CV/4 taste-spread conversion and the halving of income elasticities to obtain k rely on it; if spending scaled differently with provision, the taste disagreement and fiscal capacity parameters would be mis-scaled.",
+      "Cross-province variation in actual provincial spending (net of GDP, per child, etc.) reflects differences in tastes rather than differences in costs, needs, demographics, federal transfers (equalization, CHT, CST), or historical institutions. Otherwise the between-province taste spread is mismeasured.",
+      "An ordered-probit reading of 'spend less/same/more' survey answers validly measures within-province and between-province dispersion of preferred provision levels on the same 0-1 scale as the model's taste parameter. The 5 to 12 times within/between ratio, central to conclusion 5, depends on this.",
+      "Within-province disagreement is capped at the model's ceiling (0.25 to 0.30). If true within-province spread is larger, the ratios and verdicts are affected; the ceiling suggests the model may be truncating reality.",
+      "Income elasticity of provincial spending across provinces identifies the fiscal capacity elasticity k (the extra burden of local money in poorer regions), rather than reflecting income-driven taste differences or federal transfers that already offset capacity gaps.",
+      "National taxes carry no fiscal-capacity penalty. In reality, equalization and federal transfers already partly neutralize capacity differences, so the status quo comparison may be overstated.",
+      "The sampled ranges for uncalibrated parameters (spillovers, scale economies, crowding) are reasonable. Since the transit verdict (wins 97%) is driven largely by scale savings above a 5 to 10% threshold, the 97% figure reflects the chosen range rather than Canadian evidence.",
+      "The relative marginal cost of public funds between provinces and Ottawa (provincial = national times 0.6 to 1.5) is correctly bounded, using estimates from different years and tax bases (federal 2021, provincial 2006). The schools and environment verdicts flip on this ratio.",
+      "Expected regret, minimized by a single fixed rule across a Latin hypercube of 200 worlds with uniform weighting, is the right decision criterion. A different prior over parameter ranges or a different criterion (e.g. minimax) could change the rankings, especially for schools (wins 62%, keeps 21%).",
+      "Three shared seeds per world are enough to make stochastic noise in scores small relative to the welfare differences between rules, particularly where stakes are small (schools).",
+      "Analysing policy areas separately is valid. This rests on an 8-world joint optimisation check (94% agreement) being representative of the full parameter space.",
+      "The five candidate rules (regional, uniform national, floor, cap, matching grant) span the relevant options. Omitted options include metropolitan or municipal control for transit, price-based environmental instruments, regionally varying national policy, and concurrent or shared jurisdiction; any of these could win.",
+      "Mobility is driven by income and public good utility net of a moving cost and crowding, with agents comparing only 4 other regions. Real migration frictions (language, especially for Quebec, family ties, climate, housing markets) are assumed captured by a single moving cost.",
+      "Provincial differences in taste for redistribution (confirmed by survey but not modelled) would not overturn the national redistribution conclusion.",
+      "The failed validation row (inequality versus redistribution spending) biases against, not toward, the redistribution conclusion. This directional argument is asserted rather than demonstrated.",
+      "The weak match on migration response to spending (Canada -0.22 versus model -0.04) does not undermine the model's treatment of public-good-driven sorting, which matters for the decentralisation verdicts.",
+      "Validation on 10 provinces with small samples and non-significant targets (p = 0.09, p = 0.60) is informative enough to lend credibility to the model.",
+      "Only 52-67% of sampled worlds hit the productivity and migration targets. Using all sampled worlds, or only the matching ones, is assumed not to bias the verdicts.",
+      "Spillovers enter as a simple mean over 4 torus neighbours with a common share s. This represents environmental and transit externalities (often transboundary with the US or concentrated in specific corridors) well enough to support national standards.",
+      "Normative questions of constitutional jurisdiction, Quebec's distinct status, Indigenous governance, and political legitimacy can be set aside, so that a welfare ranking from the model answers 'which level should control' the policy area.",
+      "The corrected errors (CV/2 to CV/4, productivity recalibration) were the only significant errors, and the remaining pipeline is free of comparable mistakes."
+    ],
+    "evidence": "I'll check the main external facts: the CES 2019 sample size, the Dahlby and Ferede marginal cost of funds figures, the Canadian market-income Gini, interprovincial migration rates, and how transit and redistribution are actually split between governments in Canada.\nThe external facts behind the calibration mostly check out. I found one real inconsistency, in how the cost of raising money was calibrated, and one conclusion that conflicts with how Canada actually runs transit. The model's outputs (win rates, regret, thresholds) can't be checked by searching. Only the inputs and the real-world context can.\n\n**Facts that check out**\n\n- **Survey size:** The 2019 Canadian Election Study had\nan RDD telephone survey (n = 4021) and a large-scale, online collection (n = 37,822)\n. \"About 37,000 respondents\" is right for the online part.\n- **Migration target (0.75% a year):** Statistics Canada reports interprovincial migration rates of\n7.2 per thousand in 2016/2017, 7.1 per thousand in 2017/2018 and 6.8 per thousand in 2018/2019\nand\n8.0 per thousand in 2014/2015 and 7.7 per thousand in 2015/2016\n. A 0.75% target fits.\n- **Federal marginal cost of funds:** Dahlby and Ferede (2022) report that\nthe MCF for the federal PIT increased to 2.86\n. This matches the table.\n- **Provincial marginal cost of funds:** This roughly checks out. A summary of the earlier Dahlby and Ferede work gives\n$3.85\n for Quebec personal income tax,\n$2.16 per dollar of income raised\n in Ontario and\n$1.83 per dollar\n in BC. That top value is slightly above the study's 3.81, possibly because it comes from a different year or table. Either way the spread is very wide, which supports \"no systematic ordering.\"\n- **Gini table:** Table 11-10-0134 exists and covers\nGini coefficients of adjusted market, total and after-tax income\n. I could not see the 0.43 value itself in my results, so that number is unverified.\n\n**The inconsistency: the national cost-of-funds range doesn't match its source**\n\nThe model's \"overhead\" is the marginal cost of funds minus one. A federal figure of 2.86 means an overhead of about 1.86. The study's national range, 0.2 to 1.0, only covers marginal costs of 1.2 to 2.0, so its own cited source falls outside the range.\n\nThere is a possible defence: 2.86 applies only to the federal income tax. Older Dahlby and Ferede estimates for other taxes were much lower, for example\nmore than $1.10\n for federal taxes on goods and services. A blended federal figure could therefore be lower than 2.86. But the study doesn't make that argument, and the gap matters. The schools verdict, and the switch to a national floor for the environment, depend on which level raises money more cheaply.\n\nThe tax deadweight range is just algebra, so it needs no search. With transfer = tY(1 \u2212 dt), the marginal cost is 1/(1 \u2212 2dt). At t = 0.3 that gives 1.32 to 2.17 for d = 0.4 to 0.9, as the study claims.\n\n**Conclusion by conclusion**\n\n- **Transit (contradicted by how Canada works):** Transport Canada says\npublic transit is primarily a municipal responsibility in Canada\nwith provinces sometimes helping with funding and planning. Another source notes that\nthe vertical and horizontal fragmentation of transit governance in some city-regions has politicized, complicated and delayed the construction of new high-capacity transit lines\n. This backs the unanswered review challenge: a model with no metropolitan level can't really judge \"national versus provincial\" for transit.\n- **Environment (partly supported, but exposes a gap):** The federal carbon-pricing law\nsets minimum national standards for carbon pricing\nand the Supreme Court upheld it in March 2021. So Canada's actual approach is a price-based national floor. That is the model's fallback rule, and it runs through the price instruments the model leaves out.\n- **Redistribution (supported by standard theory, but evidence is mixed):** Oates argues that mobility means\none jurisdiction cannot tax a certain group significantly more heavily than elsewhere without creating incentives to move\nand\nthe traditional theory of federalism assigns redistribution to the federal level\n. However, a Swiss study finds that\ntax decentralization reduces income inequality as long as jurisdictional fragmentation remains limited\n. The model's 98% win rate looks more certain than the evidence is, especially without the inequality-aversion sensitivity check.\n- **Schools and the general lesson (no outside check found):** I found no source that independently measures between-province versus within-province disagreement. The \"five to twelve times\" figure rests only on the study's own survey analysis.\n\n**How much to trust it**\n\n- The redistribution verdict agrees with mainstream theory, but its validation row failed and the welfare measure hasn't been tested.\n- The environment verdict is plausible and close to current policy, but it is sensitive to the cost-of-funds inputs, which conflict with their source.\n- The transit verdict answers the wrong question for Canada, where the real choice is municipal or regional.\n- The schools verdict, by the study's own numbers, is a near toss-up (keeps only 21% of the gain).\n\nOverall, the external evidence supports most of the calibration inputs. It does not support taking the national verdicts for transit or schools at face value, and the cost-of-funds range should be fixed before relying on the environment or schools results.",
+    "contradictions": [
+      {
+        "description": "The national cost-of-funds overhead range (0.2 to 1.0, i.e. marginal cost of funds 1.2 to 2.0) excludes the study's own cited source. Dahlby and Ferede (2022) put the federal personal income tax MCF at 2.86, an overhead of about 1.86. The study offers no blended-tax justification for the lower range. This matters because the schools verdict and the environment switch to a national floor both turn on which level raises money more cheaply.",
+        "severity": "high"
+      },
+      {
+        "description": "The transit conclusion (national standard) conflicts with how Canada actually governs transit. Transport Canada describes it as primarily a municipal responsibility, and the real choice is municipal or regional, not national or provincial. The model has no metropolitan tier, which the study itself calls the most serious open gap. The 97% win rate also reflects the sampled range of scale savings, a parameter that is uncalibrated and that the threshold map says decides the outcome.",
+        "severity": "high"
+      },
+      {
+        "description": "The case for national standards rests largely on the fiscal-capacity burden penalty for low-income provinces. Federal equalization and conditional grants, which approximate Canada's current arrangement, would remove that penalty directly without imposing uniform levels. Equalization is never tested as a candidate rule, so the model cannot show national standards beat it.",
+        "severity": "medium"
+      },
+      {
+        "description": "For environmental protection, Canada's actual approach is a price-based national minimum standard (federal carbon pricing, upheld by the Supreme Court in 2021), not a uniform national spending standard. This matches the model's fallback rule (a national floor), but it works through price instruments the model omits. The recommendation of a uniform national standard is therefore not tested against the policy that operates in practice.",
+        "severity": "medium"
+      },
+      {
+        "description": "The general lesson treats large within-province disagreement (5 to 12 times between-province) as evidence for national rules. The same fact can support decentralizing below the province (municipal, school-board, Tiebout-style sorting), which uniform national rules suppress. The model lets one provincial median voter set a single level and has no sub-provincial tier, so the lesson may be an artifact of model structure. The ratio is also supported only by the study's own survey analysis, with within-province spread at the model's ceiling.",
+        "severity": "medium"
+      },
+      {
+        "description": "The redistribution verdict (98% win rate) looks more certain than the evidence supports. Its validation row fails (inequality vs. redistribution spending: -0.19 in Canada vs. +0.39 in the model). The claim that this failure biases against the conclusion is asserted, not shown. There is no inequality-aversion sensitivity analysis on the log-utility welfare measure, and confirmed provincial differences in taste for redistribution are not modelled. A Swiss study finds tax decentralization can reduce inequality when fragmentation is limited, which is counter-evidence to near-certainty.",
+        "severity": "medium"
+      },
+      {
+        "description": "The validation table presents the spending-on-services migration response as a pass, but the model badly misses it (-0.04 vs. -0.22 in Canada). Only the last row is acknowledged as failing. The inequality and demand-for-redistribution correlation is also substantially overshot (+0.97 vs. +0.58, with Canada's estimate not significant at n = 10).",
+        "severity": "medium"
+      },
+      {
+        "description": "The schools conclusion recommends a national standard, but by the study's own numbers it keeps only 21% of the attainable gain. It also flips on the unmeasured (and miscalibrated) cost-of-funds ordering. This makes it effectively a toss-up rather than a supported recommendation, which conflicts with presenting it as a conclusion alongside the others.",
+        "severity": "medium"
+      },
+      {
+        "description": "The upper provincial MCF figure (3.81) slightly differs from a summary of the earlier Dahlby and Ferede work giving 3.85 for Quebec PIT. The discrepancy is minor and does not undermine the claim of no systematic ordering.",
+        "severity": "low"
+      }
+    ],
+    "verifications": [
+      {
+        "assumption": "The 4x4 torus of 16 equal-sized regions with 100 agents each adequately represents Canada's provinces and territories despite unequal populations and linear geography.",
+        "verdict": "questionable",
+        "explanation": "This is a stylized abstraction, not a representation of Canada. Equal region sizes affect pooling gains, median-voter outcomes and migration flows. Symmetric 4-neighbour spillovers ignore Canada's east-west chain and its population concentration in Ontario and Quebec. The verdicts might survive at a qualitative level, but no robustness check against an asymmetric geography is reported."
+      },
+      {
+        "assumption": "The unweighted mean of agent utility (with log utility for redistribution) is the appropriate welfare criterion, with no sensitivity analysis on inequality aversion.",
+        "verdict": "questionable",
+        "explanation": "The study concedes this challenge was not addressed. Log utility builds in inequality aversion, and conclusion 1 says pooling helps even without mobility, which relies directly on that concavity. The 98% figure is therefore conditional on an untested normative choice."
+      },
+      {
+        "assumption": "Regional governments set policy at the median resident's preference.",
+        "verdict": "questionable",
+        "explanation": "Median-voter choice is a standard simplification. Canadian provinces have parliamentary majorities from plurality voting, party discipline, interest groups and federal-provincial bargaining, so the regional rule may be idealized. That likely favours regional control, but the effect is not quantified."
+      },
+      {
+        "assumption": "National policy is uniform across regions.",
+        "verdict": "questionable",
+        "explanation": "This is an Oates-style assumption that tilts the comparison. Real federal programs often vary regionally (for example, EI regional parameters). Allowing regionally differentiated national policy would make national options stronger, so the rankings among rules could change. It is a modelling restriction, not an established fact."
+      },
+      {
+        "assumption": "The quadratic cost form (spending equals p squared) is correct, and both the CV/4 conversion and the halving of elasticities rely on it.",
+        "verdict": "questionable",
+        "explanation": "The internal algebra is consistent. With p proportional to taste, CV(spending) is about 2 CV(taste), giving sd of about CV/4 at mean taste 0.5. Likewise p proportional to income^k gives a spending elasticity of 2k. But the quadratic form itself is assumed, not estimated. A different curvature would rescale both the taste spread and k."
+      },
+      {
+        "assumption": "Cross-province variation in actual spending reflects tastes rather than costs, needs, demographics, transfers or institutions.",
+        "verdict": "questionable",
+        "explanation": "Normalizations (per capita, budget share, net of GDP, per child) remove some confounds. Cost differences such as remoteness, wages and northern delivery, and transfer effects, are not removed. The survey gives an independent between/within ratio that is roughly consistent. Cost contamination would mostly overstate taste spread, which works against the national verdicts, so the conclusions may be conservative. The measure is still not a clean taste estimate."
+      },
+      {
+        "assumption": "An ordered-probit reading of 'spend less/same/more' validly measures within- and between-province dispersion on the model's taste scale.",
+        "verdict": "questionable",
+        "explanation": "The ratio is scale-free, so mapping it onto the 0-1 scale is less of a problem. The deeper issue is the reference point. Answers are relative to each province's current spending, which is presumably already tailored to local preferences. That shrinks measured between-province differences in ideal levels, so the 5 to 12 times ratio behind conclusion 5 may be biased upward. The spending-based estimate partly cross-checks this, but it has its own confounds."
+      },
+      {
+        "assumption": "Within-province disagreement is capped at the model's ceiling of 0.25 to 0.30.",
+        "verdict": "questionable",
+        "explanation": "The table confirms the calibrated values sit at the model's ceiling, so true heterogeneity may be truncated. The ratio in conclusion 5 comes from the survey, not the model, and greater within-province heterogeneity would generally weaken the case for regional tailoring. The bias is therefore probably conservative, but the model cannot represent the measured spread if it exceeds the cap."
+      },
+      {
+        "assumption": "Income elasticity of provincial spending identifies the fiscal capacity elasticity k.",
+        "verdict": "questionable",
+        "explanation": "The halving arithmetic is consistent (0.41/2, 0.32/2, 0.05/2). Identification is weak, though. Public services are plausibly normal goods, so richer provinces may spend more because of income-driven tastes, which would inflate k. Equalization already offsets capacity gaps, which would deflate the observed elasticity relative to a no-transfer regional regime. Which bias dominates is unknown."
+      },
+      {
+        "assumption": "National taxes carry no fiscal-capacity penalty, and the regional baseline lacks equalization.",
+        "verdict": "questionable",
+        "explanation": "The 'regions decide' rule has no equalization, while Canada's real decentralized baseline includes equalization, CHT and CST. This likely overstates the advantage of national rules relative to the actual status quo. The matching-grant option only partly captures it."
+      },
+      {
+        "assumption": "The sampled ranges for uncalibrated spillovers, scale economies and crowding are reasonable.",
+        "verdict": "questionable",
+        "explanation": "No Canadian evidence supports the ranges. The study is fairly transparent, reporting the 5 to 10% scale-savings threshold. Still, the 97% transit win rate is an artifact of the chosen range and should not be read as evidence, and the earlier review's complaint about restating guessed ranges still applies here."
+      },
+      {
+        "assumption": "The relative marginal cost of public funds (provincial = national times 0.6 to 1.5) is correctly bounded.",
+        "verdict": "invalid",
+        "explanation": "The ranges do not match the cited sources. A federal MCF of about 2.86 implies a national overhead of about 1.86, yet the sampled national overhead is 0.2 to 1.0. Provincial MCFs of 1.44 to 3.81 imply overheads of 0.44 to 2.81, a ratio to federal of about 0.24 to 1.51, so the 0.6 lower bound truncates the evidence. This matters because the environment verdict flips when provinces are about 40% cheaper (ratio near 0.6), right at the edge of the sampled range. The 2006 and 2021 estimates also cover different years and tax bases."
+      },
+      {
+        "assumption": "Expected regret minimized by a single fixed rule over a uniform Latin hypercube prior is the right decision criterion.",
+        "verdict": "questionable",
+        "explanation": "Uniform weighting over guessed or truncated ranges acts as a prior. Minimax regret or another prior could reorder the rules, especially for schools, where the winner wins only 62% and keeps 21% of attainable gain. The choice is defensible but its robustness is untested."
+      },
+      {
+        "assumption": "Three shared seeds per world make stochastic noise small relative to welfare differences between rules.",
+        "verdict": "questionable",
+        "explanation": "Shared seeds reduce variance in the comparisons, but no estimate of seed-to-seed variance against between-rule differences is reported. With 1,600 agents this may be fine for large effects. It is doubtful for schools, which has the smallest stakes."
+      },
+      {
+        "assumption": "Analysing policy areas separately is valid, based on an 8-world joint optimisation check.",
+        "verdict": "questionable",
+        "explanation": "94% agreement and 96% of joint gain retained is encouraging. Eight worlds is a small sample, however, and interactions through income sorting are real: the productivity recalibration error showed redistribution drives sorting. Representativeness across the full parameter space is not established."
+      },
+      {
+        "assumption": "The five candidate rules span the relevant options.",
+        "verdict": "invalid",
+        "explanation": "The study itself acknowledges that metropolitan control of transit (its 'most serious open gap') and price-based environmental instruments are not modelled. Regionally varying national policy and shared jurisdiction are also absent. Any omitted option could dominate, so the transit and environment verdicts are rankings within a restricted set."
+      },
+      {
+        "assumption": "Mobility is captured by income, public goods, a single moving cost and crowding, with agents comparing 4 regions.",
+        "verdict": "questionable",
+        "explanation": "The income-migration validation (+0.30 against +0.32) and the 0.75% migration target are matched, which supports the income channel. Language barriers (especially for Quebec), family ties and housing are collapsed into one cost, and the public-goods response is poorly matched."
+      },
+      {
+        "assumption": "Provincial differences in taste for redistribution would not overturn the national redistribution conclusion.",
+        "verdict": "questionable",
+        "explanation": "The survey's between/within ratio of 0.21 suggests modest heterogeneity, and the 98% win rate leaves a margin. Robustness is plausible but was not modelled or tested."
+      },
+      {
+        "assumption": "The failed validation row biases against, not toward, the redistribution conclusion.",
+        "verdict": "questionable",
+        "explanation": "The argument is plausible, but it is asserted, not demonstrated. The Canadian correlation (-0.19, p = 0.60, n = 10) is statistically indistinguishable from zero, and the mismatch could instead reflect misspecified provincial political economy. That misspecification could bias the comparison in either direction."
+      },
+      {
+        "assumption": "The weak match on migration response to spending does not undermine public-good-driven sorting in the model.",
+        "verdict": "questionable",
+        "explanation": "The model's response (-0.04) is far weaker than Canada's (-0.22). The Canadian sign may reflect confounds such as tax burden or need, but the gap means public-good sorting, central to decentralization arguments, is not validated."
+      },
+      {
+        "assumption": "Validation on 10 provinces with small samples and non-significant targets lends credibility to the model.",
+        "verdict": "questionable",
+        "explanation": "One row matches closely (income-migration). The others are weak: a p = 0.09 target against a model value of 0.97, a large shortfall on spending-migration, and an outright failure. With n = 10, this is modest support at best."
+      },
+      {
+        "assumption": "Using all sampled worlds or only those matching the targets does not bias the verdicts.",
+        "verdict": "questionable",
+        "explanation": "The solution does not say whether the 33 to 48% of worlds that miss the productivity and migration targets are filtered out or kept. If kept, verdicts partly reflect worlds inconsistent with Canadian data. No comparison of verdicts between matching and non-matching worlds is reported."
+      },
+      {
+        "assumption": "Spillovers as a common-share mean over 4 torus neighbours represent environmental and transit externalities well enough.",
+        "verdict": "questionable",
+        "explanation": "Real environmental spillovers include large transboundary flows with the US and global climate effects. Transit spillovers are concentrated in specific metropolitan corridors. A symmetric neighbour average with an uncalibrated share is a crude stand-in, and its adequacy for supporting national standards is not shown."
+      },
+      {
+        "assumption": "Constitutional jurisdiction, Quebec's status, Indigenous governance and legitimacy can be set aside so the welfare ranking answers 'which level should control'.",
+        "verdict": "invalid",
+        "explanation": "The question asks what Canada 'should' do. Education is constitutionally provincial with strong linguistic and denominational dimensions, and Quebec's distinct status is central to Canadian federalism. A utilitarian simulation ranking cannot by itself answer the normative and constitutional question. At most it informs one consideration among several."
+      },
+      {
+        "assumption": "The corrected errors were the only significant errors and the remaining pipeline is free of comparable mistakes.",
+        "verdict": "invalid",
+        "explanation": "A comparable error remains visible. The national overhead range of 0.2 to 1.0 is inconsistent with the cited federal MCF of 2.86 (overhead about 1.86), and the provincial-to-national ratio truncates the cited evidence at 0.6. Both affect the verdicts that flip on relative MCF. Some other derivations check out (the CV/4 conversion, the halved elasticities, and the deadweight-to-MCF mapping of about 1.3 to 2.2 at a 30% rate), but the pipeline is not error-free."
+      }
+    ],
+    "structural_gaps": {
+      "gaps": [
+        {
+          "area": "transit",
+          "mechanism": "A metropolitan tier with spillovers that stay inside city-regions. Transit benefits and commuting externalities cross municipal boundaries within a metro area but rarely cross provincial ones, so the relevant choice is municipal versus metro versus provincial, not provincial versus national.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Transport Canada describes public transit as primarily a municipal responsibility, with provinces sometimes helping on funding and planning. Canada built city-region bodies for this reason: TransLink (Metro Vancouver, 1998) and Metrolinx (Greater Toronto and Hamilton Area, 2006). The gathered evidence documents that vertical and horizontal fragmentation in some city-regions has delayed high-capacity lines, which is an intra-metro coordination failure. Census commuting flows show interprovincial commuting is negligible outside Ottawa-Gatineau and a few border towns, so inter-provincial transit spillovers are close to zero. The study itself calls this its most serious open gap.",
+          "how_to_model": "Split each region into 2 to 4 metro cells. Replace the single spillover share with a within-metro share s_m (sample 0.2 to 0.6) and an inter-region share s_r (sample 0 to 0.1). Add a 'metro decides' rule and a 'metro decides with provincial or national matching grant' rule alongside the existing five."
+        },
+        {
+          "area": "transit",
+          "mechanism": "Heterogeneity in need driven by urban density. Transit's marginal value depends on density and city size, which vary enormously within provinces. Calibrating taste spread from provincial spending averages this variation away.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Census journey-to-work data show public transit commuting shares of roughly 20 percent or more in Toronto and Montreal against low single digits in many smaller CMAs and rural areas. The calibration (provincial spending CV divided by 4, transit fiscal elasticity about 0.03) measures only between-province spread. The real spread is between dense metros and everywhere else, inside every province. A uniform national standard either overbuilds in low-density places or underbuilds in large metros.",
+          "how_to_model": "Give each metro cell a density index d with log-sd sampled from 0.5 to 1.2, calibrated to the dispersion of CMA transit mode shares. Make transit benefit 2 * taste * d * e, so the efficient level differs by place even with identical tastes."
+        },
+        {
+          "area": "transit",
+          "mechanism": "Bounded scale economies. The model treats central provision as cheaper per unit by a constant share. Transit cost studies find economies of density, but economies of network or organisational size that run out at moderate operator sizes, and sometimes diseconomies for very large operators.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "Farsi, Fetz and Filippini (2007, Journal of Transport Economics and Policy) find scale economies for small Swiss public transport operators that are exhausted at moderate size. Berechman (1993, Public Transit Economics and Deregulation Policy) reviews evidence of roughly constant returns to size for medium and large operators. The study's own threshold says a national system wins only if it saves more than 5 to 10 percent, and the scale savings parameter is uncalibrated. Bounded scale economies could easily keep savings below that threshold.",
+          "how_to_model": "Replace the constant saving with a U-shaped unit cost in served population N: c(N) = c0 * (1 - a * ln(N/N*) + b * ln(N/N*)^2) for N below and above N*. Sample the cost-minimising population N* from metro size to province size, and b from 0 to 0.1."
+        },
+        {
+          "area": "environment",
+          "mechanism": "Price instruments combined with heterogeneous abatement costs. The model has only quantity levels p with identical costs. Under carbon pricing, a uniform national price equalises marginal abatement cost across provinces with very different emission intensities, while provinces keep design freedom above a floor.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "The Greenhouse Gas Pollution Pricing Act (2018) set a national minimum carbon price with a federal backstop, and the Supreme Court upheld it in References re GGPPA (2021 SCC 11). Canada's actual design is therefore a price floor with provincial implementation, which is the model's fallback rule and not its headline rule. Murray and Rivers (2015) review the BC carbon tax (2008) and find emissions reductions of roughly 5 to 15 percent with small net economic effects. Environment and Climate Change Canada's National Inventory Report shows per-capita emissions in Alberta and Saskatchewan several times those of Quebec. A uniform quantity standard is therefore very unequal in cost, while a uniform price is not.",
+          "how_to_model": "Give each region a marginal abatement cost multiplier with log-sd sampled from 0.3 to 1.0, calibrated to provincial emissions intensity. Add an instrument choice (price or quantity) to each rule, where a uniform price equalises marginal cost and a uniform quantity does not. Add a 'national price floor, provincial design' rule."
+        },
+        {
+          "area": "environment",
+          "mechanism": "Spillover structure that depends on the pollutant. Spillover share is uncalibrated and treated as one number. Greenhouse gases spill almost entirely beyond Canada, transboundary air and river pollution spill between neighbours, and many local pollutants barely spill at all.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Sigman (2002, AER; 2005, JEEM) finds river pollution is systematically higher just upstream of national and US state borders, which is direct evidence of free-riding on transboundary spillovers. Lipscomb and Mobarak (2017, Review of Economic Studies) find water pollution rises near downstream borders as Brazilian counties split. The Canada-US Air Quality Agreement (1991) on acid rain is a documented case of inter-jurisdictional spillover. For greenhouse gases, Canada emits about 1.5 percent of the global total, so most benefits are external even to the national government. Whether environment goes national depends heavily on which of these dominates.",
+          "how_to_model": "Split environment into a local good (s sampled 0 to 0.15) and a transboundary good (s sampled 0.3 to 0.8), with a weight w on the transboundary good sampled from 0.2 to 0.8. Add a rest-of-world leakage share for the climate component that no Canadian level internalises, scaled by an international reciprocity parameter in [0, 1]."
+        },
+        {
+          "area": "environment",
+          "mechanism": "Competition for mobile capital and firms. Only residents move in the model. Environmental federalism debates turn on whether provinces lower standards to attract investment (race to the bottom) or compete efficiently.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "Oates and Schwab (1988) show that competition for capital can be efficient under benevolent governments and non-distorting taxes. Konisky (2007, AJPS) finds US states respond strategically to neighbours' enforcement. List and Gerking (2000, JPAM) find no race to the bottom after 1980s US devolution, and Fredriksson and Millimet (2002, JUE) find some evidence of a race to the top. Carbon leakage between provinces with and without pricing was a central argument in the GGPPA case.",
+          "how_to_model": "Add mobile firms whose location responds to regional stringency with elasticity eta sampled from 0 to 2. Their output raises regional productivity and the tax base, so stricter regional standards cost local income."
+        },
+        {
+          "area": "redistribution",
+          "mechanism": "Inequality aversion in the welfare measure. Log utility fixes the elasticity of marginal utility at 1. The value of pooling across provinces with different mean incomes scales with this curvature, while deadweight losses do not.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "The earlier review raised this and it is unaddressed. Layard, Mayraz and Nickell (2008, Journal of Public Economics) estimate the elasticity of marginal utility of income at about 1.2 to 1.3 from happiness data, and Evans (2005) reports values around 1.3 to 1.6 across OECD countries. Both are close to log but not equal to it. At lower curvature the pooling gain that drives the 98 percent win, which holds even without mobility, shrinks against deadweight costs. Values above 1 strengthen the national verdict.",
+          "how_to_model": "Replace log with CRRA utility (c^(1-eta) - 1)/(1-eta), sample eta from 0.5 to 2.5, and report the eta at which the national rule stops minimising regret."
+        },
+        {
+          "area": "redistribution",
+          "mechanism": "Provincial differences in taste for redistribution, combined with lower mobility for linguistic minorities. Lower mobility weakens the race-to-the-bottom pressure on a distinct province.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "The study's own survey analysis finds a between/within spread ratio of 0.21 for redistribution, similar to environment, but does not model it. Quebec runs a distinct and more generous social model: the Quebec Pension Plan (1966), low-fee childcare (1997) and the Quebec Parental Insurance Plan (2006). Statistics Canada table 17-10-0022 shows interprovincial migration rates for Quebec well below the national rate, consistent with a language barrier. Lower mobility lets a province sustain higher redistribution. Under these conditions the regret-minimising rule could move from a uniform national scheme to a national floor with provincial top-ups.",
+          "how_to_model": "Give each region a redistribution taste (welfare weight on the transfer) with between-region sd equal to 0.21 times the within-region sd, sampled from the bootstrap interval. Give one or two regions a moving-cost multiplier sampled from 1 to 5, calibrated to Quebec's out-migration rate. Score the national floor rule against the uniform rule."
+        },
+        {
+          "area": "redistribution",
+          "mechanism": "Tax-base mobility through income shifting and reported-income responses, not just physical migration. High earners respond to provincial top rates through avoidance, which erodes regional redistribution faster than the migration-only model implies.",
+          "pushes_toward": "national",
+          "could_flip_verdict": false,
+          "evidence_strength": "strong",
+          "evidence": "Milligan and Smart (2019, 'An estimable model of income redistribution in a federation: musical chairs', AEJ: Economic Policy) estimate large elasticities of reported top incomes to provincial tax rates in Canada, driven substantially by tax planning rather than moves. Moretti and Wilson (2017, AER) find star scientists migrate in response to US state taxes, while Young and Varner (2011) find small migration responses to New Jersey's millionaire tax. Together these show the base erodes mainly through reporting. This strengthens the national verdict and may help explain the failed validation row on inequality and redistribution spending.",
+          "how_to_model": "Add an elasticity of reported income to the gap between the own-region rate and the neighbour mean, sampled from 0.2 to 0.8. Apply it before the transfer pool is computed and independent of moving decisions."
+        },
+        {
+          "area": "redistribution",
+          "mechanism": "Insurance against province-specific shocks. The model's regional productivity is static, so it captures pooling across permanent income differences but not risk sharing against temporary shocks such as commodity price collapses.",
+          "pushes_toward": "national",
+          "could_flip_verdict": false,
+          "evidence_strength": "strong",
+          "evidence": "Asdrubali, Sorensen and Yosha (1996, QJE) and Sala-i-Martin and Sachs (1992) find federal tax-transfer systems smooth a meaningful share of US state income shocks. Bayoumi and Masson (1995, European Economic Review) find a substantial stabilisation role for federal flows in Canada. The 2015 to 2016 oil price collapse in Alberta, which prompted fiscal stabilization payment requests, is a documented Canadian case.",
+          "how_to_model": "Add AR(1) regional productivity shocks with persistence sampled from 0.3 to 0.9 and sd sampled from 0.01 to 0.06, calibrated to provincial real GDP growth volatility. Score rules on expected utility over shock paths."
+        },
+        {
+          "area": "schools",
+          "mechanism": "Heterogeneity in school content (language, denomination, curriculum) that is clustered by province. The model has only a spending level. Much of Canada's disagreement about schools concerns what is taught and in which language, and this is concentrated geographically.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Section 93 of the Constitution Act, 1867 assigns education to provinces and protects denominational schools, such as Ontario's Catholic system. Section 23 of the Charter guarantees minority-language education, interpreted in Mahe v Alberta (1990). Quebec's Charter of the French Language (1977) governs school language. Census mother-tongue data show French is the majority in Quebec, about a third in New Brunswick, and small elsewhere. Spending-based taste spread (0.025 to 0.036) cannot see this. Because the schools verdict keeps only 21 percent of the gain and has the smallest stakes, a modest content-mismatch loss could reverse it.",
+          "how_to_model": "Give agents a discrete school-type preference with provincially clustered shares calibrated to Census language data. A national uniform rule imposes the national majority type. Add a mismatch utility loss sampled from 0 to 0.3 of the school good's value."
+        },
+        {
+          "area": "schools",
+          "mechanism": "Effects of decentralised provision on government efficiency, through local information, accountability and comparison between provinces. These effects depend on local administrative capacity.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "Galiani, Gertler and Schargrodsky (2008, Journal of Public Economics) find that Argentina's transfer of secondary schools to provinces raised test scores overall but lowered them in poor provinces with weak administration. Besley and Case (1995, AER) show voters use neighbouring jurisdictions as yardsticks. Large and persistent provincial differences in PISA and PCAP results give Canadian provinces measurable benchmarks.",
+          "how_to_model": "Add a provider-efficiency multiplier on cost. Under regional control, efficiency changes by g * (regional income / national income)^h, with g sampled from -0.1 to 0.2 and h from 0 to 2. Optionally add a learning rate in [0, 0.2] per round toward the best-performing neighbour."
+        },
+        {
+          "area": "schools",
+          "mechanism": "Human capital leakage through migration. Schooling raises portable skill, so a province that pays for education loses the return when graduates move. This leads to provincial underinvestment that the model's spillover term does not represent.",
+          "pushes_toward": "national",
+          "could_flip_verdict": false,
+          "evidence_strength": "moderate",
+          "evidence": "Bound, Groen, Kezdi and Turner (2004, Journal of Econometrics) find only a weak link between a US state's production of college graduates and its stock of them, because graduates move. Persistent out-migration of young educated workers from Atlantic Canada to Ontario and the West is a documented pattern in Statistics Canada migration data.",
+          "how_to_model": "Let schooling spending raise the skill of the next cohort by a return r sampled from 0 to 0.1 per unit. Agents carry this skill when they move, so regional funding decisions do not capture returns that leave."
+        },
+        {
+          "area": "general",
+          "mechanism": "Separating who pays from who decides. The rule set ties fiscal capacity to the deciding level. Canada addresses capacity differences with unconditional equalization and block transfers while leaving decisions with provinces, and the model has no such rule.",
+          "pushes_toward": "regions",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Section 36(2) of the Constitution Act, 1982 commits Ottawa to equalization payments so provinces can provide reasonably comparable services at reasonably comparable taxation. Equalization is about 25 billion dollars in 2024-25, alongside the Canada Health Transfer and Canada Social Transfer. The general lesson says fiscal capacity pushes toward national rules, but an equalization grant can remove the capacity penalty without centralising decisions. These transfers also fund provincial social spending regardless of local inequality, which may explain the failed validation row (inequality versus redistribution spending, -0.19 in Canada).",
+          "how_to_model": "Add a rule 'regions decide plus unconditional equalization', financed nationally, that closes a fraction q (sampled from 0 to 1) of each region's capacity gap and so lowers its burden term. Re-score schools and environment, where capacity (k up to 0.25) drives the national verdict."
+        },
+        {
+          "area": "general",
+          "mechanism": "Vertical fiscal externalities between levels that share the same tax base. Each level's marginal cost of funds depends on both levels' rates. The model samples national and provincial overheads independently, and its national range (0.2 to 1.0) excludes its own cited federal estimate.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "strong",
+          "evidence": "Dahlby (1996), Keen (1998) and Dahlby and Wilson (2003, Journal of Public Economics) show that when federal and provincial governments tax the same income, each raises the other's deadweight cost. The Dahlby and Ferede (2022) federal personal income tax marginal cost of funds of 2.86 (overhead about 1.86) partly reflects combined rates and lies outside the study's national range. The schools verdict and the environment switch to a floor both depend on relative cost of funds.",
+          "how_to_model": "Make each level's overhead a function of the combined rate: overhead_j = base_j + v * (tax take of the other level), with v sampled from 0 to 2. Widen the national base range to include about 1.9. Report verdict thresholds in terms of v."
+        },
+        {
+          "area": "general",
+          "mechanism": "Political economy of central provision. The model assumes national policy is uniform and benevolent. Real central governments differentiate across regions, but their allocations are shaped by electoral targeting and coalition bargaining rather than needs.",
+          "pushes_toward": "ambiguous",
+          "could_flip_verdict": true,
+          "evidence_strength": "moderate",
+          "evidence": "Besley and Coate (2003, Journal of Public Economics) show that once central governments can differentiate, the trade-off turns on legislative bargaining distortions rather than uniformity. Oates's decentralization theorem relies on the uniformity assumption the model hard-codes. Milligan and Smart (2005, 'Regional grants as pork barrel politics') find Canadian federal regional development grants targeted toward governing-party and closely contested ridings.",
+          "how_to_model": "Add a 'national, differentiated' rule in which the centre sets region-specific levels to maximise a weighted welfare. Region weights are distorted by a political parameter lambda sampled from 0 to 1 that favours a randomly chosen pivotal subset of regions (calibrated to seat-rich or swing provinces)."
+        }
+      ]
+    },
+    "confidence": {
+      "score": 0.15,
+      "reasoning": "The solution answers a normative question (which level should control) with a stylized simulation. The audit finds several invalid assumptions. First, the cost-of-funds ranges contradict the study's own cited sources: the national overhead of 0.2 to 1.0 excludes the cited federal value of about 1.86, and the provincial-to-federal ratio is truncated at 0.6. This matters because the environment and schools verdicts flip on exactly this ordering. Second, the rule set omits options that could dominate: metropolitan transit, price instruments, equalization, and shared jurisdiction. Third, constitutional and linguistic considerations are ignored. Validation is weak: one failed row, a large miss on spending-driven migration that is presented as a pass, and n = 10. Transit's 97% win rate depends on an uncalibrated range. The schools verdict keeps only 21% of the attainable gain. The redistribution verdict relies on an untested log-utility welfare measure. On the positive side, the study is transparent, and the national redistribution conclusion is plausibly robust. The second part of the question, how much to trust the answer, is partly addressed by the study's own caveats, but it overstates confidence. Overall, the specific recommendations are poorly supported."
+    },
+    "uncertainty": "The biggest unresolved question is whether the audit's main criticism actually changes any verdict. The cited federal personal income tax MCF of 2.86 lies outside the study's 0.2 to 1.0 overhead range. But that figure is for the personal income tax only. A blended federal MCF across all tax sources could fall inside the range, which would turn this from a calibration error into a judgment call. The way to settle it is to rerun the environment and schools areas with national overhead extended to about 1.9 and the provincial-to-federal ratio extended below 0.6:\n\n- If the environment verdict moves to a national floor and schools moves to provincial control, the low confidence score is justified.\n- If both verdicts survive, the strongest contradiction weakens considerably.\n\nSeveral other gaps are not shown to change verdicts; they are only shown to be untested:\n\n- **Equalization:** the \"fiscal capacity pushes toward national rules\" argument could collapse if an equalization-grant rule is added and beats uniform national standards. That would lower confidence in conclusion 5. If equalization loses, confidence would rise.\n- **Transit:** the verdict cannot be judged without one of two things. Either a Canadian estimate of transit scale savings relative to the 5 to 10% threshold, or a model with a metropolitan tier. A tier would likely move the answer away from \"national.\"\n- **Redistribution:** this is the one verdict where the single 0.15 score may be too harsh. A sensitivity run on inequality aversion (for example, CRRA from 0.5 to 2) and a version with provincial differences in taste for redistribution would show whether its 98% win rate holds up. If it does, the overall score should be split by area rather than pooled.\n- **Validation misses:** it is unresolved whether the model's near-zero response of migration to service spending (-0.04 against -0.22 in Canada) means it understates mobility-driven competition. If so, every area's verdict would be biased toward national rules.\n\nFinally, the constitutional and linguistic objections and the Swiss counter-evidence are real considerations, but they sit outside what the model can test. How much weight they get is a normative choice, not something further simulation can resolve."
+  },
+  "errors": {},
+  "skipped": {},
+  "timings": {
+    "alternatives": 18.932,
+    "assumptions": 23.427,
+    "evidence": 55.78,
+    "contradictions": 20.798,
+    "verifications": 84.702,
+    "structural_gaps": 161.129,
+    "confidence": 7.447,
+    "uncertainty": 14.076
+  }
+}
