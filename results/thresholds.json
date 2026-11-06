@@ -960,251 +960,69 @@
         "heterogeneity": 0.0307,
         "scale": 0.05,
         "within": 0.275,
-        "capacity_elasticity": 0.203
+        "capacity_elasticity": 0.203,
+        "content_weight": 0.15,
+        "national_accommodation": 0.4,
+        "minority_move_mult": 2.75
       },
       "cells": [
         [
           {
             "mode": "floor",
             "label": "floor 0.2",
-            "margin": 3e-05
+            "margin": 1e-05
           },
           {
-            "mode": "local",
-            "label": "local",
-            "margin": 0.0
-          },
-          {
-            "mode": "equalized",
-            "label": "equalized 25%",
-            "margin": 2e-05
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00115
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02609
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.04079
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.05433
-          }
-        ],
-        [
-          {
-            "mode": "equalized",
-            "label": "equalized 75%",
+            "mode": "floor",
+            "label": "floor 0.2",
             "margin": 1e-05
           },
           {
             "mode": "equalized",
             "label": "equalized 25%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00023
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0219
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03631
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04966
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.2",
+            "margin": 2e-05
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
             "margin": 0.0002
           },
           {
             "mode": "equalized",
-            "label": "equalized 75%",
+            "label": "equalized 100%",
+            "margin": 0.00048
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
             "margin": 0.00043
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00191
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02533
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03953
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.0526
-          }
-        ],
-        [
-          {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00028
-          },
-          {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00083
-          },
-          {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00081
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00251
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02466
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03796
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.05009
-          }
-        ],
-        [
-          {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00021
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00055
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00012
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.0036
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02407
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03686
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.04836
-          }
-        ],
-        [
-          {
-            "mode": "floor",
-            "label": "floor 0.4",
-            "margin": 0.00404
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00344
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00218
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00374
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02304
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03479
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.04603
-          }
-        ],
-        [
-          {
-            "mode": "floor",
-            "label": "floor 0.4",
-            "margin": 0.00904
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00732
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00349
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00455
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02263
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.03346
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.04374
-          }
-        ],
-        [
-          {
-            "mode": "floor",
-            "label": "floor 0.4",
-            "margin": 0.01446
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.01067
-          },
-          {
-            "mode": "floor",
-            "label": "floor 0.3",
-            "margin": 0.00475
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.0044
           },
           {
             "mode": "central",
@@ -1214,12 +1032,458 @@
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.03193
+            "margin": 0.03525
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.04239
+            "margin": 0.04805
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00025
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00079
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00087
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.0004
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02032
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0335
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04564
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00095
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00085
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00041
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00071
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01975
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03229
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04384
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.0047
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00359
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00246
+          },
+          {
+            "mode": "matched",
+            "label": "matched 20%",
+            "margin": 0.0004
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01866
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03049
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04181
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.00975
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.0073
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00386
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00022
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01834
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02905
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03939
+          }
+        ],
+        [
+          {
+            "mode": "floor",
+            "label": "floor 0.4",
+            "margin": 0.01527
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.01081
+          },
+          {
+            "mode": "floor",
+            "label": "floor 0.3",
+            "margin": 0.00503
+          },
+          {
+            "mode": "matched",
+            "label": "matched 30%",
+            "margin": 3e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01697
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02779
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03801
+          }
+        ]
+      ]
+    },
+    "schools_content": {
+      "domain": "schools",
+      "row_param": "content_weight",
+      "rows": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.3
+      ],
+      "col_param": "overhead_ratio",
+      "cols": [
+        0.25,
+        0.5,
+        0.75,
+        1.0,
+        1.5,
+        2.0,
+        2.75
+      ],
+      "held_at": {
+        "national_overhead": 1.05,
+        "overhead_log_ratio": 0.0,
+        "move_share": 0.06,
+        "moving_cost": 0.065,
+        "productivity_sd": 0.13,
+        "congestion": 0.115,
+        "heterogeneity": 0.0307,
+        "spillover": 0.075,
+        "scale": 0.05,
+        "within": 0.275,
+        "capacity_elasticity": 0.203,
+        "national_accommodation": 0.4,
+        "minority_move_mult": 2.75
+      },
+      "cells": [
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00274
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02512
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03878
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.05129
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.00125
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02363
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03728
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0498
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 4e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02213
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03579
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04831
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 4e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02064
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.0343
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04681
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 4e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01915
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.03281
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04532
+          }
+        ],
+        [
+          {
+            "mode": "equalized",
+            "label": "equalized 75%",
+            "margin": 0.00017
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.0005
+          },
+          {
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00062
+          },
+          {
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 4e-05
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.01617
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.02983
+          },
+          {
+            "mode": "central",
+            "label": "central 0.3",
+            "margin": 0.04234
           }
         ]
       ]
@@ -1739,5 +2003,5 @@
       ]
     }
   },
-  "seconds": 356.9
+  "seconds": 450.2
 }

@@ -132,6 +132,15 @@ def canada_ranges() -> dict:
     # that emit more per person support the carbon tax less (r = -0.82 on logs,
     # p = 0.003, n = 10), sampled 0.6 to 0.9. Spillover is unmeasured: most of the
     # benefit of cutting emissions lands outside the emitting province.
+    # Schools: curriculum content, not just spending. How much a single national
+    # curriculum would cost minority-language residents, and how much a national
+    # system would accommodate them, have no measurement: wide ranges and a map.
+    # Minority-language residents move less: Quebec has the lowest interprovincial
+    # out-migration (0.35% a year against 0.55% to 1.99% elsewhere, table 17-10-0022),
+    # which informs, not fits, a moving-cost multiplier of 1.5 to 4.
+    domains["schools"].update({
+        "content_weight": (0.0, 0.3), "national_accommodation": (0.0, 0.8), "minority_move_mult": (1.5, 4.0),
+    })
     domains["climate"] = {
         "heterogeneity": (0.05, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
         "abatement_sd": (0.33, 0.99), "abatement_taste_corr": (0.60, 0.90),
@@ -300,6 +309,22 @@ def analyse_domain(pool, base: World, domain: Domain, draws: int, seeds: int, rn
     }
 
 
+def joint_world(base: World, params: dict[str, float]) -> World:
+    """A world with every policy area, from one joint sample (keys "area.field" for areas)."""
+    world_fields = {k: v for k, v in params.items() if "." not in k and k not in ("overhead_ratio", "overhead_log_ratio")}
+    if "overhead_log_ratio" in params:
+        world_fields["local_overhead"] = params["national_overhead"] * math.exp(params["overhead_log_ratio"])
+    domains = []
+    for d in base.domains:
+        fields = {k.split(".", 1)[1]: v for k, v in params.items() if k.startswith(d.name + ".")}
+        # An area's ranges can include world-level settings (schools' minority
+        # moving-cost multiplier); those belong to the world, not the domain.
+        for key in [k for k in fields if k not in Domain.__dataclass_fields__ and k in World.__dataclass_fields__]:
+            world_fields[key] = fields.pop(key)
+        domains.append(replace(d, **fields))
+    return replace(base, domains=tuple(domains), **world_fields)
+
+
 def separability_check(pool, base: World, n: int, seeds: int, rng: random.Random, log,
                        range_set_: dict | None = None) -> dict:
     """Does optimising domains one at a time miss interactions between them?"""
@@ -314,14 +339,8 @@ def separability_check(pool, base: World, n: int, seeds: int, rng: random.Random
             ranges[f"{name}.{k}"] = v
     rows = []
     for j, params in enumerate(latin_hypercube(ranges, n, rng)):
-        world_fields = {k: v for k, v in params.items() if "." not in k and k not in ("overhead_ratio", "overhead_log_ratio")}
-        if "overhead_log_ratio" in params:
-            world_fields["local_overhead"] = params["national_overhead"] * math.exp(params["overhead_log_ratio"])
-        domains = []
-        for d in base.domains:
-            fields = {k.split(".", 1)[1]: v for k, v in params.items() if k.startswith(d.name + ".")}
-            domains.append(replace(d, **fields))
-        world = replace(base, domains=tuple(domains), **world_fields)
+        world = joint_world(base, params)
+        domains = list(world.domains)
         seed_list = [50_000 + 100 * j + k for k in range(seeds)]
 
         separate = {}

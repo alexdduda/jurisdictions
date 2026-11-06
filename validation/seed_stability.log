@@ -1,0 +1,5 @@
+schools         winner agrees on 28/30 worlds; flips: [('equalized 100%', 'local', 0.00018), ('local', 'equalized 100%', 6e-05)]
+environment     winner agrees on 28/30 worlds; flips: [('central 0.3', 'matched 40%', 0.00113), ('matched 40%', 'central 0.3', 0.0126)]
+transit         winner agrees on 26/30 worlds; flips: [('local', 'equalized 100%', 4e-05), ('central 0.4', 'equalized 100%', 0.00192), ('local', 'equalized 100%', 9e-05), ('equalized 100%', 'local', 3e-05)]
+redistribution  winner agrees on 27/30 worlds; flips: [('floor 0.3', 'central 0.25', 0.00122), ('floor 0.3', 'central 0.25', 0.00265), ('central 0.25', 'floor 0.3', 0.00053)]
+climate         winner agrees on 30/30 worlds

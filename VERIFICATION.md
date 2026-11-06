@@ -37,6 +37,7 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Meltzer and Richard (1981), *JPE* 89: 914-927; empirical support mixed | CMU repository; Dao (2001) |
 | Layard, Mayraz and Nickell (2008): elasticity of marginal utility of income 1.26 (1.19-1.34) | LSE Research Online (abstract); journal record, *J. Public Econ.* 92(8-9) |
 | Dahlby and Ferede: federal PIT MCF 2.86, CIT 2.02 (2021); provincial PIT 1.44 to 3.81 (2006) | Fraser Institute study page (read in a browser); MacEwan University repository abstract of the 2012 *ITPF* article |
+| French as first official language spoken, 2021: Quebec 82.2%, Canada 21.4%, New Brunswick 30.0%, Ontario 3.4%; English 13.0% in Quebec | Statistics Canada, The Daily, August 17, 2022 (read verbatim). New Brunswick also from the Government of New Brunswick; Ontario's broader definition gives 4.6% (Ontario government profile), consistent. A CBC figure of "more than 90%" for Quebec does not match this measure and was not used |
 | 2019 Canadian Election Study: authors, licence CC BY-NC 4.0 | Harvard Dataverse dataset metadata (doi:10.7910/DVN/DUS88V) |
 
 ## Computed from the project's own data (reproducible)

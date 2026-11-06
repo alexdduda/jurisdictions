@@ -1,0 +1,86 @@
+{
+  "schools": {
+    "worlds": 30,
+    "agreement": 0.933,
+    "flips": [
+      [
+        "equalized 100%",
+        "local",
+        0.00018
+      ],
+      [
+        "local",
+        "equalized 100%",
+        6e-05
+      ]
+    ]
+  },
+  "environment": {
+    "worlds": 30,
+    "agreement": 0.933,
+    "flips": [
+      [
+        "central 0.3",
+        "matched 40%",
+        0.00113
+      ],
+      [
+        "matched 40%",
+        "central 0.3",
+        0.0126
+      ]
+    ]
+  },
+  "transit": {
+    "worlds": 30,
+    "agreement": 0.867,
+    "flips": [
+      [
+        "local",
+        "equalized 100%",
+        4e-05
+      ],
+      [
+        "central 0.4",
+        "equalized 100%",
+        0.00192
+      ],
+      [
+        "local",
+        "equalized 100%",
+        9e-05
+      ],
+      [
+        "equalized 100%",
+        "local",
+        3e-05
+      ]
+    ]
+  },
+  "redistribution": {
+    "worlds": 30,
+    "agreement": 0.9,
+    "flips": [
+      [
+        "floor 0.3",
+        "central 0.25",
+        0.00122
+      ],
+      [
+        "floor 0.3",
+        "central 0.25",
+        0.00265
+      ],
+      [
+        "central 0.25",
+        "floor 0.3",
+        0.00053
+      ]
+    ]
+  },
+  "climate": {
+    "worlds": 30,
+    "agreement": 1.0,
+    "flips": []
+  }
+}

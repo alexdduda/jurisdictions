@@ -254,5 +254,54 @@ class CarbonPricing(unittest.TestCase):
                                    simulate(w1, {"c": Policy(mode, lv)}, 0).welfare, places=12)
 
 
+
+class LanguageAndSchools(unittest.TestCase):
+    """Official-language minorities: curriculum content and mobility."""
+
+    def test_canada_profile_matches_census_shape(self):
+        from tiebout.model import LANGUAGE_PROFILES
+        p = LANGUAGE_PROFILES["canada"]
+        self.assertEqual(len(p), 16)
+        self.assertEqual(sum(1 for x in p if x > 0.8), 3)          # Quebec-like regions
+        self.assertAlmostEqual(sum(p) / len(p), 0.195, places=2)    # vs 21.4% in 2021
+
+    def test_national_standard_costs_minorities_unless_accommodated(self):
+        sch = Domain("s", heterogeneity=0.05, content_weight=0.3)
+        w = world(sch, move_share=0.0, grid=4, language_profile="canada")
+        base = simulate(w, {"s": Policy("central", 0.4)}, 0).welfare
+        accommodated = simulate(replace(w, domains=(replace(sch, national_accommodation=1.0),)),
+                                {"s": Policy("central", 0.4)}, 0).welfare
+        self.assertGreater(accommodated, base)
+
+    def test_provincial_rules_carry_no_content_cost(self):
+        sch = Domain("s", heterogeneity=0.05)
+        w0 = world(sch, move_share=0.0, grid=4, language_profile="canada")
+        w1 = replace(w0, domains=(replace(sch, content_weight=0.3),))
+        for mode, lv in (("local", 0.0), ("floor", 0.3), ("equalized", 1.0)):
+            self.assertAlmostEqual(simulate(w0, {"s": Policy(mode, lv)}, 0).welfare,
+                                   simulate(w1, {"s": Policy(mode, lv)}, 0).welfare, places=12)
+
+    def test_cross_check_routes_world_settings_from_area_ranges(self):
+        # Regression: schools' minority_move_mult is a World field; the cross-check
+        # once passed it to the Domain and crashed.
+        from tiebout.uncertainty import joint_world
+        w = joint_world(DEFAULT_WORLD, {"national_overhead": 1.0, "schools.content_weight": 0.2,
+                                        "schools.minority_move_mult": 3.0})
+        self.assertEqual(w.minority_move_mult, 3.0)
+        self.assertEqual(w.domain("schools").content_weight, 0.2)
+
+    def test_minorities_move_less_with_a_higher_moving_cost(self):
+        from tiebout.model import _Run
+        sch = Domain("s", heterogeneity=0.2)
+        w = world(sch, move_share=0.5, moving_cost=0.01, grid=4, language_profile="canada", steps=8)
+        moves = {}
+        for mult in (1.0, 50.0):
+            run = _Run(replace(w, minority_move_mult=mult), {}, 0)
+            start = list(run.region)
+            run.run()
+            moves[mult] = sum(1 for i in range(run.N) if run.minority[i] and run.region[i] != start[i])
+        self.assertLess(moves[50.0], moves[1.0])
+
+
 if __name__ == "__main__":
     unittest.main()

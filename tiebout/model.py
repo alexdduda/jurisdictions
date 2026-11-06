@@ -75,6 +75,13 @@ class Domain:
     private_costs: bool = False
     abatement_sd: float = 0.0
     abatement_taste_corr: float = 0.0
+    # Content, not just spending (schools). A national standard sets one curriculum at
+    # the national majority's preference; each minority-language resident loses
+    # content_weight x (value of the good at the median optimum, 0.25), reduced by
+    # national_accommodation (the share a national system would avoid, say through
+    # minority-language schools). Provincial rules leave content with provinces.
+    content_weight: float = 0.0
+    national_accommodation: float = 0.0
 
     @property
     def two_tier(self) -> bool:
@@ -108,6 +115,12 @@ class Policy:
 
 LOCAL = Policy()
 
+# 3 Quebec-like, 1 New Brunswick-like, 6 Ontario-like and 6 other regions (16 in all).
+LANGUAGE_PROFILES = {
+    "canada": (0.822, 0.034, 0.025, 0.034, 0.30, 0.025, 0.034, 0.822,
+               0.025, 0.034, 0.025, 0.822, 0.034, 0.025, 0.034, 0.025),
+}
+
 
 @dataclass(frozen=True)
 class World:
@@ -136,6 +149,13 @@ class World:
     # Share of each region's residents living in its city (used only by two-tier goods).
     # Statistics Canada: 71.8% of Canadians lived in a census metropolitan area, July 2021.
     urban_share: float = 0.72
+    # Official-language minority by region: "" (none) or "canada". Canada's profile
+    # approximates the 2021 Census share with French as first official language
+    # spoken (Quebec 82.2%, New Brunswick 30.0%, Ontario 3.4%; others about 2.5%)
+    # on 16 regions in proportion to population: 19.5% overall, against 21.4%.
+    language_profile: str = ""
+    # Moving cost multiplier for minority-language residents (language barrier).
+    minority_move_mult: float = 1.0
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -237,6 +257,13 @@ class _Run:
         # City or countryside, fixed per person and kept when moving region.
         urban_rng = random.Random(seed * 31337 + 5)  # separate stream: one-tier worlds are unchanged
         self.urban = [1 if urban_rng.random() < world.urban_share else 0 for _ in range(self.N)]
+        # Language group, fixed per person and kept when moving region.
+        profile = LANGUAGE_PROFILES.get(world.language_profile, ())
+        lang_rng = random.Random(seed * 65537 + 9)  # separate stream: worlds without a profile are unchanged
+        self.minority = [
+            1 if profile and lang_rng.random() < profile[self.region[i] % len(profile)] else 0
+            for i in range(self.N)
+        ]
         self.place_tastes: dict[str, list[float]] = {}
         for d in world.domains:
             if d.kind == "public_good" and d.two_tier:
@@ -312,7 +339,7 @@ class _Run:
             experienced = [(1 - s) * p[r] + s * _mean(p[n] for n in self.nbrs[r]) for r in range(self.R)]
             gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
             cost = [d.weight * a[r] * burden[r] * p[r] ** 2 for r in range(self.R)]
-            return ("pg", d.name, theta, gain, cost, p)
+            return ("pg", d.name, theta, gain, cost, 0.0, p)
         if policy.mode == "central":
             p = [_clamp(policy.level, 0, w.max_level)] * self.R
             unit, local_share = 1.0 - d.scale, 0.0
@@ -357,7 +384,10 @@ class _Run:
         gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
         local_cost = unit * local_share * (1 + w.local_overhead)
         cost = [d.weight * (local_cost * burden[r] * p[r] ** 2 + national_tax) for r in range(self.R)]
-        return ("pg", d.name, theta, gain, cost, p)
+        penalty = 0.0
+        if d.content_weight and policy.mode == "central":
+            penalty = d.weight * d.content_weight * (1 - _clamp(d.national_accommodation, 0.0, 1.0)) * 0.25
+        return ("pg", d.name, theta, gain, cost, penalty, p)
 
     def _public_good_two_tier(self, d: Domain, policy: Policy, residents, pops) -> tuple:
         """A good provided separately in each region's city (place 1) and countryside (place 0).
@@ -439,7 +469,7 @@ class _Run:
         local_cost = unit * local_share * (1 + w.local_overhead)
         gain = [d.weight * 2 * experienced[j] for j in range(2 * R)]
         cost = [d.weight * (local_cost * place_burden[j] * p[j] ** 2 + national_tax) for j in range(2 * R)]
-        return ("pg2", d.name, theta, gain, cost, regional_level)
+        return ("pg2", d.name, theta, gain, cost, 0.0, regional_level)
 
     def _redistribution(self, d: Domain, policy: Policy, residents) -> tuple:
         w, eta = self.world, self.world.deadweight
@@ -475,10 +505,10 @@ class _Run:
                 parts["consumption"] = parts.get("consumption", 0.0) + v
         for entry in state:
             if entry[0] == "pg":
-                _, name, theta, gain, cost, _ = entry
-                v = gain[r] * theta[i] - cost[r]
+                _, name, theta, gain, cost, penalty, _ = entry
+                v = gain[r] * theta[i] - cost[r] - (penalty if self.minority[i] else 0.0)
             elif entry[0] == "pg2":
-                _, name, theta, gain, cost, _ = entry
+                _, name, theta, gain, cost, _, _ = entry
                 j = 2 * r + self.urban[i]
                 v = gain[j] * theta[i] - cost[j]
             else:
@@ -502,7 +532,8 @@ class _Run:
         for i in movers:
             here = self.region[i]
             options = [r for r in self.move_rng.sample(range(self.R), k + 1) if r != here][:k]
-            best, best_u = here, self.utility(i, here, state, pops) + w.moving_cost
+            cost = w.moving_cost * (w.minority_move_mult if self.minority[i] else 1.0)
+            best, best_u = here, self.utility(i, here, state, pops) + cost
             for r in options:
                 pops[r] += 1  # an agent evaluates a region as it would be with them in it
                 u = self.utility(i, r, state, pops)

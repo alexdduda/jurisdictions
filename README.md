@@ -232,6 +232,27 @@ identical; any cost difference favours the price. The model leaves out trade
 exposure, emissions leaking abroad, revenue use and the politics that ended
 Canada's consumer carbon charge in April 2025.
 
+### Schools and language
+
+Regions carry Canada's official-language profile (2021 Census, French as first
+official language spoken: Quebec 82.2%, New Brunswick 30.0%, Ontario 3.4%; 19.5%
+across the model's 16 regions against 21.4% nationally). A national standard sets
+one curriculum, which costs minority-language residents unless a national system
+accommodates them; provincial rules leave content with the provinces, as Charter
+section 23 boards do now. Minority-language residents also face a higher moving
+cost, informed by Quebec having the lowest interprovincial out-migration (0.35% a
+year). The curriculum cost barely moves a national welfare total because the
+minority is a fifth of the country: a limit of utilitarian aggregation, and the
+reason constitutional protections exist.
+
+### Accuracy checks
+
+- `validation/seed_stability.py`: re-scores 30 worlds per area with 12 fresh
+  seeds. The winning rule agrees in 139 of 150; every flip is between
+  near-equivalent rules.
+- The one-area-at-a-time shortcut is checked against joint optimisation of all
+  five areas on 16 worlds: 95% agreement, at least 97% of the joint gain kept.
+
 See [VERIFICATION.md](VERIFICATION.md) for every factual claim and its sources.
 
 ### What it leaves out

@@ -45,6 +45,14 @@ MAPS = [
         "rows": ("spillover", [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]),
         "cols": ("overhead_ratio", RATIOS),
     }),
+    # Schools by content: how costly one national curriculum is for minority-language
+    # residents (share of the good's value, unaccommodated), against which level
+    # raises money more cheaply. Accommodation held at its midpoint.
+    ("schools", {
+        "key": "schools_content",
+        "rows": ("content_weight", [0.0, 0.05, 0.1, 0.15, 0.2, 0.3]),
+        "cols": ("overhead_ratio", RATIOS),
+    }),
     ("redistribution", {
         "rows": ("move_share", [0.0, 0.02, 0.05, 0.1, 0.2, 0.3]),
         "cols": ("deadweight", [0.3, 0.5, 0.7, 0.9]),

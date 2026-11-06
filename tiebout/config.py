@@ -39,4 +39,6 @@ CLIMATE = Domain(
     abatement_taste_corr=0.82,
 )
 
-DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE))
+# Canada's official-language profile is attached to the world; it only matters for
+# goods with a content cost (schools) or with a minority moving-cost multiplier.
+DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE), language_profile="canada")

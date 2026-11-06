@@ -161,7 +161,8 @@ details .table-wrap { margin-top: 0.8rem; max-height: 22rem; overflow: auto; }
 .stat .v { font-family: var(--font-display); font-weight: 600; font-size: 2rem; font-variant-numeric: tabular-nums; }
 .stat .l { font-size: 0.9rem; color: var(--ink-3); max-width: 16rem; }
 
-ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
+ul.plain, ol.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
+ol.findings li::marker { color: var(--accent); font-family: var(--font-display); font-weight: 600; }
 
 #tip {
   position: fixed; pointer-events: none; z-index: 10; background: var(--surface); color: var(--ink);
@@ -189,6 +190,21 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
       </figure>
     </div>
   </header>
+
+  <section class="col stack" aria-labelledby="findings">
+    <div class="sec-head"><span class="sec-num">Findings</span><h2 id="findings">What the model and the data say</h2></div>
+    <ol class="plain findings">
+      <li><strong>Canadians disagree with each other far more than provinces do.</strong> Between-province disagreement is 8% of within-province disagreement on education, about 20% on the environment and redistribution, and 24% on the carbon tax. The classic case for provincial control, that provinces want different things, is weaker in Canada than usually assumed.</li>
+      <li><strong>Where provinces do differ, costs explain it.</strong> Provinces that emit more per person support the carbon tax less (correlation -0.82 across the ten provinces, p = 0.003).</li>
+      <li><strong>For climate, the instrument matters more than the level.</strong> A carbon price keeps 99% of the attainable gain; one national quantity standard keeps 44%. A national price floor that provinces may exceed, the 2018 design, does as well as a uniform price.</li>
+      <li><strong>One unmeasured number decides schools and the environment:</strong> whether Ottawa or the provinces raise a dollar more cheaply. Published estimates don't settle it, so measuring it comparably at both levels is the most useful research this points to.</li>
+      <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26).</li>
+      <li><strong>Transit is a city question unless one national network would save 5 to 10% or more.</strong> Cities beat provinces only when little commuting crosses the metro boundary. Nobody has measured the national savings.</li>
+      <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
+      <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
+    </ol>
+    <p class="note">Every factual claim is logged with its sources in the repository's VERIFICATION.md; three calibration errors caught by these checks are listed in § 7, and a bug caught before publishing is described in the repository's validation notes.</p>
+  </section>
 
   <section class="col stack" aria-labelledby="s1">
     <div class="sec-head"><span class="sec-num">§ 1</span><h2 id="s1">Scope is jurisdiction</h2></div>
@@ -339,7 +355,7 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.5rem; }
     <ul class="plain">
       <li><strong>Transit and cities: partly addressed.</strong> Each province now has a city and a countryside, and "cities decide" is a rule (§ 6). Cities win only when almost no commuting crosses the metro boundary, and national wins only if one national system saves 5 to 10% or more, a number nobody has measured for Canada. Still missing: more than one city per province, and how transit costs change with network size.</li>
       <li><strong>Carbon pricing: now modelled</strong> as a separate climate area with prices, price floors and provincial differences in abatement costs (§ 4). Canada set its consumer carbon charge to zero on April 1, 2025; industrial pricing for large emitters continues under a national benchmark. Still missing: revenue use, trade exposure, and emissions leaking abroad.</li>
-      <li><strong>Schools are about more than spending.</strong> Education is provincial under section 93 of the Constitution Act, 1867, which also protects denominational schools in some provinces (Quebec removed its guarantee in 1997); section 23 of the Charter protects minority-language schooling. A national model would run into both, and a small cost of imposing one could change a close call.</li>
+      <li><strong>Schools and language: partly addressed.</strong> Regions now have Canada's official-language profile, and a national standard costs minority-language residents unless it accommodates them (§ 6). Education is provincial under section 93 of the Constitution Act, 1867, which also protects denominational schools in some provinces (Quebec removed its guarantee in 1997); section 23 of the Charter protects minority-language schooling. A welfare total can't weigh those protections, which is the point of having them.</li>
       <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move least: 0.35% a year leave for another province, against 0.55% to 1.99% elsewhere. Together these could favour a national floor with provincial top-ups.</li>
       <li><strong>Constitutional jurisdiction and Quebec's place in the federation</strong> are not welfare questions. A simulation can inform one consideration among several; it can't settle what Canada should do.</li>
     </ul>
@@ -377,6 +393,9 @@ const PARAM = {
   metro_spillover: "Benefit commuters carry between city and suburbs",
   abatement_sd: "How much abatement costs differ between provinces",
   abatement_taste_corr: "How much high-cost provinces want less",
+  content_weight: "Cost of one national curriculum to minorities",
+  national_accommodation: "How much a national system accommodates minorities",
+  minority_move_mult: "How much more minority-language residents pay to move",
   move_share: "How mobile people are",
   moving_cost: "Cost of moving",
   congestion: "Cost of crowding",
@@ -666,6 +685,7 @@ legend(document.getElementById("mode-legend"), MODES);
     deadweight: "efficiency cost of taxes", inequality_aversion: "weight on inequality (1 = log utility; estimates center near 1.26)",
     urban_premium: "how much more city residents want it than the countryside", metro_spillover: "share of benefit commuters carry between city and suburbs",
     abatement_sd: "how much cutting emissions costs differ between provinces (log spread; emissions per person: 0.66)",
+    content_weight: "cost of one national curriculum to minority-language residents (share of the good's value)",
   };
   // Written from results/thresholds.json; rewrite if the maps change.
   const CAPTION = {
@@ -674,6 +694,7 @@ legend(document.getElementById("mode-legend"), MODES);
     environment: "The column decides it. Where provinces raise money more cheaply than Ottawa, a national floor wins, or equalization when little pollution crosses borders. Where they don't, a national standard.",
     schools: "The column decides it again. Where provinces raise money more cheaply, provinces decide with an equalization top-up or a floor; where they don't, a national standard. The stakes are smaller than for the environment or transit.",
     redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
+    schools_content: "A national curriculum's cost to minority-language residents only tips the answer where Ottawa and the provinces raise money at about the same cost. Elsewhere it barely registers, because francophones are a fifth of the country and a national welfare total dilutes a loss concentrated in one region. That blind spot is what constitutional protections for minority schooling are for.",
     climate: "With equal abatement costs a price and a uniform quantity standard are the same thing. With any difference in costs, a carbon price wins, because each province cuts where cutting is cheapest. Where less of the benefit spreads beyond the province, a price floor provinces can exceed does slightly better. Canada's spread in emissions per person (log 0.66) is far past the threshold. Left out: trade exposure, emissions leaking abroad, what the revenue pays for, and the politics, which ended Canada's consumer price in 2025.",
     redistribution_inequality: "National at every weight up to 1.5, which includes the estimated 1.26. A national floor with provincial top-ups wins only at weights of 2 or more, and only where taxes are cheap.",
   };
@@ -684,6 +705,7 @@ legend(document.getElementById("mode-legend"), MODES);
       transit_scale: "Transit, by savings from one national system",
       redistribution_inequality: "Redistribution, by how much weight inequality gets",
       climate: "Climate, by cost differences and how far the benefit spreads",
+      schools_content: "Schools, by the cost of one national curriculum",
     };
     el("div", { class: "fig-title", text: TITLES[name] || DOMAIN_NAME[m.domain || name] }, fig);
     const cap = el("div", { class: "axis-cap", text: `Rows: ${AXIS[m.row_param] || m.row_param}. Columns: ${AXIS[m.col_param] || m.col_param}.` }, fig);
@@ -754,6 +776,9 @@ legend(document.getElementById("mode-legend"), MODES);
     ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
     ["Cost of raising a dollar, national vs. provincial", "0 to 35% extra each", "federal 20% to 190% extra; provincial 1/4 to 4 times federal, symmetric so neither is cheaper on average", "Federal: corporate tax $2.02, income tax $2.86 per dollar raised (2021). Provincial income tax $1.44 to $3.81 (2006). Lower bounds allow for cheaper sales taxes, for which no federal figure is published", "Dahlby and Ferede 2012, 2022"],
     ["Weight on inequality (redistribution)", "log utility only", "log utility, with 0.5 to 2.5 tested in § 6", "Estimated at 1.26 (1.19 to 1.34 across six surveys)", "Layard, Mayraz and Nickell 2008"],
+    ["Official-language minority by region", "none", "19.5% French overall", "2021 Census, French as first official language spoken: Quebec 82.2%, New Brunswick 30.0%, Ontario 3.4%, Canada 21.4%; mapped onto 16 regions by population", "Stats Can, The Daily, Aug 17, 2022"],
+    ["Schools: cost of one national curriculum to minority-language residents", "none", "0 to 30% of the good's value, 0 to 80% accommodated", "No measurement exists; shown as a threshold map", "none"],
+    ["Moving cost for minority-language residents", "same as everyone", "1.5 to 4 times", "Quebec has the lowest out-migration of any province, 0.35% a year against 0.55% to 1.99% elsewhere", "Stats Can 17-10-0022 (computed)"],
     ["Climate: how much provinces disagree", "no climate area", "0.05 to 0.08", `Survey: between-province spread is ${S && S.climate ? r2(S.climate.rho) : "0.24"} of within-province spread on keeping the carbon tax, the largest of any question`, "CES 2019"],
     ["Climate: how much abatement costs differ", "no climate area", "log spread 0.33 to 0.99", "2024 emissions per person range from 8.4 t (PEI) and 8.6 t (Quebec) to 53 t (Alberta) and 58 t (Saskatchewan), a log spread of 0.66; used to inform the range, not fitted to it", "ECCC 2024; Stats Can 17-10-0009"],
     ["Climate: do high-emitting provinces want less?", "no climate area", "link 0.6 to 0.9", "Across the ten provinces, emissions per person and support for the carbon tax correlate at -0.82 (p = 0.003)", "ECCC 2024; CES 2019"],
