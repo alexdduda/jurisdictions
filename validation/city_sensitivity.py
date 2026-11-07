@@ -7,6 +7,8 @@ wins:
   canada              2016 Census, every metropolitan area (the baseline)
   canada_2023_big3    Toronto, Montreal, Vancouver at May 2023 transit shares
   canada_half_spread  the gap between metropolitan areas halved
+  canada_2041_trend   metro areas' shares of their province projected to 2041
+                      by continuing 2011-2016 relative growth
   (two-place)         every metropolitan area alike: the earlier model, read
                       from results/uncertainty_canada_two_place.json if present
 
@@ -33,10 +35,12 @@ def brief(r: dict) -> dict:
     return keep
 
 
-def main(scenarios=("canada_2023_big3", "canada_half_spread")):
+def main(scenarios=("canada_2023_big3", "canada_half_spread", "canada_2041_trend")):
     saved = json.loads((ROOT / "results" / "uncertainty_canada.json").read_text())
     draws, seeds = saved["draws"], saved["seeds"]
-    out = {"canada": brief(saved["domains"]["transit"])}
+    out_path = ROOT / "validation" / "city_sensitivity.json"
+    out = json.loads(out_path.read_text()) if out_path.exists() else {}
+    out["canada"] = brief(saved["domains"]["transit"])
     prev = ROOT / "results" / "uncertainty_canada_two_place.json"
     if prev.exists():
         out["two_place"] = brief(json.loads(prev.read_text())["domains"]["transit"])
@@ -57,4 +61,4 @@ def main(scenarios=("canada_2023_big3", "canada_half_spread")):
 
 
 if __name__ == "__main__":
-    main()
+    main(tuple(sys.argv[1:]) or ("canada_2023_big3", "canada_half_spread", "canada_2041_trend"))

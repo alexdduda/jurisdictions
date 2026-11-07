@@ -1,37 +1,37 @@
-cma,province,population_2016,transit_share_2016
-Toronto,ON,5928040,24.3
-Montreal,QC,4098927,22.3
-Vancouver,BC,2463431,20.4
-Calgary,AB,1392609,14.4
-Edmonton,AB,1321426,11.3
-Ottawa-Gatineau (Ontario part),ON,991726,19.6
-Ottawa-Gatineau (Quebec part),QC,332057,14.5
-Quebec,QC,798162,11.1
-Winnipeg,MB,778489,13.6
-Hamilton,ON,747545,9.8
-Kitchener-Cambridge-Waterloo,ON,523894,6.0
-London,ON,494069,7.2
-St. Catharines-Niagara,ON,406074,2.7
-Halifax,NS,403390,11.8
-Oshawa,ON,379848,9.5
-Victoria,BC,367770,10.9
-Windsor,ON,329144,3.4
-Saskatoon,SK,295095,4.3
-Regina,SK,236481,5.1
-Sherbrooke,QC,212105,4.2
-St. John's,NL,205955,3.1
-Barrie,ON,197059,4.3
-Kelowna,BC,194882,3.9
-Abbotsford-Mission,BC,180518,2.5
-Greater Sudbury,ON,164689,4.9
-Kingston,ON,161175,6.8
-Saguenay,QC,160980,2.2
-Trois-Rivieres,QC,156042,2.3
-Guelph,ON,151984,6.4
-Moncton,NB,144810,3.4
-Brantford,ON,134203,3.1
-Saint John,NB,126202,4.1
-Peterborough,ON,121721,3.9
-Thunder Bay,ON,121621,3.9
-Lethbridge,AB,117394,2.9
-Belleville,ON,103472,2.3
+cma,province,population_2016,transit_share_2016,growth_2011_2016
+Toronto,ON,5928040,24.3,6.2
+Montreal,QC,4098927,22.3,4.2
+Vancouver,BC,2463431,20.4,6.5
+Calgary,AB,1392609,14.4,14.6
+Edmonton,AB,1321426,11.3,13.9
+Ottawa-Gatineau (Ontario part),ON,991726,19.6,5.9
+Ottawa-Gatineau (Quebec part),QC,332057,14.5,4.4
+Quebec,QC,798162,11.1,4.0
+Winnipeg,MB,778489,13.6,6.6
+Hamilton,ON,747545,9.8,3.7
+Kitchener-Cambridge-Waterloo,ON,523894,6.0,5.5
+London,ON,494069,7.2,4.1
+St. Catharines-Niagara,ON,406074,2.7,3.5
+Halifax,NS,403390,11.8,3.3
+Oshawa,ON,379848,9.5,6.6
+Victoria,BC,367770,10.9,6.7
+Windsor,ON,329144,3.4,3.1
+Saskatoon,SK,295095,4.3,12.5
+Regina,SK,236481,5.1,11.8
+Sherbrooke,QC,212105,4.2,4.9
+St. John's,NL,205955,3.1,4.6
+Barrie,ON,197059,4.3,5.4
+Kelowna,BC,194882,3.9,8.4
+Abbotsford-Mission,BC,180518,2.5,6.1
+Greater Sudbury,ON,164689,4.9,1.0
+Kingston,ON,161175,6.8,1.0
+Saguenay,QC,160980,2.2,1.5
+Trois-Rivieres,QC,156042,2.3,2.8
+Guelph,ON,151984,6.4,7.7
+Moncton,NB,144810,3.4,4.0
+Brantford,ON,134203,3.1,3.8
+Saint John,NB,126202,4.1,-2.2
+Peterborough,ON,121721,3.9,2.3
+Thunder Bay,ON,121621,3.9,0.0
+Lethbridge,AB,117394,2.9,10.8
+Belleville,ON,103472,2.3,1.8

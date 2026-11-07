@@ -68,6 +68,7 @@ def main() -> None:
         "thresholds": json.loads((RESULTS / "thresholds.json").read_text()) if (RESULTS / "thresholds.json").exists() else None,
         "validation": json.loads((ROOT / "validation" / "model_vs_canada.json").read_text()) if (ROOT / "validation" / "model_vs_canada.json").exists() else None,
         "cities": city_summary(),
+        "watchlist": json.loads((RESULTS / "watchlist.json").read_text()) if (RESULTS / "watchlist.json").exists() else None,
         "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,
     }
     template = (ROOT / "site" / "template.html").read_text()

@@ -194,5 +194,54 @@
         "gain_captured": -0.158
       }
     }
+  },
+  "canada_2041_trend": {
+    "win_share": {
+      "local": 0.01,
+      "central": 0.765,
+      "floor": 0.105,
+      "ceiling": 0.05,
+      "equalized": 0.025,
+      "city": 0.045
+    },
+    "robust": {
+      "policy": "central 0.4",
+      "mode": "central",
+      "level": 0.4,
+      "mean_regret": 0.036164253616910086,
+      "p95_regret": 0.12309117838177874,
+      "gain_captured": 0.5463807796268811
+    },
+    "mean_gain_over_local": 0.07972381237982736,
+    "best_per_mode": {
+      "local": {
+        "policy": "local",
+        "gain_captured": 0.0
+      },
+      "central": {
+        "policy": "central 0.4",
+        "gain_captured": 0.546
+      },
+      "floor": {
+        "policy": "floor 0",
+        "gain_captured": 0.0
+      },
+      "ceiling": {
+        "policy": "ceiling 0.8",
+        "gain_captured": 0.0
+      },
+      "matched": {
+        "policy": "matched 10%",
+        "gain_captured": -0.064
+      },
+      "equalized": {
+        "policy": "equalized 100%",
+        "gain_captured": 0.001
+      },
+      "city": {
+        "policy": "city",
+        "gain_captured": -0.165
+      }
+    }
   }
 }

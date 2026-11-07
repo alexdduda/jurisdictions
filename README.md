@@ -258,6 +258,19 @@ year). The curriculum cost barely moves a national welfare total because the
 minority is a fifth of the country: a limit of utilitarian aggregation, and the
 reason constitutional protections exist.
 
+### Looking ahead
+
+The model describes long-run structure, not a forecast. Two measured inputs
+have projections, so those verdicts are dated: climate (ECCC's 2025
+projections of emissions per person by province keep the spread at 0.64 to
+0.68 through 2035, far above the 0.2 where a carbon price stops beating a
+uniform standard) and transit (metro areas' shares projected to 2041 by
+continuing 2011-2016 growth; `validation/city_sensitivity.py
+canada_2041_trend`). `validation/early_warning.py` writes
+`results/watchlist.json`: for each verdict, the number that decides it, the
+flip point read from the threshold maps, the best current estimate and what
+would measure it.
+
 ### Accuracy checks
 
 - `validation/seed_stability.py`: re-scores 30 worlds per area with 12 fresh

@@ -38,6 +38,11 @@ PROVINCE_POP = {
     "ON": 13_448_494, "MB": 1_278_365, "SK": 1_098_352, "AB": 4_067_175, "BC": 4_648_055,
 }
 CANADA_POP = 35_151_728
+# 2011 to 2016 growth, % (same table): used only for trend projections.
+PROVINCE_GROWTH = {
+    "NL": 1.0, "PE": 1.9, "NS": 0.2, "NB": -0.5, "QC": 3.3,
+    "ON": 4.6, "MB": 5.8, "SK": 6.3, "AB": 11.6, "BC": 5.6,
+}
 NATIONAL_TRANSIT = 12.4
 
 # Which province (group) each region stands for. Regions 0, 7, 11 are Quebec,
@@ -59,10 +64,17 @@ GROUPS = {"QC": ("QC",), "ON": ("ON",), "BC": ("BC",), "AB": ("AB",),
 MIN_SHARE = 0.04
 
 
-def _rows(overrides: dict | None = None):
+def _rows(overrides: dict | None = None, year: int = 2016):
+    """Metro areas. With a later `year`, each area's population is projected by
+    continuing its 2011-2016 growth relative to its province's, so its share of
+    the province follows the trend; province totals are kept at 2016 (only
+    shares within a province enter the model). Transit shares stay at 2016."""
+    periods = (year - 2016) / 5
     with DATA.open() as f:
         rows = [
-            {"cma": r["cma"], "province": r["province"], "pop": int(r["population_2016"]),
+            {"cma": r["cma"], "province": r["province"],
+             "pop": int(r["population_2016"]) * ((1 + float(r["growth_2011_2016"]) / 100)
+                                                 / (1 + PROVINCE_GROWTH[r["province"]] / 100)) ** periods,
              "transit": float(r["transit_share_2016"])}
             for r in csv.DictReader(f)
         ]
@@ -123,11 +135,11 @@ def offsets(places: list[dict], rows=None) -> list[tuple[float, float]]:
     return [(p["share"], (p["transit"] - m_rural) / (m_cma - m_rural) - 0.5) for p in places]
 
 
-def canada_profile(overrides: dict | None = None, spread: float = 1.0) -> tuple:
+def canada_profile(overrides: dict | None = None, spread: float = 1.0, year: int = 2016) -> tuple:
     """The 16 regions' places. `overrides` replaces some areas' transit shares;
     `spread` scales the gap between metropolitan areas around their average
     (0 makes every metropolitan area alike, as in the two-place model)."""
-    rows = _rows(overrides)
+    rows = _rows(overrides, year)
     by_group = {}
     for g in GROUPS:
         offs = offsets(group_places(g, rows), rows)
@@ -166,4 +178,5 @@ CITY_PROFILES = {
     "canada": canada_profile,
     "canada_2023_big3": lambda: canada_profile(overrides=LFS_2023),
     "canada_half_spread": lambda: canada_profile(spread=0.5),
+    "canada_2041_trend": lambda: canada_profile(year=2041),
 }

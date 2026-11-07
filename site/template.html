@@ -351,6 +351,16 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="stack" id="check-text"></div>
   </section>
 
+  <section class="col stack" aria-labelledby="s-ahead">
+    <div class="sec-head"><span class="sec-num">Ahead</span><h2 id="s-ahead">Looking ahead: dated verdicts and what to watch</h2></div>
+    <p>The model describes Canada's long-run structure; it is not a forecast. Two of its measured inputs have official or trend projections, so those verdicts can be dated. The rest turn on numbers nobody has measured, so the useful forward-looking output is a watch list: the value at which each verdict flips, and how close the best estimate is.</p>
+    <div class="fig-title">Dated verdicts</div>
+    <div class="table-wrap"><table id="dated-table"></table></div>
+    <div class="fig-title">Watch list</div>
+    <div class="table-wrap"><table id="watch-table"></table></div>
+    <p class="note" id="watch-note"></p>
+  </section>
+
   <section class="col stack" aria-labelledby="s-compare">
     <div class="sec-head"><span class="sec-num">Compared</span><h2 id="s-compare">Against published work</h2></div>
     <p>Each finding next to the closest published evidence. None of these authors has reviewed this project; full citations are in the repository's COMPARISONS.md.</p>
@@ -927,6 +937,7 @@ legend(document.getElementById("mode-legend"), MODES);
     ["canada", "Every metro area, 2016 (baseline)"],
     ["canada_2023_big3", "Toronto, Montreal, Vancouver at 2023 levels"],
     ["canada_half_spread", "Gap between metro areas halved"],
+    ["canada_2041_trend", "Metro areas grown to 2041 (trend)"],
   ].filter(([k]) => S[k]);
   const h = el("tr", {}, el("thead", {}, table));
   ["City map", "Robust rule", "Keeps", "Cities win", "National wins"].forEach((t) => el("th", { text: t }, h));
@@ -963,5 +974,33 @@ legend(document.getElementById("mode-legend"), MODES);
   ["This project", "Closest published evidence", "Relation"].forEach((t) => el("th", { text: t }, h));
   const tb = el("tbody", {}, table);
   rows.forEach((r) => { const tr = el("tr", {}, tb); r.forEach((c) => el("td", { text: c }, tr)); });
+})();
+
+/* looking ahead */
+(function ahead() {
+  const W = DATA.watchlist, S = DATA.city_sensitivity;
+  if (!W) return;
+  const sp = W.emissions_spread;
+  const t2041 = S && S.canada_2041_trend;
+  const dated = [
+    ["Climate", `Carbon price (spread ${sp["2023"]}, 2023)`, `Carbon price (spread ${sp["2030_wam"]} to ${sp["2030_wm"]})`, `Carbon price (spread ${sp["2035_wam"]} to ${sp["2035_wm"]}, 2035)`, "ECCC 2025 projections of emissions per person by province, both scenarios. Provinces fall in absolute terms but stay as far apart proportionally"],
+    ["Transit", policyText(S.canada.robust), "", t2041 ? `${policyText(t2041.robust)} (2041; cities win ${pct(t2041.win_share.city || 0)} of worlds)` : "pending", "Each metro area's share of its province projected by continuing 2011-2016 relative growth; transit use held at 2016"],
+    ["Schools, environment, redistribution", "", "", "No projected input moves them", "They turn on unmeasured numbers: see the watch list"],
+  ];
+  const t1 = document.getElementById("dated-table");
+  const h1 = el("tr", {}, el("thead", {}, t1));
+  ["Area", "Today", "2030", "Later", "Basis"].forEach((t) => el("th", { text: t }, h1));
+  const b1 = el("tbody", {}, t1);
+  dated.forEach((r) => { const tr = el("tr", {}, b1); r.forEach((c) => el("td", { text: c }, tr)); });
+
+  const t2 = document.getElementById("watch-table");
+  const h2 = el("tr", {}, el("thead", {}, t2));
+  ["Area", "The number", "Verdict flips", "Best estimate now", "Status", "What would measure it"].forEach((t) => el("th", { text: t }, h2));
+  const b2 = el("tbody", {}, t2);
+  W.items.forEach((it) => {
+    const tr = el("tr", {}, b2);
+    [it.area, it.number, it.flips, it.current + (it.projected ? `; projected 2035: ${it.projected["2035"]}` : ""), it.status, it.watch].forEach((c) => el("td", { text: c }, tr));
+  });
+  document.getElementById("watch-note").textContent = "Flip points are read automatically from the threshold maps in \u00a7 6, with every measured input at its Canadian value; rerunning the maps updates this table. The most valuable single measurement is the first row: the published estimates of what it costs each level of government to raise a dollar span both flip points, so the schools and environment verdicts are genuinely open.";
 })();
 </script>
