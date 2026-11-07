@@ -8641,87 +8641,87 @@
       },
       "win_share": {
         "local": 0.01,
-        "central": 0.77,
+        "central": 0.755,
         "floor": 0.08,
-        "ceiling": 0.02,
-        "equalized": 0.075,
-        "city": 0.045
+        "ceiling": 0.07,
+        "equalized": 0.03,
+        "city": 0.055
       },
       "robust": {
         "policy": "central 0.4",
         "mode": "central",
         "level": 0.4,
-        "mean_regret": 0.028421605427207623,
-        "p95_regret": 0.103577467473002,
-        "gain_captured": 0.5709081789865957
+        "mean_regret": 0.03376053303162489,
+        "p95_regret": 0.11436647863197902,
+        "gain_captured": 0.5438266204528699
       },
       "cautious": {
         "policy": "central 0.4",
         "mode": "central",
         "level": 0.4,
-        "mean_regret": 0.028421605427207623,
-        "p95_regret": 0.103577467473002,
-        "gain_captured": 0.5709081789865957
+        "mean_regret": 0.03376053303162489,
+        "p95_regret": 0.11436647863197902,
+        "gain_captured": 0.5438266204528699
       },
       "best_per_mode": {
         "local": {
           "policy": "local",
           "mode": "local",
           "level": 0.0,
-          "mean_regret": 0.06623665154018345,
-          "p95_regret": 0.16338626005937268,
+          "mean_regret": 0.07400811740733522,
+          "p95_regret": 0.18471797747282742,
           "gain_captured": 0.0
         },
         "central": {
           "policy": "central 0.4",
           "mode": "central",
           "level": 0.4,
-          "mean_regret": 0.028421605427207623,
-          "p95_regret": 0.103577467473002,
-          "gain_captured": 0.5709081789865957
+          "mean_regret": 0.03376053303162489,
+          "p95_regret": 0.11436647863197902,
+          "gain_captured": 0.5438266204528699
         },
         "floor": {
           "policy": "floor 0",
           "mode": "floor",
           "level": 0.0,
-          "mean_regret": 0.06623665154018345,
-          "p95_regret": 0.16338626005937268,
+          "mean_regret": 0.07400811740733522,
+          "p95_regret": 0.18471797747282742,
           "gain_captured": 0.0
         },
         "ceiling": {
           "policy": "ceiling 0.8",
           "mode": "ceiling",
           "level": 0.8,
-          "mean_regret": 0.06623474560490475,
-          "p95_regret": 0.16338626005937268,
-          "gain_captured": 2.8774632086281393e-05
+          "mean_regret": 0.07399160412242643,
+          "p95_regret": 0.18471797747282742,
+          "gain_captured": 0.00022312802280721744
         },
         "matched": {
           "policy": "matched 10%",
           "mode": "matched",
           "level": 0.1,
-          "mean_regret": 0.06925732915768157,
-          "p95_regret": 0.1633148546943089,
-          "gain_captured": -0.04560432249002777
+          "mean_regret": 0.0785123656798304,
+          "p95_regret": 0.18319475144557879,
+          "gain_captured": -0.06086154371018693
         },
         "equalized": {
           "policy": "equalized 100%",
           "mode": "equalized",
           "level": 1.0,
-          "mean_regret": 0.06614658400693015,
-          "p95_regret": 0.16309629748139476,
-          "gain_captured": 0.0013597839135732759
+          "mean_regret": 0.07393102268986758,
+          "p95_regret": 0.18460847940856734,
+          "gain_captured": 0.001041706236672879
         },
         "city": {
           "policy": "city",
           "mode": "city",
           "level": 0.0,
-          "mean_regret": 0.07501269514120898,
-          "p95_regret": 0.17578128732765708,
-          "gain_captured": -0.1324952786253304
+          "mean_regret": 0.08504472949395481,
+          "p95_regret": 0.20389741070064216,
+          "gain_captured": -0.1491270481300706
         }
       },
-      "mean_gain_over_local": 0.06623665154018345,
+      "mean_gain_over_local": 0.07400811740733522,
       "drivers": [
         {
           "parameter": "overhead_log_ratio",
@@ -8729,14 +8729,14 @@
             -1.3862943611198906,
             1.3862943611198906
           ],
-          "importance": 0.45999999999999996,
+          "importance": 0.49,
           "low": {
             "local": 0.02,
-            "central": 0.54,
+            "central": 0.51,
             "floor": 0.16,
-            "ceiling": 0.04,
-            "equalized": 0.15,
-            "city": 0.09
+            "ceiling": 0.14,
+            "equalized": 0.06,
+            "city": 0.11
           },
           "high": {
             "central": 1.0
@@ -8748,44 +8748,19 @@
             0.1,
             0.45
           ],
-          "importance": 0.26,
+          "importance": 0.27,
           "low": {
-            "local": 0.01,
-            "central": 0.64,
-            "floor": 0.11,
-            "ceiling": 0.02,
-            "equalized": 0.13,
-            "city": 0.09
-          },
-          "high": {
-            "local": 0.01,
-            "central": 0.9,
-            "floor": 0.05,
-            "ceiling": 0.02,
-            "equalized": 0.02
-          }
-        },
-        {
-          "parameter": "national_overhead",
-          "range": [
-            0.2,
-            1.9
-          ],
-          "importance": 0.19000000000000003,
-          "low": {
-            "central": 0.85,
-            "floor": 0.02,
-            "ceiling": 0.02,
-            "equalized": 0.09,
-            "city": 0.02
-          },
-          "high": {
             "local": 0.02,
-            "central": 0.69,
-            "floor": 0.14,
-            "ceiling": 0.02,
+            "central": 0.62,
+            "floor": 0.11,
+            "ceiling": 0.08,
             "equalized": 0.06,
-            "city": 0.07
+            "city": 0.11
+          },
+          "high": {
+            "central": 0.89,
+            "floor": 0.05,
+            "ceiling": 0.06
           }
         },
         {
@@ -8794,66 +8769,20 @@
             0.0,
             0.2
           ],
-          "importance": 0.17,
+          "importance": 0.17000000000000004,
           "low": {
             "local": 0.02,
-            "central": 0.71,
-            "floor": 0.1,
-            "ceiling": 0.03,
-            "equalized": 0.05,
-            "city": 0.09
+            "central": 0.7,
+            "floor": 0.07,
+            "ceiling": 0.09,
+            "equalized": 0.01,
+            "city": 0.11
           },
           "high": {
-            "central": 0.83,
-            "floor": 0.06,
-            "ceiling": 0.01,
-            "equalized": 0.1
-          }
-        },
-        {
-          "parameter": "moving_cost",
-          "range": [
-            0.05,
-            0.08
-          ],
-          "importance": 0.16,
-          "low": {
-            "local": 0.02,
-            "central": 0.69,
-            "floor": 0.11,
-            "ceiling": 0.02,
-            "equalized": 0.09,
-            "city": 0.07
-          },
-          "high": {
-            "central": 0.85,
-            "floor": 0.05,
-            "ceiling": 0.02,
-            "equalized": 0.06,
-            "city": 0.02
-          }
-        },
-        {
-          "parameter": "move_share",
-          "range": [
-            0.02,
-            0.1
-          ],
-          "importance": 0.14,
-          "low": {
-            "local": 0.02,
-            "central": 0.79,
-            "floor": 0.12,
-            "ceiling": 0.02,
-            "equalized": 0.02,
-            "city": 0.03
-          },
-          "high": {
-            "central": 0.75,
-            "floor": 0.04,
-            "ceiling": 0.02,
-            "equalized": 0.13,
-            "city": 0.06
+            "central": 0.81,
+            "floor": 0.09,
+            "ceiling": 0.05,
+            "equalized": 0.05
           }
         },
         {
@@ -8862,43 +8791,69 @@
             0.1,
             0.5
           ],
-          "importance": 0.13999999999999999,
+          "importance": 0.17,
           "low": {
             "local": 0.02,
-            "central": 0.83,
-            "floor": 0.07,
+            "central": 0.82,
+            "floor": 0.06,
+            "ceiling": 0.01,
             "equalized": 0.04,
-            "city": 0.04
+            "city": 0.05
           },
           "high": {
-            "central": 0.71,
-            "floor": 0.09,
-            "ceiling": 0.04,
-            "equalized": 0.11,
-            "city": 0.05
+            "central": 0.69,
+            "floor": 0.1,
+            "ceiling": 0.13,
+            "equalized": 0.02,
+            "city": 0.06
           }
         },
         {
-          "parameter": "heterogeneity",
+          "parameter": "national_overhead",
           "range": [
-            0.0692,
-            0.0824
+            0.2,
+            1.9
           ],
-          "importance": 0.12,
+          "importance": 0.16999999999999996,
           "low": {
-            "central": 0.72,
-            "floor": 0.11,
-            "ceiling": 0.02,
-            "equalized": 0.1,
-            "city": 0.05
+            "local": 0.01,
+            "central": 0.83,
+            "floor": 0.05,
+            "ceiling": 0.04,
+            "equalized": 0.04,
+            "city": 0.03
           },
           "high": {
-            "local": 0.02,
-            "central": 0.82,
-            "floor": 0.05,
-            "ceiling": 0.02,
-            "equalized": 0.05,
-            "city": 0.04
+            "local": 0.01,
+            "central": 0.68,
+            "floor": 0.11,
+            "ceiling": 0.1,
+            "equalized": 0.02,
+            "city": 0.08
+          }
+        },
+        {
+          "parameter": "moving_cost",
+          "range": [
+            0.05,
+            0.08
+          ],
+          "importance": 0.16999999999999996,
+          "low": {
+            "local": 0.01,
+            "central": 0.67,
+            "floor": 0.1,
+            "ceiling": 0.09,
+            "equalized": 0.04,
+            "city": 0.09
+          },
+          "high": {
+            "local": 0.01,
+            "central": 0.84,
+            "floor": 0.06,
+            "ceiling": 0.05,
+            "equalized": 0.02,
+            "city": 0.02
           }
         },
         {
@@ -8907,21 +8862,44 @@
             0.0195,
             0.0325
           ],
-          "importance": 0.12,
+          "importance": 0.14999999999999997,
           "low": {
             "local": 0.02,
-            "central": 0.71,
-            "floor": 0.08,
-            "ceiling": 0.03,
-            "equalized": 0.09,
-            "city": 0.07
+            "central": 0.68,
+            "floor": 0.11,
+            "ceiling": 0.07,
+            "equalized": 0.04,
+            "city": 0.08
           },
           "high": {
             "central": 0.83,
-            "floor": 0.08,
-            "ceiling": 0.01,
-            "equalized": 0.06,
-            "city": 0.02
+            "floor": 0.05,
+            "ceiling": 0.07,
+            "equalized": 0.02,
+            "city": 0.03
+          }
+        },
+        {
+          "parameter": "heterogeneity",
+          "range": [
+            0.0692,
+            0.0824
+          ],
+          "importance": 0.09000000000000002,
+          "low": {
+            "central": 0.72,
+            "floor": 0.11,
+            "ceiling": 0.08,
+            "equalized": 0.03,
+            "city": 0.06
+          },
+          "high": {
+            "local": 0.02,
+            "central": 0.79,
+            "floor": 0.05,
+            "ceiling": 0.06,
+            "equalized": 0.03,
+            "city": 0.05
           }
         },
         {
@@ -8930,20 +8908,21 @@
             0.0,
             0.1
           ],
-          "importance": 0.08,
+          "importance": 0.09000000000000002,
           "low": {
-            "local": 0.02,
-            "central": 0.76,
-            "floor": 0.05,
-            "ceiling": 0.03,
-            "equalized": 0.09,
-            "city": 0.05
+            "local": 0.01,
+            "central": 0.73,
+            "floor": 0.06,
+            "ceiling": 0.09,
+            "equalized": 0.04,
+            "city": 0.07
           },
           "high": {
+            "local": 0.01,
             "central": 0.78,
-            "floor": 0.11,
-            "ceiling": 0.01,
-            "equalized": 0.06,
+            "floor": 0.1,
+            "ceiling": 0.05,
+            "equalized": 0.02,
             "city": 0.04
           }
         },
@@ -8953,44 +8932,43 @@
             0.25,
             0.3
           ],
-          "importance": 0.07,
+          "importance": 0.06000000000000001,
           "low": {
-            "local": 0.01,
-            "central": 0.78,
-            "floor": 0.07,
-            "ceiling": 0.01,
-            "equalized": 0.1,
-            "city": 0.03
+            "central": 0.75,
+            "floor": 0.1,
+            "ceiling": 0.08,
+            "equalized": 0.03,
+            "city": 0.04
           },
           "high": {
-            "local": 0.01,
+            "local": 0.02,
             "central": 0.76,
-            "floor": 0.09,
-            "ceiling": 0.03,
-            "equalized": 0.05,
-            "city": 0.06
+            "floor": 0.06,
+            "ceiling": 0.06,
+            "equalized": 0.03,
+            "city": 0.07
           }
         },
         {
-          "parameter": "productivity_sd",
+          "parameter": "move_share",
           "range": [
-            0.09,
-            0.17
+            0.02,
+            0.1
           ],
-          "importance": 0.06000000000000001,
+          "importance": 0.05,
           "low": {
-            "local": 0.01,
-            "central": 0.78,
-            "floor": 0.08,
-            "ceiling": 0.04,
-            "equalized": 0.06,
-            "city": 0.03
-          },
-          "high": {
-            "local": 0.01,
+            "local": 0.02,
             "central": 0.76,
             "floor": 0.08,
-            "equalized": 0.09,
+            "ceiling": 0.08,
+            "equalized": 0.01,
+            "city": 0.05
+          },
+          "high": {
+            "central": 0.75,
+            "floor": 0.08,
+            "ceiling": 0.06,
+            "equalized": 0.05,
             "city": 0.06
           }
         },
@@ -9003,18 +8981,41 @@
           "importance": 0.05,
           "low": {
             "local": 0.02,
+            "central": 0.75,
+            "floor": 0.08,
+            "ceiling": 0.08,
+            "equalized": 0.01,
+            "city": 0.06
+          },
+          "high": {
             "central": 0.76,
-            "floor": 0.09,
-            "ceiling": 0.02,
-            "equalized": 0.06,
+            "floor": 0.08,
+            "ceiling": 0.06,
+            "equalized": 0.05,
+            "city": 0.05
+          }
+        },
+        {
+          "parameter": "productivity_sd",
+          "range": [
+            0.09,
+            0.17
+          ],
+          "importance": 0.04,
+          "low": {
+            "local": 0.02,
+            "central": 0.75,
+            "floor": 0.07,
+            "ceiling": 0.08,
+            "equalized": 0.03,
             "city": 0.05
           },
           "high": {
-            "central": 0.78,
-            "floor": 0.07,
-            "ceiling": 0.02,
-            "equalized": 0.09,
-            "city": 0.04
+            "central": 0.76,
+            "floor": 0.09,
+            "ceiling": 0.06,
+            "equalized": 0.03,
+            "city": 0.06
           }
         }
       ],
@@ -9035,9 +9036,9 @@
           "metro_spillover": 0.0832,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.14955714935561465,
-          "realised_migration": 0.0024,
-          "realised_income_spread": 0.169
+          "gain": 0.18471797747282742,
+          "realised_migration": 0.00507,
+          "realised_income_spread": 0.1731
         },
         {
           "national_overhead": 1.8537,
@@ -9053,11 +9054,11 @@
           "capacity_elasticity": 0.0281,
           "urban_premium": 0.2957,
           "metro_spillover": 0.1259,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.0128792919106199,
-          "realised_migration": 0.00455,
-          "realised_income_spread": 0.1283
+          "gain": 0.012368073476984202,
+          "realised_migration": 0.00719,
+          "realised_income_spread": 0.1366
         },
         {
           "national_overhead": 1.5364,
@@ -9075,9 +9076,9 @@
           "metro_spillover": 0.1212,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.025927123797807462,
-          "realised_migration": 0.00285,
-          "realised_income_spread": 0.1331
+          "gain": 0.02401736695432787,
+          "realised_migration": 0.0051,
+          "realised_income_spread": 0.1346
         },
         {
           "national_overhead": 1.5671,
@@ -9095,9 +9096,9 @@
           "metro_spillover": 0.0543,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.0003871427120847367,
-          "realised_migration": 0.00597,
-          "realised_income_spread": 0.1266
+          "gain": 0.0010118797004757332,
+          "realised_migration": 0.01201,
+          "realised_income_spread": 0.1276
         },
         {
           "national_overhead": 1.0572,
@@ -9115,9 +9116,9 @@
           "metro_spillover": 0.1545,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.1500667388546271,
-          "realised_migration": 0.00448,
-          "realised_income_spread": 0.1538
+          "gain": 0.17571631224289236,
+          "realised_migration": 0.00771,
+          "realised_income_spread": 0.1473
         },
         {
           "national_overhead": 0.3871,
@@ -9135,9 +9136,9 @@
           "metro_spillover": 0.1083,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.05394802572607206,
-          "realised_migration": 0.00458,
-          "realised_income_spread": 0.1436
+          "gain": 0.05985785877052184,
+          "realised_migration": 0.0074,
+          "realised_income_spread": 0.1569
         },
         {
           "national_overhead": 0.98,
@@ -9155,9 +9156,9 @@
           "metro_spillover": 0.1884,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.027296079276137537,
-          "realised_migration": 0.00396,
-          "realised_income_spread": 0.1527
+          "gain": 0.028524618445945754,
+          "realised_migration": 0.00701,
+          "realised_income_spread": 0.1515
         },
         {
           "national_overhead": 1.6076,
@@ -9175,9 +9176,9 @@
           "metro_spillover": 0.0411,
           "winner": "ceiling 0.6",
           "mode": "ceiling",
-          "gain": 2.7874547393058613e-05,
-          "realised_migration": 0.0092,
-          "realised_income_spread": 0.1056
+          "gain": 0.0007536584938852009,
+          "realised_migration": 0.01295,
+          "realised_income_spread": 0.0972
         },
         {
           "national_overhead": 0.8784,
@@ -9193,11 +9194,11 @@
           "capacity_elasticity": 0.03,
           "urban_premium": 0.2069,
           "metro_spillover": 0.1275,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.11116539870796661,
-          "realised_migration": 0.00236,
-          "realised_income_spread": 0.1447
+          "gain": 0.12327323735467188,
+          "realised_migration": 0.00472,
+          "realised_income_spread": 0.1485
         },
         {
           "national_overhead": 1.7063,
@@ -9215,9 +9216,9 @@
           "metro_spillover": 0.1726,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.01609246085396715,
-          "realised_migration": 0.00441,
-          "realised_income_spread": 0.1205
+          "gain": 0.011990875566354003,
+          "realised_migration": 0.00837,
+          "realised_income_spread": 0.1149
         },
         {
           "national_overhead": 1.259,
@@ -9235,9 +9236,9 @@
           "metro_spillover": 0.0614,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.08338961019224517,
-          "realised_migration": 0.01135,
-          "realised_income_spread": 0.1264
+          "gain": 0.08674826511745898,
+          "realised_migration": 0.01243,
+          "realised_income_spread": 0.1273
         },
         {
           "national_overhead": 1.4888,
@@ -9253,11 +9254,11 @@
           "capacity_elasticity": 0.0228,
           "urban_premium": 0.4552,
           "metro_spillover": 0.0853,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.13107705010342996,
-          "realised_migration": 0.00292,
-          "realised_income_spread": 0.1349
+          "gain": 0.15176253162960793,
+          "realised_migration": 0.00632,
+          "realised_income_spread": 0.1324
         },
         {
           "national_overhead": 1.3366,
@@ -9275,9 +9276,9 @@
           "metro_spillover": 0.0109,
           "winner": "city",
           "mode": "city",
-          "gain": 0.0007398661394552308,
-          "realised_migration": 0.00792,
-          "realised_income_spread": 0.1329
+          "gain": 0.0030261122949220565,
+          "realised_migration": 0.0083,
+          "realised_income_spread": 0.1328
         },
         {
           "national_overhead": 1.2176,
@@ -9295,9 +9296,9 @@
           "metro_spillover": 0.1061,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.05267661412485571,
-          "realised_migration": 0.00219,
-          "realised_income_spread": 0.1112
+          "gain": 0.05715755995575754,
+          "realised_migration": 0.00514,
+          "realised_income_spread": 0.1147
         },
         {
           "national_overhead": 0.4887,
@@ -9313,11 +9314,11 @@
           "capacity_elasticity": 0.0195,
           "urban_premium": 0.3843,
           "metro_spillover": 0.0327,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.07157369905841938,
-          "realised_migration": 0.00427,
-          "realised_income_spread": 0.1373
+          "gain": 0.07756226131368846,
+          "realised_migration": 0.00656,
+          "realised_income_spread": 0.1198
         },
         {
           "national_overhead": 1.493,
@@ -9335,9 +9336,9 @@
           "metro_spillover": 0.0875,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07540908160353332,
-          "realised_migration": 0.00125,
-          "realised_income_spread": 0.1285
+          "gain": 0.0890787390252456,
+          "realised_migration": 0.00271,
+          "realised_income_spread": 0.1318
         },
         {
           "national_overhead": 1.1037,
@@ -9355,9 +9356,9 @@
           "metro_spillover": 0.1906,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.0735565590897792,
-          "realised_migration": 0.00278,
-          "realised_income_spread": 0.1194
+          "gain": 0.07605977427672944,
+          "realised_migration": 0.00358,
+          "realised_income_spread": 0.1178
         },
         {
           "national_overhead": 1.7041,
@@ -9373,11 +9374,11 @@
           "capacity_elasticity": 0.0228,
           "urban_premium": 0.4831,
           "metro_spillover": 0.0639,
-          "winner": "equalized 75%",
-          "mode": "equalized",
-          "gain": 5.004663478591631e-05,
-          "realised_migration": 0.00493,
-          "realised_income_spread": 0.1056
+          "winner": "floor 0.1",
+          "mode": "floor",
+          "gain": 0.0003618016707483962,
+          "realised_migration": 0.00813,
+          "realised_income_spread": 0.094
         },
         {
           "national_overhead": 0.4175,
@@ -9395,9 +9396,9 @@
           "metro_spillover": 0.1938,
           "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.09686945087743695,
-          "realised_migration": 0.00611,
-          "realised_income_spread": 0.1357
+          "gain": 0.11483448976426197,
+          "realised_migration": 0.0092,
+          "realised_income_spread": 0.1363
         },
         {
           "national_overhead": 1.8234,
@@ -9415,9 +9416,9 @@
           "metro_spillover": 0.013,
           "winner": "central 0.2",
           "mode": "central",
-          "gain": 0.0024716374395943597,
-          "realised_migration": 0.01108,
-          "realised_income_spread": 0.1401
+          "gain": 0.0027064469700831817,
+          "realised_migration": 0.01094,
+          "realised_income_spread": 0.1409
         },
         {
           "national_overhead": 1.1327,
@@ -9435,9 +9436,9 @@
           "metro_spillover": 0.0145,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.15323089809779797,
-          "realised_migration": 0.00326,
-          "realised_income_spread": 0.156
+          "gain": 0.1564146934148891,
+          "realised_migration": 0.00337,
+          "realised_income_spread": 0.1592
         },
         {
           "national_overhead": 1.112,
@@ -9455,9 +9456,9 @@
           "metro_spillover": 0.0978,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.047533963761199935,
-          "realised_migration": 0.00313,
-          "realised_income_spread": 0.1312
+          "gain": 0.050425120801243076,
+          "realised_migration": 0.00691,
+          "realised_income_spread": 0.1419
         },
         {
           "national_overhead": 0.6923,
@@ -9475,9 +9476,9 @@
           "metro_spillover": 0.1587,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.20754959099319492,
-          "realised_migration": 0.00354,
-          "realised_income_spread": 0.1472
+          "gain": 0.2388104254253078,
+          "realised_migration": 0.00556,
+          "realised_income_spread": 0.1461
         },
         {
           "national_overhead": 0.5189,
@@ -9495,9 +9496,9 @@
           "metro_spillover": 0.0067,
           "winner": "city",
           "mode": "city",
-          "gain": 0.001523530920685981,
-          "realised_migration": 0.00521,
-          "realised_income_spread": 0.103
+          "gain": 0.008378071041228438,
+          "realised_migration": 0.01028,
+          "realised_income_spread": 0.1062
         },
         {
           "national_overhead": 0.262,
@@ -9515,9 +9516,9 @@
           "metro_spillover": 0.1315,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.061711962914412194,
-          "realised_migration": 0.00622,
-          "realised_income_spread": 0.1282
+          "gain": 0.07020641088420823,
+          "realised_migration": 0.01146,
+          "realised_income_spread": 0.1333
         },
         {
           "national_overhead": 1.4382,
@@ -9533,11 +9534,11 @@
           "capacity_elasticity": 0.0229,
           "urban_premium": 0.4442,
           "metro_spillover": 0.1536,
-          "winner": "equalized 100%",
-          "mode": "equalized",
-          "gain": 3.52320503829856e-05,
-          "realised_migration": 0.00733,
-          "realised_income_spread": 0.152
+          "winner": "floor 0.1",
+          "mode": "floor",
+          "gain": 0.00031242594569715065,
+          "realised_migration": 0.01337,
+          "realised_income_spread": 0.1442
         },
         {
           "national_overhead": 1.6589,
@@ -9555,9 +9556,9 @@
           "metro_spillover": 0.1421,
           "winner": "ceiling 0.6",
           "mode": "ceiling",
-          "gain": 9.252054099684326e-05,
-          "realised_migration": 0.00705,
-          "realised_income_spread": 0.1139
+          "gain": 0.0002595488097545534,
+          "realised_migration": 0.00948,
+          "realised_income_spread": 0.1167
         },
         {
           "national_overhead": 1.3594,
@@ -9575,9 +9576,9 @@
           "metro_spillover": 0.1594,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.11231859223445632,
-          "realised_migration": 0.00149,
-          "realised_income_spread": 0.1591
+          "gain": 0.11264078062958735,
+          "realised_migration": 0.00156,
+          "realised_income_spread": 0.1577
         },
         {
           "national_overhead": 0.397,
@@ -9593,11 +9594,11 @@
           "capacity_elasticity": 0.0243,
           "urban_premium": 0.3994,
           "metro_spillover": 0.1703,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.030153522108698955,
-          "realised_migration": 0.00809,
-          "realised_income_spread": 0.1312
+          "gain": 0.038783998078680715,
+          "realised_migration": 0.01153,
+          "realised_income_spread": 0.1227
         },
         {
           "national_overhead": 1.297,
@@ -9613,11 +9614,11 @@
           "capacity_elasticity": 0.0323,
           "urban_premium": 0.4894,
           "metro_spillover": 0.1601,
-          "winner": "equalized 75%",
-          "mode": "equalized",
-          "gain": 0.00019996057301931158,
-          "realised_migration": 0.00788,
-          "realised_income_spread": 0.1365
+          "winner": "ceiling 0.6",
+          "mode": "ceiling",
+          "gain": 0.0005991623068128671,
+          "realised_migration": 0.01028,
+          "realised_income_spread": 0.1372
         },
         {
           "national_overhead": 1.4031,
@@ -9635,9 +9636,9 @@
           "metro_spillover": 0.0845,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.09859790623731184,
-          "realised_migration": 0.00201,
-          "realised_income_spread": 0.1735
+          "gain": 0.11165984913290397,
+          "realised_migration": 0.00281,
+          "realised_income_spread": 0.176
         },
         {
           "national_overhead": 1.1961,
@@ -9655,9 +9656,9 @@
           "metro_spillover": 0.0079,
           "winner": "city",
           "mode": "city",
-          "gain": 0.001898418559419482,
-          "realised_migration": 0.0074,
-          "realised_income_spread": 0.1173
+          "gain": 0.003792823833943193,
+          "realised_migration": 0.01003,
+          "realised_income_spread": 0.1184
         },
         {
           "national_overhead": 0.2595,
@@ -9675,9 +9676,9 @@
           "metro_spillover": 0.0191,
           "winner": "central 0.8",
           "mode": "central",
-          "gain": 0.16534565689416972,
-          "realised_migration": 0.00729,
-          "realised_income_spread": 0.121
+          "gain": 0.17083930290018737,
+          "realised_migration": 0.00896,
+          "realised_income_spread": 0.1116
         },
         {
           "national_overhead": 1.0837,
@@ -9693,11 +9694,11 @@
           "capacity_elasticity": 0.0317,
           "urban_premium": 0.3797,
           "metro_spillover": 0.1375,
-          "winner": "floor 0.2",
-          "mode": "floor",
-          "gain": 4.939618551616509e-05,
-          "realised_migration": 0.0083,
-          "realised_income_spread": 0.1187
+          "winner": "ceiling 0.6",
+          "mode": "ceiling",
+          "gain": 0.0002914450176371708,
+          "realised_migration": 0.01042,
+          "realised_income_spread": 0.1115
         },
         {
           "national_overhead": 1.1766,
@@ -9713,11 +9714,11 @@
           "capacity_elasticity": 0.0305,
           "urban_premium": 0.3554,
           "metro_spillover": 0.1166,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.16875135481467865,
-          "realised_migration": 0.00396,
-          "realised_income_spread": 0.1639
+          "gain": 0.1986364530026639,
+          "realised_migration": 0.00778,
+          "realised_income_spread": 0.1605
         },
         {
           "national_overhead": 0.4982,
@@ -9735,9 +9736,9 @@
           "metro_spillover": 0.042,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.011623750552950562,
-          "realised_migration": 0.00549,
-          "realised_income_spread": 0.1391
+          "gain": 0.011681908554529344,
+          "realised_migration": 0.00878,
+          "realised_income_spread": 0.1464
         },
         {
           "national_overhead": 1.632,
@@ -9755,9 +9756,9 @@
           "metro_spillover": 0.1782,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.0514230160528053,
-          "realised_migration": 0.00212,
-          "realised_income_spread": 0.1019
+          "gain": 0.05909659111313072,
+          "realised_migration": 0.00465,
+          "realised_income_spread": 0.1073
         },
         {
           "national_overhead": 1.6468,
@@ -9773,11 +9774,11 @@
           "capacity_elasticity": 0.0308,
           "urban_premium": 0.2026,
           "metro_spillover": 0.1645,
-          "winner": "floor 0.3",
+          "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.00029640999166191673,
-          "realised_migration": 0.00997,
-          "realised_income_spread": 0.1548
+          "gain": 0.00024946511425591456,
+          "realised_migration": 0.01021,
+          "realised_income_spread": 0.1547
         },
         {
           "national_overhead": 1.4534,
@@ -9795,9 +9796,9 @@
           "metro_spillover": 0.0527,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.022976876541480618,
-          "realised_migration": 0.00611,
-          "realised_income_spread": 0.1723
+          "gain": 0.02273537446602375,
+          "realised_migration": 0.00764,
+          "realised_income_spread": 0.1738
         },
         {
           "national_overhead": 0.2046,
@@ -9815,9 +9816,9 @@
           "metro_spillover": 0.1346,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.1200482040586667,
-          "realised_migration": 0.00646,
-          "realised_income_spread": 0.1477
+          "gain": 0.12770407290416996,
+          "realised_migration": 0.00729,
+          "realised_income_spread": 0.1465
         },
         {
           "national_overhead": 1.7239,
@@ -9835,9 +9836,9 @@
           "metro_spillover": 0.0585,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.06806412239452987,
-          "realised_migration": 0.00115,
-          "realised_income_spread": 0.1206
+          "gain": 0.0738280086264941,
+          "realised_migration": 0.00167,
+          "realised_income_spread": 0.1266
         },
         {
           "national_overhead": 1.5154,
@@ -9853,11 +9854,11 @@
           "capacity_elasticity": 0.0213,
           "urban_premium": 0.2495,
           "metro_spillover": 0.101,
-          "winner": "central 0.2",
+          "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.06903856682455121,
-          "realised_migration": 0.00403,
-          "realised_income_spread": 0.1331
+          "gain": 0.07460707214171129,
+          "realised_migration": 0.005,
+          "realised_income_spread": 0.1349
         },
         {
           "national_overhead": 0.8053,
@@ -9875,9 +9876,9 @@
           "metro_spillover": 0.0596,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.04957920201911968,
-          "realised_migration": 0.00604,
-          "realised_income_spread": 0.1335
+          "gain": 0.0530224451467782,
+          "realised_migration": 0.0099,
+          "realised_income_spread": 0.1355
         },
         {
           "national_overhead": 0.7838,
@@ -9895,9 +9896,9 @@
           "metro_spillover": 0.1528,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.12718177631405192,
-          "realised_migration": 0.00785,
-          "realised_income_spread": 0.1424
+          "gain": 0.1375772953427147,
+          "realised_migration": 0.01021,
+          "realised_income_spread": 0.141
         },
         {
           "national_overhead": 0.3842,
@@ -9915,9 +9916,9 @@
           "metro_spillover": 0.1178,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.05017283222592747,
-          "realised_migration": 0.00809,
-          "realised_income_spread": 0.1556
+          "gain": 0.05112424686118164,
+          "realised_migration": 0.00993,
+          "realised_income_spread": 0.1549
         },
         {
           "national_overhead": 1.6246,
@@ -9933,11 +9934,11 @@
           "capacity_elasticity": 0.0274,
           "urban_premium": 0.2772,
           "metro_spillover": 0.1111,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.12652819383683625,
-          "realised_migration": 0.00052,
-          "realised_income_spread": 0.1197
+          "gain": 0.14755758844880917,
+          "realised_migration": 0.00153,
+          "realised_income_spread": 0.1176
         },
         {
           "national_overhead": 0.5359,
@@ -9953,11 +9954,11 @@
           "capacity_elasticity": 0.0245,
           "urban_premium": 0.2524,
           "metro_spillover": 0.0948,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.034956089738178875,
-          "realised_migration": 0.00899,
-          "realised_income_spread": 0.1567
+          "gain": 0.04321152288381869,
+          "realised_migration": 0.01083,
+          "realised_income_spread": 0.1558
         },
         {
           "national_overhead": 0.9494,
@@ -9973,11 +9974,11 @@
           "capacity_elasticity": 0.0303,
           "urban_premium": 0.4381,
           "metro_spillover": 0.0347,
-          "winner": "equalized 100%",
-          "mode": "equalized",
-          "gain": 0.0001780774335591595,
-          "realised_migration": 0.00698,
-          "realised_income_spread": 0.1263
+          "winner": "ceiling 0.7",
+          "mode": "ceiling",
+          "gain": 0.0009715121244060487,
+          "realised_migration": 0.01069,
+          "realised_income_spread": 0.121
         },
         {
           "national_overhead": 1.2944,
@@ -9995,9 +9996,9 @@
           "metro_spillover": 0.1805,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.002076223227835211,
-          "realised_migration": 0.00635,
-          "realised_income_spread": 0.1302
+          "gain": 0.001542867112148863,
+          "realised_migration": 0.00937,
+          "realised_income_spread": 0.1273
         },
         {
           "national_overhead": 1.7146,
@@ -10015,9 +10016,9 @@
           "metro_spillover": 0.1235,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.05138361038456547,
-          "realised_migration": 0.00236,
-          "realised_income_spread": 0.1074
+          "gain": 0.05263688156286231,
+          "realised_migration": 0.00538,
+          "realised_income_spread": 0.1128
         },
         {
           "national_overhead": 1.1539,
@@ -10035,9 +10036,9 @@
           "metro_spillover": 0.1243,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.10889387361878256,
-          "realised_migration": 0.00698,
-          "realised_income_spread": 0.109
+          "gain": 0.12354015866992488,
+          "realised_migration": 0.01024,
+          "realised_income_spread": 0.1037
         },
         {
           "national_overhead": 0.5507,
@@ -10053,11 +10054,11 @@
           "capacity_elasticity": 0.0198,
           "urban_premium": 0.4967,
           "metro_spillover": 0.0468,
-          "winner": "equalized 100%",
-          "mode": "equalized",
-          "gain": 0.00016259170631066633,
-          "realised_migration": 0.00906,
-          "realised_income_spread": 0.145
+          "winner": "ceiling 0.8",
+          "mode": "ceiling",
+          "gain": 0.0009234726677371796,
+          "realised_migration": 0.01253,
+          "realised_income_spread": 0.1551
         },
         {
           "national_overhead": 0.2503,
@@ -10075,9 +10076,9 @@
           "metro_spillover": 0.0235,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.03331951409518197,
-          "realised_migration": 0.00851,
-          "realised_income_spread": 0.1199
+          "gain": 0.04264449023807698,
+          "realised_migration": 0.01035,
+          "realised_income_spread": 0.1309
         },
         {
           "national_overhead": 0.6719,
@@ -10093,11 +10094,11 @@
           "capacity_elasticity": 0.0294,
           "urban_premium": 0.4794,
           "metro_spillover": 0.0937,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.08862555389433245,
-          "realised_migration": 0.00823,
-          "realised_income_spread": 0.1514
+          "gain": 0.101571251752789,
+          "realised_migration": 0.01083,
+          "realised_income_spread": 0.1469
         },
         {
           "national_overhead": 0.9988,
@@ -10113,11 +10114,11 @@
           "capacity_elasticity": 0.0295,
           "urban_premium": 0.3945,
           "metro_spillover": 0.0476,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.048302761631643217,
-          "realised_migration": 0.00465,
-          "realised_income_spread": 0.1274
+          "gain": 0.05353295437064397,
+          "realised_migration": 0.00625,
+          "realised_income_spread": 0.144
         },
         {
           "national_overhead": 0.4278,
@@ -10135,9 +10136,9 @@
           "metro_spillover": 0.1914,
           "winner": "equalized 50%",
           "mode": "equalized",
-          "gain": 0.00013534335394715935,
-          "realised_migration": 0.00493,
-          "realised_income_spread": 0.1261
+          "gain": 0.0002383668069128042,
+          "realised_migration": 0.00937,
+          "realised_income_spread": 0.1323
         },
         {
           "national_overhead": 0.7906,
@@ -10155,9 +10156,9 @@
           "metro_spillover": 0.1188,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.10018530389789887,
-          "realised_migration": 0.00378,
-          "realised_income_spread": 0.1105
+          "gain": 0.11130798447813434,
+          "realised_migration": 0.00642,
+          "realised_income_spread": 0.1039
         },
         {
           "national_overhead": 1.7469,
@@ -10173,11 +10174,11 @@
           "capacity_elasticity": 0.0299,
           "urban_premium": 0.4604,
           "metro_spillover": 0.0608,
-          "winner": "floor 0.1",
-          "mode": "floor",
-          "gain": 3.768958723915361e-05,
-          "realised_migration": 0.00774,
-          "realised_income_spread": 0.1321
+          "winner": "ceiling 0.5",
+          "mode": "ceiling",
+          "gain": 0.0010830525718911188,
+          "realised_migration": 0.01208,
+          "realised_income_spread": 0.1313
         },
         {
           "national_overhead": 0.2868,
@@ -10195,9 +10196,9 @@
           "metro_spillover": 0.1045,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.002722661188022474,
-          "realised_migration": 0.00753,
-          "realised_income_spread": 0.1262
+          "gain": 0.005881233538525654,
+          "realised_migration": 0.0092,
+          "realised_income_spread": 0.1292
         },
         {
           "national_overhead": 1.4095,
@@ -10213,11 +10214,11 @@
           "capacity_elasticity": 0.0226,
           "urban_premium": 0.4244,
           "metro_spillover": 0.0355,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.10669599296553506,
-          "realised_migration": 0.0016,
-          "realised_income_spread": 0.1441
+          "gain": 0.12820774796826062,
+          "realised_migration": 0.00688,
+          "realised_income_spread": 0.1508
         },
         {
           "national_overhead": 0.7055,
@@ -10233,11 +10234,11 @@
           "capacity_elasticity": 0.0275,
           "urban_premium": 0.2815,
           "metro_spillover": 0.0713,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.0883279380476683,
-          "realised_migration": 0.00253,
-          "realised_income_spread": 0.1672
+          "gain": 0.09991784216631101,
+          "realised_migration": 0.00587,
+          "realised_income_spread": 0.1734
         },
         {
           "national_overhead": 0.9121,
@@ -10255,9 +10256,9 @@
           "metro_spillover": 0.0787,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.007844052632902984,
-          "realised_migration": 0.00677,
-          "realised_income_spread": 0.1311
+          "gain": 0.00826951858348135,
+          "realised_migration": 0.01066,
+          "realised_income_spread": 0.1143
         },
         {
           "national_overhead": 1.7652,
@@ -10275,9 +10276,9 @@
           "metro_spillover": 0.0052,
           "winner": "city",
           "mode": "city",
-          "gain": 0.000945761382313122,
-          "realised_migration": 0.0051,
-          "realised_income_spread": 0.1112
+          "gain": 0.003990286889289138,
+          "realised_migration": 0.00736,
+          "realised_income_spread": 0.1134
         },
         {
           "national_overhead": 1.3958,
@@ -10295,9 +10296,9 @@
           "metro_spillover": 0.1265,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07384854937236277,
-          "realised_migration": 0.00649,
-          "realised_income_spread": 0.1261
+          "gain": 0.07578476406954959,
+          "realised_migration": 0.00674,
+          "realised_income_spread": 0.126
         },
         {
           "national_overhead": 1.151,
@@ -10313,11 +10314,11 @@
           "capacity_elasticity": 0.0251,
           "urban_premium": 0.3232,
           "metro_spillover": 0.1392,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.09898601510010946,
-          "realised_migration": 0.00688,
-          "realised_income_spread": 0.1438
+          "gain": 0.11873977983556486,
+          "realised_migration": 0.01087,
+          "realised_income_spread": 0.135
         },
         {
           "national_overhead": 1.3713,
@@ -10333,11 +10334,11 @@
           "capacity_elasticity": 0.0298,
           "urban_premium": 0.3425,
           "metro_spillover": 0.1291,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.1508927823886262,
-          "realised_migration": 0.00281,
-          "realised_income_spread": 0.1423
+          "gain": 0.17952801225128479,
+          "realised_migration": 0.00594,
+          "realised_income_spread": 0.1529
         },
         {
           "national_overhead": 0.7677,
@@ -10355,9 +10356,9 @@
           "metro_spillover": 0.0867,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.07238599795399833,
-          "realised_migration": 0.00177,
-          "realised_income_spread": 0.1125
+          "gain": 0.07933477216401928,
+          "realised_migration": 0.0059,
+          "realised_income_spread": 0.0991
         },
         {
           "national_overhead": 1.3833,
@@ -10373,11 +10374,11 @@
           "capacity_elasticity": 0.0196,
           "urban_premium": 0.331,
           "metro_spillover": 0.1624,
-          "winner": "central 0.4",
-          "mode": "central",
-          "gain": 0.003526657550503798,
-          "realised_migration": 0.00639,
-          "realised_income_spread": 0.1227
+          "winner": "ceiling 0.6",
+          "mode": "ceiling",
+          "gain": 0.00022492789452488449,
+          "realised_migration": 0.01007,
+          "realised_income_spread": 0.1121
         },
         {
           "national_overhead": 1.3113,
@@ -10393,11 +10394,11 @@
           "capacity_elasticity": 0.0271,
           "urban_premium": 0.2217,
           "metro_spillover": 0.0758,
-          "winner": "floor 0.2",
+          "winner": "floor 0.1",
           "mode": "floor",
-          "gain": 0.0004045183641580713,
-          "realised_migration": 0.00431,
-          "realised_income_spread": 0.1089
+          "gain": 9.592282631427917e-05,
+          "realised_migration": 0.00753,
+          "realised_income_spread": 0.1101
         },
         {
           "national_overhead": 0.4419,
@@ -10413,11 +10414,11 @@
           "capacity_elasticity": 0.0304,
           "urban_premium": 0.3294,
           "metro_spillover": 0.0455,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.1325183455948829,
-          "realised_migration": 0.00632,
-          "realised_income_spread": 0.1699
+          "gain": 0.1550934472223817,
+          "realised_migration": 0.00892,
+          "realised_income_spread": 0.1689
         },
         {
           "national_overhead": 0.7423,
@@ -10433,11 +10434,11 @@
           "capacity_elasticity": 0.0233,
           "urban_premium": 0.1773,
           "metro_spillover": 0.1141,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.08858509777159052,
-          "realised_migration": 0.00736,
-          "realised_income_spread": 0.1347
+          "gain": 0.09670891697087644,
+          "realised_migration": 0.00878,
+          "realised_income_spread": 0.1327
         },
         {
           "national_overhead": 1.6392,
@@ -10456,8 +10457,8 @@
           "winner": "local",
           "mode": "local",
           "gain": 0.0,
-          "realised_migration": 0.00747,
-          "realised_income_spread": 0.1171
+          "realised_migration": 0.00781,
+          "realised_income_spread": 0.1201
         },
         {
           "national_overhead": 0.8031,
@@ -10473,11 +10474,11 @@
           "capacity_elasticity": 0.031,
           "urban_premium": 0.3703,
           "metro_spillover": 0.0819,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.03816499759687056,
-          "realised_migration": 0.00674,
-          "realised_income_spread": 0.1198
+          "gain": 0.04204329181750935,
+          "realised_migration": 0.00969,
+          "realised_income_spread": 0.131
         },
         {
           "national_overhead": 0.8589,
@@ -10493,11 +10494,11 @@
           "capacity_elasticity": 0.0285,
           "urban_premium": 0.432,
           "metro_spillover": 0.107,
-          "winner": "equalized 50%",
-          "mode": "equalized",
-          "gain": 9.378002205942537e-05,
-          "realised_migration": 0.00833,
-          "realised_income_spread": 0.1369
+          "winner": "floor 0.2",
+          "mode": "floor",
+          "gain": 0.0005351522731335268,
+          "realised_migration": 0.01389,
+          "realised_income_spread": 0.1356
         },
         {
           "national_overhead": 1.0153,
@@ -10515,9 +10516,9 @@
           "metro_spillover": 0.144,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.04258583871127247,
-          "realised_migration": 0.0041,
-          "realised_income_spread": 0.0975
+          "gain": 0.04669577674260489,
+          "realised_migration": 0.0067,
+          "realised_income_spread": 0.1133
         },
         {
           "national_overhead": 1.0726,
@@ -10535,9 +10536,9 @@
           "metro_spillover": 0.0689,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.13244478264234577,
-          "realised_migration": 0.00285,
-          "realised_income_spread": 0.136
+          "gain": 0.14449632435539067,
+          "realised_migration": 0.0034,
+          "realised_income_spread": 0.1349
         },
         {
           "national_overhead": 1.282,
@@ -10555,9 +10556,9 @@
           "metro_spillover": 0.0047,
           "winner": "city",
           "mode": "city",
-          "gain": 0.01216055925033499,
-          "realised_migration": 0.00681,
-          "realised_income_spread": 0.1477
+          "gain": 0.014287507414721956,
+          "realised_migration": 0.01312,
+          "realised_income_spread": 0.1469
         },
         {
           "national_overhead": 0.3625,
@@ -10573,11 +10574,11 @@
           "capacity_elasticity": 0.0247,
           "urban_premium": 0.1492,
           "metro_spillover": 0.065,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.06623642500420975,
-          "realised_migration": 0.00587,
-          "realised_income_spread": 0.1321
+          "gain": 0.07018202004106282,
+          "realised_migration": 0.00819,
+          "realised_income_spread": 0.1301
         },
         {
           "national_overhead": 1.613,
@@ -10595,9 +10596,9 @@
           "metro_spillover": 0.1767,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07480842933528359,
-          "realised_migration": 0.00149,
-          "realised_income_spread": 0.1047
+          "gain": 0.07717048734895195,
+          "realised_migration": 0.00191,
+          "realised_income_spread": 0.1022
         },
         {
           "national_overhead": 1.5824,
@@ -10613,11 +10614,11 @@
           "capacity_elasticity": 0.0309,
           "urban_premium": 0.4348,
           "metro_spillover": 0.0557,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.13845233136839613,
-          "realised_migration": 0.00038,
-          "realised_income_spread": 0.1117
+          "gain": 0.16095024207513847,
+          "realised_migration": 0.00222,
+          "realised_income_spread": 0.1127
         },
         {
           "national_overhead": 1.6951,
@@ -10635,9 +10636,9 @@
           "metro_spillover": 0.1611,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07977487191351078,
-          "realised_migration": 0.00375,
-          "realised_income_spread": 0.1628
+          "gain": 0.08800205920725662,
+          "realised_migration": 0.0049,
+          "realised_income_spread": 0.1554
         },
         {
           "national_overhead": 1.6006,
@@ -10653,11 +10654,11 @@
           "capacity_elasticity": 0.0289,
           "urban_premium": 0.3765,
           "metro_spillover": 0.1509,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.13805085922467292,
-          "realised_migration": 0.00465,
-          "realised_income_spread": 0.1699
+          "gain": 0.15461553154650304,
+          "realised_migration": 0.00514,
+          "realised_income_spread": 0.1707
         },
         {
           "national_overhead": 0.3779,
@@ -10675,9 +10676,9 @@
           "metro_spillover": 0.095,
           "winner": "ceiling 0.8",
           "mode": "ceiling",
-          "gain": 9.320985136840321e-05,
-          "realised_migration": 0.00899,
-          "realised_income_spread": 0.1331
+          "gain": 0.0010687222517716255,
+          "realised_migration": 0.01316,
+          "realised_income_spread": 0.1302
         },
         {
           "national_overhead": 1.5084,
@@ -10695,9 +10696,9 @@
           "metro_spillover": 0.1951,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.01733732876174028,
-          "realised_migration": 0.00295,
-          "realised_income_spread": 0.1679
+          "gain": 0.018956429261963656,
+          "realised_migration": 0.00757,
+          "realised_income_spread": 0.1637
         },
         {
           "national_overhead": 1.8121,
@@ -10713,11 +10714,11 @@
           "capacity_elasticity": 0.029,
           "urban_premium": 0.3479,
           "metro_spillover": 0.0797,
-          "winner": "floor 0.2",
-          "mode": "floor",
-          "gain": 7.76150925058932e-05,
-          "realised_migration": 0.0051,
-          "realised_income_spread": 0.1609
+          "winner": "ceiling 0.4",
+          "mode": "ceiling",
+          "gain": 9.154662390798221e-05,
+          "realised_migration": 0.00854,
+          "realised_income_spread": 0.1561
         },
         {
           "national_overhead": 0.8329,
@@ -10735,9 +10736,9 @@
           "metro_spillover": 0.1208,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.01312592940663633,
-          "realised_migration": 0.00389,
-          "realised_income_spread": 0.1214
+          "gain": 0.007032002043205476,
+          "realised_migration": 0.00726,
+          "realised_income_spread": 0.1226
         },
         {
           "national_overhead": 1.8718,
@@ -10755,9 +10756,9 @@
           "metro_spillover": 0.1361,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.017785770255637712,
-          "realised_migration": 0.00378,
-          "realised_income_spread": 0.1416
+          "gain": 0.015091108263418983,
+          "realised_migration": 0.00719,
+          "realised_income_spread": 0.1427
         },
         {
           "national_overhead": 1.247,
@@ -10775,9 +10776,9 @@
           "metro_spillover": 0.0162,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.10895937749174434,
-          "realised_migration": 0.00438,
-          "realised_income_spread": 0.1707
+          "gain": 0.12728965614141907,
+          "realised_migration": 0.00872,
+          "realised_income_spread": 0.1706
         },
         {
           "national_overhead": 0.6013,
@@ -10793,11 +10794,11 @@
           "capacity_elasticity": 0.0224,
           "urban_premium": 0.466,
           "metro_spillover": 0.1759,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.2641714254733065,
-          "realised_migration": 0.00212,
-          "realised_income_spread": 0.1372
+          "gain": 0.32555594579903435,
+          "realised_migration": 0.00632,
+          "realised_income_spread": 0.1392
         },
         {
           "national_overhead": 0.5275,
@@ -10813,11 +10814,11 @@
           "capacity_elasticity": 0.0244,
           "urban_premium": 0.1466,
           "metro_spillover": 0.0036,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.14870776341241015,
-          "realised_migration": 0.00413,
-          "realised_income_spread": 0.1753
+          "gain": 0.16162264750929567,
+          "realised_migration": 0.00632,
+          "realised_income_spread": 0.1811
         },
         {
           "national_overhead": 0.5577,
@@ -10833,11 +10834,11 @@
           "capacity_elasticity": 0.0291,
           "urban_premium": 0.4013,
           "metro_spillover": 0.1306,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.12882717872855076,
-          "realised_migration": 0.00701,
-          "realised_income_spread": 0.1417
+          "gain": 0.16279091955114194,
+          "realised_migration": 0.01059,
+          "realised_income_spread": 0.1236
         },
         {
           "national_overhead": 0.7255,
@@ -10855,9 +10856,9 @@
           "metro_spillover": 0.1012,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.12553356665559023,
-          "realised_migration": 0.0066,
-          "realised_income_spread": 0.1098
+          "gain": 0.12823710628957669,
+          "realised_migration": 0.00785,
+          "realised_income_spread": 0.108
         },
         {
           "national_overhead": 1.2036,
@@ -10875,9 +10876,9 @@
           "metro_spillover": 0.1489,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.10385677432481083,
-          "realised_migration": 0.00715,
-          "realised_income_spread": 0.1253
+          "gain": 0.11824867037730705,
+          "realised_migration": 0.00885,
+          "realised_income_spread": 0.127
         },
         {
           "national_overhead": 0.407,
@@ -10893,11 +10894,11 @@
           "capacity_elasticity": 0.0311,
           "urban_premium": 0.4752,
           "metro_spillover": 0.0369,
-          "winner": "central 0.7",
+          "winner": "central 0.8",
           "mode": "central",
-          "gain": 0.21957466902024037,
-          "realised_migration": 0.00469,
-          "realised_income_spread": 0.1178
+          "gain": 0.26544261387582235,
+          "realised_migration": 0.00691,
+          "realised_income_spread": 0.1224
         },
         {
           "national_overhead": 0.6381,
@@ -10913,11 +10914,11 @@
           "capacity_elasticity": 0.0267,
           "urban_premium": 0.4037,
           "metro_spillover": 0.0918,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.1515868418018768,
-          "realised_migration": 0.00833,
-          "realised_income_spread": 0.1224
+          "gain": 0.18167782492516277,
+          "realised_migration": 0.01285,
+          "realised_income_spread": 0.1256
         },
         {
           "national_overhead": 1.8767,
@@ -10935,9 +10936,9 @@
           "metro_spillover": 0.041,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.09398911955250508,
-          "realised_migration": 0.00326,
-          "realised_income_spread": 0.1674
+          "gain": 0.11228122227302821,
+          "realised_migration": 0.00385,
+          "realised_income_spread": 0.1647
         },
         {
           "national_overhead": 1.1368,
@@ -10953,11 +10954,11 @@
           "capacity_elasticity": 0.0203,
           "urban_premium": 0.1112,
           "metro_spillover": 0.0575,
-          "winner": "floor 0.1",
-          "mode": "floor",
-          "gain": 9.003189692680102e-05,
-          "realised_migration": 0.00892,
-          "realised_income_spread": 0.1611
+          "winner": "equalized 50%",
+          "mode": "equalized",
+          "gain": 8.70405652701467e-05,
+          "realised_migration": 0.00986,
+          "realised_income_spread": 0.1596
         },
         {
           "national_overhead": 1.118,
@@ -10975,9 +10976,9 @@
           "metro_spillover": 0.03,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.0611083477708279,
-          "realised_migration": 0.00465,
-          "realised_income_spread": 0.1408
+          "gain": 0.06607003575196072,
+          "realised_migration": 0.00674,
+          "realised_income_spread": 0.1398
         },
         {
           "national_overhead": 1.2326,
@@ -10995,9 +10996,9 @@
           "metro_spillover": 0.0158,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.15586324167331472,
+          "gain": 0.16111832136833135,
           "realised_migration": 0.00177,
-          "realised_income_spread": 0.1607
+          "realised_income_spread": 0.1669
         },
         {
           "national_overhead": 1.1861,
@@ -11013,11 +11014,11 @@
           "capacity_elasticity": 0.0282,
           "urban_premium": 0.2128,
           "metro_spillover": 0.1857,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.056003929207245964,
-          "realised_migration": 0.00382,
-          "realised_income_spread": 0.1279
+          "gain": 0.06366761670570761,
+          "realised_migration": 0.00677,
+          "realised_income_spread": 0.1249
         },
         {
           "national_overhead": 0.8906,
@@ -11035,9 +11036,9 @@
           "metro_spillover": 0.0778,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.04606349875884376,
-          "realised_migration": 0.00594,
-          "realised_income_spread": 0.113
+          "gain": 0.05055922000245612,
+          "realised_migration": 0.00844,
+          "realised_income_spread": 0.1098
         },
         {
           "national_overhead": 0.5986,
@@ -11053,11 +11054,11 @@
           "capacity_elasticity": 0.0258,
           "urban_premium": 0.1146,
           "metro_spillover": 0.1055,
-          "winner": "central 0.4",
-          "mode": "central",
-          "gain": 0.0005063264318648092,
-          "realised_migration": 0.00556,
-          "realised_income_spread": 0.1192
+          "winner": "equalized 100%",
+          "mode": "equalized",
+          "gain": 6.799611120217319e-05,
+          "realised_migration": 0.00677,
+          "realised_income_spread": 0.12
         },
         {
           "national_overhead": 1.0659,
@@ -11075,9 +11076,9 @@
           "metro_spillover": 0.0116,
           "winner": "city",
           "mode": "city",
-          "gain": 0.001865610655432115,
-          "realised_migration": 0.00535,
-          "realised_income_spread": 0.1366
+          "gain": 0.0014953737960367308,
+          "realised_migration": 0.00927,
+          "realised_income_spread": 0.1411
         },
         {
           "national_overhead": 1.7798,
@@ -11095,9 +11096,9 @@
           "metro_spillover": 0.0249,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07592243970776083,
-          "realised_migration": 0.00392,
-          "realised_income_spread": 0.1037
+          "gain": 0.08141973603170244,
+          "realised_migration": 0.00559,
+          "realised_income_spread": 0.098
         },
         {
           "national_overhead": 0.454,
@@ -11113,11 +11114,11 @@
           "capacity_elasticity": 0.0292,
           "urban_premium": 0.3693,
           "metro_spillover": 0.1402,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.16338626005937268,
-          "realised_migration": 0.00618,
-          "realised_income_spread": 0.147
+          "gain": 0.1977741884767113,
+          "realised_migration": 0.00854,
+          "realised_income_spread": 0.1489
         },
         {
           "national_overhead": 0.8264,
@@ -11135,9 +11136,9 @@
           "metro_spillover": 0.093,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.026170123858024336,
-          "realised_migration": 0.00479,
-          "realised_income_spread": 0.1175
+          "gain": 0.02776964586744081,
+          "realised_migration": 0.00736,
+          "realised_income_spread": 0.1199
         },
         {
           "national_overhead": 1.6837,
@@ -11153,11 +11154,11 @@
           "capacity_elasticity": 0.0271,
           "urban_premium": 0.3142,
           "metro_spillover": 0.0703,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.10110917188440954,
-          "realised_migration": 0.00684,
-          "realised_income_spread": 0.1421
+          "gain": 0.11421078033539493,
+          "realised_migration": 0.00924,
+          "realised_income_spread": 0.1443
         },
         {
           "national_overhead": 0.5908,
@@ -11175,9 +11176,9 @@
           "metro_spillover": 0.1576,
           "winner": "equalized 100%",
           "mode": "equalized",
-          "gain": 0.00018673589755521802,
-          "realised_migration": 0.00726,
-          "realised_income_spread": 0.1687
+          "gain": 0.00022596473984545784,
+          "realised_migration": 0.01108,
+          "realised_income_spread": 0.1653
         },
         {
           "national_overhead": 1.228,
@@ -11195,9 +11196,9 @@
           "metro_spillover": 0.044,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.10124520897112252,
-          "realised_migration": 0.00399,
-          "realised_income_spread": 0.139
+          "gain": 0.1046360460402794,
+          "realised_migration": 0.00392,
+          "realised_income_spread": 0.1449
         },
         {
           "national_overhead": 0.3262,
@@ -11215,9 +11216,9 @@
           "metro_spillover": 0.1325,
           "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.15723819032184524,
-          "realised_migration": 0.00906,
-          "realised_income_spread": 0.1404
+          "gain": 0.17368034276269628,
+          "realised_migration": 0.0124,
+          "realised_income_spread": 0.1423
         },
         {
           "national_overhead": 1.894,
@@ -11235,9 +11236,9 @@
           "metro_spillover": 0.1567,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.06119409195418395,
-          "realised_migration": 0.00101,
-          "realised_income_spread": 0.0981
+          "gain": 0.062429781487311854,
+          "realised_migration": 0.00236,
+          "realised_income_spread": 0.096
         },
         {
           "national_overhead": 1.8888,
@@ -11255,9 +11256,9 @@
           "metro_spillover": 0.1847,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.045152524387192,
-          "realised_migration": 0.00132,
-          "realised_income_spread": 0.1176
+          "gain": 0.047128675326849,
+          "realised_migration": 0.00257,
+          "realised_income_spread": 0.1253
         },
         {
           "national_overhead": 1.8335,
@@ -11273,11 +11274,11 @@
           "capacity_elasticity": 0.0275,
           "urban_premium": 0.29,
           "metro_spillover": 0.0821,
-          "winner": "central 0.2",
+          "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.059014627582784286,
-          "realised_migration": 0.00736,
-          "realised_income_spread": 0.155
+          "gain": 0.06526533753935948,
+          "realised_migration": 0.00899,
+          "realised_income_spread": 0.1543
         },
         {
           "national_overhead": 1.4646,
@@ -11295,9 +11296,9 @@
           "metro_spillover": 0.0726,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.03948405417460224,
-          "realised_migration": 0.00688,
-          "realised_income_spread": 0.1471
+          "gain": 0.04619467151430098,
+          "realised_migration": 0.01007,
+          "realised_income_spread": 0.1438
         },
         {
           "national_overhead": 1.2371,
@@ -11315,9 +11316,9 @@
           "metro_spillover": 0.0535,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.14962812545024723,
-          "realised_migration": 0.00191,
-          "realised_income_spread": 0.1556
+          "gain": 0.16567468302042576,
+          "realised_migration": 0.0026,
+          "realised_income_spread": 0.1569
         },
         {
           "national_overhead": 1.2709,
@@ -11333,11 +11334,11 @@
           "capacity_elasticity": 0.0248,
           "urban_premium": 0.1232,
           "metro_spillover": 0.0885,
-          "winner": "local",
-          "mode": "local",
-          "gain": 0.0,
-          "realised_migration": 0.01014,
-          "realised_income_spread": 0.1445
+          "winner": "ceiling 0.5",
+          "mode": "ceiling",
+          "gain": 3.806991235016932e-05,
+          "realised_migration": 0.01038,
+          "realised_income_spread": 0.1429
         },
         {
           "national_overhead": 1.1608,
@@ -11355,9 +11356,9 @@
           "metro_spillover": 0.1102,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.0867906122553462,
-          "realised_migration": 0.00076,
-          "realised_income_spread": 0.1096
+          "gain": 0.10454999839497912,
+          "realised_migration": 0.00347,
+          "realised_income_spread": 0.1093
         },
         {
           "national_overhead": 0.2086,
@@ -11373,11 +11374,11 @@
           "capacity_elasticity": 0.0265,
           "urban_premium": 0.3608,
           "metro_spillover": 0.1941,
-          "winner": "central 0.8",
+          "winner": "central 0.9",
           "mode": "central",
-          "gain": 0.1357647965589125,
-          "realised_migration": 0.00809,
-          "realised_income_spread": 0.1687
+          "gain": 0.16752787356668136,
+          "realised_migration": 0.01177,
+          "realised_income_spread": 0.1674
         },
         {
           "national_overhead": 0.3611,
@@ -11395,9 +11396,9 @@
           "metro_spillover": 0.0255,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.0003703616366194096,
-          "realised_migration": 0.00986,
-          "realised_income_spread": 0.1499
+          "gain": 0.0005555237955761072,
+          "realised_migration": 0.0134,
+          "realised_income_spread": 0.1447
         },
         {
           "national_overhead": 1.7888,
@@ -11415,9 +11416,9 @@
           "metro_spillover": 0.1022,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.09087412465774262,
-          "realised_migration": 0.00069,
-          "realised_income_spread": 0.1153
+          "gain": 0.09268445769597235,
+          "realised_migration": 0.00076,
+          "realised_income_spread": 0.1185
         },
         {
           "national_overhead": 0.9623,
@@ -11435,9 +11436,9 @@
           "metro_spillover": 0.0081,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.20795446520998856,
-          "realised_migration": 0.00083,
-          "realised_income_spread": 0.1138
+          "gain": 0.22620627040501798,
+          "realised_migration": 0.00149,
+          "realised_income_spread": 0.1085
         },
         {
           "national_overhead": 0.4353,
@@ -11455,9 +11456,9 @@
           "metro_spillover": 0.0667,
           "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.2044784387619961,
-          "realised_migration": 0.01111,
-          "realised_income_spread": 0.1312
+          "gain": 0.22753495475432345,
+          "realised_migration": 0.0125,
+          "realised_income_spread": 0.1332
         },
         {
           "national_overhead": 1.7518,
@@ -11475,9 +11476,9 @@
           "metro_spillover": 0.0504,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.00010985107222991064,
-          "realised_migration": 0.00792,
-          "realised_income_spread": 0.1128
+          "gain": 7.737560148524114e-05,
+          "realised_migration": 0.00993,
+          "realised_income_spread": 0.1172
         },
         {
           "national_overhead": 0.9344,
@@ -11493,11 +11494,11 @@
           "capacity_elasticity": 0.0284,
           "urban_premium": 0.2363,
           "metro_spillover": 0.1678,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.10738400416902036,
-          "realised_migration": 0.00302,
-          "realised_income_spread": 0.1351
+          "gain": 0.11999020759031295,
+          "realised_migration": 0.00479,
+          "realised_income_spread": 0.1389
         },
         {
           "national_overhead": 0.2295,
@@ -11513,11 +11514,11 @@
           "capacity_elasticity": 0.0293,
           "urban_premium": 0.4589,
           "metro_spillover": 0.0894,
-          "winner": "central 0.8",
+          "winner": "central 0.9",
           "mode": "central",
-          "gain": 0.15548770290019742,
-          "realised_migration": 0.01049,
-          "realised_income_spread": 0.0869
+          "gain": 0.16404446364036274,
+          "realised_migration": 0.01191,
+          "realised_income_spread": 0.0913
         },
         {
           "national_overhead": 1.5921,
@@ -11535,9 +11536,9 @@
           "metro_spillover": 0.1798,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.10942219234236095,
-          "realised_migration": 0.00201,
-          "realised_income_spread": 0.1235
+          "gain": 0.11227265889200311,
+          "realised_migration": 0.00247,
+          "realised_income_spread": 0.1229
         },
         {
           "national_overhead": 0.6142,
@@ -11553,11 +11554,11 @@
           "capacity_elasticity": 0.0261,
           "urban_premium": 0.1532,
           "metro_spillover": 0.1831,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.119835512966391,
-          "realised_migration": 0.00378,
-          "realised_income_spread": 0.18
+          "gain": 0.12582604402758787,
+          "realised_migration": 0.00569,
+          "realised_income_spread": 0.1837
         },
         {
           "national_overhead": 0.9848,
@@ -11573,11 +11574,11 @@
           "capacity_elasticity": 0.031,
           "urban_premium": 0.3747,
           "metro_spillover": 0.0189,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.024211919091105427,
-          "realised_migration": 0.00556,
-          "realised_income_spread": 0.0791
+          "gain": 0.022968765156280796,
+          "realised_migration": 0.00813,
+          "realised_income_spread": 0.082
         },
         {
           "national_overhead": 1.0475,
@@ -11593,11 +11594,11 @@
           "capacity_elasticity": 0.0222,
           "urban_premium": 0.4292,
           "metro_spillover": 0.1978,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.04346386946385583,
-          "realised_migration": 0.00646,
-          "realised_income_spread": 0.0993
+          "gain": 0.04485818893261137,
+          "realised_migration": 0.00976,
+          "realised_income_spread": 0.0979
         },
         {
           "national_overhead": 0.93,
@@ -11613,11 +11614,11 @@
           "capacity_elasticity": 0.0212,
           "urban_premium": 0.4769,
           "metro_spillover": 0.065,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.17739896082344137,
-          "realised_migration": 0.00406,
-          "realised_income_spread": 0.1477
+          "gain": 0.20428279795330576,
+          "realised_migration": 0.00927,
+          "realised_income_spread": 0.147
         },
         {
           "national_overhead": 1.1009,
@@ -11633,11 +11634,11 @@
           "capacity_elasticity": 0.0281,
           "urban_premium": 0.1256,
           "metro_spillover": 0.057,
-          "winner": "floor 0.2",
-          "mode": "floor",
-          "gain": 1.7260105198618758e-05,
-          "realised_migration": 0.01205,
-          "realised_income_spread": 0.131
+          "winner": "city",
+          "mode": "city",
+          "gain": 0.0006748416597545659,
+          "realised_migration": 0.01236,
+          "realised_income_spread": 0.1347
         },
         {
           "national_overhead": 1.5502,
@@ -11653,11 +11654,11 @@
           "capacity_elasticity": 0.0257,
           "urban_premium": 0.4103,
           "metro_spillover": 0.0903,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.11964913019943209,
-          "realised_migration": 0.00285,
-          "realised_income_spread": 0.1521
+          "gain": 0.13384001816186494,
+          "realised_migration": 0.00556,
+          "realised_income_spread": 0.1472
         },
         {
           "national_overhead": 1.6768,
@@ -11673,11 +11674,11 @@
           "capacity_elasticity": 0.0279,
           "urban_premium": 0.3442,
           "metro_spillover": 0.1131,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.0241204627414267,
-          "realised_migration": 0.00302,
-          "realised_income_spread": 0.0964
+          "gain": 0.02029781030620882,
+          "realised_migration": 0.00604,
+          "realised_income_spread": 0.0873
         },
         {
           "national_overhead": 1.5253,
@@ -11695,9 +11696,9 @@
           "metro_spillover": 0.1386,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.07951372550705918,
-          "realised_migration": 0.00233,
-          "realised_income_spread": 0.1614
+          "gain": 0.08788957468615688,
+          "realised_migration": 0.00677,
+          "realised_income_spread": 0.1539
         },
         {
           "national_overhead": 0.5435,
@@ -11715,9 +11716,9 @@
           "metro_spillover": 0.17,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.21470774208035354,
-          "realised_migration": 0.00278,
-          "realised_income_spread": 0.1443
+          "gain": 0.2537599279929274,
+          "realised_migration": 0.00691,
+          "realised_income_spread": 0.1484
         },
         {
           "national_overhead": 0.3276,
@@ -11735,9 +11736,9 @@
           "metro_spillover": 0.0226,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.0710021959736647,
-          "realised_migration": 0.00472,
-          "realised_income_spread": 0.1361
+          "gain": 0.07537290628301958,
+          "realised_migration": 0.00656,
+          "realised_income_spread": 0.1333
         },
         {
           "national_overhead": 1.8296,
@@ -11755,9 +11756,9 @@
           "metro_spillover": 0.1453,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 5.611791953308298e-05,
-          "realised_migration": 0.00653,
-          "realised_income_spread": 0.131
+          "gain": 0.0003231950210293433,
+          "realised_migration": 0.00986,
+          "realised_income_spread": 0.1272
         },
         {
           "national_overhead": 0.6651,
@@ -11775,9 +11776,9 @@
           "metro_spillover": 0.0761,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.04068960919258918,
-          "realised_migration": 0.01097,
-          "realised_income_spread": 0.1463
+          "gain": 0.04456653945882974,
+          "realised_migration": 0.01361,
+          "realised_income_spread": 0.1492
         },
         {
           "national_overhead": 1.0052,
@@ -11795,9 +11796,9 @@
           "metro_spillover": 0.1637,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.0001185556543763372,
-          "realised_migration": 0.00649,
-          "realised_income_spread": 0.151
+          "gain": 0.00048391583267543004,
+          "realised_migration": 0.01031,
+          "realised_income_spread": 0.1421
         },
         {
           "national_overhead": 0.6238,
@@ -11815,9 +11816,9 @@
           "metro_spillover": 0.0007,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.13718328241013325,
-          "realised_migration": 0.00153,
-          "realised_income_spread": 0.111
+          "gain": 0.14525957962858954,
+          "realised_migration": 0.0026,
+          "realised_income_spread": 0.1078
         },
         {
           "national_overhead": 0.2998,
@@ -11835,9 +11836,9 @@
           "metro_spillover": 0.1336,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.044724018841798746,
-          "realised_migration": 0.00753,
-          "realised_income_spread": 0.1225
+          "gain": 0.048248187753352656,
+          "realised_migration": 0.00941,
+          "realised_income_spread": 0.1195
         },
         {
           "national_overhead": 0.339,
@@ -11855,9 +11856,9 @@
           "metro_spillover": 0.0482,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.019196931133547257,
-          "realised_migration": 0.00424,
-          "realised_income_spread": 0.09
+          "gain": 0.020283330886977813,
+          "realised_migration": 0.00903,
+          "realised_income_spread": 0.0919
         },
         {
           "national_overhead": 1.5696,
@@ -11875,9 +11876,9 @@
           "metro_spillover": 0.0386,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.0725326093313334,
-          "realised_migration": 0.00608,
-          "realised_income_spread": 0.1362
+          "gain": 0.08018510738775157,
+          "realised_migration": 0.00813,
+          "realised_income_spread": 0.135
         },
         {
           "national_overhead": 1.8467,
@@ -11893,11 +11894,11 @@
           "capacity_elasticity": 0.0226,
           "urban_premium": 0.3539,
           "metro_spillover": 0.1122,
-          "winner": "floor 0.3",
+          "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.0002704852546598774,
-          "realised_migration": 0.00441,
-          "realised_income_spread": 0.1108
+          "gain": 0.00048691338660485084,
+          "realised_migration": 0.00694,
+          "realised_income_spread": 0.1121
         },
         {
           "national_overhead": 1.3555,
@@ -11913,11 +11914,11 @@
           "capacity_elasticity": 0.0315,
           "urban_premium": 0.4466,
           "metro_spillover": 0.1666,
-          "winner": "floor 0.2",
-          "mode": "floor",
-          "gain": 0.00025262425886454776,
-          "realised_migration": 0.00736,
-          "realised_income_spread": 0.0982
+          "winner": "ceiling 0.6",
+          "mode": "ceiling",
+          "gain": 0.0006131094001924353,
+          "realised_migration": 0.01146,
+          "realised_income_spread": 0.1069
         },
         {
           "national_overhead": 0.3033,
@@ -11933,11 +11934,11 @@
           "capacity_elasticity": 0.0317,
           "urban_premium": 0.3352,
           "metro_spillover": 0.0279,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.12919705895511824,
-          "realised_migration": 0.00722,
-          "realised_income_spread": 0.1109
+          "gain": 0.1423684634394776,
+          "realised_migration": 0.00927,
+          "realised_income_spread": 0.1124
         },
         {
           "national_overhead": 0.8822,
@@ -11955,9 +11956,9 @@
           "metro_spillover": 0.0623,
           "winner": "ceiling 0.6",
           "mode": "ceiling",
-          "gain": 8.539762080178592e-05,
-          "realised_migration": 0.00524,
-          "realised_income_spread": 0.1305
+          "gain": 0.0010498449096834062,
+          "realised_migration": 0.00986,
+          "realised_income_spread": 0.1363
         },
         {
           "national_overhead": 1.0187,
@@ -11975,9 +11976,9 @@
           "metro_spillover": 0.1929,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.04601108215109307,
-          "realised_migration": 0.00295,
-          "realised_income_spread": 0.1257
+          "gain": 0.046009945633928226,
+          "realised_migration": 0.00403,
+          "realised_income_spread": 0.1281
         },
         {
           "national_overhead": 0.2412,
@@ -11995,9 +11996,9 @@
           "metro_spillover": 0.1892,
           "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.15804855934852774,
-          "realised_migration": 0.00566,
-          "realised_income_spread": 0.0994
+          "gain": 0.16930009901301094,
+          "realised_migration": 0.00701,
+          "realised_income_spread": 0.0974
         },
         {
           "national_overhead": 1.4694,
@@ -12013,11 +12014,11 @@
           "capacity_elasticity": 0.021,
           "urban_premium": 0.3563,
           "metro_spillover": 0.174,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.09708557893113112,
-          "realised_migration": 0.00146,
-          "realised_income_spread": 0.0952
+          "gain": 0.10793820283629288,
+          "realised_migration": 0.00531,
+          "realised_income_spread": 0.096
         },
         {
           "national_overhead": 1.4753,
@@ -12035,9 +12036,9 @@
           "metro_spillover": 0.0299,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.11791703307991805,
-          "realised_migration": 0.00295,
-          "realised_income_spread": 0.1351
+          "gain": 0.12885971007412822,
+          "realised_migration": 0.00736,
+          "realised_income_spread": 0.1328
         },
         {
           "national_overhead": 1.6685,
@@ -12055,9 +12056,9 @@
           "metro_spillover": 0.0098,
           "winner": "city",
           "mode": "city",
-          "gain": 0.005342848402753342,
-          "realised_migration": 0.00986,
-          "realised_income_spread": 0.1632
+          "gain": 0.008785850026964415,
+          "realised_migration": 0.01382,
+          "realised_income_spread": 0.1536
         },
         {
           "national_overhead": 1.5332,
@@ -12075,9 +12076,9 @@
           "metro_spillover": 0.1417,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.005176171400963513,
-          "realised_migration": 0.00441,
-          "realised_income_spread": 0.1429
+          "gain": 0.004575433464121467,
+          "realised_migration": 0.00569,
+          "realised_income_spread": 0.1466
         },
         {
           "national_overhead": 1.7358,
@@ -12095,9 +12096,9 @@
           "metro_spillover": 0.1719,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.005177270531546069,
-          "realised_migration": 0.00635,
-          "realised_income_spread": 0.1367
+          "gain": 0.004118329007036181,
+          "realised_migration": 0.00781,
+          "realised_income_spread": 0.1393
         },
         {
           "national_overhead": 1.0842,
@@ -12115,9 +12116,9 @@
           "metro_spillover": 0.0264,
           "winner": "city",
           "mode": "city",
-          "gain": 0.012235095327496823,
-          "realised_migration": 0.00549,
-          "realised_income_spread": 0.1428
+          "gain": 0.023453842651410026,
+          "realised_migration": 0.00868,
+          "realised_income_spread": 0.143
         },
         {
           "national_overhead": 0.219,
@@ -12135,9 +12136,9 @@
           "metro_spillover": 0.0497,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.07638632828631159,
-          "realised_migration": 0.00646,
-          "realised_income_spread": 0.1106
+          "gain": 0.09918848332946326,
+          "realised_migration": 0.01063,
+          "realised_income_spread": 0.1173
         },
         {
           "national_overhead": 0.841,
@@ -12155,9 +12156,9 @@
           "metro_spillover": 0.0374,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.07082215907335855,
-          "realised_migration": 0.00372,
-          "realised_income_spread": 0.1762
+          "gain": 0.07334795559625691,
+          "realised_migration": 0.00549,
+          "realised_income_spread": 0.1766
         },
         {
           "national_overhead": 0.5752,
@@ -12175,9 +12176,9 @@
           "metro_spillover": 0.1879,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.07538065345918961,
-          "realised_migration": 0.00698,
-          "realised_income_spread": 0.1452
+          "gain": 0.07711366576149889,
+          "realised_migration": 0.0109,
+          "realised_income_spread": 0.1486
         },
         {
           "national_overhead": 0.8152,
@@ -12195,9 +12196,9 @@
           "metro_spillover": 0.0518,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.09644965950569076,
-          "realised_migration": 0.01083,
-          "realised_income_spread": 0.1453
+          "gain": 0.10906445977856274,
+          "realised_migration": 0.0133,
+          "realised_income_spread": 0.1484
         },
         {
           "national_overhead": 1.4175,
@@ -12215,9 +12216,9 @@
           "metro_spillover": 0.1513,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.09505206616778455,
-          "realised_migration": 0.00569,
-          "realised_income_spread": 0.1303
+          "gain": 0.09987095138168908,
+          "realised_migration": 0.0059,
+          "realised_income_spread": 0.1276
         },
         {
           "national_overhead": 0.3526,
@@ -12235,9 +12236,9 @@
           "metro_spillover": 0.1987,
           "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.2243071990417473,
-          "realised_migration": 0.00809,
-          "realised_income_spread": 0.115
+          "gain": 0.24551063825495215,
+          "realised_migration": 0.00955,
+          "realised_income_spread": 0.1149
         },
         {
           "national_overhead": 0.8498,
@@ -12255,9 +12256,9 @@
           "metro_spillover": 0.1158,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.03146463043261443,
-          "realised_migration": 0.00535,
-          "realised_income_spread": 0.1305
+          "gain": 0.03642626968747717,
+          "realised_migration": 0.00795,
+          "realised_income_spread": 0.1361
         },
         {
           "national_overhead": 1.7577,
@@ -12273,11 +12274,11 @@
           "capacity_elasticity": 0.0214,
           "urban_premium": 0.2501,
           "metro_spillover": 0.1352,
-          "winner": "central 0.3",
+          "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.11336142273168066,
-          "realised_migration": 0.00705,
-          "realised_income_spread": 0.1674
+          "gain": 0.1281067531818207,
+          "realised_migration": 0.00774,
+          "realised_income_spread": 0.1672
         },
         {
           "national_overhead": 1.3202,
@@ -12295,9 +12296,9 @@
           "metro_spillover": 0.0963,
           "winner": "floor 0.2",
           "mode": "floor",
-          "gain": 0.0001714101344686865,
-          "realised_migration": 0.00639,
-          "realised_income_spread": 0.1557
+          "gain": 8.178906782964346e-05,
+          "realised_migration": 0.00774,
+          "realised_income_spread": 0.1564
         },
         {
           "national_overhead": 0.7331,
@@ -12315,9 +12316,9 @@
           "metro_spillover": 0.1036,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.11414263177862108,
-          "realised_migration": 0.00604,
-          "realised_income_spread": 0.1217
+          "gain": 0.1323811691290948,
+          "realised_migration": 0.00767,
+          "realised_income_spread": 0.1204
         },
         {
           "national_overhead": 0.6509,
@@ -12333,11 +12334,11 @@
           "capacity_elasticity": 0.0212,
           "urban_premium": 0.4645,
           "metro_spillover": 0.1286,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.06456029583188416,
-          "realised_migration": 0.00757,
-          "realised_income_spread": 0.1315
+          "gain": 0.07262744502142676,
+          "realised_migration": 0.01146,
+          "realised_income_spread": 0.1318
         },
         {
           "national_overhead": 0.3186,
@@ -12355,9 +12356,9 @@
           "metro_spillover": 0.0731,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.10884299986479058,
-          "realised_migration": 0.00642,
-          "realised_income_spread": 0.1341
+          "gain": 0.12324665383865699,
+          "realised_migration": 0.00986,
+          "realised_income_spread": 0.1353
         },
         {
           "national_overhead": 0.6435,
@@ -12373,11 +12374,11 @@
           "capacity_elasticity": 0.0297,
           "urban_premium": 0.2574,
           "metro_spillover": 0.1814,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.12481975579043776,
-          "realised_migration": 0.00406,
-          "realised_income_spread": 0.1334
+          "gain": 0.14604331190191008,
+          "realised_migration": 0.00615,
+          "realised_income_spread": 0.1232
         },
         {
           "national_overhead": 1.2787,
@@ -12395,9 +12396,9 @@
           "metro_spillover": 0.1688,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.018832682064971046,
-          "realised_migration": 0.0075,
-          "realised_income_spread": 0.1449
+          "gain": 0.021312887557394813,
+          "realised_migration": 0.00976,
+          "realised_income_spread": 0.1406
         },
         {
           "national_overhead": 1.8589,
@@ -12415,9 +12416,9 @@
           "metro_spillover": 0.0675,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.030483438216697946,
-          "realised_migration": 0.0066,
-          "realised_income_spread": 0.1664
+          "gain": 0.029207897033422484,
+          "realised_migration": 0.01021,
+          "realised_income_spread": 0.1665
         },
         {
           "national_overhead": 0.4925,
@@ -12433,11 +12434,11 @@
           "capacity_elasticity": 0.0249,
           "urban_premium": 0.3979,
           "metro_spillover": 0.0027,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.09892897131674769,
-          "realised_migration": 0.00458,
-          "realised_income_spread": 0.1496
+          "gain": 0.11972750615807545,
+          "realised_migration": 0.00917,
+          "realised_income_spread": 0.1452
         },
         {
           "national_overhead": 0.8706,
@@ -12453,11 +12454,11 @@
           "capacity_elasticity": 0.0217,
           "urban_premium": 0.1678,
           "metro_spillover": 0.098,
-          "winner": "equalized 25%",
-          "mode": "equalized",
-          "gain": 2.925686369684155e-05,
-          "realised_migration": 0.00521,
-          "realised_income_spread": 0.109
+          "winner": "local",
+          "mode": "local",
+          "gain": 0.0,
+          "realised_migration": 0.0076,
+          "realised_income_spread": 0.113
         },
         {
           "national_overhead": 1.0306,
@@ -12473,11 +12474,11 @@
           "capacity_elasticity": 0.0247,
           "urban_premium": 0.2189,
           "metro_spillover": 0.1465,
-          "winner": "equalized 50%",
-          "mode": "equalized",
-          "gain": 3.103821123490169e-05,
-          "realised_migration": 0.00601,
-          "realised_income_spread": 0.1461
+          "winner": "floor 0.2",
+          "mode": "floor",
+          "gain": 0.00013037220719128162,
+          "realised_migration": 0.01024,
+          "realised_income_spread": 0.148
         },
         {
           "national_overhead": 1.794,
@@ -12495,9 +12496,9 @@
           "metro_spillover": 0.0219,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.0649381952635177,
-          "realised_migration": 0.00368,
-          "realised_income_spread": 0.1905
+          "gain": 0.0719906762948918,
+          "realised_migration": 0.00802,
+          "realised_income_spread": 0.1782
         },
         {
           "national_overhead": 0.6255,
@@ -12513,11 +12514,11 @@
           "capacity_elasticity": 0.0238,
           "urban_premium": 0.3596,
           "metro_spillover": 0.1775,
-          "winner": "equalized 25%",
-          "mode": "equalized",
-          "gain": 0.00030599513427431724,
-          "realised_migration": 0.00969,
-          "realised_income_spread": 0.1561
+          "winner": "floor 0.1",
+          "mode": "floor",
+          "gain": 0.000431566292796004,
+          "realised_migration": 0.01354,
+          "realised_income_spread": 0.159
         },
         {
           "national_overhead": 0.4663,
@@ -12535,9 +12536,9 @@
           "metro_spillover": 0.0441,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.09358053672126981,
-          "realised_migration": 0.00545,
-          "realised_income_spread": 0.1303
+          "gain": 0.09978987917613968,
+          "realised_migration": 0.00729,
+          "realised_income_spread": 0.1269
         },
         {
           "national_overhead": 1.1793,
@@ -12553,11 +12554,11 @@
           "capacity_elasticity": 0.0308,
           "urban_premium": 0.3251,
           "metro_spillover": 0.1961,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.15332964084394643,
-          "realised_migration": 0.00073,
-          "realised_income_spread": 0.1229
+          "gain": 0.17816033445773663,
+          "realised_migration": 0.00333,
+          "realised_income_spread": 0.122
         },
         {
           "national_overhead": 0.274,
@@ -12573,11 +12574,11 @@
           "capacity_elasticity": 0.0237,
           "urban_premium": 0.4087,
           "metro_spillover": 0.0128,
-          "winner": "central 0.6",
+          "winner": "central 0.7",
           "mode": "central",
-          "gain": 0.023414360885565977,
-          "realised_migration": 0.01531,
-          "realised_income_spread": 0.2251
+          "gain": 0.028067737843798124,
+          "realised_migration": 0.01941,
+          "realised_income_spread": 0.2178
         },
         {
           "national_overhead": 0.6767,
@@ -12595,9 +12596,9 @@
           "metro_spillover": 0.147,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.1463351662227848,
-          "realised_migration": 0.00156,
-          "realised_income_spread": 0.131
+          "gain": 0.15174514621082405,
+          "realised_migration": 0.00215,
+          "realised_income_spread": 0.1258
         },
         {
           "national_overhead": 1.3279,
@@ -12615,9 +12616,9 @@
           "metro_spillover": 0.1746,
           "winner": "equalized 100%",
           "mode": "equalized",
-          "gain": 0.0004585322325984867,
-          "realised_migration": 0.00531,
-          "realised_income_spread": 0.1074
+          "gain": 0.0003096625739330283,
+          "realised_migration": 0.00826,
+          "realised_income_spread": 0.1128
         },
         {
           "national_overhead": 1.4305,
@@ -12633,11 +12634,11 @@
           "capacity_elasticity": 0.0277,
           "urban_premium": 0.3322,
           "metro_spillover": 0.1098,
-          "winner": "equalized 100%",
-          "mode": "equalized",
-          "gain": 0.00010693260052231646,
-          "realised_migration": 0.00736,
-          "realised_income_spread": 0.1483
+          "winner": "floor 0.1",
+          "mode": "floor",
+          "gain": 0.0002866632808560532,
+          "realised_migration": 0.01146,
+          "realised_income_spread": 0.125
         },
         {
           "national_overhead": 1.4451,
@@ -12655,9 +12656,9 @@
           "metro_spillover": 0.1437,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.10258706724445296,
-          "realised_migration": 0.00222,
-          "realised_income_spread": 0.1594
+          "gain": 0.12201105318520845,
+          "realised_migration": 0.00264,
+          "realised_income_spread": 0.1619
         },
         {
           "national_overhead": 1.5562,
@@ -12673,11 +12674,11 @@
           "capacity_elasticity": 0.0237,
           "urban_premium": 0.4866,
           "metro_spillover": 0.0337,
-          "winner": "equalized 100%",
-          "mode": "equalized",
-          "gain": 0.0001919435197550723,
-          "realised_migration": 0.00573,
-          "realised_income_spread": 0.1051
+          "winner": "floor 0.1",
+          "mode": "floor",
+          "gain": 0.0007281973567694333,
+          "realised_migration": 0.00927,
+          "realised_income_spread": 0.1089
         },
         {
           "national_overhead": 0.9437,
@@ -12693,11 +12694,11 @@
           "capacity_elasticity": 0.0278,
           "urban_premium": 0.3186,
           "metro_spillover": 0.0805,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.02032162228488496,
-          "realised_migration": 0.00524,
-          "realised_income_spread": 0.1037
+          "gain": 0.018196065294666608,
+          "realised_migration": 0.00878,
+          "realised_income_spread": 0.1077
         },
         {
           "national_overhead": 0.921,
@@ -12713,11 +12714,11 @@
           "capacity_elasticity": 0.0302,
           "urban_premium": 0.4513,
           "metro_spillover": 0.1551,
-          "winner": "central 0.4",
+          "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.04984456497433598,
-          "realised_migration": 0.00455,
-          "realised_income_spread": 0.1112
+          "gain": 0.05124926018516593,
+          "realised_migration": 0.00819,
+          "realised_income_spread": 0.1122
         },
         {
           "national_overhead": 0.7745,
@@ -12733,11 +12734,11 @@
           "capacity_elasticity": 0.0256,
           "urban_premium": 0.3393,
           "metro_spillover": 0.0316,
-          "winner": "central 0.4",
-          "mode": "central",
-          "gain": 0.006104498396940022,
-          "realised_migration": 0.00604,
-          "realised_income_spread": 0.1314
+          "winner": "city",
+          "mode": "city",
+          "gain": 0.005506261493162856,
+          "realised_migration": 0.00941,
+          "realised_income_spread": 0.1269
         },
         {
           "national_overhead": 0.9023,
@@ -12755,9 +12756,9 @@
           "metro_spillover": 0.0285,
           "winner": "city",
           "mode": "city",
-          "gain": 0.0008049771309585063,
-          "realised_migration": 0.00688,
-          "realised_income_spread": 0.1323
+          "gain": 0.00427571310917263,
+          "realised_migration": 0.01063,
+          "realised_income_spread": 0.1287
         },
         {
           "national_overhead": 1.034,
@@ -12775,9 +12776,9 @@
           "metro_spillover": 0.1823,
           "winner": "central 0.3",
           "mode": "central",
-          "gain": 0.009466440776476265,
-          "realised_migration": 0.00806,
-          "realised_income_spread": 0.1128
+          "gain": 0.006868046922748006,
+          "realised_migration": 0.01024,
+          "realised_income_spread": 0.1082
         },
         {
           "national_overhead": 0.7119,
@@ -12795,9 +12796,9 @@
           "metro_spillover": 0.1867,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.15046067318992254,
-          "realised_migration": 0.00635,
-          "realised_income_spread": 0.1263
+          "gain": 0.16372691858738325,
+          "realised_migration": 0.00819,
+          "realised_income_spread": 0.1315
         },
         {
           "national_overhead": 0.4567,
@@ -12815,9 +12816,9 @@
           "metro_spillover": 0.1227,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.13309684437457353,
-          "realised_migration": 0.00556,
-          "realised_income_spread": 0.1308
+          "gain": 0.14474360978268092,
+          "realised_migration": 0.00622,
+          "realised_income_spread": 0.1282
         },
         {
           "national_overhead": 1.8051,
@@ -12833,11 +12834,11 @@
           "capacity_elasticity": 0.0259,
           "urban_premium": 0.3675,
           "metro_spillover": 0.0746,
-          "winner": "floor 0.1",
-          "mode": "floor",
-          "gain": 3.0438683109965115e-05,
-          "realised_migration": 0.0074,
-          "realised_income_spread": 0.148
+          "winner": "ceiling 0.3",
+          "mode": "ceiling",
+          "gain": 7.100677401147837e-05,
+          "realised_migration": 0.0109,
+          "realised_income_spread": 0.1487
         },
         {
           "national_overhead": 0.5689,
@@ -12853,11 +12854,11 @@
           "capacity_elasticity": 0.0265,
           "urban_premium": 0.4537,
           "metro_spillover": 0.1991,
-          "winner": "central 0.5",
+          "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.07542255853785354,
-          "realised_migration": 0.00944,
-          "realised_income_spread": 0.1188
+          "gain": 0.09155579422226212,
+          "realised_migration": 0.01219,
+          "realised_income_spread": 0.1207
         },
         {
           "national_overhead": 0.7499,
@@ -12875,9 +12876,9 @@
           "metro_spillover": 0.0991,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.0005994654602246019,
-          "realised_migration": 0.00451,
-          "realised_income_spread": 0.1375
+          "gain": 0.0027667703377846353,
+          "realised_migration": 0.00715,
+          "realised_income_spread": 0.14
         },
         {
           "national_overhead": 0.9711,
@@ -12893,11 +12894,11 @@
           "capacity_elasticity": 0.0318,
           "urban_premium": 0.4141,
           "metro_spillover": 0.1653,
-          "winner": "equalized 25%",
+          "winner": "equalized 75%",
           "mode": "equalized",
-          "gain": 0.0001496694622988709,
-          "realised_migration": 0.00465,
-          "realised_income_spread": 0.1449
+          "gain": 0.00040260831237823314,
+          "realised_migration": 0.0083,
+          "realised_income_spread": 0.1458
         },
         {
           "national_overhead": 0.2842,
@@ -12915,9 +12916,9 @@
           "metro_spillover": 0.1492,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.13388369739591696,
-          "realised_migration": 0.00813,
-          "realised_income_spread": 0.1367
+          "gain": 0.14774970109278723,
+          "realised_migration": 0.01205,
+          "realised_income_spread": 0.1371
         },
         {
           "national_overhead": 0.507,
@@ -12935,9 +12936,9 @@
           "metro_spillover": 0.0392,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.0676534331390278,
-          "realised_migration": 0.00861,
-          "realised_income_spread": 0.1712
+          "gain": 0.06490889856853391,
+          "realised_migration": 0.01045,
+          "realised_income_spread": 0.1689
         },
         {
           "national_overhead": 0.7562,
@@ -12955,9 +12956,9 @@
           "metro_spillover": 0.021,
           "winner": "central 0.6",
           "mode": "central",
-          "gain": 0.08295277237048129,
-          "realised_migration": 0.00583,
-          "realised_income_spread": 0.1162
+          "gain": 0.09825899254070564,
+          "realised_migration": 0.00833,
+          "realised_income_spread": 0.1213
         },
         {
           "national_overhead": 0.4771,
@@ -12975,9 +12976,9 @@
           "metro_spillover": 0.0173,
           "winner": "central 0.5",
           "mode": "central",
-          "gain": 0.07711146623954829,
-          "realised_migration": 0.00882,
-          "realised_income_spread": 0.1457
+          "gain": 0.08117119205095605,
+          "realised_migration": 0.00931,
+          "realised_income_spread": 0.1443
         },
         {
           "national_overhead": 0.6983,
@@ -12995,9 +12996,9 @@
           "metro_spillover": 0.1194,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.030101363599171503,
-          "realised_migration": 0.00351,
-          "realised_income_spread": 0.1593
+          "gain": 0.02581710619498017,
+          "realised_migration": 0.00694,
+          "realised_income_spread": 0.1488
         },
         {
           "national_overhead": 1.3425,
@@ -13015,12 +13016,12 @@
           "metro_spillover": 0.0017,
           "winner": "central 0.4",
           "mode": "central",
-          "gain": 0.021493847189888046,
-          "realised_migration": 0.00549,
-          "realised_income_spread": 0.1349
+          "gain": 0.023697707703874693,
+          "realised_migration": 0.00819,
+          "realised_income_spread": 0.1286
         }
       ],
-      "share_on_canadian_targets": 0.555
+      "share_on_canadian_targets": 0.28
     },
     "redistribution": {
       "domain": "redistribution",
@@ -19693,25 +19694,25 @@
   },
   "separability": {
     "worlds": 16,
-    "mode_agreement": 0.95,
-    "min_gain_kept": 0.968972401620855,
-    "mean_gain_kept": 0.9878220405430967,
+    "mode_agreement": 0.9125,
+    "min_gain_kept": 0.9702882623205649,
+    "mean_gain_kept": 0.9870913999852223,
     "rows": [
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.968972401620855,
+        "gain_kept": 0.9702882623205649,
         "separate": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.4",
+          "transit": "central 0.5",
           "redistribution": "central 0.35",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.25",
           "environment": "central 0.25",
-          "transit": "central 0.425",
+          "transit": "central 0.475",
           "redistribution": "central 0.35",
           "climate": "price 1.12"
         }
@@ -19719,7 +19720,7 @@
       {
         "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9870728674701544,
+        "gain_kept": 0.9844778800688533,
         "separate": {
           "schools": "local",
           "environment": "floor 0.4",
@@ -19728,7 +19729,7 @@
           "climate": "price 1"
         },
         "joint": {
-          "schools": "equalized 25%",
+          "schools": "floor 0.3",
           "environment": "floor 0.375",
           "transit": "city",
           "redistribution": "central 0.325",
@@ -19738,7 +19739,7 @@
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9892071354644579,
+        "gain_kept": 0.9846765175472907,
         "separate": {
           "schools": "central 0.2",
           "environment": "central 0.2",
@@ -19749,72 +19750,72 @@
         "joint": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.4",
+          "transit": "central 0.45",
           "redistribution": "central 0.225",
-          "climate": "price 1.1"
+          "climate": "price 1.07"
         }
       },
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9938266881546606,
+        "gain_kept": 0.9855268272026471,
         "separate": {
           "schools": "central 0.3",
           "environment": "central 0.3",
-          "transit": "central 0.4",
+          "transit": "central 0.5",
           "redistribution": "central 0.2",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.3",
           "environment": "central 0.275",
-          "transit": "central 0.4",
+          "transit": "central 0.425",
           "redistribution": "central 0.225",
           "climate": "price 1.1"
         }
       },
       {
-        "same_modes": 5,
+        "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9966244358800883,
+        "gain_kept": 0.9942108131387788,
         "separate": {
           "schools": "matched 10%",
           "environment": "floor 0.4",
-          "transit": "central 0.6",
+          "transit": "central 0.7",
           "redistribution": "central 0.25",
           "climate": "price 1.2"
         },
         "joint": {
-          "schools": "matched 10%",
+          "schools": "floor 0.4",
           "environment": "floor 0.4",
-          "transit": "central 0.6",
+          "transit": "central 0.65",
           "redistribution": "central 0.25",
-          "climate": "price 1.3"
+          "climate": "price 1.23"
         }
       },
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9868952001465153,
+        "gain_kept": 0.9945098903638122,
         "separate": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.2",
+          "transit": "central 0.3",
           "redistribution": "central 0.3",
           "climate": "price 1.4"
         },
         "joint": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.25",
+          "transit": "central 0.275",
           "redistribution": "central 0.275",
-          "climate": "price 1.43"
+          "climate": "price 1.4"
         }
       },
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9964008216401309,
+        "gain_kept": 0.9961486365193523,
         "separate": {
           "schools": "matched 10%",
           "environment": "floor 0.4",
@@ -19827,13 +19828,13 @@
           "environment": "floor 0.375",
           "transit": "central 0.6",
           "redistribution": "central 0.375",
-          "climate": "price 1.4"
+          "climate": "price 1.3"
         }
       },
       {
         "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9812576999724162,
+        "gain_kept": 0.983641703717873,
         "separate": {
           "schools": "floor 0.2",
           "environment": "floor 0.4",
@@ -19842,36 +19843,36 @@
           "climate": "price 1"
         },
         "joint": {
-          "schools": "floor 0.25",
-          "environment": "floor 0.375",
+          "schools": "floor 0.275",
+          "environment": "floor 0.4",
           "transit": "city",
           "redistribution": "central 0.325",
-          "climate": "price 1.07"
+          "climate": "price 1.05"
         }
       },
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9904336680759256,
+        "gain_kept": 0.9897800506362924,
         "separate": {
           "schools": "central 0.3",
           "environment": "central 0.3",
-          "transit": "central 0.5",
+          "transit": "central 0.6",
           "redistribution": "central 0.25",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.325",
           "environment": "central 0.35",
-          "transit": "central 0.525",
+          "transit": "central 0.575",
           "redistribution": "central 0.25",
-          "climate": "price 1.32"
+          "climate": "price 1.3"
         }
       },
       {
         "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9752600105594885,
+        "gain_kept": 0.978803836166089,
         "separate": {
           "schools": "central 0.4",
           "environment": "central 0.4",
@@ -19890,26 +19891,26 @@
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9922290907753274,
+        "gain_kept": 0.991428947233391,
         "separate": {
           "schools": "central 0.3",
           "environment": "central 0.3",
-          "transit": "central 0.4",
+          "transit": "central 0.5",
           "redistribution": "central 0.25",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.3",
           "environment": "central 0.325",
-          "transit": "central 0.425",
+          "transit": "central 0.45",
           "redistribution": "central 0.25",
           "climate": "price 1.27"
         }
       },
       {
-        "same_modes": 5,
+        "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9962485597934242,
+        "gain_kept": 0.996107767951936,
         "separate": {
           "schools": "floor 0.2",
           "environment": "floor 0.3",
@@ -19920,24 +19921,24 @@
         "joint": {
           "schools": "floor 0.3",
           "environment": "floor 0.325",
-          "transit": "ceiling 0.475",
-          "redistribution": "central 0.3",
-          "climate": "price 0.975"
+          "transit": "floor 0.175",
+          "redistribution": "central 0.275",
+          "climate": "price 1"
         }
       },
       {
-        "same_modes": 5,
+        "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9757373117944919,
+        "gain_kept": 0.975644209120821,
         "separate": {
           "schools": "floor 0.2",
           "environment": "floor 0.3",
-          "transit": "central 0.3",
+          "transit": "city",
           "redistribution": "central 0.25",
           "climate": "price 1.2"
         },
         "joint": {
-          "schools": "floor 0.25",
+          "schools": "floor 0.275",
           "environment": "floor 0.275",
           "transit": "central 0.35",
           "redistribution": "central 0.25",
@@ -19947,18 +19948,18 @@
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9946691791497627,
+        "gain_kept": 0.9820132547644365,
         "separate": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.2",
+          "transit": "central 0.3",
           "redistribution": "central 0.3",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.2",
           "environment": "central 0.2",
-          "transit": "central 0.225",
+          "transit": "central 0.25",
           "redistribution": "central 0.3",
           "climate": "price 1.2"
         }
@@ -19966,26 +19967,26 @@
       {
         "same_modes": 5,
         "domains": 5,
-        "gain_kept": 0.9834953840855559,
+        "gain_kept": 0.9887975822256678,
         "separate": {
           "schools": "central 0.3",
           "environment": "central 0.3",
-          "transit": "central 0.3",
+          "transit": "central 0.4",
           "redistribution": "central 0.35",
           "climate": "price 1.2"
         },
         "joint": {
           "schools": "central 0.275",
           "environment": "central 0.25",
-          "transit": "central 0.35",
+          "transit": "central 0.375",
           "redistribution": "central 0.35",
-          "climate": "price 1.18"
+          "climate": "price 1.12"
         }
       },
       {
         "same_modes": 4,
         "domains": 5,
-        "gain_kept": 0.9968221941062934,
+        "gain_kept": 0.997406220785751,
         "separate": {
           "schools": "local",
           "environment": "floor 0.3",
@@ -19994,14 +19995,14 @@
           "climate": "price 1.6"
         },
         "joint": {
-          "schools": "floor 0.225",
+          "schools": "floor 0.2",
           "environment": "floor 0.325",
-          "transit": "central 0.375",
+          "transit": "central 0.4",
           "redistribution": "central 0.2",
-          "climate": "price 1.55"
+          "climate": "price 1.5"
         }
       }
     ]
   },
-  "seconds": 1030.6
+  "seconds": 1931.2
 }

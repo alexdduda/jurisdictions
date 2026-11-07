@@ -7,6 +7,7 @@ midpoint of its Canadian range, and reports where the answer changes. Anyone
 who knows the real number can then read off the answer.
 
     python3 -m tiebout.thresholds            # writes results/thresholds.json
+    python3 -m tiebout.thresholds transit    # re-run only maps whose key is listed
 """
 
 import json
@@ -77,13 +78,17 @@ def midpoints(domain_name: str, ranges: dict) -> dict[str, float]:
     return {k: (lo + hi) / 2 for k, (lo, hi) in world_ranges(domain_name, ranges).items()}
 
 
-def run_thresholds(out_dir: Path, log=print) -> dict:
+def run_thresholds(out_dir: Path, log=print, only: list[str] | None = None) -> dict:
     ranges = canada_ranges()
     started = time.time()
     out = {"seeds": len(SEEDS), "maps": {}}
+    if only:
+        out["maps"] = json.loads((out_dir / "thresholds.json").read_text())["maps"]
     with make_pool() as pool:
         domains = {d.name: d for d in DEFAULT_WORLD.domains}
         for name, spec in MAPS:
+            if only and spec.get("key", name) not in only:
+                continue
             d = domains[name]
             (rname, rvals), (cname, cvals) = spec["rows"], spec["cols"]
             base = {**midpoints(d.name, ranges), **spec.get("fixed", {})}
@@ -116,4 +121,4 @@ if __name__ == "__main__":
     import sys
 
     sys.stdout.reconfigure(line_buffering=True)
-    run_thresholds(Path(__file__).resolve().parent.parent / "results")
+    run_thresholds(Path(__file__).resolve().parent.parent / "results", only=sys.argv[1:] or None)

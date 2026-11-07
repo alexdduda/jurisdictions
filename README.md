@@ -200,19 +200,32 @@ simulation itself does not.
 
 ### A city level for transit
 
-Transit gets two tiers inside each region: the metropolitan region (72% of
-people, as in Canada) and the countryside. "Cities decide" lets each set its
-own level, tailored to density but blind to commuting across the metro
-boundary; every other rule is set by the province or nation at one level for
-both, which counts that commuting but can't tailor. scopelang's `devolved`
+Transit gets two tiers inside each region: its metropolitan areas and the
+countryside. With `World.city_profile = "canada"` (the default) every census
+metropolitan area is in the model: all 35 from the 2016 Census, Ottawa-Gatineau
+split by province, sized by population and given a transit taste from the
+share of its commuters using transit (2.3% in Saguenay and Trois-Rivieres to
+24.3% in Toronto). Each region holds its province's metro areas in proportion;
+small ones are pooled with others of similar transit use, leaving 25 city
+places plus a countryside in each region (`tiebout/cities.py`,
+`data/cities/cma_2016.csv`). With an empty profile it is one city and one
+countryside, and a one-city profile reproduces that model exactly (tested).
+
+"Cities decide" lets each place set its own level, tailored to its residents
+but blind to commuting across the metro boundary; every other rule is set by
+the province or nation at one level for all its places, which counts that
+commuting but can't tailor. scopelang's `devolved`
 rule expresses the same thing: the level two below decides, and the province
 in between is struck down if it tries.
 
 Cities win only when almost no commuting crosses the metro boundary
 (Statistics Canada draws metro areas so that most of it doesn't). National
-transit wins only if one national system saves 5 to 10% or more over city or
-provincial systems, a number nobody has measured; the transit verdict rests on
-it. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
+transit wins only if one national system saves about 10% or more over city or
+provincial systems (5% in the one-city model), a number nobody has measured;
+the transit verdict rests on it. `validation/city_sensitivity.py` reruns the
+analysis with the gap between metro areas halved and with Toronto, Montreal and
+Vancouver at post-pandemic (May 2023) transit use: the robust rule is the same
+in every case. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
 transit`.
 
 ### Climate and carbon pricing
@@ -248,12 +261,14 @@ reason constitutional protections exist.
 ### Accuracy checks
 
 - `validation/seed_stability.py`: re-scores 30 worlds per area with 12 fresh
-  seeds. The winning rule agrees in 139 of 150; every flip is between
+  seeds. The winning rule agrees in 142 of 150; every flip is between
   near-equivalent rules.
 - The one-area-at-a-time shortcut is checked against joint optimisation of all
-  five areas on 16 worlds: 95% agreement, at least 97% of the joint gain kept.
+  five areas on 16 worlds: 91% agreement, at least 97% of the joint gain kept.
 
-See [VERIFICATION.md](VERIFICATION.md) for every factual claim and its sources.
+See [VERIFICATION.md](VERIFICATION.md) for every factual claim and its sources,
+and [COMPARISONS.md](COMPARISONS.md) for how each finding compares with
+published work.
 
 ### What it leaves out
 
@@ -266,7 +281,8 @@ experiments. Each of these would shift the answer; see the end of the report.
 ```
 scopelang/   lexer.py, parser.py, interpreter.py (the precedence rules live here)
 tiebout/     model.py (simulation), optimize.py (search), experiments.py (study + report),
-             bridge.py (scopelang <-> arrangements), config.py (default world)
+             bridge.py (scopelang <-> arrangements), config.py (default world),
+             cities.py (metropolitan areas per region)
 examples/    cannabis.jur, min_wage.jur, river.jur, dispute.jur
 tests/
 ```
@@ -279,6 +295,12 @@ tests/
   Licence. This does not constitute an endorsement by Statistics Canada of
   this product. Raw tables are not committed; `data/targets.json` holds the
   derived values.
+- **Statistics Canada, 2016 Census**: population of every census metropolitan
+  area and province (The Daily, 8 February 2017, Tables 2 and 3) and transit
+  share of commuters by metropolitan area (The Daily, 29 November 2017, Table
+  1), transcribed into `data/cities/cma_2016.csv`. Adapted from Statistics
+  Canada, under the same licence. Ottawa-Gatineau split by province from the
+  City of Ottawa's 2016 Census page.
 - **Environment and Climate Change Canada**, greenhouse gas emissions by
   province, 2024 (Canadian Environmental Sustainability Indicators).
 - **2019 Canadian Election Study, online survey.** Stephenson, Laura B.;

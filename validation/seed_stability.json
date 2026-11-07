@@ -33,27 +33,12 @@
   },
   "transit": {
     "worlds": 30,
-    "agreement": 0.867,
+    "agreement": 0.967,
     "flips": [
       [
         "local",
         "equalized 100%",
-        4e-05
-      ],
-      [
-        "central 0.4",
-        "equalized 100%",
-        0.00192
-      ],
-      [
-        "local",
-        "equalized 100%",
-        9e-05
-      ],
-      [
-        "equalized 100%",
-        "local",
-        3e-05
+        5e-05
       ]
     ]
   },

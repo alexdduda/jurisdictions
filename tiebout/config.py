@@ -41,4 +41,7 @@ CLIMATE = Domain(
 
 # Canada's official-language profile is attached to the world; it only matters for
 # goods with a content cost (schools) or with a minority moving-cost multiplier.
-DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE), language_profile="canada")
+# So is its city profile (every census metropolitan area, tiebout/cities.py); it
+# only matters for goods with a city level (transit in the uncertainty analysis).
+DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE),
+                      language_profile="canada", city_profile="canada")

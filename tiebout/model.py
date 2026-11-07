@@ -40,6 +40,7 @@ transfer = t * mean income of the pool * (1 - deadweight * t). The pool is the
 region, or the whole nation when redistribution is central.
 """
 
+import bisect
 import math
 import random
 from dataclasses import dataclass, field
@@ -156,6 +157,11 @@ class World:
     language_profile: str = ""
     # Moving cost multiplier for minority-language residents (language barrier).
     minority_move_mult: float = 1.0
+    # Metropolitan areas inside each region, for two-tier goods: "" (one city and
+    # one countryside, sized by urban_share) or "canada" (every census
+    # metropolitan area, sized and given a transit taste from the 2016 Census;
+    # see tiebout/cities.py).
+    city_profile: str = ""
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -256,7 +262,23 @@ class _Run:
                 ]
         # City or countryside, fixed per person and kept when moving region.
         urban_rng = random.Random(seed * 31337 + 5)  # separate stream: one-tier worlds are unchanged
-        self.urban = [1 if urban_rng.random() < world.urban_share else 0 for _ in range(self.N)]
+        self.rank = [urban_rng.random() for _ in range(self.N)]
+        self.urban = [1 if u < world.urban_share else 0 for u in self.rank]
+        # Several metropolitan areas per region: a person's rank picks their place in
+        # whichever region they live in (largest city first, countryside last), so
+        # big-city residents tend to land in big cities when they move.
+        self.city_places = None
+        if world.city_profile:
+            from .cities import CITY_PROFILES
+            self.city_places = CITY_PROFILES[world.city_profile]()
+            self.city_cum = []
+            for places in self.city_places:
+                acc, cum = 0.0, []
+                for share, _ in places:
+                    acc += share
+                    cum.append(acc)
+                cum[-1] = 1.0
+                self.city_cum.append(cum)
         # Language group, fixed per person and kept when moving region.
         profile = LANGUAGE_PROFILES.get(world.language_profile, ())
         lang_rng = random.Random(seed * 65537 + 9)  # separate stream: worlds without a profile are unchanged
@@ -298,7 +320,9 @@ class _Run:
         state = []
         for d in w.domains:
             policy = self.arrangement.get(d.name, LOCAL)
-            if d.kind == "public_good" and d.two_tier:
+            if d.kind == "public_good" and d.two_tier and self.city_places is not None:
+                state.append(self._public_good_cities(d, policy, residents, pops))
+            elif d.kind == "public_good" and d.two_tier:
                 state.append(self._public_good_two_tier(d, policy, residents, pops))
             elif d.kind == "public_good":
                 state.append(self._public_good(d, policy, residents, pops))
@@ -471,6 +495,97 @@ class _Run:
         cost = [d.weight * (local_cost * place_burden[j] * p[j] ** 2 + national_tax) for j in range(2 * R)]
         return ("pg2", d.name, theta, gain, cost, 0.0, regional_level)
 
+    def place_of(self, i: int, r: int) -> int:
+        return min(bisect.bisect_right(self.city_cum[r], self.rank[i]), len(self.city_cum[r]) - 1)
+
+    def city_taste(self, d: Domain, i: int, r: int) -> float:
+        off = self.city_places[r][self.place_of(i, r)][1]
+        return _clamp(self.tastes[d.name][i] + d.urban_premium * off, 0, 1)
+
+    def _public_good_cities(self, d: Domain, policy: Policy, residents, pops) -> tuple:
+        """Like _public_good_two_tier, with every metropolitan area of a region as its own place.
+
+        Commuting spillover (metro_spillover) runs between each metropolitan area
+        and the countryside around it, not between metropolitan areas. With one
+        city and one countryside this reduces exactly to the two-place model.
+        """
+        w, s, sm = self.world, d.spillover, d.metro_spillover
+        k = d.capacity_elasticity
+        R = self.R
+        npl = [len(c) for c in self.city_cum]
+        places = [[[] for _ in range(npl[r])] for r in range(R)]
+        tastes = [[[] for _ in range(npl[r])] for r in range(R)]
+        for r, res in enumerate(residents):
+            for i in res:
+                j = self.place_of(i, r)
+                places[r][j].append(i)
+                tastes[r][j].append(self.city_taste(d, i, r))
+        burden = [
+            (self.national_income / self.regional_income[r]) ** k if k and self.regional_income[r] > 0 else 1.0
+            for r in range(R)
+        ]
+        eff_burden = burden
+        equalization_spend = 0.0
+        if policy.mode == "central":
+            p = [[_clamp(policy.level, 0, w.max_level)] * npl[r] for r in range(R)]
+            unit, local_share = 1.0 - d.scale, 0.0
+        elif policy.mode == "city":
+            local_share = 1.0 - _clamp(policy.level, 0.0, 0.95)
+            unit = 1.0
+            price = max(local_share, 0.05) * (1 + w.local_overhead)
+            p = [[
+                _clamp(_median(tastes[r][j]) * (1 - s - sm) / (price * burden[r]), 0, w.max_level)
+                if places[r][j] else 0.0
+                for j in range(npl[r])] for r in range(R)]
+        else:
+            match = policy.level if policy.mode == "matched" else 0.0
+            local_share = 1.0 - match
+            unit = 1.0
+            price = max(local_share, 0.05) * (1 + w.local_overhead)
+            if policy.mode == "equalized" and k:
+                q = _clamp(policy.level, 0.0, 1.0)
+                topped = [
+                    self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
+                    for r in range(R)
+                ]
+                eff_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(R)]
+            regional = [
+                _clamp(_median([t for ts in tastes[r] for t in ts]) * (1 - s) / (price * eff_burden[r]), 0, w.max_level)
+                if residents[r] else 0.0
+                for r in range(R)
+            ]
+            regional = _bound(regional, policy)
+            p = [[regional[r]] * npl[r] for r in range(R)]
+            if eff_burden is not burden:
+                equalization_spend = sum(
+                    len(places[r][j]) * unit * local_share * (burden[r] - eff_burden[r]) * p[r][j] ** 2
+                    for r in range(R) for j in range(npl[r])
+                ) / self.N
+        regional_level = [
+            sum(p[r][j] * len(places[r][j]) for j in range(npl[r])) / pops[r] if pops[r] else 0.0
+            for r in range(R)
+        ]
+        local_cost = unit * local_share * (1 + w.local_overhead)
+        national_spend = sum(
+            len(places[r][j]) * unit * (1 - local_share) * p[r][j] ** 2 for r in range(R) for j in range(npl[r])
+        ) / self.N
+        national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
+        gain, cost = [], []
+        for r in range(R):
+            nbr = _mean(regional_level[n] for n in self.nbrs[r])
+            last = npl[r] - 1
+            city_pop = sum(len(places[r][j]) for j in range(last))
+            city_mean = sum(p[r][j] * len(places[r][j]) for j in range(last)) / city_pop if city_pop else 0.0
+            g, c = [], []
+            for j in range(npl[r]):
+                other = city_mean if j == last else p[r][last]
+                experienced = (1 - s - sm) * p[r][j] + sm * other + s * nbr
+                g.append(d.weight * 2 * experienced)
+                c.append(d.weight * (local_cost * eff_burden[r] * p[r][j] ** 2 + national_tax))
+            gain.append(g)
+            cost.append(c)
+        return ("pgm", d.name, d, gain, cost, 0.0, regional_level)
+
     def _redistribution(self, d: Domain, policy: Policy, residents) -> tuple:
         w, eta = self.world, self.world.deadweight
         if policy.mode == "central":
@@ -507,6 +622,10 @@ class _Run:
             if entry[0] == "pg":
                 _, name, theta, gain, cost, penalty, _ = entry
                 v = gain[r] * theta[i] - cost[r] - (penalty if self.minority[i] else 0.0)
+            elif entry[0] == "pgm":
+                _, name, dom, gain, cost, _, _ = entry
+                j = self.place_of(i, r)
+                v = gain[r][j] * self.city_taste(dom, i, r) - cost[r][j]
             elif entry[0] == "pg2":
                 _, name, theta, gain, cost, _, _ = entry
                 j = 2 * r + self.urban[i]

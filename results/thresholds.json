@@ -44,220 +44,220 @@
           },
           {
             "mode": "city",
+            "label": "city + 10% grant",
+            "margin": 0.002
+          },
+          {
+            "mode": "city",
             "label": "city + 20% grant",
-            "margin": 0.00027
+            "margin": 0.00179
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 4e-05
+            "mode": "city",
+            "label": "city + 30% grant",
+            "margin": 0.00131
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 0.0005
+            "mode": "city",
+            "label": "city + 50% grant",
+            "margin": 0.00137
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 0.00056
-          },
-          {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 0.00056
+            "mode": "city",
+            "label": "city + 50% grant",
+            "margin": 0.00124
           }
         ],
         [
           {
             "mode": "city",
             "label": "city + 10% grant",
-            "margin": 0.00085
+            "margin": 0.00253
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00049
+            "margin": 0.00026
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00049
+            "margin": 0.00026
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00049
+            "margin": 0.00026
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00049
+            "margin": 0.00026
           },
           {
             "mode": "matched",
             "label": "matched 10%",
-            "margin": 0.00049
+            "margin": 0.00026
           }
         ],
         [
           {
             "mode": "city",
             "label": "city + 10% grant",
-            "margin": 0.00231
+            "margin": 0.00407
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 3e-05
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00021
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 3e-05
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00021
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 3e-05
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00021
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 3e-05
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00021
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 3e-05
+            "mode": "matched",
+            "label": "matched 10%",
+            "margin": 0.00021
           }
         ],
         [
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.00441
+            "margin": 0.0063
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           }
         ],
         [
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.00718
+            "margin": 0.01036
           },
           {
             "mode": "equalized",
             "label": "equalized 100%",
-            "margin": 0.00018
+            "margin": 8e-05
           },
           {
             "mode": "equalized",
             "label": "equalized 100%",
-            "margin": 0.00018
+            "margin": 8e-05
           },
           {
             "mode": "equalized",
             "label": "equalized 100%",
-            "margin": 0.00018
+            "margin": 8e-05
           },
           {
             "mode": "equalized",
             "label": "equalized 100%",
-            "margin": 0.00018
+            "margin": 8e-05
           },
           {
             "mode": "equalized",
             "label": "equalized 100%",
-            "margin": 0.00018
+            "margin": 8e-05
           }
         ],
         [
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.01063
+            "margin": 0.01422
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00023
+            "mode": "ceiling",
+            "label": "ceiling 0.4",
+            "margin": 0.0003
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00023
+            "mode": "ceiling",
+            "label": "ceiling 0.4",
+            "margin": 0.0003
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00023
+            "mode": "ceiling",
+            "label": "ceiling 0.4",
+            "margin": 0.0003
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00023
+            "mode": "ceiling",
+            "label": "ceiling 0.4",
+            "margin": 0.0003
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 0.00023
+            "mode": "ceiling",
+            "label": "ceiling 0.4",
+            "margin": 0.0003
           }
         ],
         [
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.01413
+            "margin": 0.01891
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 5e-05
+            "mode": "floor",
+            "label": "floor 0.1",
+            "margin": 0.00033
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 5e-05
+            "mode": "floor",
+            "label": "floor 0.1",
+            "margin": 0.00033
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 5e-05
+            "mode": "floor",
+            "label": "floor 0.1",
+            "margin": 0.00033
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 5e-05
+            "mode": "floor",
+            "label": "floor 0.1",
+            "margin": 0.00033
           },
           {
-            "mode": "equalized",
-            "label": "equalized 100%",
-            "margin": 5e-05
+            "mode": "floor",
+            "label": "floor 0.1",
+            "margin": 0.00033
           }
         ]
       ]
@@ -302,256 +302,256 @@
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.00441
+            "margin": 0.0063
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "matched",
-            "label": "matched 10%",
-            "margin": 9e-05
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           }
         ],
         [
           {
             "mode": "city",
             "label": "city",
-            "margin": 0.00212
+            "margin": 0.0063
           },
           {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00229
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00229
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00229
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00229
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           },
           {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.00229
+            "mode": "equalized",
+            "label": "equalized 100%",
+            "margin": 0.00015
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.00711
+            "margin": 0.00243
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01151
+            "margin": 0.00873
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01151
+            "margin": 0.00873
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01151
+            "margin": 0.00873
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01151
+            "margin": 0.00873
           },
           {
             "mode": "central",
             "label": "central 0.3",
-            "margin": 0.01151
-          }
-        ],
-        [
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.01633
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02074
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02074
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02074
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02074
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02074
-          }
-        ],
-        [
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02556
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02996
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02996
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02996
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02996
-          },
-          {
-            "mode": "central",
-            "label": "central 0.3",
-            "margin": 0.02996
+            "margin": 0.00873
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.05682
+            "margin": 0.01244
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.06123
+            "margin": 0.01874
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.06123
+            "margin": 0.01874
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.06123
+            "margin": 0.01874
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.06123
+            "margin": 0.01874
           },
           {
             "mode": "central",
             "label": "central 0.4",
-            "margin": 0.06123
+            "margin": 0.01874
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.02884
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03514
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03514
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03514
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03514
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.03514
+          }
+        ],
+        [
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06164
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06794
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06794
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06794
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06794
+          },
+          {
+            "mode": "central",
+            "label": "central 0.4",
+            "margin": 0.06794
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09219
+            "margin": 0.10654
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09659
+            "margin": 0.11284
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09659
+            "margin": 0.11284
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09659
+            "margin": 0.11284
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09659
+            "margin": 0.11284
           },
           {
             "mode": "central",
             "label": "central 0.5",
-            "margin": 0.09659
+            "margin": 0.11284
           }
         ],
         [
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14395
+            "margin": 0.16836
           },
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14836
+            "margin": 0.17467
           },
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14836
+            "margin": 0.17467
           },
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14836
+            "margin": 0.17467
           },
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14836
+            "margin": 0.17467
           },
           {
             "mode": "central",
             "label": "central 0.6",
-            "margin": 0.14836
+            "margin": 0.17467
           }
         ]
       ]
@@ -2003,5 +2003,5 @@
       ]
     }
   },
-  "seconds": 450.2
+  "seconds": 14779.5
 }

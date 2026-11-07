@@ -199,7 +199,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <li><strong>For climate, the instrument matters more than the level.</strong> A carbon price keeps 99% of the attainable gain; one national quantity standard keeps 44%. A national price floor that provinces may exceed, the 2018 design, does as well as a uniform price.</li>
       <li><strong>One unmeasured number decides schools and the environment:</strong> whether Ottawa or the provinces raise a dollar more cheaply. Published estimates don't settle it, so measuring it comparably at both levels is the most useful research this points to.</li>
       <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26).</li>
-      <li><strong>Transit is a city question unless one national network would save 5 to 10% or more.</strong> Cities beat provinces only when little commuting crosses the metro boundary. Nobody has measured the national savings.</li>
+      <li><strong>Transit: national only if one national network would save about 10% or more; otherwise provinces, and cities only where almost no commuting crosses the metro boundary.</strong> Putting all 35 metropolitan areas in the model, and testing post-pandemic commuting, didn't change that. Nobody has measured the national savings.</li>
       <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
       <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
     </ol>
@@ -310,6 +310,26 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="two" id="threshold-maps"></div>
   </section>
 
+  <section class="wide stack" aria-labelledby="s-cities">
+    <div class="col sec-head"><span class="sec-num">Cities</span><h2 id="s-cities">One province, many cities</h2></div>
+    <div class="col stack">
+      <p>Transit's city level used to be one city and one countryside per province. Now every census metropolitan area is in the model: all 35 from the 2016 Census, with Ottawa-Gatineau split between Ontario and Quebec. Each modelled region contains its province's metropolitan areas in proportion to their population, and how much each one wants transit is read from how much its commuters already use it. Small areas are pooled with others of similar transit use, which leaves 25 distinct city places and a countryside in each region.</p>
+      <p>2016 is deliberate: it is the last census before the pandemic changed commuting. The 2021 Census was taken mid-lockdown.</p>
+    </div>
+    <div class="two">
+      <figure>
+        <div class="fig-title">Transit share of commuters, by metropolitan area (2016 Census)</div>
+        <div id="city-chart"></div>
+        <figcaption id="city-caption"></figcaption>
+      </figure>
+      <div class="stack">
+        <div class="fig-title">Does it change the transit verdict?</div>
+        <div class="table-wrap"><table id="city-sens-table"></table></div>
+        <div class="stack" id="city-text"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="col stack" aria-labelledby="s6">
     <div class="sec-head"><span class="sec-num">§ 7</span><h2 id="s6">Does the model reproduce Canada?</h2></div>
     <p>Calibration fits the model to Canadian inputs. Validation asks whether it then reproduces Canadian <em>outcomes</em> it was never fitted to. The calibrated model was run under Canada's arrangement (provinces run schools, the environment and transit; redistribution is a national floor provinces can top up), and its simulated regions were put through the same statistical tests as the ten provinces.</p>
@@ -331,10 +351,18 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="stack" id="check-text"></div>
   </section>
 
+  <section class="col stack" aria-labelledby="s-compare">
+    <div class="sec-head"><span class="sec-num">Compared</span><h2 id="s-compare">Against published work</h2></div>
+    <p>Each finding next to the closest published evidence. None of these authors has reviewed this project; full citations are in the repository's COMPARISONS.md.</p>
+    <div class="table-wrap"><table id="compare-table"></table></div>
+    <p class="note">No published study was found that scores Canada's division of powers across several policy areas with one calibrated model. The closest in spirit is Alesina and Spolaore's <em>The Size of Nations</em> (2003), the same trade-off between scale and differing preferences applied to borders rather than to who decides.</p>
+  </section>
+
   <section class="col stack" aria-labelledby="s8">
     <div class="sec-head"><span class="sec-num">§ 9</span><h2 id="s8">What the model can't tell you</h2></div>
     <p>Sampling ranges fixes uncertainty about the <em>numbers</em>. It can't fix the model's <em>structure</em>. These would each move the answer, and none of them is in the simulation:</p>
     <ul class="plain">
+      <li><strong>Data age.</strong> The data describe long-run structure (city sizes, the urban-rural split, which provinces emit more) from 2016 to 2024, and survey opinion from 2019. Structure changes slowly, and a reform to who decides would last decades, so a pre-pandemic year is arguably a better guide than 2021. Opinion and prices move faster: carbon-tax support has likely shifted since 2019. The model is not a forecast; where a verdict hinges on a fast-moving number, the threshold maps in § 6 show what value would flip it.</li>
       <li><strong>Politics.</strong> Governments here are honest median voters. Capture by industry, lobbying, and the gap between what voters want and what they get at each level are all absent.</li>
       <li><strong>Learning.</strong> Regions can't copy each other's successful experiments. That's one of the strongest real arguments for decentralisation, so the model probably understates it.</li>
       <li><strong>Uniformity.</strong> National policy has to be the same everywhere. Real national programs tailor somewhat, which narrows the case for regional control.</li>
@@ -353,7 +381,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     </ul>
     <p><strong>Still open:</strong></p>
     <ul class="plain">
-      <li><strong>Transit and cities: partly addressed.</strong> Each province now has a city and a countryside, and "cities decide" is a rule (§ 6). Cities win only when almost no commuting crosses the metro boundary, and national wins only if one national system saves 5 to 10% or more, a number nobody has measured for Canada. Still missing: more than one city per province, and how transit costs change with network size.</li>
+      <li><strong>Transit and cities: addressed.</strong> Every census metropolitan area is now in the model ("One province, many cities"), and "cities decide" is a rule. Cities win only when almost no commuting crosses the metro boundary, and national wins only if one national system saves about 10% or more, a number nobody has measured for Canada. Still missing: how transit costs change with network size, and commuting between neighbouring metro areas (Toronto, Hamilton and Oshawa are separate areas in the census but share a commuter rail network).</li>
       <li><strong>Carbon pricing: now modelled</strong> as a separate climate area with prices, price floors and provincial differences in abatement costs (§ 4). Canada set its consumer carbon charge to zero on April 1, 2025; industrial pricing for large emitters continues under a national benchmark. Still missing: revenue use, trade exposure, and emissions leaking abroad.</li>
       <li><strong>Schools and language: partly addressed.</strong> Regions now have Canada's official-language profile, and a national standard costs minority-language residents unless it accommodates them (§ 6). Education is provincial under section 93 of the Constitution Act, 1867, which also protects denominational schools in some provinces (Quebec removed its guarantee in 1997); section 23 of the Charter protects minority-language schooling. A welfare total can't weigh those protections, which is the point of having them.</li>
       <li><strong>Provinces want different amounts of redistribution,</strong> and Quebec's residents move least: 0.35% a year leave for another province, against 0.55% to 1.99% elsewhere. Together these could favour a national floor with provincial top-ups.</li>
@@ -689,8 +717,8 @@ legend(document.getElementById("mode-legend"), MODES);
   };
   // Written from results/thresholds.json; rewrite if the maps change.
   const CAPTION = {
-    transit: "With no savings from one national system, the choice is cities or provinces. Cities win when city and countryside want different amounts of transit and almost no commuting crosses the metro boundary. Once a tenth of the benefit crosses it, provinces win, with a small federal grant or equalization (the two are nearly tied).",
-    transit_scale: "National beats both once one national system saves about 5 to 10% over separate city or provincial systems, at any level of commuting. Whether it does is unmeasured; the national verdict for transit rests on it.",
+    transit: "With no savings from one national system, the choice is cities or provinces. Cities win when places want different amounts of transit and almost no commuting crosses the metro boundary. Once a tenth of the benefit crosses it, provinces win; which provincial variant (a small federal grant, equalization, a cap or a floor) is a near-tie, within 0.3% of what is at stake. Where city and countryside want the same, cities with a federal grant edge ahead narrowly.",
+    transit_scale: "National beats both once one national system saves about 10% over separate city or provincial systems, at any level of commuting (5% was enough in the earlier one-city model). Whether it does is unmeasured; the national verdict for transit rests on it.",
     environment: "The column decides it. Where provinces raise money more cheaply than Ottawa, a national floor wins, or equalization when little pollution crosses borders. Where they don't, a national standard.",
     schools: "The column decides it again. Where provinces raise money more cheaply, provinces decide with an equalization top-up or a floor; where they don't, a national standard. The stakes are smaller than for the environment or transit.",
     redistribution: "National in every cell, even with nobody moving. Only the best rate changes, falling as taxes become more costly to the economy.",
@@ -782,9 +810,9 @@ legend(document.getElementById("mode-legend"), MODES);
     ["Climate: how much provinces disagree", "no climate area", "0.05 to 0.08", `Survey: between-province spread is ${S && S.climate ? r2(S.climate.rho) : "0.24"} of within-province spread on keeping the carbon tax, the largest of any question`, "CES 2019"],
     ["Climate: how much abatement costs differ", "no climate area", "log spread 0.33 to 0.99", "2024 emissions per person range from 8.4 t (PEI) and 8.6 t (Quebec) to 53 t (Alberta) and 58 t (Saskatchewan), a log spread of 0.66; used to inform the range, not fitted to it", "ECCC 2024; Stats Can 17-10-0009"],
     ["Climate: do high-emitting provinces want less?", "no climate area", "link 0.6 to 0.9", "Across the ten provinces, emissions per person and support for the carbon tax correlate at -0.82 (p = 0.003)", "ECCC 2024; CES 2019"],
-    ["Share of people living in a city (transit's city level)", "no city level", "72%", "71.8% of Canadians lived in a census metropolitan area (July 2021)", "Stats Can 91-214-X"],
+    ["Cities in each province (transit's city level)", "no city level", "all 35 metro areas, 25 places", "71.0% of Canadians lived in a census metropolitan area in 2016; each area's size and transit use (2.3% to 24.3% of commuters) from the census, pre-pandemic", "2016 Census, The Daily (Feb. 8 and Nov. 29, 2017)"],
     ["Transit benefit commuters carry across the metro boundary", "no city level", "0 to 20%", "Statistics Canada adds a municipality to a metro area when at least 50% of its workers commute to the core, so fewer than half of those left outside commute in", "Census of Population 2021 Dictionary"],
-    ["Spillovers to neighbours; savings from one national system; crowding; how much more cities want transit", "guessed", "still guessed", "No clean Canadian measurement. Transit use is far higher in big cities (Vancouver 22.5%, Toronto 20.6%, Montréal 16.4% of commuters), but that doesn't translate directly into a taste gap", "Stats Can Labour Force Survey, May 2023"],
+    ["Spillovers to neighbours; savings from one national system; crowding; size of the city-countryside taste gap", "guessed", "still guessed", "No clean Canadian measurement. Differences between cities are now taken from transit use; the overall city-countryside gap is still sampled over a wide range", "none"],
   ];
   const table = document.getElementById("calib-table");
   const h = el("tr", {}, el("thead", {}, table));
@@ -851,5 +879,89 @@ legend(document.getElementById("mode-legend"), MODES);
     const het = DATA.targets.disagreement.schools.heterogeneity_range;
     el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor and left schools to the provinces. Calibrating to Canada made both national standards. Correcting the cost of raising money (now centred on neither level being cheaper) sent schools back: on average no fixed national rule beats provincial control, and equalization does marginally best. For schools and the environment, the answer turns almost entirely on one number, whether Ottawa or the provinces raise a dollar more cheaply, which the published estimates don't settle." }, txt);
   }
+})();
+
+/* cities */
+(function cities() {
+  const C = DATA.cities;
+  if (!C) return;
+  const NAMES = { QC: "Quebec", ON: "Ontario", BC: "B.C.", AB: "Alberta", PR: "Man. + Sask.", ATL: "Atlantic" };
+  const groups = ["ON", "QC", "BC", "AB", "PR", "ATL"].filter((g) => C.groups[g]);
+  const W = 560, rowH = 58, m = { l: 104, r: 16, t: 14, b: 38 };
+  const H = m.t + rowH * groups.length + m.b;
+  const xmax = 26;
+  const sx = (v) => m.l + (v / xmax) * (W - m.l - m.r);
+  const svg = el("svg:svg", { viewBox: `0 0 ${W} ${H}`, class: "chart", role: "img", "aria-label": "Transit share of commuters in each metropolitan area, by province" }, document.getElementById("city-chart"));
+  for (let v = 0; v <= 25; v += 5) {
+    el("svg:line", { class: "grid", x1: sx(v), x2: sx(v), y1: m.t, y2: H - m.b }, svg);
+    el("svg:text", { x: sx(v), y: H - m.b + 16, "text-anchor": "middle", text: `${v}%` }, svg);
+  }
+  el("svg:text", { class: "axis-title", x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle", text: "Share of commuters taking public transit" }, svg);
+  const surface = css("--surface") || "#fff";
+  groups.forEach((g, i) => {
+    const y = m.t + rowH * i + rowH / 2;
+    el("svg:text", { x: m.l - 10, y: y + 4, "text-anchor": "end", text: NAMES[g], style: { fill: css("--ink") } }, svg);
+    el("svg:line", { x1: sx(0), x2: sx(xmax), y1: y, y2: y, stroke: css("--grid"), "stroke-width": 1 }, svg);
+    const places = [...C.groups[g]].sort((a, b) => b.share - a.share);
+    places.forEach((p, j) => {
+      const rural = p.place === "outside metropolitan areas";
+      const r = 3 + 14 * Math.sqrt(p.share);
+      const cx = sx(p.transit);
+      el("svg:circle", rural
+        ? { cx, cy: y, r, fill: "none", stroke: css("--ink-3"), "stroke-width": 1.5, "stroke-dasharray": "3 2" }
+        : { cx, cy: y, r, fill: modeColor("city"), "fill-opacity": 0.75, stroke: surface, "stroke-width": 1.5 }, svg);
+      const hit = el("svg:circle", { cx, cy: y, r: Math.max(r, 10), fill: "transparent" }, svg);
+      hoverable(hit, (e) => showTip(e, `${p.transit}%`, [{ text: p.place }, { text: `${pct(p.share)} of the ${NAMES[g]} population` }]));
+      if (j === 0 && !rural) el("svg:text", { x: cx, y: y - r - 4, "text-anchor": "middle", text: p.place.split(" ")[0], style: { fontSize: "11px" } }, svg);
+    });
+  });
+  document.getElementById("city-caption").textContent =
+    `Each filled circle is a metropolitan area (or a pool of small ones with similar transit use), sized by population; the dashed ring is everyone outside a metropolitan area (${C.rural_transit}%, implied from the national 12.4%). Statistics Canada, 2016 Census: The Daily, 29 November 2017 (transit) and 8 February 2017 (population). ${C.cmas} rows cover ${pct(C.cma_share_of_population)} of Canadians.`;
+
+  const S = DATA.city_sensitivity;
+  const table = document.getElementById("city-sens-table");
+  const txt = document.getElementById("city-text");
+  if (!S) { el("p", { text: "Sensitivity results pending." }, txt); return; }
+  const rows = [
+    ["two_place", "One city per province (earlier model)"],
+    ["canada", "Every metro area, 2016 (baseline)"],
+    ["canada_2023_big3", "Toronto, Montreal, Vancouver at 2023 levels"],
+    ["canada_half_spread", "Gap between metro areas halved"],
+  ].filter(([k]) => S[k]);
+  const h = el("tr", {}, el("thead", {}, table));
+  ["City map", "Robust rule", "Keeps", "Cities win", "National wins"].forEach((t) => el("th", { text: t }, h));
+  const tb = el("tbody", {}, table);
+  rows.forEach(([k, label]) => {
+    const r = S[k];
+    const tr = el("tr", {}, tb);
+    el("td", { text: label }, tr);
+    el("td", { text: policyText(r.robust) }, tr);
+    el("td", { class: "mono", text: pct(r.robust.gain_captured) }, tr);
+    el("td", { class: "mono", text: pct(r.win_share.city || 0) }, tr);
+    el("td", { class: "mono", text: pct(r.win_share.central || 0) }, tr);
+  });
+  [
+    "No. In every version of the city map, a national standard stays the robust rule, keeps a similar share of the attainable gain, and cities win only 4 to 6% of sampled worlds. The best \u201ccities decide\u201d rule does worse than provincial control on average.",
+    "Why so little effect: in most sampled worlds the decision is made by two other numbers, how much one national network saves and whether Ottawa or the provinces raise money more cheaply. The map of cities matters only once those are set aside (the transit maps in \u00a7 6, which hold national savings at zero). There, real city sizes raise the savings a national network needs to win from about 5% to about 10%.",
+    "The post-pandemic test uses May 2023 Labour Force Survey figures for the three largest areas, a different survey from the census, so it illustrates the direction of change rather than measuring it. The 2026 Census will allow a like-for-like update.",
+  ].forEach((t) => el("p", { text: t }, txt));
+})();
+
+/* published comparisons */
+(function compare() {
+  const rows = [
+    ["Disagreement is mostly within provinces", "Environics Institute, Confederation of Tomorrow 2020: on economy versus environment, the division \u201cexists within each province\u201d", "Agrees"],
+    ["Canadians move for income, not services", "Day and Winer (2006, 2012): policy-induced migration in Canada is real but small next to wages and jobs", "Agrees"],
+    ["Carbon price beats a uniform standard", "Ecofiscal Commission, Bridging the Gap (2019): pricing is lowest-cost; flexible regulation comes close", "Agrees; this model's standard is inflexible"],
+    ["Redistribution is national", "Feldstein and Wrobel (1998): US states cannot redistribute, because wages adjust", "Agrees, by a different route (holds here even with no one moving)"],
+    ["Schools stay provincial", "Oates (1972); Besley and Coate (2003): the case for decentralization rests on political economy", "Consistent with Oates; Besley and Coate is the main challenge"],
+    ["Transit is a city question", "Horak (2025): transit is municipal in most provinces; OECD (Ahrend et al. 2014): fragmented metro areas are about 6% less productive per doubling of municipalities, almost halved by a metro-wide body", "Agrees; this model's \u201ccity\u201d is already the metro-wide body"],
+    ["Emissions explain carbon-tax opposition (r = -0.82)", "No published estimate found", "New"],
+  ];
+  const table = document.getElementById("compare-table");
+  const h = el("tr", {}, el("thead", {}, table));
+  ["This project", "Closest published evidence", "Relation"].forEach((t) => el("th", { text: t }, h));
+  const tb = el("tbody", {}, table);
+  rows.forEach((r) => { const tr = el("tr", {}, tb); r.forEach((c) => el("td", { text: c }, tr)); });
 })();
 </script>

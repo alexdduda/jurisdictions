@@ -1,0 +1,10 @@
+canada_2023_big3:
+    transit: 34800 runs in 21810s
+      wins: local 0%, central 76%, floor 12%, ceiling 5%, equalized 2%, city 6% | robust: central 0.4 (captures 55% of the tailored gain)
+canada_half_spread:
+    transit: 34800 runs in 52243s
+      wins: local 2%, central 77%, floor 10%, ceiling 3%, equalized 4%, city 4% | robust: central 0.4 (captures 57% of the tailored gain)
+canada               robust central 0.4      keeps 54%; cities win 6%, central 76%; best city rule keeps -15%
+two_place            robust central 0.4      keeps 57%; cities win 4%, central 77%; best city rule keeps -13%
+canada_2023_big3     robust central 0.4      keeps 55%; cities win 6%, central 76%; best city rule keeps -15%
+canada_half_spread   robust central 0.4      keeps 57%; cities win 4%, central 77%; best city rule keeps -16%

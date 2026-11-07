@@ -1,20 +1,20 @@
 A. sampling worlds per policy area (canada ranges)
-    schools: 31800 runs in 271s
-      wins: local 2%, central 50%, floor 15%, ceiling 1%, matched 4%, equalized 26% | robust: equalized 100% (captures 2% of the tailored gain)
+    transit: 34800 runs in 612s
+      wins: local 1%, central 76%, floor 8%, ceiling 7%, equalized 3%, city 6% | robust: central 0.4 (captures 54% of the tailored gain)
 B. checking one-domain-at-a-time against joint optimisation
     world 1/16: modes agree 5/5, one-at-a-time keeps 97% of the joint gain
-    world 2/16: modes agree 4/5, one-at-a-time keeps 99% of the joint gain
-    world 3/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
+    world 2/16: modes agree 4/5, one-at-a-time keeps 98% of the joint gain
+    world 3/16: modes agree 5/5, one-at-a-time keeps 98% of the joint gain
     world 4/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
-    world 5/16: modes agree 5/5, one-at-a-time keeps 100% of the joint gain
+    world 5/16: modes agree 4/5, one-at-a-time keeps 99% of the joint gain
     world 6/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
     world 7/16: modes agree 5/5, one-at-a-time keeps 100% of the joint gain
     world 8/16: modes agree 4/5, one-at-a-time keeps 98% of the joint gain
     world 9/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
     world 10/16: modes agree 4/5, one-at-a-time keeps 98% of the joint gain
     world 11/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
-    world 12/16: modes agree 5/5, one-at-a-time keeps 100% of the joint gain
-    world 13/16: modes agree 5/5, one-at-a-time keeps 98% of the joint gain
-    world 14/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
-    world 15/16: modes agree 5/5, one-at-a-time keeps 98% of the joint gain
+    world 12/16: modes agree 4/5, one-at-a-time keeps 100% of the joint gain
+    world 13/16: modes agree 4/5, one-at-a-time keeps 98% of the joint gain
+    world 14/16: modes agree 5/5, one-at-a-time keeps 98% of the joint gain
+    world 15/16: modes agree 5/5, one-at-a-time keeps 99% of the joint gain
     world 16/16: modes agree 4/5, one-at-a-time keeps 100% of the joint gain

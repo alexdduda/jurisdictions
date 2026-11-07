@@ -214,6 +214,54 @@ class CityLevel(unittest.TestCase):
 
 
 
+class ManyCities(unittest.TestCase):
+    """Every census metropolitan area as its own place (tiebout/cities.py)."""
+
+    def test_one_city_profile_reproduces_the_two_place_model_exactly(self):
+        from tiebout import cities
+        d = Domain("t", heterogeneity=0.1, within=0.25, spillover=0.05, scale=0.3,
+                   urban_premium=0.3, metro_spillover=0.1, capacity_elasticity=0.2)
+        base = world(d, productivity_sd=0.1)
+        cities.CITY_PROFILES["_two"] = lambda: (((base.urban_share, 0.5), (1 - base.urban_share, -0.5)),) * 16
+        try:
+            for pol in (Policy("local"), Policy("central", 0.6), Policy("city", 0.2), Policy("equalized", 0.5),
+                        Policy("floor", 0.4), Policy("matched", 0.3)):
+                self.assertEqual(simulate(base, {"t": pol}, 1).welfare,
+                                 simulate(replace(base, city_profile="_two"), {"t": pol}, 1).welfare, pol.label())
+        finally:
+            del cities.CITY_PROFILES["_two"]
+
+    def test_canada_profile_covers_every_metro_area_and_matches_census_totals(self):
+        from tiebout import cities
+        s = cities.summary()
+        self.assertEqual(s["cmas"], 36)  # 35 CMAs, Ottawa-Gatineau split by province
+        self.assertAlmostEqual(s["cma_share_of_population"], 0.71, places=2)
+        self.assertTrue(2.5 < s["rural_transit"] < 3.5)
+        profile = cities.canada_profile()
+        self.assertEqual(len(profile), 16)
+        for places in profile:
+            self.assertAlmostEqual(sum(share for share, _ in places), 1.0, places=9)
+            self.assertEqual(places[-1][1], -0.5)  # countryside last
+        named = {name for g in s["groups"].values() for p in g for name in p["place"].split(" + ")}
+        self.assertEqual(len(named - {"outside metropolitan areas"}), 36)
+
+    def test_average_metro_resident_keeps_the_calibrated_urban_premium(self):
+        # Offsets are scaled so the population-weighted metro resident sits at +1/2.
+        from tiebout import cities
+        rows = cities._rows()
+        off = dict(zip((p["name"] for g in cities.GROUPS for p in cities.group_places(g, rows)),
+                       (o for g in cities.GROUPS for _, o in cities.offsets(cities.group_places(g, rows), rows))))
+        m = cities.rural_transit(rows)
+        mc = sum(r["pop"] * r["transit"] for r in rows) / sum(r["pop"] for r in rows)
+        self.assertAlmostEqual(off["Toronto"], (24.3 - m) / (mc - m) - 0.5, places=9)
+        self.assertAlmostEqual(sum(r["pop"] * ((r["transit"] - m) / (mc - m) - 0.5) for r in rows)
+                               / sum(r["pop"] for r in rows), 0.5, places=9)
+
+    def test_profile_is_inert_without_a_city_level(self):
+        d = Domain("t", heterogeneity=0.1)
+        self.assertEqual(simulate(world(d), {}, 0).welfare, simulate(world(d, city_profile="canada"), {}, 0).welfare)
+
+
 class CarbonPricing(unittest.TestCase):
     """Regulatory goods: private abatement costs that differ by region, priced or mandated."""
 

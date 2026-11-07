@@ -38,6 +38,9 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Layard, Mayraz and Nickell (2008): elasticity of marginal utility of income 1.26 (1.19-1.34) | LSE Research Online (abstract); journal record, *J. Public Econ.* 92(8-9) |
 | Dahlby and Ferede: federal PIT MCF 2.86, CIT 2.02 (2021); provincial PIT 1.44 to 3.81 (2006) | Fraser Institute study page (read in a browser); MacEwan University repository abstract of the 2012 *ITPF* article |
 | French as first official language spoken, 2021: Quebec 82.2%, Canada 21.4%, New Brunswick 30.0%, Ontario 3.4%; English 13.0% in Quebec | Statistics Canada, The Daily, August 17, 2022 (read verbatim). New Brunswick also from the Government of New Brunswick; Ontario's broader definition gives 4.6% (Ontario government profile), consistent. A CBC figure of "more than 90%" for Quebec does not match this measure and was not used |
+| 2016 Census population of all 35 CMAs and of each province (`data/cities/cma_2016.csv`) | Statistics Canada, The Daily, 8 February 2017, Tables 2 and 3 (98-402-X2016001), read directly. The 35 CMAs sum to 24,942,989 (71.0% of 35,151,728); a Durham Region report on the same release gives 24,945,123 (71%), a 0.01% gap consistent with the revised counts footnoted for Québec and Brantford |
+| Ottawa-Gatineau 2016 split: Ontario part 991,726, Quebec part 332,057 | City of Ottawa, 2016 Census population and dwelling counts (read directly); the parts sum to Statistics Canada's 1,323,783. Quebec part also matches a second, secondary source |
+| 2016 Census transit share of commuters for every CMA (Canada 12.4%; Toronto 24.3%, Montreal 22.3%, Vancouver 20.4%, Ottawa-Gatineau Ontario part 19.6%, ... St. Catharines-Niagara 2.7%) | Statistics Canada, The Daily, 29 November 2017, Table 1, read directly. Ottawa-Gatineau 18.3% and Edmonton 11.3% also match the CFRA and Statistics Canada summaries returned by search |
 | 2019 Canadian Election Study: authors, licence CC BY-NC 4.0 | Harvard Dataverse dataset metadata (doi:10.7910/DVN/DUS88V) |
 
 ## Computed from the project's own data (reproducible)
@@ -45,11 +48,18 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | claim | where |
 |---|---|
 | Interprovincial migration 0.75% a year; Quebec lowest at 0.35% | `data/raw/17100022.csv`, `17100009.csv` |
+| Transit share outside metropolitan areas, 3.0% (2016) | Implied: national 12.4% less the CMAs, weighting by population rather than workers (no published figure found). `tiebout/cities.py` |
 | Between/within-province disagreement (schools 0.08, environment 0.20, redistribution 0.21, carbon tax 0.24) | `data/scripts/ces_disagreement.py` |
 | Emissions per person vs. carbon-tax support across provinces: r = -0.82, p = 0.003 | 2024 ECCC emissions, Statistics Canada population, CES 2019 |
 | Provincial spending spread, income elasticities, market-income spread | `tiebout/canada.py`, `validation/` |
 
 ## Not verified
+
+- The May 2023 transit shares for Toronto, Montreal and Vancouver (Labour Force
+  Survey) are used only in a sensitivity scenario. The Statistics Canada page
+  was unavailable when fetched; the figures come from a search summary of it
+  and from Daily Hive. They also come from a different survey than the census,
+  so they are not a like-for-like update.
 
 - Commuting between provinces is close to zero outside Ottawa-Gatineau
   (claimed by the automated review; the census commuting-flow tables were not

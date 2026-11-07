@@ -11,6 +11,13 @@ ROOT = Path(__file__).resolve().parent.parent
 RESULTS = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / "results"
 
 
+def city_summary():
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from tiebout.cities import summary
+    return summary()
+
+
 def trim_points(points, keep):
     return [{k: p[k] for k in keep if k in p} for p in points]
 
@@ -60,6 +67,8 @@ def main() -> None:
         "survey": json.loads((ROOT / "data" / "ces_disagreement.json").read_text()) if (ROOT / "data" / "ces_disagreement.json").exists() else None,
         "thresholds": json.loads((RESULTS / "thresholds.json").read_text()) if (RESULTS / "thresholds.json").exists() else None,
         "validation": json.loads((ROOT / "validation" / "model_vs_canada.json").read_text()) if (ROOT / "validation" / "model_vs_canada.json").exists() else None,
+        "cities": city_summary(),
+        "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,
     }
     template = (ROOT / "site" / "template.html").read_text()
     payload = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")

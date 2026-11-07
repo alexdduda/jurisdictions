@@ -1,0 +1,15 @@
+  transit urban_premium=0.0: matched 10% | city + 10% grant | city + 20% grant | city + 30% grant | city + 50% grant | city + 50% grant
+  transit urban_premium=0.1: city + 10% grant | matched 10% | matched 10% | matched 10% | matched 10% | matched 10%
+  transit urban_premium=0.2: city + 10% grant | matched 10% | matched 10% | matched 10% | matched 10% | matched 10%
+  transit urban_premium=0.3: city | equalized 100% | equalized 100% | equalized 100% | equalized 100% | equalized 100%
+  transit urban_premium=0.4: city | equalized 100% | equalized 100% | equalized 100% | equalized 100% | equalized 100%
+  transit urban_premium=0.5: city | ceiling 0.4 | ceiling 0.4 | ceiling 0.4 | ceiling 0.4 | ceiling 0.4
+  transit urban_premium=0.6: city | floor 0.1 | floor 0.1 | floor 0.1 | floor 0.1 | floor 0.1
+  transit_scale scale=0.0: city | equalized 100% | equalized 100% | equalized 100% | equalized 100% | equalized 100%
+  transit_scale scale=0.05: city | equalized 100% | equalized 100% | equalized 100% | equalized 100% | equalized 100%
+  transit_scale scale=0.1: central 0.3 | central 0.3 | central 0.3 | central 0.3 | central 0.3 | central 0.3
+  transit_scale scale=0.15: central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4
+  transit_scale scale=0.2: central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4
+  transit_scale scale=0.3: central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4 | central 0.4
+  transit_scale scale=0.4: central 0.5 | central 0.5 | central 0.5 | central 0.5 | central 0.5 | central 0.5
+  transit_scale scale=0.5: central 0.6 | central 0.6 | central 0.6 | central 0.6 | central 0.6 | central 0.6
