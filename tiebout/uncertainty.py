@@ -55,7 +55,8 @@ WIDE = {
 }
 
 
-def canada_ranges() -> dict:
+def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
+                  emissions_spread: float = 0.66) -> dict:
     """Ranges calibrated to Canada where evidence exists; WIDE elsewhere.
 
     Measured from Statistics Canada (see tiebout/canada.py, data/targets.json):
@@ -93,13 +94,21 @@ def canada_ranges() -> dict:
                      at a 30% tax rate
     Not calibrated (no Canadian data): spillover, scale, congestion, and for
     transit the city-countryside taste gap and commuting spillover.
+
+    The arguments replace the measured inputs, so the same calibration can be
+    rebuilt from older data (validation/backtest.py): `targets` in the shape of
+    data/targets.json, `capacity` in the shape of the fiscal_capacity block of
+    validation/migration_and_capacity.json, and the log sd of emissions per
+    person across provinces.
     """
     root = Path(__file__).resolve().parent.parent
-    targets = json.loads((root / "data" / "targets.json").read_text())
+    if targets is None:
+        targets = json.loads((root / "data" / "targets.json").read_text())
     # Fiscal capacity: income elasticity of provincial spending (validation test 3),
     # halved because spending is the model's cost, p squared. Spread +/- 25% for
     # year-to-year variation in the estimate.
-    capacity = json.loads((root / "validation" / "migration_and_capacity.json").read_text())["fiscal_capacity"]
+    if capacity is None:
+        capacity = json.loads((root / "validation" / "migration_and_capacity.json").read_text())["fiscal_capacity"]
     het = {k: tuple(v["heterogeneity_range"]) for k, v in targets["disagreement"].items()}
     sigma = targets["inequality"]["income_sigma"]
     domains = {name: dict(r) for name, r in WIDE["domains"].items()}
@@ -107,8 +116,9 @@ def canada_ranges() -> dict:
         lo, hi = het[name]
         domains[name]["heterogeneity"] = (lo, hi)
         domains[name]["within"] = (0.25, 0.30)
-        k = max(capacity[name]["income_elasticity"], 0.0) / 2
-        domains[name]["capacity_elasticity"] = (round(0.75 * k, 4), round(1.25 * k, 4))
+        e = capacity[name]["income_elasticity"]
+        lo_e, hi_e = (min(e), max(e)) if isinstance(e, (tuple, list)) else (e, e)  # a pair: cover both
+        domains[name]["capacity_elasticity"] = (round(0.75 * max(lo_e, 0.0) / 2, 4), round(1.25 * max(hi_e, 0.0) / 2, 4))
     # Transit gets a city level. 72% of Canadians live in a census metropolitan area
     # (World.urban_share). How much more city residents want transit, and how much of
     # it commuters carry between city and suburbs, have no clean Canadian measure:
@@ -143,7 +153,8 @@ def canada_ranges() -> dict:
     })
     domains["climate"] = {
         "heterogeneity": (0.05, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
-        "abatement_sd": (0.33, 0.99), "abatement_taste_corr": (0.60, 0.90),
+        "abatement_sd": (round(0.5 * emissions_spread, 2), round(1.5 * emissions_spread, 2)),
+        "abatement_taste_corr": (0.60, 0.90),
     }
     # Jointly calibrated (validation/README): with people moving for jobs, these keep
     # provincial market-income spread at 12-19% and migration at 0.3-0.75% a year.

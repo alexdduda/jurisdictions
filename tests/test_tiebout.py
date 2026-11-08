@@ -351,5 +351,20 @@ class LanguageAndSchools(unittest.TestCase):
         self.assertLess(moves[50.0], moves[1.0])
 
 
+    def test_welfare_by_origin_averages_to_total(self):
+        # validation/feasibility.py reads per-region welfare; with equal starting
+        # regions its mean must be the reported total.
+        sch = Domain("s", heterogeneity=0.2)
+        o = simulate(world(sch, move_share=0.3, grid=4, steps=6), {"s": Policy("central", 0.5)}, 1)
+        self.assertEqual(len(o.by_origin), 16)
+        self.assertAlmostEqual(sum(o.by_origin) / 16, o.welfare, places=9)
+
+    def test_ranges_rebuilt_from_older_data_keep_todays_by_default(self):
+        from tiebout.uncertainty import canada_ranges
+        self.assertEqual(canada_ranges(), canada_ranges(emissions_spread=0.66))
+        pair = canada_ranges(capacity={k: {"income_elasticity": (0.2, 0.6)} for k in ("schools", "environment", "transit")})
+        self.assertEqual(pair["domains"]["schools"]["capacity_elasticity"], (0.075, 0.375))
+
+
 if __name__ == "__main__":
     unittest.main()

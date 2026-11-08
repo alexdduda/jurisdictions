@@ -11,6 +11,8 @@ the data in `data/raw/` (see the main README for downloads).
 | `redistribution.py` | Across provinces, does market-income inequality predict wanting redistribution (survey) and spending on it (budgets)? |
 | `migration_and_capacity.py` | Do people move toward higher incomes or better services? Do richer provinces spend more per person? |
 | `model_vs_canada.py` | Run the calibrated model under Canada's arrangement and apply the same tests to its output |
+| `backtest.py` | With only the data available before 1996, 2006 and 2016, does the model reach today's verdicts, and do they point the way Canada's reforms went? |
+| `feasibility.py` | Under each recommended rule, which regions lose, and are the losses concentrated? |
 
 ## Results
 

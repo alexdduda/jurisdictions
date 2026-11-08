@@ -201,6 +201,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26).</li>
       <li><strong>Transit: national only if one national network would save about 10% or more; otherwise provinces, and cities only where almost no commuting crosses the metro boundary.</strong> Putting all 35 metropolitan areas in the model, and testing post-pandemic commuting, didn't change that. Nobody has measured the national savings.</li>
       <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
+      <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, the model picks today's rule in every area. Two of three reforms since then moved its way; the one that didn't (the 1996 welfare block grant) was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
       <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
     </ol>
     <p class="note">Every factual claim is logged with its sources in the repository's VERIFICATION.md; three calibration errors caught by these checks are listed in § 7, and a bug caught before publishing is described in the repository's validation notes.</p>
@@ -359,6 +360,33 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="fig-title">Watch list</div>
     <div class="table-wrap"><table id="watch-table"></table></div>
     <p class="note" id="watch-note"></p>
+  </section>
+
+  <section class="col stack" aria-labelledby="s-backtest">
+    <div class="sec-head"><span class="sec-num">Backtest</span><h2 id="s-backtest">What the model would have said at the time</h2></div>
+    <p>The model says what <em>should</em> be decided where, so it can't be proven right because governments did something, or wrong because they didn't. But it can be asked two fair questions. With only the data that existed before each reform, would it have reached the verdict it reaches today? And does that verdict point the way Canada moved? Every measured input (spending by function, inequality, migration, regional incomes, fiscal capacity, emissions) was rebuilt from the ten years before 1996, 2006 and 2016, and the whole analysis rerun on the same sampled worlds and seeds.</p>
+    <div class="fig-title">Three reforms, judged with only the data of the time</div>
+    <div class="table-wrap"><table id="bt-table"></table></div>
+    <div class="fig-title">Every verdict, then and now</div>
+    <div class="table-wrap"><table id="bt-all"></table></div>
+    <div class="stack" id="bt-text">
+      <p><strong>Stable.</strong> All 13 verdicts pick the same rule with 1986-1995, 1996-2005 or 2006-2015 data as with today's (one level moves a notch: national redistribution at 0.3 rather than 0.25 with 1996-2005 data), and the share of the attainable gain each keeps moves by at most 3 points. Disagreement between provinces, inequality and migration all changed over those decades (migration fell from 1.09% to 0.79% a year), but not by enough to move a verdict. Restricting to sampled worlds as mobile as each decade gives the same answers.</p>
+      <p><strong>Two of three reforms point the model's way.</strong> Ontario moving Toronto-area transit from cities to a provincial body, and the national carbon price floor, both move toward what the model recommends with the data of the time. The 1996 block grant moved the other way.</p>
+      <p><strong>Where it disagreed, the later data look like what the model predicts of provincial choice.</strong> After Ottawa stopped matching welfare spending, provincial and local social-services spending fell from 4.4% to 3.4% of provincial GDP (fiscal years 1988-95 against 1997-2008), and the gap between provinces widened (coefficient of variation of spending per person 0.28 to 0.35). The late-1990s recovery also cut welfare caseloads and the 1995 federal budget cut transfers, so this is consistent with the model, not proof of it.</p>
+      <p><strong>What it missed.</strong> The model recommended a carbon price in 2016 and still does, but the consumer charge was set to zero in 2025. The "who loses" analysis below finds no region that loses in the model, so the repeal reflects something it leaves out: how visible the cost was against the rebate, and politics generally.</p>
+    </div>
+    <p class="note" id="bt-note"></p>
+  </section>
+
+  <section class="col stack" aria-labelledby="s-losers">
+    <div class="sec-head"><span class="sec-num">Losers</span><h2 id="s-losers">Who loses under each rule</h2></div>
+    <p>A rule can win on totals and still not last if its losses fall on a few places. For each recommended rule, 40 sampled worlds (3 seeds each) were run under the rule and under provinces deciding, and the change in welfare measured for the people who started in each of the 16 regions.</p>
+    <div class="table-wrap"><table id="fe-table"></table></div>
+    <div class="stack" id="fe-text">
+      <p><strong>Equalization is the rule with concentrated losers.</strong> Under full equalization for schools (the best fixed rule there, though no clear winner), about a third of regions are worse off, and the hardest-hit loses about two and a half times what the average person gains. That matches the politics: in 2021 Albertans voted 61.7% to remove equalization from the Constitution (a non-binding referendum).</p>
+      <p><strong>The carbon price has almost no losers in the model.</strong> Even the two regions with the highest abatement cost, standing in for Alberta and Saskatchewan, gain about four-fifths of the average gain, because they share in everyone else's cuts. In the model, the reason the consumer charge didn't last is not lost welfare. See the backtest above.</p>
+      <p><strong>National standards for the environment and transit</strong> leave few losers, and those are the regions that want less of the service. Redistribution leaves about one region in eight worse off, by less than the average gain.</p>
+    </div>
   </section>
 
   <section class="col stack" aria-labelledby="s-compare">
@@ -1002,5 +1030,63 @@ legend(document.getElementById("mode-legend"), MODES);
     [it.area, it.number, it.flips, it.current + (it.projected ? `; projected 2035: ${it.projected["2035"]}` : ""), it.status, it.watch].forEach((c) => el("td", { text: c }, tr));
   });
   document.getElementById("watch-note").textContent = "Flip points are read automatically from the threshold maps in \u00a7 6, with every measured input at its Canadian value; rerunning the maps updates this table. The most valuable single measurement is the first row: the published estimates of what it costs each level of government to raise a dollar span both flip points, so the schools and environment verdicts are genuinely open.";
+})();
+/* backtest */
+(function backtest() {
+  const B = DATA.backtest;
+  if (!B) return;
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const asPolicy = (r) => {
+    const last = r.robust.split(" ").pop();
+    return { mode: r.robust_mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) || 0 };
+  };
+  // A rule keeping under 10% of the attainable gain is no clear winner (as in \u00a7 4).
+  const label = (r) => policyText(asPolicy(r)) + (r.gain_captured < 0.1 ? " (no clear winner)" : "");
+  const t = document.getElementById("bt-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Year", "What Canada did", "Direction", "Model, data of the time", "Model, today", "Agrees with the direction?"].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  B.reforms.forEach((rf) => {
+    const v = B.vintages[String(rf.year)];
+    const r = v && v.results[rf.area];
+    const tr = el("tr", {}, b);
+    [String(rf.year), rf.what, rf.direction,
+     r ? `${policyText(asPolicy(r))} (keeps ${pct(r.gain_captured)}; this kind of rule wins ${pct(r.win_share[r.robust_mode] || 0)} of worlds)` : "pending",
+     policyText(asPolicy(B.now[rf.area])), rf.verdict || ""].forEach((c) => el("td", { text: c }, tr));
+  });
+  const t2 = document.getElementById("bt-all");
+  const years = Object.keys(B.vintages);
+  const h2 = el("tr", {}, el("thead", {}, t2));
+  ["Area", ...years.map((y) => `Data before ${y}`), "Today"].forEach((x) => el("th", { text: x }, h2));
+  const b2 = el("tbody", {}, t2);
+  Object.keys(AREA).forEach((a) => {
+    const tr = el("tr", {}, b2);
+    el("td", { text: AREA[a] }, tr);
+    years.forEach((y) => { const r = B.vintages[y].results[a]; el("td", { text: r ? label(r) : "not run (no older opinion data)" }, tr); });
+    el("td", { text: label(B.now[a]) }, tr);
+  });
+  document.getElementById("bt-note").textContent = "Held at today's values because no older source was on hand: " + B.not_dated.join("; ") + ".";
+})();
+
+/* who loses */
+(function losers() {
+  const F = DATA.feasibility;
+  if (!F) return;
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const WHO = {
+    schools: "Mixed; slightly more the richer regions",
+    environment: "Regions that want less of it",
+    transit: "Regions that want less of it",
+    redistribution: "Mixed",
+    climate: "Almost nobody; highest-cost regions gain less",
+  };
+  const t = document.getElementById("fe-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Area", "Rule", "Regions worse off (median)", "Hardest-hit region loses (x average gain)", "Few losers losing a lot", "Who loses"].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  Object.entries(F.areas).forEach(([a, r]) => {
+    const tr = el("tr", {}, b);
+    [AREA[a], (() => { const [m, ...rest] = r.rule.split(" "); const last = rest.pop() || "0"; return policyText({ mode: m, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }); })(), pct(r.median_share_losing), r.median_worst_loss_over_mean_gain.toFixed(1), pct(r.share_concentrated) + " of worlds", (WHO[a] || "")].forEach((c) => el("td", { text: c }, tr));
+  });
 })();
 </script>

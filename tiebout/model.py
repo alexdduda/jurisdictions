@@ -179,6 +179,7 @@ class Outcome:
     income_sorting: float = 0.0    # sd of regional mean income / national mean (regional income spread)
     crowding: float = 0.0          # largest region / average region
     migration: float = 0.0         # share of agents who changed region per round
+    by_origin: list = field(default_factory=list)  # mean utility by the region people started in
 
 
 def _clamp(x: float, lo: float, hi: float) -> float:
@@ -668,8 +669,10 @@ class _Run:
 
     def measure(self, state: list[tuple], pops: list[int], residents) -> Outcome:
         parts: dict[str, float] = {}
-        total = sum(self.utility(i, self.region[i], state, pops, parts) for i in range(self.N))
-        out = Outcome(welfare=total / self.N, components={k: v / self.N for k, v in parts.items()})
+        utils = [self.utility(i, self.region[i], state, pops, parts) for i in range(self.N)]
+        out = Outcome(welfare=sum(utils) / self.N, components={k: v / self.N for k, v in parts.items()})
+        n = self.world.agents_per_region
+        out.by_origin = [sum(utils[r * n:(r + 1) * n]) / n for r in range(self.R)]
         populated = [r for r in range(self.R) if pops[r]]
         for entry in state:
             levels = entry[-1]
@@ -707,6 +710,7 @@ def _average(samples: list[Outcome]) -> Outcome:
         crowding=sum(s.crowding for s in samples) / n,
         migration=sum(s.migration for s in samples) / n,
     )
+    out.by_origin = [sum(s.by_origin[r] for s in samples) / n for r in range(len(samples[0].by_origin))]
     for attr in ("components", "policy_mean", "policy_sd"):
         keys = getattr(samples[0], attr).keys()
         setattr(out, attr, {k: sum(getattr(s, attr)[k] for s in samples) / n for k in keys})

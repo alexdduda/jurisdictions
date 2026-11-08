@@ -1,0 +1,666 @@
+{
+  "bridge_2008": {
+    "schools": {
+      "levels": 1.338,
+      "shares": 1.117,
+      "residual": 1.487,
+      "per_child": 1.179
+    },
+    "environment": {
+      "levels": 0.965,
+      "shares": 1.139,
+      "residual": 1.073
+    },
+    "transit": {
+      "levels": 1.057,
+      "shares": 1.253,
+      "residual": 1.246
+    },
+    "social protection": {
+      "levels": 0.696,
+      "shares": 0.733,
+      "residual": 0.774
+    }
+  },
+  "today": {
+    "schools": [
+      0.0253,
+      0.0362
+    ],
+    "environment": [
+      0.0734,
+      0.0761
+    ],
+    "transit": [
+      0.0692,
+      0.0824
+    ],
+    "social protection": [
+      0.0602,
+      0.0675
+    ]
+  },
+  "reforms": [
+    {
+      "year": 1996,
+      "area": "redistribution",
+      "what": "Canada Health and Social Transfer replaces the Canada Assistance Plan's 50-50 cost sharing of provincial welfare with a block grant",
+      "direction": "down (national matching to provincial choice)",
+      "verdict": "No: the model says national, in 98% of worlds"
+    },
+    {
+      "year": 2006,
+      "area": "transit",
+      "what": "Ontario creates the Greater Toronto Transportation Authority (Metrolinx from 2007) over municipal transit in the Toronto and Hamilton area",
+      "direction": "up (cities to a provincial body)",
+      "verdict": "Yes in direction: cities are the model's weakest rule (they win 6% of worlds); it would go further, to a national standard"
+    },
+    {
+      "year": 2016,
+      "area": "climate",
+      "what": "Pan-Canadian Framework: a national minimum carbon price provinces may meet with their own systems; federal backstop from 2019",
+      "direction": "up (provincial choice to a national price floor)",
+      "verdict": "Yes: a carbon price, in 99% of worlds; a floor provinces may exceed does almost as well. It did not foresee the 2025 repeal of the consumer charge"
+    }
+  ],
+  "not_dated": [
+    "within-province disagreement (2019 Canadian Election Study)",
+    "carbon-tax opinion and its link to emissions (2019 Canadian Election Study)",
+    "city map for transit (2016 Census)",
+    "cost of public funds, spillovers, scale economies (never measured; same ranges as today)"
+  ],
+  "afterwards": {
+    "measure": "provincial and local social services spending per person (FMS 'Social services')",
+    "before_FY1988_to_1995": {
+      "spread_cv": 0.279,
+      "share_of_gdp": 0.0437
+    },
+    "after_FY1997_to_2008": {
+      "spread_cv": 0.349,
+      "share_of_gdp": 0.0341
+    }
+  },
+  "now": {
+    "schools": {
+      "win_share": {
+        "local": 0.025,
+        "central": 0.505,
+        "floor": 0.15,
+        "ceiling": 0.01,
+        "matched": 0.045,
+        "equalized": 0.265
+      },
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.024,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -0.445,
+        "floor": 0.0,
+        "ceiling": 0.0,
+        "matched": -0.041,
+        "equalized": 0.024
+      },
+      "share_on_canadian_targets": 0.57
+    },
+    "environment": {
+      "win_share": {
+        "central": 0.575,
+        "floor": 0.42,
+        "matched": 0.005
+      },
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.59,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.59,
+        "floor": 0.264,
+        "ceiling": 0.0,
+        "matched": 0.339,
+        "equalized": 0.019
+      },
+      "share_on_canadian_targets": 0.675
+    },
+    "transit": {
+      "win_share": {
+        "local": 0.01,
+        "central": 0.755,
+        "floor": 0.08,
+        "ceiling": 0.07,
+        "equalized": 0.03,
+        "city": 0.055
+      },
+      "robust": "central 0.4",
+      "robust_mode": "central",
+      "gain_captured": 0.544,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.544,
+        "floor": 0.0,
+        "ceiling": 0.0,
+        "matched": -0.061,
+        "equalized": 0.001,
+        "city": -0.149
+      },
+      "share_on_canadian_targets": 0.28
+    },
+    "redistribution": {
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      },
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.869,
+        "floor": 0.543,
+        "ceiling": 0.284
+      },
+      "share_on_canadian_targets": 0.555
+    },
+    "climate": {
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      },
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.436,
+        "floor": 0.485,
+        "price": 0.991,
+        "price_floor": 0.991
+      },
+      "share_on_canadian_targets": 0.515
+    }
+  },
+  "vintages": {
+    "1996": {
+      "results": {
+        "schools": {
+          "as_mobile_as_period": {
+            "worlds": 23,
+            "win_share": {
+              "central": 0.348,
+              "equalized": 0.348,
+              "floor": 0.261,
+              "local": 0.043
+            }
+          },
+          "win_share": {
+            "local": 0.055,
+            "central": 0.5,
+            "floor": 0.12,
+            "ceiling": 0.01,
+            "matched": 0.07,
+            "equalized": 0.245
+          },
+          "robust": "equalized 100%",
+          "robust_mode": "equalized",
+          "gain_captured": 0.018,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": -0.48,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.041,
+            "equalized": 0.018
+          },
+          "share_on_canadian_targets": 0.575
+        },
+        "environment": {
+          "as_mobile_as_period": {
+            "worlds": 13,
+            "win_share": {
+              "central": 0.538,
+              "floor": 0.462
+            }
+          },
+          "win_share": {
+            "central": 0.585,
+            "floor": 0.415
+          },
+          "robust": "central 0.3",
+          "robust_mode": "central",
+          "gain_captured": 0.615,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.615,
+            "floor": 0.263,
+            "ceiling": 0.0,
+            "matched": 0.307,
+            "equalized": 0.05
+          },
+          "share_on_canadian_targets": 0.68
+        },
+        "transit": {
+          "as_mobile_as_period": {
+            "worlds": 117,
+            "win_share": {
+              "ceiling": 0.103,
+              "central": 0.615,
+              "city": 0.077,
+              "equalized": 0.043,
+              "floor": 0.154,
+              "local": 0.009
+            }
+          },
+          "win_share": {
+            "local": 0.005,
+            "central": 0.765,
+            "floor": 0.1,
+            "ceiling": 0.06,
+            "equalized": 0.025,
+            "city": 0.045
+          },
+          "robust": "central 0.4",
+          "robust_mode": "central",
+          "gain_captured": 0.55,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.55,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.059,
+            "equalized": 0.001,
+            "city": -0.149
+          },
+          "share_on_canadian_targets": 0.285
+        },
+        "redistribution": {
+          "as_mobile_as_period": {
+            "worlds": 19,
+            "win_share": {
+              "central": 1.0
+            }
+          },
+          "win_share": {
+            "central": 0.98,
+            "floor": 0.02
+          },
+          "robust": "central 0.25",
+          "robust_mode": "central",
+          "gain_captured": 0.888,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.888,
+            "floor": 0.575,
+            "ceiling": 0.254
+          },
+          "share_on_canadian_targets": 0.605
+        }
+      },
+      "inputs": {
+        "spending_years": "FY1988-1995 (FMS)",
+        "other_years": "1986-1995",
+        "heterogeneity": {
+          "schools": [
+            0.0286,
+            0.0446
+          ],
+          "environment": [
+            0.0492,
+            0.0702
+          ],
+          "transit": [
+            0.0462,
+            0.0628
+          ],
+          "social protection": [
+            0.0415,
+            0.0698
+          ]
+        },
+        "income_sigma": 0.7643,
+        "market_gini": 0.4111,
+        "migration_rate": 0.01085,
+        "market_income_cv": 0.1487,
+        "capacity_elasticity": {
+          "schools": 0.128,
+          "environment": 1.355,
+          "transit": -0.129
+        },
+        "emissions_spread": {
+          "year": "1990",
+          "log_sd": 0.534
+        },
+        "inside_mobility_targets": false
+      }
+    },
+    "2006": {
+      "results": {
+        "schools": {
+          "as_mobile_as_period": {
+            "worlds": 39,
+            "win_share": {
+              "ceiling": 0.026,
+              "central": 0.385,
+              "equalized": 0.333,
+              "floor": 0.205,
+              "local": 0.026,
+              "matched": 0.026
+            }
+          },
+          "win_share": {
+            "local": 0.04,
+            "central": 0.495,
+            "floor": 0.11,
+            "ceiling": 0.01,
+            "matched": 0.07,
+            "equalized": 0.275
+          },
+          "robust": "equalized 100%",
+          "robust_mode": "equalized",
+          "gain_captured": 0.019,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": -0.499,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.04,
+            "equalized": 0.019
+          },
+          "share_on_canadian_targets": 0.56
+        },
+        "environment": {
+          "as_mobile_as_period": {
+            "worlds": 20,
+            "win_share": {
+              "central": 0.5,
+              "floor": 0.5
+            }
+          },
+          "win_share": {
+            "central": 0.575,
+            "floor": 0.425
+          },
+          "robust": "central 0.3",
+          "robust_mode": "central",
+          "gain_captured": 0.602,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.602,
+            "floor": 0.264,
+            "ceiling": 0.0,
+            "matched": 0.326,
+            "equalized": 0.031
+          },
+          "share_on_canadian_targets": 0.685
+        },
+        "transit": {
+          "as_mobile_as_period": {
+            "worlds": 125,
+            "win_share": {
+              "ceiling": 0.072,
+              "central": 0.72,
+              "city": 0.072,
+              "equalized": 0.024,
+              "floor": 0.112
+            }
+          },
+          "win_share": {
+            "central": 0.76,
+            "floor": 0.1,
+            "ceiling": 0.065,
+            "equalized": 0.015,
+            "city": 0.06
+          },
+          "robust": "central 0.4",
+          "robust_mode": "central",
+          "gain_captured": 0.548,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.548,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.06,
+            "equalized": 0.001,
+            "city": -0.149
+          },
+          "share_on_canadian_targets": 0.29
+        },
+        "redistribution": {
+          "as_mobile_as_period": {
+            "worlds": 50,
+            "win_share": {
+              "central": 0.96,
+              "floor": 0.04
+            }
+          },
+          "win_share": {
+            "central": 0.985,
+            "floor": 0.015
+          },
+          "robust": "central 0.3",
+          "robust_mode": "central",
+          "gain_captured": 0.871,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.871,
+            "floor": 0.546,
+            "ceiling": 0.291
+          },
+          "share_on_canadian_targets": 0.525
+        }
+      },
+      "inputs": {
+        "spending_years": "FY1996-2005 (FMS)",
+        "other_years": "1996-2005",
+        "heterogeneity": {
+          "schools": [
+            0.032,
+            0.0529
+          ],
+          "environment": [
+            0.0406,
+            0.0579
+          ],
+          "transit": [
+            0.0502,
+            0.0716
+          ],
+          "social protection": [
+            0.0529,
+            0.0835
+          ]
+        },
+        "income_sigma": 0.8226,
+        "market_gini": 0.4392,
+        "migration_rate": 0.00889,
+        "market_income_cv": 0.1599,
+        "capacity_elasticity": {
+          "schools": 0.156,
+          "environment": 0.697,
+          "transit": -0.106
+        },
+        "emissions_spread": {
+          "year": "2005",
+          "log_sd": 0.652
+        },
+        "inside_mobility_targets": false
+      }
+    },
+    "2016": {
+      "results": {
+        "schools": {
+          "as_mobile_as_period": {
+            "worlds": 43,
+            "win_share": {
+              "ceiling": 0.023,
+              "central": 0.372,
+              "equalized": 0.302,
+              "floor": 0.233,
+              "local": 0.047,
+              "matched": 0.023
+            }
+          },
+          "win_share": {
+            "local": 0.04,
+            "central": 0.505,
+            "floor": 0.135,
+            "ceiling": 0.01,
+            "matched": 0.04,
+            "equalized": 0.27
+          },
+          "robust": "equalized 100%",
+          "robust_mode": "equalized",
+          "gain_captured": 0.026,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": -0.446,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.042,
+            "equalized": 0.026
+          },
+          "share_on_canadian_targets": 0.555
+        },
+        "environment": {
+          "as_mobile_as_period": {
+            "worlds": 27,
+            "win_share": {
+              "central": 0.556,
+              "floor": 0.444
+            }
+          },
+          "win_share": {
+            "central": 0.575,
+            "floor": 0.425
+          },
+          "robust": "central 0.3",
+          "robust_mode": "central",
+          "gain_captured": 0.597,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.597,
+            "floor": 0.264,
+            "ceiling": 0.0,
+            "matched": 0.332,
+            "equalized": 0.026
+          },
+          "share_on_canadian_targets": 0.67
+        },
+        "transit": {
+          "as_mobile_as_period": {
+            "worlds": 114,
+            "win_share": {
+              "ceiling": 0.018,
+              "central": 0.781,
+              "city": 0.044,
+              "equalized": 0.044,
+              "floor": 0.114
+            }
+          },
+          "win_share": {
+            "central": 0.76,
+            "floor": 0.09,
+            "ceiling": 0.065,
+            "equalized": 0.03,
+            "city": 0.055
+          },
+          "robust": "central 0.4",
+          "robust_mode": "central",
+          "gain_captured": 0.547,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.547,
+            "floor": 0.0,
+            "ceiling": 0.0,
+            "matched": -0.06,
+            "equalized": 0.001,
+            "city": -0.149
+          },
+          "share_on_canadian_targets": 0.285
+        },
+        "redistribution": {
+          "as_mobile_as_period": {
+            "worlds": 49,
+            "win_share": {
+              "central": 0.939,
+              "floor": 0.061
+            }
+          },
+          "win_share": {
+            "central": 0.98,
+            "floor": 0.02
+          },
+          "robust": "central 0.25",
+          "robust_mode": "central",
+          "gain_captured": 0.868,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.868,
+            "floor": 0.544,
+            "ceiling": 0.289
+          },
+          "share_on_canadian_targets": 0.555
+        },
+        "climate": {
+          "as_mobile_as_period": {
+            "worlds": 93,
+            "win_share": {
+              "floor": 0.011,
+              "price": 0.989
+            }
+          },
+          "win_share": {
+            "floor": 0.005,
+            "price": 0.995
+          },
+          "robust": "price 1.2",
+          "robust_mode": "price",
+          "gain_captured": 0.991,
+          "best_per_mode": {
+            "local": 0.0,
+            "central": 0.44,
+            "floor": 0.487,
+            "price": 0.991,
+            "price_floor": 0.991
+          },
+          "share_on_canadian_targets": 0.545
+        }
+      },
+      "inputs": {
+        "spending_years": "FY2008-2015 (CCOFOG)",
+        "other_years": "2006-2015",
+        "heterogeneity": {
+          "schools": [
+            0.028,
+            0.0398
+          ],
+          "environment": [
+            0.0587,
+            0.0667
+          ],
+          "transit": [
+            0.0626,
+            0.0743
+          ],
+          "social protection": [
+            0.0617,
+            0.0662
+          ]
+        },
+        "income_sigma": 0.8111,
+        "market_gini": 0.4337,
+        "migration_rate": 0.00793,
+        "market_income_cv": 0.1681,
+        "capacity_elasticity": {
+          "schools": 0.485,
+          "environment": 0.449,
+          "transit": 0.059
+        },
+        "emissions_spread": {
+          "year": "2005",
+          "log_sd": 0.652
+        },
+        "inside_mobility_targets": false
+      }
+    }
+  }
+}

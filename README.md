@@ -271,6 +271,27 @@ canada_2041_trend`). `validation/early_warning.py` writes
 flip point read from the threshold maps, the best current estimate and what
 would measure it.
 
+### Backtest and who loses
+
+`validation/backtest.py` gives the model only the data that existed before
+three reforms (1996 block grant for welfare, 2006 Metrolinx, 2016 national
+carbon price floor): spending by function from the older FMS classification
+(`data/scripts/fetch_fms_1989_2009.py`, table 10-10-0039, bridged to today's
+classification on their overlap year), and inequality, migration, regional
+incomes and emissions from the ten years before each date. All 13 verdicts
+pick the same rule as today. Two of the three reforms moved the way the model
+recommends; the 1996 block grant did not, and afterwards provincial
+social-services spending fell from 4.4% to 3.4% of GDP and spread out
+between provinces. Survey opinion (2019) and the city map (2016) could not be
+dated and are held at today's values.
+
+`validation/feasibility.py` runs each recommended rule against provinces
+deciding and measures the change for the people starting in each region.
+Equalization has concentrated losers (about a third of regions, the worst
+losing 2.5 times the average gain); a carbon price has almost none, so the
+model can't explain the 2025 repeal of the consumer charge through lost
+welfare.
+
 ### Accuracy checks
 
 - `validation/seed_stability.py`: re-scores 30 worlds per area with 12 fresh
