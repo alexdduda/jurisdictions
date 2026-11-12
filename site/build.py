@@ -70,6 +70,7 @@ def main() -> None:
         "cities": city_summary(),
         "watchlist": json.loads((RESULTS / "watchlist.json").read_text()) if (RESULTS / "watchlist.json").exists() else None,
         "backtest": json.loads((ROOT / "validation" / "backtest.json").read_text()) if (ROOT / "validation" / "backtest.json").exists() else None,
+        "politics": json.loads((ROOT / "validation" / "politics.json").read_text()) if (ROOT / "validation" / "politics.json").exists() else None,
         "feasibility": json.loads((ROOT / "validation" / "feasibility.json").read_text()) if (ROOT / "validation" / "feasibility.json").exists() else None,
         "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,
     }

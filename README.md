@@ -292,6 +292,19 @@ losing 2.5 times the average gain); a carbon price has almost none, so the
 model can't explain the 2025 repeal of the consumer charge through lost
 welfare.
 
+### Politics: which rules would pass
+
+`validation/politics.py` adds, after each simulation, what voters see and a
+vote: under a carbon price households see the charge on all remaining
+emissions but only part of the rebate (Mildenberger et al. 2022 found low
+awareness and underestimation in Canada), and a rule passes when regions
+holding a majority (or two thirds) of people perceive a gain over provinces
+deciding. A carbon price passes in every sampled world on real welfare and in
+none as voters see it: payments are about 19 times the real gain, so most
+regions gain only if voters see about 94% of the rebate. The best rule that
+passes is a quantity floor, keeping about half the gain. Other areas lose
+little to politics.
+
 ### Accuracy checks
 
 - `validation/seed_stability.py`: re-scores 30 worlds per area with 12 fresh

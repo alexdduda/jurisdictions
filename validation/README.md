@@ -12,6 +12,8 @@ the data in `data/raw/` (see the main README for downloads).
 | `migration_and_capacity.py` | Do people move toward higher incomes or better services? Do richer provinces spend more per person? |
 | `model_vs_canada.py` | Run the calibrated model under Canada's arrangement and apply the same tests to its output |
 | `backtest.py` | With only the data available before 1996, 2006 and 2016, does the model reach today's verdicts, and do they point the way Canada's reforms went? |
+| `politics.py` | Would each rule pass a vote, when voters see visible payments but not the rebate? |
+| `cost_of_funds.py` | What does a dollar cost to raise, federally and provincially, on one basis? |
 | `feasibility.py` | Under each recommended rule, which regions lose, and are the losses concentrated? |
 
 ## Results

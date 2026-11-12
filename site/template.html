@@ -201,6 +201,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26).</li>
       <li><strong>Transit: national only if one national network would save about 10% or more; otherwise provinces, and cities only where almost no commuting crosses the metro boundary.</strong> Putting all 35 metropolitan areas in the model, and testing post-pandemic commuting, didn't change that. Nobody has measured the national savings.</li>
       <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
+      <li><strong>A carbon price is the best climate rule and the hardest to pass.</strong> Households see a charge about 19 times the real gain and, surveys found, little of the rebate; it would take voters noticing about 94% of the rebate for most regions to feel better off. The best rule that passes, a quantity floor, keeps about half the gain, and is roughly what Canada kept in 2025.</li>
       <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, the model picks today's rule in every area. Two of three reforms since then moved its way; the one that didn't (the 1996 welfare block grant) was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
       <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
     </ol>
@@ -386,6 +387,16 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <p><strong>Equalization is the rule with concentrated losers.</strong> Under full equalization for schools (the best fixed rule there, though no clear winner), about a third of regions are worse off, and the hardest-hit loses about two and a half times what the average person gains. That matches the politics: in 2021 Albertans voted 61.7% to remove equalization from the Constitution (a non-binding referendum).</p>
       <p><strong>The carbon price has almost no losers in the model.</strong> Even the two regions with the highest abatement cost, standing in for Alberta and Saskatchewan, gain about four-fifths of the average gain, because they share in everyone else's cuts. In the model, the reason the consumer charge didn't last is not lost welfare. See the backtest above.</p>
       <p><strong>National standards for the environment and transit</strong> leave few losers, and those are the regions that want less of the service. Redistribution leaves about one region in eight worse off, by less than the average gain.</p>
+    </div>
+  </section>
+
+  <section class="col stack" aria-labelledby="s-politics">
+    <div class="sec-head"><span class="sec-num">Politics</span><h2 id="s-politics">Which rules would pass a vote</h2></div>
+    <p>The model scores rules by real welfare; voters judge them by what they see. Two additions, applied after each simulation: under a carbon price households see the charge on every tonne they still emit but, as surveys found in Canada, little of the rebate; and a rule must win the regions holding a majority of people (or two thirds, standing in for the amending formula). Costs of quantity standards are buried in prices, so only a price has a visible payment.</p>
+    <div class="table-wrap"><table id="pol-table"></table></div>
+    <div class="stack">
+      <p><strong>A carbon price passes in every sampled world on real welfare, and in none once payments are visible.</strong> The charge households pay is about 19 times the real gain, so most regions would see a net gain only if voters noticed about 94% of the rebate (87% to 98% across worlds). That doesn't depend on the assumed awareness range: it would take near-complete awareness. The best rule that does pass is a quantity floor, which keeps about half the gain. Canada's 2025 change, ending the consumer charge but keeping industrial pricing and regulation, is the model's best passable rule.</p>
+      <p><strong>Elsewhere politics costs little.</strong> National standards for the environment, transit and redistribution pass in most worlds. Schools are the exception under a two-thirds rule: nothing passes in about a quarter of worlds, and the best passable rule is usually a small matching grant.</p>
     </div>
   </section>
 
@@ -1087,6 +1098,25 @@ legend(document.getElementById("mode-legend"), MODES);
   Object.entries(F.areas).forEach(([a, r]) => {
     const tr = el("tr", {}, b);
     [AREA[a], (() => { const [m, ...rest] = r.rule.split(" "); const last = rest.pop() || "0"; return policyText({ mode: m, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }); })(), pct(r.median_share_losing), r.median_worst_loss_over_mean_gain.toFixed(1), pct(r.share_concentrated) + " of worlds", (WHO[a] || "")].forEach((c) => el("td", { text: c }, tr));
+  });
+})();
+/* politics */
+(function politics() {
+  const P = DATA.politics;
+  if (!P) return;
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const lab = (x) => { const [m, ...rest] = x.split(" "); const last = rest.pop() || "0"; const mode = m === "price" && rest[0] === "floor" ? "price_floor" : m === "city" ? "city" : m; return policyText({ mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }); };
+  const t = document.getElementById("pol-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Area", "Best rule", "Passes (real welfare)", "Passes (as voters see it)", "Best rule that passes, most often", "Gain kept by the best rule that passes"].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  Object.entries(P.areas).forEach(([a, v]) => {
+    const rules = Object.entries(v.rules).sort((x, y) => y[1].mean_gain - x[1].mean_gain);
+    const [best, r] = rules[0];
+    const picks = Object.entries(v.best_that_passes_majority.picks)[0][0];
+    const tr = el("tr", {}, b);
+    [AREA[a], lab(best), pct(r.passes_majority_real), pct(r.passes_majority_perceived),
+     picks === "nothing passes" ? "Nothing" : lab(picks), pct(v.best_that_passes_majority.gain_kept)].forEach((c) => el("td", { text: c }, tr));
   });
 })();
 </script>
