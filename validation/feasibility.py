@@ -23,13 +23,16 @@ Alberta and Saskatchewan (2 of 16 regions is 12.5% of people; the two
 provinces held 14.7% of Canadians in 2016 and 51% of the ten provinces'
 emissions in 2024).
 
-    python3 validation/feasibility.py      # writes validation/feasibility.json
+    python3 validation/feasibility.py              # writes validation/feasibility.json
+    python3 validation/feasibility.py --provinces  # regions take their province's measured
+                                                   # values; adds the change by province group
 """
 
 import json
 import math
 import random
 import sys
+from dataclasses import replace
 from pathlib import Path
 from statistics import mean
 
@@ -64,6 +67,19 @@ def _case(args):
         "taste": taste,
         "abatement": rule.abatement.get(name),
     }
+
+
+def by_province(cases: list[dict]) -> dict:
+    """Median change for each province group, in units of the average gain."""
+    from tiebout.provinces import profile
+    names = profile("canada")["names"]
+    out = {}
+    for g in dict.fromkeys(names):
+        idx = [r for r, n in enumerate(names) if n == g]
+        vals = sorted(mean(c["delta"][r] for r in idx) / mean(c["delta"]) for c in cases if mean(c["delta"]) > 0)
+        out[g] = {"median_change_over_mean_gain": round(vals[len(vals) // 2], 2),
+                  "share_of_worlds_losing": round(sum(v < 0 for v in vals) / len(vals), 3)}
+    return out
 
 
 def summarise(cases: list[dict]) -> dict:
@@ -103,10 +119,12 @@ def summarise(cases: list[dict]) -> dict:
     return out
 
 
-def main() -> dict:
+def main(provinces: bool = False) -> dict:
+    base_world = replace(DEFAULT_WORLD, province_profile="canada") if provinces else DEFAULT_WORLD
     saved = json.loads((ROOT / "results" / "uncertainty_canada.json").read_text())["domains"]
     ranges = canada_ranges()
-    out = {"draws": DRAWS, "seeds": SEEDS, "against": "provinces decide (local)", "areas": {}}
+    out = {"draws": DRAWS, "seeds": SEEDS, "against": "provinces decide (local)", "areas": {},
+           "province_profile": provinces}
     with make_pool() as pool:
         for d in DEFAULT_WORLD.domains:
             rb = saved[d.name]["robust"]
@@ -114,14 +132,17 @@ def main() -> dict:
             samples = latin_hypercube(world_ranges(d.name, ranges), DRAWS, random.Random(f"feasibility:{d.name}"))
             tasks = []
             for j, params in enumerate(samples):
-                world, _ = build(DEFAULT_WORLD, d, params)
+                world, _ = build(base_world, d, params)
                 tasks += [(world, d.name, policy, 10_000 * j + k) for k in range(SEEDS)]
-            res = summarise(list(pool.map(_case, tasks, chunksize=4)))
+            cases = list(pool.map(_case, tasks, chunksize=4))
+            res = summarise(cases)
             out["areas"][d.name] = {"rule": rb["policy"], **res}
+            if provinces:
+                out["areas"][d.name]["by_province"] = by_province(cases)
             print(d.name, json.dumps(out["areas"][d.name]), flush=True)
-    OUT.write_text(json.dumps(out, indent=2))
+    (OUT.with_name("feasibility_provinces.json") if provinces else OUT).write_text(json.dumps(out, indent=2))
     return out
 
 
 if __name__ == "__main__":
-    main()
+    main("--provinces" in sys.argv)

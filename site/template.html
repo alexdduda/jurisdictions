@@ -383,7 +383,13 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="sec-head"><span class="sec-num">Losers</span><h2 id="s-losers">Who loses under each rule</h2></div>
     <p>A rule can win on totals and still not last if its losses fall on a few places. For each recommended rule, 40 sampled worlds (3 seeds each) were run under the rule and under provinces deciding, and the change in welfare measured for the people who started in each of the 16 regions.</p>
     <div class="table-wrap"><table id="fe-table"></table></div>
+    <div class="fig-title">With real provinces: each region's own measured tastes, emissions and income</div>
+    <div class="table-wrap"><table id="fe-prov"></table></div>
+    <p class="note">Each cell: the group's typical change as a multiple of the average gain (1.0 = gains like the average Canadian), and in brackets the share of sampled worlds in which it is worse off. Regions follow the model's 16: 4 Quebec, 6 Ontario, 2 British Columbia, 2 Alberta, 1 Manitoba and Saskatchewan, 1 Atlantic. Grouping hides Saskatchewan inside Manitoba.</p>
+    <div class="table-wrap"><table id="prov-verdicts"></table></div>
     <div class="stack" id="fe-text">
+      <p><strong>Named, the losers are mostly Alberta.</strong> With every region set to its real province, a national environmental standard leaves Alberta with a tenth of the average gain and worse off in 46% of worlds; Manitoba and Saskatchewan in 23%. Alberta also gains least from national redistribution. On real welfare a carbon price leaves every group better off, Alberta included (about three quarters of the average gain). As voters see it, every group opposes a carbon price; a quantity standard is opposed mainly by Alberta (in 88% of worlds) and Manitoba and Saskatchewan (54%), and still passes.</p>
+      <p><strong>The verdicts barely change.</strong> Giving regions their real provinces' values instead of random ones keeps the same kind of rule for the environment, transit, redistribution and climate; schools switch to a small matching grant, with no clear winner either way.</p>
       <p><strong>Equalization is the rule with concentrated losers.</strong> Under full equalization for schools (the best fixed rule there, though no clear winner), about a third of regions are worse off, and the hardest-hit loses about two and a half times what the average person gains. That matches the politics: in 2021 Albertans voted 61.7% to remove equalization from the Constitution (a non-binding referendum).</p>
       <p><strong>The carbon price has almost no losers in the model.</strong> Even the two regions with the highest abatement cost, standing in for Alberta and Saskatchewan, gain about four-fifths of the average gain, because they share in everyone else's cuts. In the model, the reason the consumer charge didn't last is not lost welfare. See the backtest above.</p>
       <p><strong>National standards for the environment and transit</strong> leave few losers, and those are the regions that want less of the service. Redistribution leaves about one region in eight worse off, by less than the average gain.</p>
@@ -1118,5 +1124,30 @@ legend(document.getElementById("mode-legend"), MODES);
     [AREA[a], lab(best), pct(r.passes_majority_real), pct(r.passes_majority_perceived),
      picks === "nothing passes" ? "Nothing" : lab(picks), pct(v.best_that_passes_majority.gain_kept)].forEach((c) => el("td", { text: c }, tr));
   });
+})();
+/* by province */
+(function byProvince() {
+  const F = DATA.feasibility_provinces, V = DATA.provinces_run;
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  if (F) {
+    const groups = Object.keys(Object.values(F.areas)[0].by_province);
+    const t = document.getElementById("fe-prov");
+    const h = el("tr", {}, el("thead", {}, t));
+    ["Area", ...groups].forEach((x) => el("th", { text: x }, h));
+    const b = el("tbody", {}, t);
+    Object.entries(F.areas).forEach(([a, r]) => {
+      const tr = el("tr", {}, b);
+      el("td", { text: AREA[a] }, tr);
+      groups.forEach((g) => { const c = r.by_province[g]; el("td", { text: `${c.median_change_over_mean_gain.toFixed(2)} (${pct(c.share_of_worlds_losing)})` }, tr); });
+    });
+  }
+  if (V) {
+    const t = document.getElementById("prov-verdicts");
+    const h = el("tr", {}, el("thead", {}, t));
+    ["Area", "Robust rule, random regions", "Robust rule, real provinces"].forEach((x) => el("th", { text: x }, h));
+    const b = el("tbody", {}, t);
+    const lab = (r) => { const last = r.robust.split(" ").pop(); return policyText({ mode: r.robust_mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }) + ` (keeps ${pct(r.gain_captured)})`; };
+    Object.keys(AREA).forEach((a) => { const tr = el("tr", {}, b); [AREA[a], lab(V.sampled[a]), lab(V.provinces[a])].forEach((c) => el("td", { text: c }, tr)); });
+  }
 })();
 </script>

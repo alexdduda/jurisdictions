@@ -1,0 +1,185 @@
+{
+  "provinces": {
+    "schools": {
+      "win_share": {
+        "local": 0.08,
+        "central": 0.38,
+        "floor": 0.1,
+        "ceiling": 0.005,
+        "matched": 0.235,
+        "equalized": 0.2
+      },
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.14,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -2.718,
+        "floor": 0.001,
+        "ceiling": 0.0,
+        "matched": 0.14,
+        "equalized": 0.063
+      }
+    },
+    "environment": {
+      "win_share": {
+        "central": 0.615,
+        "floor": 0.3,
+        "matched": 0.085
+      },
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.716,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.716,
+        "floor": 0.612,
+        "ceiling": 0.0,
+        "matched": 0.585,
+        "equalized": 0.025
+      }
+    },
+    "transit": {
+      "win_share": {
+        "central": 0.915,
+        "floor": 0.02,
+        "ceiling": 0.01,
+        "equalized": 0.02,
+        "city": 0.035
+      },
+      "robust": "central 0.4",
+      "robust_mode": "central",
+      "gain_captured": 0.638,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.638,
+        "floor": 0.002,
+        "ceiling": 0.0,
+        "matched": -0.028,
+        "equalized": 0.001,
+        "city": -0.152
+      }
+    },
+    "redistribution": {
+      "win_share": {
+        "central": 1.0
+      },
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.909,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.909,
+        "floor": 0.327,
+        "ceiling": 0.169
+      }
+    },
+    "climate": {
+      "win_share": {
+        "price": 1.0
+      },
+      "robust": "price 1.6",
+      "robust_mode": "price",
+      "gain_captured": 0.976,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.436,
+        "floor": 0.436,
+        "price": 0.976,
+        "price_floor": 0.976
+      }
+    }
+  },
+  "sampled": {
+    "schools": {
+      "win_share": {
+        "local": 0.005,
+        "central": 0.425,
+        "floor": 0.06,
+        "matched": 0.135,
+        "equalized": 0.375
+      },
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.102,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -1.954,
+        "floor": 0.002,
+        "ceiling": 0.0,
+        "matched": 0.085,
+        "equalized": 0.102
+      }
+    },
+    "environment": {
+      "win_share": {
+        "central": 0.645,
+        "floor": 0.34,
+        "matched": 0.015
+      },
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.722,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.722,
+        "floor": 0.626,
+        "ceiling": 0.0,
+        "matched": 0.534,
+        "equalized": 0.024
+      }
+    },
+    "transit": {
+      "win_share": {
+        "central": 0.91,
+        "floor": 0.025,
+        "ceiling": 0.02,
+        "equalized": 0.015,
+        "city": 0.03
+      },
+      "robust": "central 0.4",
+      "robust_mode": "central",
+      "gain_captured": 0.628,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.628,
+        "floor": 0.002,
+        "ceiling": 0.0,
+        "matched": -0.029,
+        "equalized": 0.002,
+        "city": -0.174
+      }
+    },
+    "redistribution": {
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      },
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.869,
+        "floor": 0.543,
+        "ceiling": 0.284
+      }
+    },
+    "climate": {
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      },
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.436,
+        "floor": 0.485,
+        "price": 0.991,
+        "price_floor": 0.991
+      }
+    }
+  }
+}

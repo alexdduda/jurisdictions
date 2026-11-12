@@ -366,5 +366,23 @@ class LanguageAndSchools(unittest.TestCase):
         self.assertEqual(pair["domains"]["schools"]["capacity_elasticity"], (0.075, 0.375))
 
 
+    def test_province_profile_uses_measured_values(self):
+        from tiebout.model import _Run
+        from tiebout.provinces import profile
+        prof = profile("canada")
+        self.assertEqual(len(prof["names"]), 16)
+        self.assertAlmostEqual(sum(prof["abatement"]) / 16, 1.0, places=9)
+        self.assertGreater(prof["abatement"][prof["names"].index("Alberta")], 2.5)
+        w = replace(DEFAULT_WORLD, province_profile="canada")
+        run = _Run(w, {}, 3)
+        self.assertEqual(run.abatement["climate"], list(prof["abatement"]))
+        self.assertEqual(run.productivity, list(prof["income"]))
+        # Quebec's regions want the carbon tax more than Alberta's.
+        n = w.agents_per_region
+        q, a = prof["names"].index("Quebec"), prof["names"].index("Alberta")
+        mean_taste = lambda r: sum(run.tastes["climate"][r * n:(r + 1) * n]) / n
+        self.assertGreater(mean_taste(q), mean_taste(a))
+
+
 if __name__ == "__main__":
     unittest.main()

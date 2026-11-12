@@ -1,0 +1,88 @@
+{
+  "taste_z": {
+    "schools": {
+      "Newfoundland and Labrador": 0.1052,
+      "Prince Edward Island": -0.1328,
+      "Nova Scotia": 0.0532,
+      "New Brunswick": 0.1912,
+      "Quebec": 0.0652,
+      "Ontario": -0.0388,
+      "Manitoba": -0.0308,
+      "Saskatchewan": 0.1522,
+      "Alberta": -0.1038,
+      "British Columbia": 0.0262
+    },
+    "environment": {
+      "Newfoundland and Labrador": -0.0139,
+      "Prince Edward Island": 0.1491,
+      "Nova Scotia": 0.0971,
+      "New Brunswick": 0.0381,
+      "Quebec": 0.2341,
+      "Ontario": 0.0241,
+      "Manitoba": -0.0309,
+      "Saskatchewan": -0.4099,
+      "Alberta": -0.4279,
+      "British Columbia": 0.0011
+    },
+    "redistribution": {
+      "Newfoundland and Labrador": 0.2448,
+      "Prince Edward Island": 0.0138,
+      "Nova Scotia": 0.2298,
+      "New Brunswick": 0.4338,
+      "Quebec": 0.2968,
+      "Ontario": -0.0272,
+      "Manitoba": -0.0662,
+      "Saskatchewan": -0.1572,
+      "Alberta": -0.4202,
+      "British Columbia": -0.1112
+    },
+    "climate": {
+      "Newfoundland and Labrador": -0.1597,
+      "Prince Edward Island": -0.0947,
+      "Nova Scotia": 0.0483,
+      "New Brunswick": 0.0023,
+      "Quebec": 0.4393,
+      "Ontario": -0.0447,
+      "Manitoba": -0.0857,
+      "Saskatchewan": -0.5127,
+      "Alberta": -0.4297,
+      "British Columbia": -0.0537
+    }
+  },
+  "emissions": {
+    "Newfoundland and Labrador": 0.9496,
+    "Prince Edward Island": 0.5047,
+    "Nova Scotia": 0.7632,
+    "New Brunswick": 0.8988,
+    "Quebec": 0.5193,
+    "Ontario": 0.5902,
+    "Manitoba": 0.8656,
+    "Saskatchewan": 3.4655,
+    "Alberta": 3.1936,
+    "British Columbia": 0.6019
+  },
+  "income": {
+    "Newfoundland and Labrador": 0.8506,
+    "Prince Edward Island": 0.7866,
+    "Nova Scotia": 0.8016,
+    "New Brunswick": 0.778,
+    "Quebec": 0.8542,
+    "Ontario": 1.0658,
+    "Manitoba": 0.9277,
+    "Saskatchewan": 0.9862,
+    "Alberta": 1.1941,
+    "British Columbia": 0.991
+  },
+  "population": {
+    "Newfoundland and Labrador": 545080.0,
+    "Prince Edward Island": 178869.0,
+    "Nova Scotia": 1080310.0,
+    "New Brunswick": 857114.0,
+    "Quebec": 8982312.0,
+    "Ontario": 16090358.0,
+    "Manitoba": 1487953.0,
+    "Saskatchewan": 1245196.0,
+    "Alberta": 4901795.0,
+    "British Columbia": 5659205.0
+  }
+}

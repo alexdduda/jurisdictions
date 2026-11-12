@@ -292,6 +292,18 @@ losing 2.5 times the average gain); a carbon price has almost none, so the
 model can't explain the 2025 repeal of the consumer charge through lost
 welfare.
 
+### Real provinces
+
+By default each region's average taste, abatement cost and productivity are
+random draws with Canada's measured spread. `World.province_profile="canada"`
+(`tiebout/provinces.py`, data from `data/scripts/province_profile.py`) gives
+each region its province's measured values instead: 2019 Canadian Election
+Study means, 2024 emissions per person, 2015-2024 market income.
+`validation/provinces_run.py` reruns the analysis that way (same verdicts,
+except schools moves to a small matching grant, still no clear winner), and
+`feasibility.py --provinces` / `politics.py --provinces` name who loses and who
+opposes: mostly Alberta.
+
 ### Politics: which rules would pass
 
 `validation/politics.py` adds, after each simulation, what voters see and a

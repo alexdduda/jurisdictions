@@ -1,0 +1,15 @@
+    schools: 31800 runs in 251s
+      wins: local 8%, central 38%, floor 10%, ceiling 0%, matched 24%, equalized 20% | robust: matched 10% (captures 14% of the tailored gain)
+schools matched 10% 0.14
+    environment: 31800 runs in 281s
+      wins: central 62%, floor 30%, matched 8% | robust: central 0.3 (captures 72% of the tailored gain)
+environment central 0.3 0.716
+    transit: 34800 runs in 663s
+      wins: central 92%, floor 2%, ceiling 1%, equalized 2%, city 4% | robust: central 0.4 (captures 64% of the tailored gain)
+transit central 0.4 0.638
+    redistribution: 31200 runs in 315s
+      wins: central 100% | robust: central 0.3 (captures 91% of the tailored gain)
+redistribution central 0.3 0.909
+    climate: 29400 runs in 279s
+      wins: price 100% | robust: price 1.6 (captures 98% of the tailored gain)
+climate price 1.6 0.976

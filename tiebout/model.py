@@ -162,6 +162,9 @@ class World:
     # metropolitan area, sized and given a transit taste from the 2016 Census;
     # see tiebout/cities.py).
     city_profile: str = ""
+    # "" (random regional tastes, costs and productivity, calibrated spreads) or
+    # "canada": each region takes its province's measured values (tiebout/provinces.py).
+    province_profile: str = ""
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -243,6 +246,10 @@ class _Run:
         # Skill is portable; income also depends on the region's productivity.
         self.skill = [math.exp(rng.gauss(0, world.income_sigma)) for _ in range(self.N)]
         self.tastes: dict[str, list[float]] = {}
+        prov = None
+        if world.province_profile:
+            from .provinces import profile as province_values
+            prov = province_values(world.province_profile)
         self.abatement: dict[str, list[float]] = {}
         for d in world.domains:
             if d.kind == "public_good":
@@ -256,6 +263,11 @@ class _Run:
                     c = _clamp(d.abatement_taste_corr, -1.0, 1.0)
                     # High-cost regions want less of the good (corr > 0 means that).
                     draws = [-c * d.heterogeneity * z[r] + math.sqrt(1 - c * c) * draws[r] for r in range(self.R)]
+                if prov and d.name in prov["taste_z"]:
+                    # Measured province means, in units of within-province spread.
+                    draws = [d.within * prov["taste_z"][d.name][r % len(prov["names"])] for r in range(self.R)]
+                    if d.name in self.abatement:
+                        self.abatement[d.name] = list(prov["abatement"])
                 centres = [_clamp(0.5 + g, 0, 1) for g in draws]
                 self.tastes[d.name] = [
                     _clamp(centres[self.region[i]] + rng.gauss(0, d.within), 0, 1)
@@ -282,6 +294,9 @@ class _Run:
                 self.city_cum.append(cum)
         # Language group, fixed per person and kept when moving region.
         profile = LANGUAGE_PROFILES.get(world.language_profile, ())
+        if profile and world.province_profile:
+            # Region 15 stands for Quebec in the province profile (tiebout/cities.py).
+            profile = profile[:15] + (profile[0],) + profile[16:]
         lang_rng = random.Random(seed * 65537 + 9)  # separate stream: worlds without a profile are unchanged
         self.minority = [
             1 if profile and lang_rng.random() < profile[self.region[i] % len(profile)] else 0
@@ -299,6 +314,8 @@ class _Run:
         self.productivity = (
             [math.exp(prod_rng.gauss(0, sd) - sd * sd / 2) for _ in range(self.R)] if sd > 0 else [1.0] * self.R
         )
+        if prov:
+            self.productivity = list(prov["income"])
         # With no redistribution domain, income would never enter utility; add it so
         # agents can move for higher incomes. (Redistribution's log consumption covers it otherwise.)
         self.private_consumption = sd > 0 and not any(d.kind == "redistribution" for d in world.domains)
