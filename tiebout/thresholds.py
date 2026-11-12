@@ -92,6 +92,10 @@ def run_thresholds(out_dir: Path, log=print, only: list[str] | None = None) -> d
             d = domains[name]
             (rname, rvals), (cname, cvals) = spec["rows"], spec["cols"]
             base = {**midpoints(d.name, ranges), **spec.get("fixed", {})}
+            if "overhead_log_ratio" in base:
+                # Held at the Canada-wide value (1.01 to 1.02, validation/cost_of_funds.py),
+                # not the midpoint of the province-by-province range.
+                base["overhead_log_ratio"] = 0.0
             cells = []
             for rv in rvals:
                 row = []

@@ -2,9 +2,9 @@
 # 200 sampled worlds per domain, 3 seeds each.
 
 scope nation {
-  law schools: shadow                   # no rule clearly wins; best (equalized 100%) keeps 2%
-  law environment: preempt = 0.3        # wins 57% of worlds; keeps 59% of the tailored gain
-  law transit: preempt = 0.4            # wins 76% of worlds; keeps 54% of the tailored gain
+  law schools: equalized = 1            # wins 38% of worlds; keeps 10% of the tailored gain
+  law environment: preempt = 0.3        # wins 64% of worlds; keeps 72% of the tailored gain
+  law transit: preempt = 0.4            # wins 91% of worlds; keeps 63% of the tailored gain
   law redistribution: preempt = 0.25    # wins 98% of worlds; keeps 87% of the tailored gain
   law climate_price: preempt = 1.2      # wins 100% of worlds; keeps 99% of the tailored gain
 }

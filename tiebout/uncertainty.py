@@ -163,11 +163,22 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     # sort and regional incomes spread less for the same productivity gap. They
     # need their own calibration to hit the same 12-19% income spread.
     public_good_mobility = {**mobility, "productivity_sd": (0.09, 0.17)}
+    # Provincial/federal ratio of the excess cost of funds. Computed on one basis
+    # (validation/cost_of_funds.py: 2025 personal income tax, same formula, social
+    # cost): 0.68 to 1.36 across provinces and elasticities, 1.01 to 1.02 for
+    # Canada as a whole. Earlier versions sampled 1/4 to 4 from published estimates
+    # that mixed years, methods and the provinces' own point of view.
+    cof = root / "validation" / "cost_of_funds.json"
+    if cof.exists():
+        sr = json.loads(cof.read_text())["social_ratio"]
+        ratio = (math.log(sr["min"]), math.log(sr["max"]))
+    else:
+        ratio = (-math.log(4), math.log(4))
     return {
         "domains": domains,
         "public_good_world": {
             "national_overhead": (0.20, 1.90),
-            "overhead_log_ratio": (-math.log(4), math.log(4)),
+            "overhead_log_ratio": (round(ratio[0], 4), round(ratio[1], 4)),
             **public_good_mobility,
             "congestion": (0.03, 0.20),
         },

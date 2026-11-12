@@ -46,11 +46,13 @@ def main() -> dict:
     emis = list(csv.DictReader((ROOT / "data" / "projections" / "eccc_2025_per_capita.csv").open()))
     spread = {k: round(log_spread(emis, k), 2) for k in ("2023", "2030_wm", "2035_wm", "2030_wam", "2035_wam")}
 
-    # Ratio of provincial to federal excess cost of raising a dollar (MCF - 1).
-    # Dahlby and Ferede: federal personal income tax MCF 2.86 (2021); provincial
-    # 1.44 to 3.81 (2006). Not the same year or method, hence a range.
-    fed = 2.86 - 1
-    ratio_lo, ratio_hi = round((1.44 - 1) / fed, 2), round((3.81 - 1) / fed, 2)
+    # Ratio of provincial to federal excess cost of raising a dollar (MCF - 1), on
+    # one basis: 2025 personal income tax, same formula, social cost
+    # (validation/cost_of_funds.py). The published estimates (Dahlby and Ferede:
+    # federal 2021, provincial 2006, the provinces' own view) implied 0.24 to 1.51.
+    cof = json.loads((ROOT / "validation" / "cost_of_funds.json").read_text())["social_ratio"]
+    ratio_lo, ratio_hi = cof["min"], cof["max"]
+    canada_lo, canada_hi = cof["weighted_min"], cof["weighted_max"]
 
     env = maps["environment"]
     sch = maps["schools"]
@@ -71,9 +73,10 @@ def main() -> dict:
             "number": "Provincial cost of raising a dollar relative to federal (excess burden ratio)",
             "flips": f"national standard for the environment from {env_nat}; for schools from {sch_nat}; provinces below that",
             "threshold": {"environment": env_nat, "schools": sch_nat},
-            "current": f"{ratio_lo} to {ratio_hi} (Dahlby and Ferede: federal 2021, provincial 2006)",
-            "status": "unknown: the published range spans both sides of both thresholds",
-            "watch": "A matched-year, same-method estimate of the marginal cost of public funds for federal and provincial income taxes. No scheduled release.",
+            "current": f"{canada_lo} to {canada_hi} for Canada as a whole; {ratio_lo} to {ratio_hi} province by province (2025 income tax, one method)",
+            "status": (f"schools: below the threshold everywhere, so provinces with equalization; "
+                       f"environment: at the threshold for Canada as a whole, so a near-tie that a national standard narrowly wins"),
+            "watch": "Combined federal-provincial marginal rates (each budget) and new estimates of how taxable income responds to rates; sales and corporate taxes are not yet included.",
         },
         {
             "area": "transit",

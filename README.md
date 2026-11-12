@@ -189,7 +189,7 @@ measurements wherever Canadian evidence exists:
 | disagreement within vs. between provinces | 2019 Canadian Election Study, 37,000 respondents (`data/scripts/ces_disagreement.py`) |
 | income inequality | 11-10-0134 market-income Gini |
 | mobility | 17-10-0022 interprovincial migration, 0.75% a year, used as an upper bound |
-| cost of raising money, national vs. provincial | Dahlby and Ferede's marginal cost of public funds estimates |
+| cost of raising money, national vs. provincial | Computed on one basis from 2025 income tax rates (`validation/cost_of_funds.py`): provincial/federal ratio 0.68 to 1.36 by province, 1.01 to 1.02 for Canada; federal level from Dahlby and Ferede |
 
 Spillovers, scale savings and crowding have no Canadian data and stay as wide
 guesses. Rebuild the targets with `python3 -m tiebout.canada` after

@@ -1,0 +1,431 @@
+{
+  "incomes": [
+    60000,
+    100000,
+    150000
+  ],
+  "elasticities": [
+    0.1,
+    0.25,
+    0.4
+  ],
+  "combined_rates": {
+    "60000": {
+      "Newfoundland and Labrador": 0.35,
+      "Prince Edward Island": 0.3397,
+      "Nova Scotia": 0.3545,
+      "New Brunswick": 0.345,
+      "Quebec": 0.3612,
+      "Ontario": 0.2965,
+      "Manitoba": 0.3325,
+      "Saskatchewan": 0.33,
+      "Alberta": 0.285,
+      "British Columbia": 0.282
+    },
+    "100000": {
+      "Newfoundland and Labrador": 0.363,
+      "Prince Edward Island": 0.371,
+      "Nova Scotia": 0.38,
+      "New Brunswick": 0.345,
+      "Quebec": 0.3612,
+      "Ontario": 0.3148,
+      "Manitoba": 0.3325,
+      "Saskatchewan": 0.33,
+      "Alberta": 0.305,
+      "British Columbia": 0.31
+    },
+    "150000": {
+      "Newfoundland and Labrador": 0.418,
+      "Prince Edward Island": 0.45,
+      "Nova Scotia": 0.435,
+      "New Brunswick": 0.42,
+      "Quebec": 0.4746,
+      "Ontario": 0.4341,
+      "Manitoba": 0.434,
+      "Saskatchewan": 0.385,
+      "Alberta": 0.36,
+      "British Columbia": 0.407
+    }
+  },
+  "by_elasticity": {
+    "0.1": {
+      "60000": {
+        "federal_mcf": 1.047,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.057,
+          "Prince Edward Island": 1.054,
+          "Nova Scotia": 1.058,
+          "New Brunswick": 1.056,
+          "Quebec": 1.06,
+          "Ontario": 1.044,
+          "Manitoba": 1.052,
+          "Saskatchewan": 1.052,
+          "Alberta": 1.042,
+          "British Columbia": 1.041
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.211,
+          "Prince Edward Island": 1.154,
+          "Nova Scotia": 1.236,
+          "New Brunswick": 1.183,
+          "Quebec": 1.275,
+          "Ontario": 0.936,
+          "Manitoba": 1.115,
+          "Saskatchewan": 1.102,
+          "Alberta": 0.883,
+          "British Columbia": 0.87
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.174,
+          "Prince Edward Island": 1.157,
+          "Nova Scotia": 1.182,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.095,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.08,
+          "British Columbia": 1.077
+        }
+      },
+      "100000": {
+        "federal_mcf": 1.051,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.06,
+          "Prince Edward Island": 1.063,
+          "Nova Scotia": 1.065,
+          "New Brunswick": 1.056,
+          "Quebec": 1.06,
+          "Ontario": 1.048,
+          "Manitoba": 1.052,
+          "Saskatchewan": 1.052,
+          "Alberta": 1.046,
+          "British Columbia": 1.047
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.195,
+          "Prince Edward Island": 1.24,
+          "Nova Scotia": 1.292,
+          "New Brunswick": 1.1,
+          "Quebec": 1.185,
+          "Ontario": 0.953,
+          "Manitoba": 1.037,
+          "Saskatchewan": 1.025,
+          "Alberta": 0.908,
+          "British Columbia": 0.931
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.197,
+          "Prince Edward Island": 1.212,
+          "Nova Scotia": 1.231,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.119,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.106,
+          "British Columbia": 1.112
+        }
+      },
+      "150000": {
+        "federal_mcf": 1.08,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.077,
+          "Prince Edward Island": 1.089,
+          "Nova Scotia": 1.083,
+          "New Brunswick": 1.078,
+          "Quebec": 1.099,
+          "Ontario": 1.083,
+          "Manitoba": 1.083,
+          "Saskatchewan": 1.067,
+          "Alberta": 1.06,
+          "British Columbia": 1.074
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 0.962,
+          "Prince Edward Island": 1.107,
+          "Nova Scotia": 1.037,
+          "New Brunswick": 0.97,
+          "Quebec": 1.234,
+          "Ontario": 1.032,
+          "Manitoba": 1.032,
+          "Saskatchewan": 0.83,
+          "Alberta": 0.741,
+          "British Columbia": 0.916
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.22,
+          "Prince Edward Island": 1.298,
+          "Nova Scotia": 1.259,
+          "New Brunswick": 1.224,
+          "Quebec": 1.482,
+          "Ontario": 1.257,
+          "Manitoba": 1.256,
+          "Saskatchewan": 1.156,
+          "Alberta": 1.116,
+          "British Columbia": 1.197
+        }
+      }
+    },
+    "0.25": {
+      "60000": {
+        "federal_mcf": 1.126,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.156,
+          "Prince Edward Island": 1.148,
+          "Nova Scotia": 1.159,
+          "New Brunswick": 1.152,
+          "Quebec": 1.165,
+          "Ontario": 1.118,
+          "Manitoba": 1.142,
+          "Saskatchewan": 1.14,
+          "Alberta": 1.111,
+          "British Columbia": 1.109
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.23,
+          "Prince Edward Island": 1.167,
+          "Nova Scotia": 1.259,
+          "New Brunswick": 1.199,
+          "Quebec": 1.302,
+          "Ontario": 0.931,
+          "Manitoba": 1.125,
+          "Saskatchewan": 1.111,
+          "Alberta": 0.875,
+          "British Columbia": 0.861
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.174,
+          "Prince Edward Island": 1.157,
+          "Nova Scotia": 1.182,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.095,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.08,
+          "British Columbia": 1.077
+        }
+      },
+      "100000": {
+        "federal_mcf": 1.137,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.166,
+          "Prince Edward Island": 1.173,
+          "Nova Scotia": 1.181,
+          "New Brunswick": 1.152,
+          "Quebec": 1.165,
+          "Ontario": 1.13,
+          "Manitoba": 1.142,
+          "Saskatchewan": 1.14,
+          "Alberta": 1.123,
+          "British Columbia": 1.127
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.215,
+          "Prince Edward Island": 1.265,
+          "Nova Scotia": 1.323,
+          "New Brunswick": 1.109,
+          "Quebec": 1.204,
+          "Ontario": 0.949,
+          "Manitoba": 1.04,
+          "Saskatchewan": 1.027,
+          "Alberta": 0.901,
+          "British Columbia": 0.925
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.197,
+          "Prince Edward Island": 1.212,
+          "Nova Scotia": 1.231,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.119,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.106,
+          "British Columbia": 1.112
+        }
+      },
+      "150000": {
+        "federal_mcf": 1.229,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.219,
+          "Prince Edward Island": 1.257,
+          "Nova Scotia": 1.238,
+          "New Brunswick": 1.221,
+          "Quebec": 1.292,
+          "Ontario": 1.237,
+          "Manitoba": 1.237,
+          "Saskatchewan": 1.186,
+          "Alberta": 1.164,
+          "British Columbia": 1.207
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 0.957,
+          "Prince Edward Island": 1.124,
+          "Nova Scotia": 1.042,
+          "New Brunswick": 0.966,
+          "Quebec": 1.275,
+          "Ontario": 1.037,
+          "Manitoba": 1.037,
+          "Saskatchewan": 0.811,
+          "Alberta": 0.715,
+          "British Columbia": 0.905
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.22,
+          "Prince Edward Island": 1.298,
+          "Nova Scotia": 1.259,
+          "New Brunswick": 1.224,
+          "Quebec": 1.482,
+          "Ontario": 1.257,
+          "Manitoba": 1.256,
+          "Saskatchewan": 1.156,
+          "Alberta": 1.116,
+          "British Columbia": 1.197
+        }
+      }
+    },
+    "0.4": {
+      "60000": {
+        "federal_mcf": 1.219,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.275,
+          "Prince Edward Island": 1.259,
+          "Nova Scotia": 1.282,
+          "New Brunswick": 1.267,
+          "Quebec": 1.292,
+          "Ontario": 1.203,
+          "Manitoba": 1.249,
+          "Saskatchewan": 1.245,
+          "Alberta": 1.19,
+          "British Columbia": 1.186
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.254,
+          "Prince Edward Island": 1.184,
+          "Nova Scotia": 1.286,
+          "New Brunswick": 1.219,
+          "Quebec": 1.335,
+          "Ontario": 0.926,
+          "Manitoba": 1.137,
+          "Saskatchewan": 1.121,
+          "Alberta": 0.866,
+          "British Columbia": 0.851
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.174,
+          "Prince Edward Island": 1.157,
+          "Nova Scotia": 1.182,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.095,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.08,
+          "British Columbia": 1.077
+        }
+      },
+      "100000": {
+        "federal_mcf": 1.238,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.295,
+          "Prince Edward Island": 1.309,
+          "Nova Scotia": 1.325,
+          "New Brunswick": 1.267,
+          "Quebec": 1.292,
+          "Ontario": 1.225,
+          "Manitoba": 1.249,
+          "Saskatchewan": 1.245,
+          "Alberta": 1.213,
+          "British Columbia": 1.219
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 1.239,
+          "Prince Edward Island": 1.295,
+          "Nova Scotia": 1.363,
+          "New Brunswick": 1.12,
+          "Quebec": 1.226,
+          "Ontario": 0.945,
+          "Manitoba": 1.044,
+          "Saskatchewan": 1.029,
+          "Alberta": 0.893,
+          "British Columbia": 0.919
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.197,
+          "Prince Edward Island": 1.212,
+          "Nova Scotia": 1.231,
+          "New Brunswick": 1.165,
+          "Quebec": 1.246,
+          "Ontario": 1.119,
+          "Manitoba": 1.145,
+          "Saskatchewan": 1.141,
+          "Alberta": 1.106,
+          "British Columbia": 1.112
+        }
+      },
+      "150000": {
+        "federal_mcf": 1.424,
+        "provincial_mcf": {
+          "Newfoundland and Labrador": 1.403,
+          "Prince Edward Island": 1.486,
+          "Nova Scotia": 1.445,
+          "New Brunswick": 1.408,
+          "Quebec": 1.566,
+          "Ontario": 1.443,
+          "Manitoba": 1.442,
+          "Saskatchewan": 1.334,
+          "Alberta": 1.29,
+          "British Columbia": 1.378
+        },
+        "ratio": {
+          "Newfoundland and Labrador": 0.95,
+          "Prince Edward Island": 1.147,
+          "Nova Scotia": 1.049,
+          "New Brunswick": 0.961,
+          "Quebec": 1.333,
+          "Ontario": 1.043,
+          "Manitoba": 1.043,
+          "Saskatchewan": 0.787,
+          "Alberta": 0.684,
+          "British Columbia": 0.892
+        },
+        "own_view_mcf": {
+          "Newfoundland and Labrador": 1.22,
+          "Prince Edward Island": 1.298,
+          "Nova Scotia": 1.259,
+          "New Brunswick": 1.224,
+          "Quebec": 1.482,
+          "Ontario": 1.257,
+          "Manitoba": 1.256,
+          "Saskatchewan": 1.156,
+          "Alberta": 1.116,
+          "British Columbia": 1.197
+        }
+      }
+    }
+  },
+  "social_ratio": {
+    "min": 0.684,
+    "max": 1.363,
+    "weighted_min": 1.007,
+    "weighted_max": 1.021
+  },
+  "own_view_ratio_at_e_0.25": {
+    "min": 0.336,
+    "max": 3.825
+  },
+  "weights": {
+    "Newfoundland and Labrador": 0.0111,
+    "Prince Edward Island": 0.0034,
+    "Nova Scotia": 0.0206,
+    "New Brunswick": 0.016,
+    "Quebec": 0.1939,
+    "Ontario": 0.4203,
+    "Manitoba": 0.032,
+    "Saskatchewan": 0.0288,
+    "Alberta": 0.1331,
+    "British Columbia": 0.1408
+  }
+}

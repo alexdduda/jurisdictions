@@ -8,9 +8,9 @@
         "environment": 1.0,
         "schools": 1.5
       },
-      "current": "0.24 to 1.51 (Dahlby and Ferede: federal 2021, provincial 2006)",
-      "status": "unknown: the published range spans both sides of both thresholds",
-      "watch": "A matched-year, same-method estimate of the marginal cost of public funds for federal and provincial income taxes. No scheduled release."
+      "current": "1.007 to 1.021 for Canada as a whole; 0.684 to 1.363 province by province (2025 income tax, one method)",
+      "status": "schools: below the threshold everywhere, so provinces with equalization; environment: at the threshold for Canada as a whole, so a near-tie that a national standard narrowly wins",
+      "watch": "Combined federal-provincial marginal rates (each budget) and new estimates of how taxable income responds to rates; sales and corporate taxes are not yet included."
     },
     {
       "area": "transit",

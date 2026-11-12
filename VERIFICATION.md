@@ -50,6 +50,12 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Alberta equalization referendum, October 18, 2021: 61.7% yes, 38.3% no; not binding on Ottawa | Elections Alberta official results; CBC; Global News |
 | Provincial emissions 1990, 2005, 2024 (`data/historical/ghg_by_province_1990_2005_2024.csv`) | ECCC Canadian Environmental Sustainability Indicators, regional table (National Inventory Report 1990-2024), read directly; the 2024 column reproduces the earlier calibration (log sd 0.664 against 0.66). These are today's revised inventory figures, not those published at the time |
 | Provincial and local spending by function, FY1988-89 to FY2008-09 (`data/historical/fms_1989_2009.csv`) | Statistics Canada table 10-10-0039 (FMS, archived), via the Web Data Service; each series checked against its own title by `data/scripts/fetch_fms_1989_2009.py` |
+| 2025 personal income tax rates: federal 14.5% (blended; 15% to 14% on July 1, 2025), 20.5%, 26%, 29%, 33%, and every province but Quebec | CRA, *Tax rates and income brackets, 2025*, read directly |
+| Quebec 2025 rates 14%, 19%, 24%, 25.75% (brackets $53,255, $106,495, $129,590) | Revenu Québec, *Income tax rates*, read directly |
+| Quebec abatement: 16.5% of basic federal tax | Department of Finance, *Quebec Abatement*; TaxTips |
+| Ontario surtax 2025: 20% of Ontario tax over $5,710, 36% over $7,307 | EY tax alert (Ontario budget 2025); TaxTips; KPMG 2025 table (second threshold) |
+| Milligan and Smart: reported-income elasticity of the top 1% to provincial rates, 0.664, including shifting between provinces | IRPP study *Provincial Taxation of High Incomes* (2015); NBER WP 20489 |
+| Mildenberger, Lachapelle, Harrison and Stadelmann-Steffen, *Nature Climate Change* 12 (2022): low awareness and substantial underestimation of carbon rebates in Canada | University of Bern repository abstract; phys.org; CTV News |
 
 ## Computed from the project's own data (reproducible)
 
@@ -62,6 +68,9 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Provincial spending spread, income elasticities, market-income spread | `tiebout/canada.py`, `validation/` |
 
 ## Not verified
+
+- Elasticity of taxable income for all Canadian taxpayers, sampled 0.1 to 0.4 in `validation/cost_of_funds.py`: an assumption. Sillamaa and Veall (2001) find Canadian responses smaller than the US's, and a summary of Saez, Slemrod and Giertz (2012) gives about 0.25 as a mid-range figure, but no abstract read states a number.
+- Share of the carbon rebate voters perceive, sampled 0 to 0.6 in `validation/politics.py`: an assumption informed by Mildenberger et al. (2022), which reports underestimation without a single figure in what was read.
 
 - The May 2023 transit shares for Toronto, Montreal and Vancouver (Labour Force
   Survey) are used only in a sensitivity scenario. The Statistics Canada page
