@@ -221,8 +221,10 @@ in between is struck down if it tries.
 Cities win only when almost no commuting crosses the metro boundary
 (Statistics Canada draws metro areas so that most of it doesn't). National
 transit wins only if one national system saves about 10% or more over city or
-provincial systems (5% in the one-city model), a number nobody has measured;
-the transit verdict rests on it. `validation/city_sensitivity.py` reruns the
+provincial systems (5% in the one-city model). Cost studies find economies of
+scale only for small operators (Abrate et al. 2016; Berechman and Giuliano's
+review of US systems), so the calibrated range is 0% to 10%, and with it no
+fixed national rule beats provincial control. `validation/city_sensitivity.py` reruns the
 analysis with the gap between metro areas halved and with Toronto, Montreal and
 Vancouver at post-pandemic (May 2023) transit use: the robust rule is the same
 in every case. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
@@ -270,6 +272,12 @@ canada_2041_trend`). `validation/early_warning.py` writes
 `results/watchlist.json`: for each verdict, the number that decides it, the
 flip point read from the threshold maps, the best current estimate and what
 would measure it.
+
+`validation/horizons.py` dates every verdict at 2036 and 2046 by widening each
+measured range around its midpoint by the drift seen across the backtest's
+decades (provincial disagreement 12% to 27% a decade, inequality 8%, the
+emissions spread 22%) times years/10, on the same sampled worlds. No verdict
+moves; the share of the attainable gain kept moves by at most 6 points.
 
 ### Backtest and who loses
 

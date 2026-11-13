@@ -2,49 +2,50 @@
   "canada": {
     "win_share": {
       "local": 0.01,
-      "central": 0.755,
-      "floor": 0.08,
-      "ceiling": 0.07,
-      "equalized": 0.03,
-      "city": 0.055
+      "central": 0.35,
+      "floor": 0.17,
+      "ceiling": 0.075,
+      "matched": 0.065,
+      "equalized": 0.18,
+      "city": 0.15
     },
     "robust": {
-      "policy": "central 0.4",
-      "mode": "central",
-      "level": 0.4,
-      "mean_regret": 0.03376053303162489,
-      "p95_regret": 0.11436647863197902,
-      "gain_captured": 0.5438266204528699
+      "policy": "equalized 100%",
+      "mode": "equalized",
+      "level": 1.0,
+      "mean_regret": 0.005861107706313573,
+      "p95_regret": 0.02420669990560878,
+      "gain_captured": 0.01988629836733158
     },
-    "mean_gain_over_local": 0.07400811740733522,
+    "mean_gain_over_local": 0.005980028334008768,
     "best_per_mode": {
       "local": {
         "policy": "local",
         "gain_captured": 0.0
       },
       "central": {
-        "policy": "central 0.4",
-        "gain_captured": 0.544
+        "policy": "central 0.3",
+        "gain_captured": -3.372
       },
       "floor": {
-        "policy": "floor 0",
-        "gain_captured": 0.0
+        "policy": "floor 0.1",
+        "gain_captured": 0.016
       },
       "ceiling": {
-        "policy": "ceiling 0.8",
-        "gain_captured": 0.0
+        "policy": "ceiling 0.7",
+        "gain_captured": 0.003
       },
       "matched": {
         "policy": "matched 10%",
-        "gain_captured": -0.061
+        "gain_captured": -0.294
       },
       "equalized": {
         "policy": "equalized 100%",
-        "gain_captured": 0.001
+        "gain_captured": 0.02
       },
       "city": {
-        "policy": "city",
-        "gain_captured": -0.149
+        "policy": "city + 10% grant",
+        "gain_captured": -1.746
       }
     }
   },
@@ -99,148 +100,151 @@
   },
   "canada_2023_big3": {
     "win_share": {
-      "local": 0.005,
-      "central": 0.76,
-      "floor": 0.115,
-      "ceiling": 0.05,
-      "equalized": 0.015,
-      "city": 0.055
+      "local": 0.01,
+      "central": 0.355,
+      "floor": 0.155,
+      "ceiling": 0.035,
+      "matched": 0.085,
+      "equalized": 0.225,
+      "city": 0.135
     },
     "robust": {
-      "policy": "central 0.4",
-      "mode": "central",
-      "level": 0.4,
-      "mean_regret": 0.03116928520760907,
-      "p95_regret": 0.10737952393984423,
-      "gain_captured": 0.545129869786778
+      "policy": "equalized 100%",
+      "mode": "equalized",
+      "level": 1.0,
+      "mean_regret": 0.0053030678424353704,
+      "p95_regret": 0.02148146562188294,
+      "gain_captured": 0.021399643330706875
     },
-    "mean_gain_over_local": 0.06852348206068919,
+    "mean_gain_over_local": 0.0054190332205524445,
     "best_per_mode": {
       "local": {
         "policy": "local",
         "gain_captured": 0.0
       },
       "central": {
-        "policy": "central 0.4",
-        "gain_captured": 0.545
+        "policy": "central 0.3",
+        "gain_captured": -3.423
       },
       "floor": {
-        "policy": "floor 0",
-        "gain_captured": 0.0
+        "policy": "floor 0.1",
+        "gain_captured": 0.014
       },
       "ceiling": {
-        "policy": "ceiling 0.8",
-        "gain_captured": 0.0
+        "policy": "ceiling 0.7",
+        "gain_captured": 0.002
       },
       "matched": {
         "policy": "matched 10%",
-        "gain_captured": -0.051
+        "gain_captured": -0.164
       },
       "equalized": {
         "policy": "equalized 100%",
-        "gain_captured": 0.001
+        "gain_captured": 0.021
       },
       "city": {
-        "policy": "city",
-        "gain_captured": -0.15
+        "policy": "city + 10% grant",
+        "gain_captured": -1.674
       }
     }
   },
   "canada_half_spread": {
     "win_share": {
-      "local": 0.015,
-      "central": 0.77,
-      "floor": 0.105,
-      "ceiling": 0.03,
-      "equalized": 0.035,
-      "city": 0.045
+      "local": 0.02,
+      "central": 0.395,
+      "floor": 0.17,
+      "ceiling": 0.02,
+      "matched": 0.09,
+      "equalized": 0.195,
+      "city": 0.11
     },
     "robust": {
-      "policy": "central 0.4",
-      "mode": "central",
-      "level": 0.4,
-      "mean_regret": 0.03152072495428411,
-      "p95_regret": 0.10766561827557909,
-      "gain_captured": 0.56744059011163
+      "policy": "equalized 100%",
+      "mode": "equalized",
+      "level": 1.0,
+      "mean_regret": 0.006232110366263182,
+      "p95_regret": 0.024111453889524376,
+      "gain_captured": 0.01849391602893391
     },
-    "mean_gain_over_local": 0.07287027916562633,
+    "mean_gain_over_local": 0.006349538192416237,
     "best_per_mode": {
       "local": {
         "policy": "local",
         "gain_captured": 0.0
       },
       "central": {
-        "policy": "central 0.4",
-        "gain_captured": 0.567
+        "policy": "central 0.3",
+        "gain_captured": -2.626
       },
       "floor": {
-        "policy": "floor 0",
-        "gain_captured": 0.0
+        "policy": "floor 0.1",
+        "gain_captured": 0.01
       },
       "ceiling": {
-        "policy": "ceiling 0.8",
-        "gain_captured": 0.0
+        "policy": "ceiling 0.7",
+        "gain_captured": 0.001
       },
       "matched": {
         "policy": "matched 10%",
-        "gain_captured": -0.047
+        "gain_captured": -0.134
       },
       "equalized": {
         "policy": "equalized 100%",
-        "gain_captured": 0.001
+        "gain_captured": 0.018
       },
       "city": {
-        "policy": "city",
-        "gain_captured": -0.158
+        "policy": "city + 10% grant",
+        "gain_captured": -1.608
       }
     }
   },
   "canada_2041_trend": {
     "win_share": {
-      "local": 0.01,
-      "central": 0.765,
-      "floor": 0.105,
-      "ceiling": 0.05,
-      "equalized": 0.025,
-      "city": 0.045
+      "local": 0.005,
+      "central": 0.385,
+      "floor": 0.21,
+      "ceiling": 0.08,
+      "matched": 0.045,
+      "equalized": 0.165,
+      "city": 0.11
     },
     "robust": {
-      "policy": "central 0.4",
-      "mode": "central",
-      "level": 0.4,
-      "mean_regret": 0.036164253616910086,
-      "p95_regret": 0.12309117838177874,
-      "gain_captured": 0.5463807796268811
+      "policy": "equalized 100%",
+      "mode": "equalized",
+      "level": 1.0,
+      "mean_regret": 0.006562074949549647,
+      "p95_regret": 0.026183943929001356,
+      "gain_captured": 0.016763499586625152
     },
-    "mean_gain_over_local": 0.07972381237982736,
+    "mean_gain_over_local": 0.006673953770828078,
     "best_per_mode": {
       "local": {
         "policy": "local",
         "gain_captured": 0.0
       },
       "central": {
-        "policy": "central 0.4",
-        "gain_captured": 0.546
+        "policy": "central 0.3",
+        "gain_captured": -3.083
       },
       "floor": {
-        "policy": "floor 0",
-        "gain_captured": 0.0
+        "policy": "floor 0.1",
+        "gain_captured": 0.015
       },
       "ceiling": {
-        "policy": "ceiling 0.8",
-        "gain_captured": 0.0
+        "policy": "ceiling 0.7",
+        "gain_captured": 0.003
       },
       "matched": {
         "policy": "matched 10%",
-        "gain_captured": -0.064
+        "gain_captured": -0.329
       },
       "equalized": {
         "policy": "equalized 100%",
-        "gain_captured": 0.001
+        "gain_captured": 0.017
       },
       "city": {
-        "policy": "city",
-        "gain_captured": -0.165
+        "policy": "city + 10% grant",
+        "gain_captured": -1.909
       }
     }
   }

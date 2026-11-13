@@ -206,19 +206,19 @@
     },
     "transit": {
       "rules": {
-        "central 0.4": {
-          "mean_gain": -0.03703,
-          "passes_majority_real": 0.158,
-          "passes_two_thirds_real": 0.083,
-          "passes_majority_perceived": 0.158,
-          "passes_two_thirds_perceived": 0.083,
+        "central 0.3": {
+          "mean_gain": -0.022,
+          "passes_majority_real": 0.242,
+          "passes_two_thirds_real": 0.192,
+          "passes_majority_perceived": 0.242,
+          "passes_two_thirds_perceived": 0.192,
           "opposed_by": {
-            "Quebec": 0.833,
-            "Ontario": 0.783,
-            "British Columbia": 0.867,
-            "Atlantic provinces": 0.925,
-            "Alberta": 0.825,
-            "Manitoba and Saskatchewan": 0.833
+            "Quebec": 0.758,
+            "Ontario": 0.733,
+            "British Columbia": 0.775,
+            "Atlantic provinces": 0.85,
+            "Alberta": 0.758,
+            "Manitoba and Saskatchewan": 0.758
           }
         },
         "floor 0.1": {
@@ -298,26 +298,26 @@
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.902,
+        "gain_kept": 0.903,
         "picks": {
-          "floor 0.1": 0.267,
-          "city + 10% grant": 0.192,
+          "floor 0.1": 0.275,
+          "central 0.3": 0.217,
+          "equalized 100%": 0.167,
           "nothing passes": 0.15,
-          "equalized 100%": 0.15,
-          "matched 10%": 0.117,
-          "central 0.4": 0.083,
+          "city + 10% grant": 0.083,
+          "matched 10%": 0.067,
           "ceiling 0.7": 0.042
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.695,
+        "gain_kept": 0.712,
         "picks": {
-          "nothing passes": 0.308,
+          "nothing passes": 0.292,
           "floor 0.1": 0.267,
-          "city + 10% grant": 0.175,
-          "matched 10%": 0.075,
-          "equalized 100%": 0.067,
-          "central 0.4": 0.067,
+          "central 0.3": 0.183,
+          "equalized 100%": 0.075,
+          "city + 10% grant": 0.075,
+          "matched 10%": 0.067,
           "ceiling 0.7": 0.042
         }
       }

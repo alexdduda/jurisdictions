@@ -1,0 +1,12 @@
+    environment: 31800 runs in 481s
+      wins: central 64%, floor 34%, matched 2% | robust: central 0.3 (captures 72% of the tailored gain)
+2046 environment central 0.3 0.72
+    transit: 34800 runs in 515s
+      wins: local 0%, central 36%, floor 20%, ceiling 8%, matched 7%, equalized 14%, city 14% | robust: equalized 100% (captures 2% of the tailored gain)
+2046 transit equalized 100% 0.019
+    redistribution: 31200 runs in 274s
+      wins: central 98%, floor 2% | robust: central 0.25 (captures 81% of the tailored gain)
+2046 redistribution central 0.25 0.812
+    climate: 29400 runs in 270s
+      wins: central 2%, price 98% | robust: price 1.2 (captures 98% of the tailored gain)
+2046 climate price 1.2 0.979

@@ -41,23 +41,24 @@
     },
     "transit": {
       "win_share": {
-        "central": 0.915,
-        "floor": 0.02,
-        "ceiling": 0.01,
-        "equalized": 0.02,
-        "city": 0.035
+        "central": 0.375,
+        "floor": 0.225,
+        "ceiling": 0.08,
+        "matched": 0.045,
+        "equalized": 0.125,
+        "city": 0.15
       },
-      "robust": "central 0.4",
-      "robust_mode": "central",
-      "gain_captured": 0.638,
+      "robust": "floor 0.1",
+      "robust_mode": "floor",
+      "gain_captured": 0.018,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.638,
-        "floor": 0.002,
-        "ceiling": 0.0,
-        "matched": -0.028,
-        "equalized": 0.001,
-        "city": -0.152
+        "central": -3.002,
+        "floor": 0.018,
+        "ceiling": 0.003,
+        "matched": -0.268,
+        "equalized": 0.014,
+        "city": -1.458
       }
     },
     "redistribution": {
@@ -131,23 +132,25 @@
     },
     "transit": {
       "win_share": {
-        "central": 0.91,
-        "floor": 0.025,
-        "ceiling": 0.02,
-        "equalized": 0.015,
-        "city": 0.03
+        "local": 0.01,
+        "central": 0.35,
+        "floor": 0.17,
+        "ceiling": 0.075,
+        "matched": 0.065,
+        "equalized": 0.18,
+        "city": 0.15
       },
-      "robust": "central 0.4",
-      "robust_mode": "central",
-      "gain_captured": 0.628,
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.02,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.628,
-        "floor": 0.002,
-        "ceiling": 0.0,
-        "matched": -0.029,
-        "equalized": 0.002,
-        "city": -0.174
+        "central": -3.372,
+        "floor": 0.016,
+        "ceiling": 0.003,
+        "matched": -0.294,
+        "equalized": 0.02,
+        "city": -1.746
       }
     },
     "redistribution": {

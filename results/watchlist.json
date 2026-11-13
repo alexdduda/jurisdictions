@@ -17,8 +17,8 @@
       "number": "Saving from one national transit system over separate city or provincial systems",
       "flips": "national from about 10%; below that, provinces (or cities)",
       "threshold": 0.1,
-      "current": "not measured for Canada",
-      "status": "unknown",
+      "current": "0 to 10%: cost studies find economies of scale only for small operators (Abrate et al. 2016; Berechman and Giuliano's review of large US systems)",
+      "status": "mostly below the threshold, so provinces and their cities; no Canadian estimate yet",
       "watch": "Cost benchmarking of Canadian transit agencies by network size (for example the Canadian Urban Transit Association's annual fact book)."
     },
     {

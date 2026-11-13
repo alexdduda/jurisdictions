@@ -76,38 +76,38 @@
       }
     },
     "transit": {
-      "rule": "central 0.4",
-      "cases": 26,
-      "median_share_losing": 0.188,
-      "median_worst_loss_over_mean_gain": 1.09,
-      "share_concentrated": 0.154,
-      "share_with_any_loser": 0.923,
-      "corr_with_productivity": 0.07,
-      "corr_with_taste": 0.68,
+      "rule": "equalized 100%",
+      "cases": 94,
+      "median_share_losing": 0.438,
+      "median_worst_loss_over_mean_gain": 6.46,
+      "share_concentrated": 0.106,
+      "share_with_any_loser": 1,
+      "corr_with_productivity": -0.19,
+      "corr_with_taste": 0.08,
       "by_province": {
         "Quebec": {
-          "median_change_over_mean_gain": 1.11,
-          "share_of_worlds_losing": 0.154
+          "median_change_over_mean_gain": 2.15,
+          "share_of_worlds_losing": 0.085
         },
         "Ontario": {
-          "median_change_over_mean_gain": 1.34,
-          "share_of_worlds_losing": 0.0
+          "median_change_over_mean_gain": 0.61,
+          "share_of_worlds_losing": 0.362
         },
         "British Columbia": {
-          "median_change_over_mean_gain": 0.93,
-          "share_of_worlds_losing": 0.192
+          "median_change_over_mean_gain": 0.84,
+          "share_of_worlds_losing": 0.351
         },
         "Atlantic provinces": {
-          "median_change_over_mean_gain": 0.23,
-          "share_of_worlds_losing": 0.385
+          "median_change_over_mean_gain": 1.32,
+          "share_of_worlds_losing": 0.255
         },
         "Alberta": {
-          "median_change_over_mean_gain": 0.8,
-          "share_of_worlds_losing": 0.192
+          "median_change_over_mean_gain": -0.18,
+          "share_of_worlds_losing": 0.564
         },
         "Manitoba and Saskatchewan": {
           "median_change_over_mean_gain": 0.2,
-          "share_of_worlds_losing": 0.462
+          "share_of_worlds_losing": 0.479
         }
       }
     },

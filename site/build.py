@@ -72,6 +72,7 @@ def main() -> None:
         "backtest": json.loads((ROOT / "validation" / "backtest.json").read_text()) if (ROOT / "validation" / "backtest.json").exists() else None,
         "feasibility_provinces": json.loads((ROOT / "validation" / "feasibility_provinces.json").read_text()) if (ROOT / "validation" / "feasibility_provinces.json").exists() else None,
         "provinces_run": json.loads((ROOT / "validation" / "provinces_run.json").read_text()) if (ROOT / "validation" / "provinces_run.json").exists() else None,
+        "horizons": json.loads((ROOT / "validation" / "horizons.json").read_text()) if (ROOT / "validation" / "horizons.json").exists() else None,
         "politics": json.loads((ROOT / "validation" / "politics.json").read_text()) if (ROOT / "validation" / "politics.json").exists() else None,
         "feasibility": json.loads((ROOT / "validation" / "feasibility.json").read_text()) if (ROOT / "validation" / "feasibility.json").exists() else None,
         "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,

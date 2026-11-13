@@ -53,7 +53,7 @@
       "area": "transit",
       "what": "Ontario creates the Greater Toronto Transportation Authority (Metrolinx from 2007) over municipal transit in the Toronto and Hamilton area",
       "direction": "up (cities to a provincial body)",
-      "verdict": "Yes in direction: cities are the model's weakest rule (they win 6% of worlds); it would go further, to a national standard"
+      "verdict": "Yes in direction: with the data of the time, cities deciding alone does worse than provinces deciding, and the best fixed rule is provinces with a small national floor (no clear winner: it keeps 2% of the attainable gain)"
     },
     {
       "year": 2016,
@@ -83,67 +83,67 @@
   "now": {
     "schools": {
       "win_share": {
-        "local": 0.025,
-        "central": 0.505,
-        "floor": 0.15,
-        "ceiling": 0.01,
-        "matched": 0.045,
-        "equalized": 0.265
+        "local": 0.005,
+        "central": 0.425,
+        "floor": 0.06,
+        "matched": 0.135,
+        "equalized": 0.375
       },
       "robust": "equalized 100%",
       "robust_mode": "equalized",
-      "gain_captured": 0.024,
+      "gain_captured": 0.102,
       "best_per_mode": {
         "local": 0.0,
-        "central": -0.445,
-        "floor": 0.0,
+        "central": -1.954,
+        "floor": 0.002,
         "ceiling": 0.0,
-        "matched": -0.041,
-        "equalized": 0.024
+        "matched": 0.085,
+        "equalized": 0.102
       },
-      "share_on_canadian_targets": 0.57
+      "share_on_canadian_targets": 0.58
     },
     "environment": {
       "win_share": {
-        "central": 0.575,
-        "floor": 0.42,
-        "matched": 0.005
+        "central": 0.645,
+        "floor": 0.34,
+        "matched": 0.015
       },
       "robust": "central 0.3",
       "robust_mode": "central",
-      "gain_captured": 0.59,
+      "gain_captured": 0.722,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.59,
-        "floor": 0.264,
+        "central": 0.722,
+        "floor": 0.626,
         "ceiling": 0.0,
-        "matched": 0.339,
-        "equalized": 0.019
+        "matched": 0.534,
+        "equalized": 0.024
       },
-      "share_on_canadian_targets": 0.675
+      "share_on_canadian_targets": 0.68
     },
     "transit": {
       "win_share": {
         "local": 0.01,
-        "central": 0.755,
-        "floor": 0.08,
-        "ceiling": 0.07,
-        "equalized": 0.03,
-        "city": 0.055
+        "central": 0.35,
+        "floor": 0.17,
+        "ceiling": 0.075,
+        "matched": 0.065,
+        "equalized": 0.18,
+        "city": 0.15
       },
-      "robust": "central 0.4",
-      "robust_mode": "central",
-      "gain_captured": 0.544,
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.02,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.544,
-        "floor": 0.0,
-        "ceiling": 0.0,
-        "matched": -0.061,
-        "equalized": 0.001,
-        "city": -0.149
+        "central": -3.372,
+        "floor": 0.016,
+        "ceiling": 0.003,
+        "matched": -0.294,
+        "equalized": 0.02,
+        "city": -1.746
       },
-      "share_on_canadian_targets": 0.28
+      "share_on_canadian_targets": 0.235
     },
     "redistribution": {
       "win_share": {
@@ -186,91 +186,91 @@
           "as_mobile_as_period": {
             "worlds": 23,
             "win_share": {
-              "central": 0.348,
-              "equalized": 0.348,
-              "floor": 0.261,
-              "local": 0.043
+              "central": 0.391,
+              "equalized": 0.435,
+              "floor": 0.13,
+              "matched": 0.043
             }
           },
           "win_share": {
-            "local": 0.055,
-            "central": 0.5,
-            "floor": 0.12,
-            "ceiling": 0.01,
-            "matched": 0.07,
-            "equalized": 0.245
+            "local": 0.01,
+            "central": 0.425,
+            "floor": 0.075,
+            "ceiling": 0.005,
+            "matched": 0.15,
+            "equalized": 0.335
           },
-          "robust": "equalized 100%",
-          "robust_mode": "equalized",
-          "gain_captured": 0.018,
+          "robust": "matched 10%",
+          "robust_mode": "matched",
+          "gain_captured": 0.095,
           "best_per_mode": {
             "local": 0.0,
-            "central": -0.48,
-            "floor": 0.0,
+            "central": -2.146,
+            "floor": 0.002,
             "ceiling": 0.0,
-            "matched": -0.041,
-            "equalized": 0.018
+            "matched": 0.095,
+            "equalized": 0.082
           },
-          "share_on_canadian_targets": 0.575
+          "share_on_canadian_targets": 0.58
         },
         "environment": {
           "as_mobile_as_period": {
             "worlds": 13,
             "win_share": {
-              "central": 0.538,
-              "floor": 0.462
+              "central": 0.692,
+              "floor": 0.308
             }
           },
           "win_share": {
-            "central": 0.585,
-            "floor": 0.415
+            "central": 0.705,
+            "floor": 0.295
           },
           "robust": "central 0.3",
           "robust_mode": "central",
-          "gain_captured": 0.615,
+          "gain_captured": 0.743,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.615,
-            "floor": 0.263,
+            "central": 0.743,
+            "floor": 0.619,
             "ceiling": 0.0,
-            "matched": 0.307,
-            "equalized": 0.05
+            "matched": 0.465,
+            "equalized": 0.066
           },
-          "share_on_canadian_targets": 0.68
+          "share_on_canadian_targets": 0.675
         },
         "transit": {
           "as_mobile_as_period": {
-            "worlds": 117,
+            "worlds": 123,
             "win_share": {
-              "ceiling": 0.103,
-              "central": 0.615,
-              "city": 0.077,
-              "equalized": 0.043,
-              "floor": 0.154,
-              "local": 0.009
+              "ceiling": 0.089,
+              "central": 0.325,
+              "city": 0.163,
+              "equalized": 0.106,
+              "floor": 0.293,
+              "matched": 0.024
             }
           },
           "win_share": {
-            "local": 0.005,
-            "central": 0.765,
-            "floor": 0.1,
-            "ceiling": 0.06,
-            "equalized": 0.025,
-            "city": 0.045
+            "central": 0.375,
+            "floor": 0.23,
+            "ceiling": 0.075,
+            "matched": 0.065,
+            "equalized": 0.13,
+            "city": 0.125
           },
-          "robust": "central 0.4",
-          "robust_mode": "central",
-          "gain_captured": 0.55,
+          "robust": "floor 0.1",
+          "robust_mode": "floor",
+          "gain_captured": 0.015,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.55,
-            "floor": 0.0,
-            "ceiling": 0.0,
-            "matched": -0.059,
-            "equalized": 0.001,
-            "city": -0.149
+            "central": -3.1,
+            "floor": 0.015,
+            "ceiling": 0.003,
+            "matched": -0.274,
+            "equalized": 0.011,
+            "city": -1.683
           },
-          "share_on_canadian_targets": 0.285
+          "share_on_canadian_targets": 0.23
         },
         "redistribution": {
           "as_mobile_as_period": {
@@ -336,93 +336,95 @@
       "results": {
         "schools": {
           "as_mobile_as_period": {
-            "worlds": 39,
+            "worlds": 34,
             "win_share": {
-              "ceiling": 0.026,
-              "central": 0.385,
-              "equalized": 0.333,
-              "floor": 0.205,
-              "local": 0.026,
-              "matched": 0.026
+              "central": 0.353,
+              "equalized": 0.412,
+              "floor": 0.059,
+              "matched": 0.176
             }
           },
           "win_share": {
-            "local": 0.04,
-            "central": 0.495,
-            "floor": 0.11,
-            "ceiling": 0.01,
-            "matched": 0.07,
-            "equalized": 0.275
+            "local": 0.01,
+            "central": 0.405,
+            "floor": 0.06,
+            "ceiling": 0.005,
+            "matched": 0.18,
+            "equalized": 0.34
           },
-          "robust": "equalized 100%",
-          "robust_mode": "equalized",
-          "gain_captured": 0.019,
+          "robust": "matched 10%",
+          "robust_mode": "matched",
+          "gain_captured": 0.101,
           "best_per_mode": {
             "local": 0.0,
-            "central": -0.499,
-            "floor": 0.0,
+            "central": -2.254,
+            "floor": 0.002,
             "ceiling": 0.0,
-            "matched": -0.04,
-            "equalized": 0.019
+            "matched": 0.101,
+            "equalized": 0.088
           },
           "share_on_canadian_targets": 0.56
         },
         "environment": {
           "as_mobile_as_period": {
-            "worlds": 20,
+            "worlds": 21,
             "win_share": {
-              "central": 0.5,
-              "floor": 0.5
+              "central": 0.667,
+              "floor": 0.333
             }
           },
           "win_share": {
-            "central": 0.575,
-            "floor": 0.425
+            "central": 0.67,
+            "floor": 0.33
           },
           "robust": "central 0.3",
           "robust_mode": "central",
-          "gain_captured": 0.602,
+          "gain_captured": 0.732,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.602,
-            "floor": 0.264,
+            "central": 0.732,
+            "floor": 0.621,
             "ceiling": 0.0,
-            "matched": 0.326,
-            "equalized": 0.031
+            "matched": 0.509,
+            "equalized": 0.04
           },
           "share_on_canadian_targets": 0.685
         },
         "transit": {
           "as_mobile_as_period": {
-            "worlds": 125,
+            "worlds": 143,
             "win_share": {
-              "ceiling": 0.072,
-              "central": 0.72,
-              "city": 0.072,
-              "equalized": 0.024,
-              "floor": 0.112
+              "ceiling": 0.105,
+              "central": 0.294,
+              "city": 0.175,
+              "equalized": 0.112,
+              "floor": 0.238,
+              "local": 0.014,
+              "matched": 0.063
             }
           },
           "win_share": {
-            "central": 0.76,
-            "floor": 0.1,
-            "ceiling": 0.065,
-            "equalized": 0.015,
-            "city": 0.06
+            "local": 0.015,
+            "central": 0.36,
+            "floor": 0.22,
+            "ceiling": 0.09,
+            "matched": 0.06,
+            "equalized": 0.105,
+            "city": 0.15
           },
-          "robust": "central 0.4",
-          "robust_mode": "central",
-          "gain_captured": 0.548,
+          "robust": "floor 0.1",
+          "robust_mode": "floor",
+          "gain_captured": 0.015,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.548,
-            "floor": 0.0,
-            "ceiling": 0.0,
-            "matched": -0.06,
-            "equalized": 0.001,
-            "city": -0.149
+            "central": -3.202,
+            "floor": 0.015,
+            "ceiling": 0.003,
+            "matched": -0.284,
+            "equalized": 0.011,
+            "city": -1.711
           },
-          "share_on_canadian_targets": 0.29
+          "share_on_canadian_targets": 0.225
         },
         "redistribution": {
           "as_mobile_as_period": {
@@ -489,93 +491,96 @@
       "results": {
         "schools": {
           "as_mobile_as_period": {
-            "worlds": 43,
+            "worlds": 40,
             "win_share": {
-              "ceiling": 0.023,
-              "central": 0.372,
-              "equalized": 0.302,
-              "floor": 0.233,
-              "local": 0.047,
-              "matched": 0.023
+              "central": 0.325,
+              "equalized": 0.375,
+              "floor": 0.125,
+              "local": 0.025,
+              "matched": 0.15
             }
           },
           "win_share": {
-            "local": 0.04,
-            "central": 0.505,
-            "floor": 0.135,
-            "ceiling": 0.01,
-            "matched": 0.04,
-            "equalized": 0.27
+            "local": 0.02,
+            "central": 0.425,
+            "floor": 0.06,
+            "ceiling": 0.005,
+            "matched": 0.13,
+            "equalized": 0.36
           },
           "robust": "equalized 100%",
           "robust_mode": "equalized",
-          "gain_captured": 0.026,
+          "gain_captured": 0.118,
           "best_per_mode": {
             "local": 0.0,
-            "central": -0.446,
-            "floor": 0.0,
+            "central": -1.938,
+            "floor": 0.002,
             "ceiling": 0.0,
-            "matched": -0.042,
-            "equalized": 0.026
+            "matched": 0.082,
+            "equalized": 0.118
           },
-          "share_on_canadian_targets": 0.555
+          "share_on_canadian_targets": 0.565
         },
         "environment": {
           "as_mobile_as_period": {
             "worlds": 27,
             "win_share": {
-              "central": 0.556,
-              "floor": 0.444
+              "central": 0.667,
+              "floor": 0.333
             }
           },
           "win_share": {
-            "central": 0.575,
-            "floor": 0.425
+            "central": 0.665,
+            "floor": 0.335
           },
           "robust": "central 0.3",
           "robust_mode": "central",
-          "gain_captured": 0.597,
+          "gain_captured": 0.727,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.597,
-            "floor": 0.264,
+            "central": 0.727,
+            "floor": 0.624,
             "ceiling": 0.0,
-            "matched": 0.332,
-            "equalized": 0.026
+            "matched": 0.52,
+            "equalized": 0.033
           },
-          "share_on_canadian_targets": 0.67
+          "share_on_canadian_targets": 0.685
         },
         "transit": {
           "as_mobile_as_period": {
-            "worlds": 114,
+            "worlds": 130,
             "win_share": {
-              "ceiling": 0.018,
-              "central": 0.781,
-              "city": 0.044,
-              "equalized": 0.044,
-              "floor": 0.114
+              "ceiling": 0.077,
+              "central": 0.308,
+              "city": 0.169,
+              "equalized": 0.208,
+              "floor": 0.154,
+              "local": 0.008,
+              "matched": 0.077
             }
           },
           "win_share": {
-            "central": 0.76,
-            "floor": 0.09,
-            "ceiling": 0.065,
-            "equalized": 0.03,
-            "city": 0.055
+            "local": 0.005,
+            "central": 0.355,
+            "floor": 0.16,
+            "ceiling": 0.085,
+            "matched": 0.065,
+            "equalized": 0.18,
+            "city": 0.15
           },
-          "robust": "central 0.4",
-          "robust_mode": "central",
-          "gain_captured": 0.547,
+          "robust": "equalized 100%",
+          "robust_mode": "equalized",
+          "gain_captured": 0.02,
           "best_per_mode": {
             "local": 0.0,
-            "central": 0.547,
-            "floor": 0.0,
-            "ceiling": 0.0,
-            "matched": -0.06,
-            "equalized": 0.001,
-            "city": -0.149
+            "central": -3.26,
+            "floor": 0.015,
+            "ceiling": 0.002,
+            "matched": -0.291,
+            "equalized": 0.02,
+            "city": -1.725
           },
-          "share_on_canadian_targets": 0.285
+          "share_on_canadian_targets": 0.23
         },
         "redistribution": {
           "as_mobile_as_period": {

@@ -5,33 +5,33 @@
   "areas": {
     "schools": {
       "rule": "equalized 100%",
-      "cases": 96,
+      "cases": 111,
       "median_share_losing": 0.312,
-      "median_worst_loss_over_mean_gain": 2.54,
-      "share_concentrated": 0.177,
-      "share_with_any_loser": 0.979,
+      "median_worst_loss_over_mean_gain": 3.37,
+      "share_concentrated": 0.126,
+      "share_with_any_loser": 0.991,
       "corr_with_productivity": -0.16,
       "corr_with_taste": 0.16
     },
     "environment": {
       "rule": "central 0.3",
-      "cases": 98,
+      "cases": 103,
       "median_share_losing": 0.062,
       "median_worst_loss_over_mean_gain": 0.06,
-      "share_concentrated": 0.01,
-      "share_with_any_loser": 0.5,
-      "corr_with_productivity": 0.05,
-      "corr_with_taste": 0.99
+      "share_concentrated": 0.068,
+      "share_with_any_loser": 0.544,
+      "corr_with_productivity": 0.03,
+      "corr_with_taste": 0.98
     },
     "transit": {
-      "rule": "central 0.4",
-      "cases": 80,
-      "median_share_losing": 0.0,
-      "median_worst_loss_over_mean_gain": 0.0,
-      "share_concentrated": 0.05,
-      "share_with_any_loser": 0.25,
-      "corr_with_productivity": 0.01,
-      "corr_with_taste": 0.8
+      "rule": "equalized 100%",
+      "cases": 97,
+      "median_share_losing": 0.375,
+      "median_worst_loss_over_mean_gain": 7.58,
+      "share_concentrated": 0.103,
+      "share_with_any_loser": 1,
+      "corr_with_productivity": -0.15,
+      "corr_with_taste": 0.09
     },
     "redistribution": {
       "rule": "central 0.25",
@@ -55,5 +55,6 @@
       "top_two_cost_regions_change_over_mean_gain": 0.8,
       "share_where_both_top_cost_regions_lose": 0
     }
-  }
+  },
+  "province_profile": false
 }

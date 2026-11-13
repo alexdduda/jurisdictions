@@ -56,6 +56,9 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Ontario surtax 2025: 20% of Ontario tax over $5,710, 36% over $7,307 | EY tax alert (Ontario budget 2025); TaxTips; KPMG 2025 table (second threshold) |
 | Milligan and Smart: reported-income elasticity of the top 1% to provincial rates, 0.664, including shifting between provinces | IRPP study *Provincial Taxation of High Incomes* (2015); NBER WP 20489 |
 | Mildenberger, Lachapelle, Harrison and Stadelmann-Steffen, *Nature Climate Change* 12 (2022): low awareness and substantial underestimation of carbon rebates in Canada | University of Bern repository abstract; phys.org; CTV News |
+| Economies of scale in bus transport appear only for operators below the sector's average output (Italian operators, composite cost function) | Abrate, Erbetta, Fraquelli and Vannoni, "Bet big on doubles, bet smaller on triples", *Transport Policy* 52 (2016): 81-88 (RePEc; University of Piemonte Orientale record) |
+| A 1983 study of 73 medium and large US bus systems found little evidence of scale economies; results depend on output measure and cost-function form | Berechman and Giuliano's review, as summarised in the University of California eScholarship and WCTR proceedings records |
+| Older Canadian Election Studies (1993-2015) on Borealis, CC BY-NC 4.0, repeat the education and environment spending and rich-poor gap questions; 2008 asked about the carbon tax | Borealis dataset metadata and DDI variable labels, read through the Dataverse API (data not downloaded) |
 
 ## Computed from the project's own data (reproducible)
 

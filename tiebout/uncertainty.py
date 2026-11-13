@@ -55,8 +55,19 @@ WIDE = {
 }
 
 
+# How far measured inputs moved per decade, the worst step seen across the
+# backtest's vintages (1986-95, 1996-2005, 2006-15, 2015-24; validation/backtest.py).
+# Used to widen ranges for verdicts dated further ahead.
+DECADE_DRIFT = {"schools": 0.20, "environment": 0.27, "transit": 0.12, "income_sigma": 0.08, "emissions_spread": 0.22}
+
+
+def _widen(r: tuple, frac: float) -> tuple:
+    mid = (r[0] + r[1]) / 2
+    return (round(max(r[0] - frac * mid, 0.0), 4), round(r[1] + frac * mid, 4))
+
+
 def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
-                  emissions_spread: float = 0.66) -> dict:
+                  emissions_spread: float = 0.66, horizon_years: float = 0.0) -> dict:
     """Ranges calibrated to Canada where evidence exists; WIDE elsewhere.
 
     Measured from Statistics Canada (see tiebout/canada.py, data/targets.json):
@@ -114,7 +125,7 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     domains = {name: dict(r) for name, r in WIDE["domains"].items()}
     for name in ("schools", "environment", "transit"):
         lo, hi = het[name]
-        domains[name]["heterogeneity"] = (lo, hi)
+        domains[name]["heterogeneity"] = _widen((lo, hi), DECADE_DRIFT[name] * horizon_years / 10) if horizon_years else (lo, hi)
         domains[name]["within"] = (0.25, 0.30)
         e = capacity[name]["income_elasticity"]
         lo_e, hi_e = (min(e), max(e)) if isinstance(e, (tuple, list)) else (e, e)  # a pair: cover both
@@ -132,6 +143,14 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     # half of the workers left outside commute in. Commuting between municipalities
     # inside a metro area is handled by the metro-level body and doesn't count here.
     domains["transit"]["metro_spillover"] = (0.00, 0.20)
+    # National savings from one transit system. Cost studies find economies of scale
+    # only for small operators: in Italy, only below the sector's average output
+    # (Abrate, Erbetta, Fraquelli and Vannoni, Transport Policy 52, 2016); for 73
+    # medium and large US systems, little or none (reviewed by Berechman and
+    # Giuliano). Merging metropolitan systems that are already large saves little in
+    # operating cost; 0 to 10% allows for joint purchasing and planning. Earlier
+    # versions sampled the guessed 10% to 45%.
+    domains["transit"]["scale"] = (0.00, 0.10)
     domains["transit"]["spillover"] = (0.00, 0.10)
     # Climate (a regulatory good; emitters pay). From the 2019 Canadian Election
     # Study carbon-tax question, between-province spread is 0.235 of within-province
@@ -153,7 +172,8 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     })
     domains["climate"] = {
         "heterogeneity": (0.05, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
-        "abatement_sd": (round(0.5 * emissions_spread, 2), round(1.5 * emissions_spread, 2)),
+        "abatement_sd": _widen((round(0.5 * emissions_spread, 2), round(1.5 * emissions_spread, 2)),
+                               DECADE_DRIFT["emissions_spread"] * horizon_years / 10),
         "abatement_taste_corr": (0.60, 0.90),
     }
     # Jointly calibrated (validation/README): with people moving for jobs, these keep
@@ -183,7 +203,7 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
             "congestion": (0.03, 0.20),
         },
         "redistribution_world": {
-            "income_sigma": (round(sigma - 0.03, 3), round(sigma + 0.03, 3)),
+            "income_sigma": _widen((round(sigma - 0.03, 3), round(sigma + 0.03, 3)), DECADE_DRIFT["income_sigma"] * horizon_years / 10),
             "deadweight": (0.40, 0.90),
             **mobility,
             "congestion": (0.03, 0.20),

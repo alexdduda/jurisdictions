@@ -90,7 +90,7 @@ REFORMS = [
         "year": 2006, "area": "transit",
         "what": "Ontario creates the Greater Toronto Transportation Authority (Metrolinx from 2007) over municipal transit in the Toronto and Hamilton area",
         "direction": "up (cities to a provincial body)",
-        "verdict": "Yes in direction: cities are the model's weakest rule (they win 6% of worlds); it would go further, to a national standard",
+        "verdict": "Yes in direction: with the data of the time, cities deciding alone does worse than provinces deciding, and the best fixed rule is provinces with a small national floor (no clear winner: it keeps 2% of the attainable gain)",
     },
     {
         "year": 2016, "area": "climate",

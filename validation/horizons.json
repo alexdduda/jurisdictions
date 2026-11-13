@@ -1,0 +1,173 @@
+{
+  "horizons": {
+    "2036": {
+      "schools": {
+        "robust": "equalized 100%",
+        "robust_mode": "equalized",
+        "gain_captured": 0.101,
+        "win_share": {
+          "local": 0.025,
+          "central": 0.425,
+          "floor": 0.055,
+          "matched": 0.135,
+          "equalized": 0.36
+        }
+      },
+      "environment": {
+        "robust": "central 0.3",
+        "robust_mode": "central",
+        "gain_captured": 0.721,
+        "win_share": {
+          "central": 0.645,
+          "floor": 0.335,
+          "matched": 0.02
+        }
+      },
+      "transit": {
+        "robust": "equalized 100%",
+        "robust_mode": "equalized",
+        "gain_captured": 0.019,
+        "win_share": {
+          "local": 0.005,
+          "central": 0.35,
+          "floor": 0.17,
+          "ceiling": 0.08,
+          "matched": 0.065,
+          "equalized": 0.18,
+          "city": 0.15
+        }
+      },
+      "redistribution": {
+        "robust": "central 0.25",
+        "robust_mode": "central",
+        "gain_captured": 0.848,
+        "win_share": {
+          "central": 0.98,
+          "floor": 0.02
+        }
+      },
+      "climate": {
+        "robust": "price 1.2",
+        "robust_mode": "price",
+        "gain_captured": 0.986,
+        "win_share": {
+          "floor": 0.005,
+          "price": 0.995
+        }
+      }
+    },
+    "2046": {
+      "schools": {
+        "robust": "equalized 100%",
+        "robust_mode": "equalized",
+        "gain_captured": 0.102,
+        "win_share": {
+          "local": 0.02,
+          "central": 0.43,
+          "floor": 0.07,
+          "ceiling": 0.005,
+          "matched": 0.125,
+          "equalized": 0.35
+        }
+      },
+      "environment": {
+        "robust": "central 0.3",
+        "robust_mode": "central",
+        "gain_captured": 0.72,
+        "win_share": {
+          "central": 0.64,
+          "floor": 0.345,
+          "matched": 0.015
+        }
+      },
+      "transit": {
+        "robust": "equalized 100%",
+        "robust_mode": "equalized",
+        "gain_captured": 0.019,
+        "win_share": {
+          "local": 0.005,
+          "central": 0.355,
+          "floor": 0.205,
+          "ceiling": 0.085,
+          "matched": 0.07,
+          "equalized": 0.135,
+          "city": 0.145
+        }
+      },
+      "redistribution": {
+        "robust": "central 0.25",
+        "robust_mode": "central",
+        "gain_captured": 0.812,
+        "win_share": {
+          "central": 0.98,
+          "floor": 0.02
+        }
+      },
+      "climate": {
+        "robust": "price 1.2",
+        "robust_mode": "price",
+        "gain_captured": 0.979,
+        "win_share": {
+          "central": 0.015,
+          "price": 0.985
+        }
+      }
+    }
+  },
+  "now": {
+    "schools": {
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.102,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.425,
+        "floor": 0.06,
+        "matched": 0.135,
+        "equalized": 0.375
+      }
+    },
+    "environment": {
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.722,
+      "win_share": {
+        "central": 0.645,
+        "floor": 0.34,
+        "matched": 0.015
+      }
+    },
+    "transit": {
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.02,
+      "win_share": {
+        "local": 0.01,
+        "central": 0.35,
+        "floor": 0.17,
+        "ceiling": 0.075,
+        "matched": 0.065,
+        "equalized": 0.18,
+        "city": 0.15
+      }
+    },
+    "redistribution": {
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      }
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      }
+    }
+  }
+}

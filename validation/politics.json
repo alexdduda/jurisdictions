@@ -129,12 +129,12 @@
     },
     "transit": {
       "rules": {
-        "central 0.4": {
-          "mean_gain": 0.03451,
-          "passes_majority_real": 0.725,
-          "passes_two_thirds_real": 0.692,
-          "passes_majority_perceived": 0.725,
-          "passes_two_thirds_perceived": 0.692
+        "central 0.3": {
+          "mean_gain": -0.02259,
+          "passes_majority_real": 0.242,
+          "passes_two_thirds_real": 0.183,
+          "passes_majority_perceived": 0.242,
+          "passes_two_thirds_perceived": 0.183
         },
         "floor 0.1": {
           "mean_gain": 0.00014,
@@ -173,26 +173,26 @@
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.956,
+        "gain_kept": 0.832,
         "picks": {
-          "central 0.4": 0.725,
-          "floor 0.1": 0.075,
-          "equalized 100%": 0.05,
-          "nothing passes": 0.05,
-          "city + 10% grant": 0.05,
-          "matched 10%": 0.025,
+          "central 0.3": 0.225,
+          "equalized 100%": 0.208,
+          "floor 0.1": 0.208,
+          "nothing passes": 0.158,
+          "city + 10% grant": 0.092,
+          "matched 10%": 0.083,
           "ceiling 0.7": 0.025
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.869,
+        "gain_kept": 0.639,
         "picks": {
-          "central 0.4": 0.692,
-          "nothing passes": 0.092,
-          "equalized 100%": 0.067,
-          "floor 0.1": 0.058,
-          "matched 10%": 0.042,
-          "city + 10% grant": 0.042,
+          "nothing passes": 0.308,
+          "equalized 100%": 0.192,
+          "floor 0.1": 0.183,
+          "central 0.3": 0.183,
+          "matched 10%": 0.075,
+          "city + 10% grant": 0.05,
           "ceiling 0.7": 0.008
         }
       }
