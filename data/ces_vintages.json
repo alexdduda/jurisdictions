@@ -1,0 +1,535 @@
+{
+  "method": "as data/scripts/ces_disagreement.py (2019), standard library",
+  "years": {
+    "1993": {
+      "schools": {
+        "question": "CPSL7F",
+        "proxy": true,
+        "respondents": 3738,
+        "province_means": {
+          "Newfoundland and Labrador": 1.805,
+          "Prince Edward Island": 1.66,
+          "Nova Scotia": 1.863,
+          "New Brunswick": 1.948,
+          "Quebec": 1.505,
+          "Ontario": 1.362,
+          "Manitoba": 1.321,
+          "Saskatchewan": 1.264,
+          "Alberta": 1.4,
+          "British Columbia": 1.742
+        },
+        "rho_raw": 0.2348,
+        "rho": 0.2117,
+        "corr_with_2019_province_means": 0.35
+      },
+      "environment_jobs": {
+        "question": "MBSA12",
+        "proxy": true,
+        "respondents": 1965,
+        "province_means": {
+          "Newfoundland and Labrador": -0.18,
+          "Prince Edward Island": -0.202,
+          "Nova Scotia": 0.066,
+          "New Brunswick": -0.028,
+          "Quebec": -0.382,
+          "Ontario": -0.049,
+          "Manitoba": -0.12,
+          "Saskatchewan": -0.204,
+          "Alberta": -0.032,
+          "British Columbia": -0.032
+        },
+        "rho_raw": 0.1223,
+        "rho": 0.0,
+        "corr_with_2019_province_means": -0.2
+      },
+      "redistribution": {
+        "question": "MBSA8",
+        "proxy": true,
+        "respondents": 2132,
+        "province_means": {
+          "Newfoundland and Labrador": 0.881,
+          "Prince Edward Island": 0.921,
+          "Nova Scotia": 0.776,
+          "New Brunswick": 0.765,
+          "Quebec": 1.005,
+          "Ontario": 0.309,
+          "Manitoba": 0.497,
+          "Saskatchewan": 0.531,
+          "Alberta": 0.365,
+          "British Columbia": 0.206
+        },
+        "rho_raw": 0.2661,
+        "rho": 0.2314,
+        "corr_with_2019_province_means": 0.72
+      }
+    },
+    "1997": {
+      "schools": {
+        "question": "pese6f",
+        "proxy": true,
+        "respondents": 2982,
+        "province_means": {
+          "Newfoundland and Labrador": 1.857,
+          "Prince Edward Island": 1.392,
+          "Nova Scotia": 1.829,
+          "New Brunswick": 1.892,
+          "Quebec": 1.257,
+          "Ontario": 1.332,
+          "Manitoba": 1.538,
+          "Saskatchewan": 1.466,
+          "Alberta": 1.516,
+          "British Columbia": 1.694
+        },
+        "rho_raw": 0.2164,
+        "rho": 0.178,
+        "corr_with_2019_province_means": 0.5
+      },
+      "environment_jobs": {
+        "question": "mbsa6",
+        "proxy": true,
+        "respondents": 1547,
+        "province_means": {
+          "Newfoundland and Labrador": -0.349,
+          "Prince Edward Island": -0.355,
+          "Nova Scotia": -0.234,
+          "New Brunswick": -0.068,
+          "Quebec": -0.339,
+          "Ontario": -0.108,
+          "Manitoba": -0.225,
+          "Saskatchewan": 0.21,
+          "Alberta": 0.006,
+          "British Columbia": -0.095
+        },
+        "rho_raw": 0.1719,
+        "rho": 0.1112,
+        "corr_with_2019_province_means": -0.81
+      },
+      "redistribution": {
+        "question": "mbsa4",
+        "proxy": true,
+        "respondents": 1714,
+        "province_means": {
+          "Newfoundland and Labrador": 1.489,
+          "Prince Edward Island": 1.478,
+          "Nova Scotia": 0.687,
+          "New Brunswick": 0.674,
+          "Quebec": 1.114,
+          "Ontario": 0.556,
+          "Manitoba": 0.817,
+          "Saskatchewan": 0.905,
+          "Alberta": 0.505,
+          "British Columbia": 0.397
+        },
+        "rho_raw": 0.3663,
+        "rho": 0.3157,
+        "corr_with_2019_province_means": 0.36
+      }
+    },
+    "2004": {
+      "schools": {
+        "question": "pes_d1d",
+        "proxy": false,
+        "respondents": 3083,
+        "province_means": {
+          "Newfoundland and Labrador": 1.733,
+          "Prince Edward Island": 1.764,
+          "Nova Scotia": 1.721,
+          "New Brunswick": 1.393,
+          "Quebec": 1.41,
+          "Ontario": 1.25,
+          "Manitoba": 1.004,
+          "Saskatchewan": 0.969,
+          "Alberta": 1.271,
+          "British Columbia": 1.376
+        },
+        "rho_raw": 0.2697,
+        "rho": 0.2537,
+        "corr_with_2019_province_means": -0.11
+      },
+      "environment": {
+        "question": "pes_d1f",
+        "proxy": false,
+        "respondents": 3062,
+        "province_means": {
+          "Newfoundland and Labrador": 0.991,
+          "Prince Edward Island": 1.188,
+          "Nova Scotia": 1.093,
+          "New Brunswick": 1.046,
+          "Quebec": 1.103,
+          "Ontario": 0.968,
+          "Manitoba": 0.759,
+          "Saskatchewan": 0.665,
+          "Alberta": 0.709,
+          "British Columbia": 0.858
+        },
+        "rho_raw": 0.1717,
+        "rho": 0.1186,
+        "corr_with_2019_province_means": 0.87
+      },
+      "environment_jobs": {
+        "question": "mbs_a6",
+        "proxy": true,
+        "respondents": 1471,
+        "province_means": {
+          "Newfoundland and Labrador": -0.512,
+          "Prince Edward Island": -0.202,
+          "Nova Scotia": -0.493,
+          "New Brunswick": -0.157,
+          "Quebec": -0.22,
+          "Ontario": -0.102,
+          "Manitoba": -0.169,
+          "Saskatchewan": -0.566,
+          "Alberta": -0.167,
+          "British Columbia": -0.021
+        },
+        "rho_raw": 0.1804,
+        "rho": 0.1002,
+        "corr_with_2019_province_means": 0.24
+      },
+      "redistribution": {
+        "question": "cps_f6",
+        "proxy": false,
+        "respondents": 4029,
+        "province_means": {
+          "Newfoundland and Labrador": 1.508,
+          "Prince Edward Island": 1.553,
+          "Nova Scotia": 1.469,
+          "New Brunswick": 1.323,
+          "Quebec": 1.606,
+          "Ontario": 1.172,
+          "Manitoba": 0.948,
+          "Saskatchewan": 1.377,
+          "Alberta": 0.957,
+          "British Columbia": 1.226
+        },
+        "rho_raw": 0.2232,
+        "rho": 0.1865,
+        "corr_with_2019_province_means": 0.66
+      }
+    },
+    "2008": {
+      "schools": {
+        "question": "ces08_PES_D1D",
+        "proxy": false,
+        "respondents": 3620,
+        "province_means": {
+          "Newfoundland and Labrador": 1.714,
+          "Prince Edward Island": 1.388,
+          "Nova Scotia": 1.575,
+          "New Brunswick": 1.492,
+          "Quebec": 1.526,
+          "Ontario": 1.321,
+          "Manitoba": 1.21,
+          "Saskatchewan": 1.136,
+          "Alberta": 1.277,
+          "British Columbia": 1.282
+        },
+        "rho_raw": 0.1714,
+        "rho": 0.1235,
+        "corr_with_2019_province_means": 0.29
+      },
+      "environment": {
+        "question": "ces08_PES_D1F",
+        "proxy": false,
+        "respondents": 3609,
+        "province_means": {
+          "Newfoundland and Labrador": 1.172,
+          "Prince Edward Island": 1.184,
+          "Nova Scotia": 1.055,
+          "New Brunswick": 1.062,
+          "Quebec": 1.306,
+          "Ontario": 1.045,
+          "Manitoba": 0.81,
+          "Saskatchewan": 0.86,
+          "Alberta": 0.769,
+          "British Columbia": 0.935
+        },
+        "rho_raw": 0.166,
+        "rho": 0.1271,
+        "corr_with_2019_province_means": 0.8
+      },
+      "environment_jobs": {
+        "question": "ces08_MBS_A15",
+        "proxy": true,
+        "respondents": 1634,
+        "province_means": {
+          "Newfoundland and Labrador": -0.377,
+          "Prince Edward Island": 0.245,
+          "Nova Scotia": -0.126,
+          "New Brunswick": -0.495,
+          "Quebec": -0.334,
+          "Ontario": -0.327,
+          "Manitoba": -0.336,
+          "Saskatchewan": -0.44,
+          "Alberta": -0.355,
+          "British Columbia": -0.063
+        },
+        "rho_raw": 0.2093,
+        "rho": 0.1655,
+        "corr_with_2019_province_means": 0.41
+      },
+      "redistribution": {
+        "question": "ces08_PES_F6",
+        "proxy": false,
+        "respondents": 3539,
+        "province_means": {
+          "Newfoundland and Labrador": 1.294,
+          "Prince Edward Island": 1.389,
+          "Nova Scotia": 1.582,
+          "New Brunswick": 1.902,
+          "Quebec": 1.502,
+          "Ontario": 1.17,
+          "Manitoba": 1.063,
+          "Saskatchewan": 1.106,
+          "Alberta": 0.986,
+          "British Columbia": 1.082
+        },
+        "rho_raw": 0.2733,
+        "rho": 0.2493,
+        "corr_with_2019_province_means": 0.89
+      },
+      "climate": {
+        "question": "ces08_CPS_J0",
+        "proxy": false,
+        "respondents": 2644,
+        "province_means": {
+          "Newfoundland and Labrador": -0.288,
+          "Prince Edward Island": -0.361,
+          "Nova Scotia": -0.273,
+          "New Brunswick": 0.015,
+          "Quebec": 0.09,
+          "Ontario": -0.272,
+          "Manitoba": -0.302,
+          "Saskatchewan": -0.57,
+          "Alberta": -0.641,
+          "British Columbia": -0.271
+        },
+        "rho_raw": 0.2108,
+        "rho": 0.1805,
+        "corr_with_2019_province_means": 0.9
+      }
+    },
+    "2011": {
+      "schools": {
+        "question": "CPS11_34",
+        "proxy": false,
+        "respondents": 4239,
+        "province_means": {
+          "Newfoundland and Labrador": 1.774,
+          "Prince Edward Island": 1.27,
+          "Nova Scotia": 1.535,
+          "New Brunswick": 1.638,
+          "Quebec": 1.351,
+          "Ontario": 1.329,
+          "Manitoba": 1.108,
+          "Saskatchewan": 1.066,
+          "Alberta": 1.151,
+          "British Columbia": 1.431
+        },
+        "rho_raw": 0.2207,
+        "rho": 0.2001,
+        "corr_with_2019_province_means": 0.47
+      },
+      "environment": {
+        "question": "CPS11_35",
+        "proxy": false,
+        "respondents": 4192,
+        "province_means": {
+          "Newfoundland and Labrador": 1.184,
+          "Prince Edward Island": 0.973,
+          "Nova Scotia": 0.878,
+          "New Brunswick": 0.79,
+          "Quebec": 1.06,
+          "Ontario": 0.969,
+          "Manitoba": 0.851,
+          "Saskatchewan": 0.807,
+          "Alberta": 0.563,
+          "British Columbia": 0.981
+        },
+        "rho_raw": 0.1612,
+        "rho": 0.1302,
+        "corr_with_2019_province_means": 0.68
+      },
+      "environment_jobs": {
+        "question": "MBS11_C14",
+        "proxy": true,
+        "respondents": 1308,
+        "province_means": {
+          "Newfoundland and Labrador": 0.189,
+          "Prince Edward Island": 0.024,
+          "Nova Scotia": 0.151,
+          "New Brunswick": -0.361,
+          "Quebec": -0.231,
+          "Ontario": -0.222,
+          "Manitoba": -0.14,
+          "Saskatchewan": -0.357,
+          "Alberta": -0.457,
+          "British Columbia": -0.083
+        },
+        "rho_raw": 0.2082,
+        "rho": 0.145,
+        "corr_with_2019_province_means": 0.55
+      },
+      "redistribution": {
+        "question": "PES11_41",
+        "proxy": false,
+        "respondents": 3227,
+        "province_means": {
+          "Newfoundland and Labrador": 1.578,
+          "Prince Edward Island": 1.217,
+          "Nova Scotia": 1.47,
+          "New Brunswick": 1.541,
+          "Quebec": 1.463,
+          "Ontario": 1.06,
+          "Manitoba": 1.003,
+          "Saskatchewan": 1.449,
+          "Alberta": 0.695,
+          "British Columbia": 1.19
+        },
+        "rho_raw": 0.2708,
+        "rho": 0.243,
+        "corr_with_2019_province_means": 0.83
+      }
+    },
+    "2015": {
+      "schools": {
+        "question": "spnd_educ",
+        "proxy": false,
+        "respondents": 6951,
+        "province_means": {
+          "Newfoundland and Labrador": 1.024,
+          "Prince Edward Island": 0.967,
+          "Nova Scotia": 1.126,
+          "New Brunswick": 1.168,
+          "Quebec": 1.142,
+          "Ontario": 0.825,
+          "Manitoba": 0.77,
+          "Saskatchewan": 1.121,
+          "Alberta": 0.952,
+          "British Columbia": 0.967
+        },
+        "rho_raw": 0.1293,
+        "rho": 0.0594,
+        "corr_with_2019_province_means": 0.69
+      },
+      "environment": {
+        "question": "spnd_envi",
+        "proxy": false,
+        "respondents": 6876,
+        "province_means": {
+          "Newfoundland and Labrador": 0.486,
+          "Prince Edward Island": 0.78,
+          "Nova Scotia": 0.837,
+          "New Brunswick": 0.709,
+          "Quebec": 0.703,
+          "Ontario": 0.637,
+          "Manitoba": 0.61,
+          "Saskatchewan": 0.674,
+          "Alberta": 0.57,
+          "British Columbia": 0.753
+        },
+        "rho_raw": 0.0989,
+        "rho": 0.0,
+        "corr_with_2019_province_means": 0.43
+      },
+      "redistribution": {
+        "question": "p_gap",
+        "proxy": false,
+        "respondents": 4078,
+        "province_means": {
+          "Newfoundland and Labrador": 1.762,
+          "Prince Edward Island": 2.189,
+          "Nova Scotia": 1.733,
+          "New Brunswick": 1.937,
+          "Quebec": 1.552,
+          "Ontario": 1.369,
+          "Manitoba": 1.555,
+          "Saskatchewan": 1.28,
+          "Alberta": 1.214,
+          "British Columbia": 1.439
+        },
+        "rho_raw": 0.2898,
+        "rho": 0.2581,
+        "corr_with_2019_province_means": 0.64
+      }
+    },
+    "2019": {
+      "schools": {
+        "question": "cps19_spend_educ",
+        "proxy": false,
+        "respondents": 36848,
+        "province_means": {
+          "Newfoundland and Labrador": 1.221,
+          "Prince Edward Island": 0.983,
+          "Nova Scotia": 1.169,
+          "New Brunswick": 1.307,
+          "Quebec": 1.181,
+          "Ontario": 1.077,
+          "Manitoba": 1.085,
+          "Saskatchewan": 1.268,
+          "Alberta": 1.012,
+          "British Columbia": 1.142
+        },
+        "rho_raw": 0.1006,
+        "rho": 0.0795
+      },
+      "environment": {
+        "question": "cps19_spend_env",
+        "proxy": false,
+        "respondents": 36768,
+        "province_means": {
+          "Newfoundland and Labrador": 0.823,
+          "Prince Edward Island": 0.986,
+          "Nova Scotia": 0.934,
+          "New Brunswick": 0.875,
+          "Quebec": 1.071,
+          "Ontario": 0.861,
+          "Manitoba": 0.806,
+          "Saskatchewan": 0.427,
+          "Alberta": 0.409,
+          "British Columbia": 0.838
+        },
+        "rho_raw": 0.2071,
+        "rho": 0.2011
+      },
+      "redistribution": {
+        "question": "pes19_gap",
+        "proxy": false,
+        "respondents": 9906,
+        "province_means": {
+          "Newfoundland and Labrador": 1.444,
+          "Prince Edward Island": 1.213,
+          "Nova Scotia": 1.429,
+          "New Brunswick": 1.633,
+          "Quebec": 1.496,
+          "Ontario": 1.172,
+          "Manitoba": 1.133,
+          "Saskatchewan": 1.042,
+          "Alberta": 0.779,
+          "British Columbia": 1.088
+        },
+        "rho_raw": 0.2425,
+        "rho": 0.2064
+      },
+      "climate": {
+        "question": "cps19_pos_carbon",
+        "proxy": false,
+        "respondents": 12116,
+        "province_means": {
+          "Newfoundland and Labrador": -0.096,
+          "Prince Edward Island": -0.031,
+          "Nova Scotia": 0.112,
+          "New Brunswick": 0.066,
+          "Quebec": 0.503,
+          "Ontario": 0.019,
+          "Manitoba": -0.022,
+          "Saskatchewan": -0.449,
+          "Alberta": -0.366,
+          "British Columbia": 0.01
+        },
+        "rho_raw": 0.2471,
+        "rho": 0.2351
+      }
+    }
+  }
+}

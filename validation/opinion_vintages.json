@@ -1,0 +1,84 @@
+{
+  "inputs": {
+    "schools": {
+      "rho_range": [
+        0.0594,
+        0.2537
+      ],
+      "within": [
+        0.1,
+        0.3
+      ],
+      "was": [
+        0.25,
+        0.3
+      ]
+    },
+    "environment": {
+      "rho_range": [
+        0.1186,
+        0.2011
+      ],
+      "lowest_within": 0.365,
+      "unchanged": true
+    },
+    "climate": {
+      "rho_range": [
+        0.1805,
+        0.2351
+      ],
+      "heterogeneity": [
+        0.045,
+        0.08
+      ],
+      "was": [
+        0.05,
+        0.08
+      ]
+    }
+  },
+  "results": {
+    "schools": {
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.097,
+      "win_share": {
+        "central": 0.455,
+        "floor": 0.1,
+        "ceiling": 0.005,
+        "matched": 0.09,
+        "equalized": 0.35
+      }
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      }
+    }
+  },
+  "now": {
+    "schools": {
+      "robust": "equalized 100%",
+      "gain_captured": 0.102,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.425,
+        "floor": 0.06,
+        "matched": 0.135,
+        "equalized": 0.375
+      }
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      }
+    }
+  }
+}

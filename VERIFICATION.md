@@ -69,8 +69,12 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Between/within-province disagreement (schools 0.08, environment 0.20, redistribution 0.21, carbon tax 0.24) | `data/scripts/ces_disagreement.py` |
 | Emissions per person vs. carbon-tax support across provinces: r = -0.82, p = 0.003 | 2024 ECCC emissions, Statistics Canada population, CES 2019 |
 | Provincial spending spread, income elasticities, market-income spread | `tiebout/canada.py`, `validation/` |
+| Between/within-province disagreement 1993-2015 (redistribution 0.19-0.26, environment 0.12-0.20, schools 0.06-0.25 on the same questions; 2008 carbon tax 0.18) | `data/scripts/ces_vintages.py`, Canadian Election Studies on Borealis |
+| US: state spending spread, market-income Gini 0.51 (OECD), interstate migration 1.46% a year (CPS A-1), state market-income spread 0.18 (BEA), spending income elasticity 0.71 to 1.25, energy-CO2 log sd 0.56 (EIA) | `data/scripts/us_targets.py` |
 
 ## Not verified
+
+- How the US assigns each area (`ACTUAL` in `validation/us_run.py`): summarised from general knowledge of US federal programs, not checked against a source in this project.
 
 - Elasticity of taxable income for all Canadian taxpayers, sampled 0.1 to 0.4 in `validation/cost_of_funds.py`: an assumption. Sillamaa and Veall (2001) find Canadian responses smaller than the US's, and a summary of Saez, Slemrod and Giertz (2012) gives about 0.25 as a mid-range figure, but no abstract read states a number.
 - Share of the carbon rebate voters perceive, sampled 0 to 0.6 in `validation/politics.py`: an assumption informed by Mildenberger et al. (2022), which reports underestimation without a single figure in what was read.

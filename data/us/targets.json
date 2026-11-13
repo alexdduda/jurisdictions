@@ -1,0 +1,95 @@
+{
+  "source": "Census Bureau state and local finance table 1, BEA SAINC4 and SAGDP1, CPS A-1, OECD IDD, EIA state CO2 table 4; 50 states, 2017-2022",
+  "disagreement": {
+    "schools": {
+      "functions": [
+        "Elementary & secondary"
+      ],
+      "years": 6,
+      "mean_per_capita": 2160,
+      "cv": {
+        "levels": 0.2376,
+        "shares": 0.1434,
+        "residual": 0.1685
+      },
+      "heterogeneity_range": [
+        0.0358,
+        0.0594
+      ]
+    },
+    "environment": {
+      "functions": [
+        "Sewerage",
+        "Solid waste management"
+      ],
+      "years": 6,
+      "mean_per_capita": 262,
+      "cv": {
+        "levels": 0.2815,
+        "shares": 0.245,
+        "residual": 0.2397
+      },
+      "heterogeneity_range": [
+        0.0599,
+        0.0704
+      ]
+    },
+    "transit": {
+      "functions": [
+        "Highways",
+        "Air transportation (airports)",
+        "Parking facilities",
+        "Sea and inland port facilities",
+        "Transit"
+      ],
+      "years": 6,
+      "mean_per_capita": 978,
+      "cv": {
+        "levels": 0.4232,
+        "shares": 0.2594,
+        "residual": 0.2796
+      },
+      "heterogeneity_range": [
+        0.0649,
+        0.1058
+      ]
+    }
+  },
+  "inequality": {
+    "market_gini": 0.5109,
+    "income_sigma": 0.9783
+  },
+  "migration": {
+    "annual_rate": 0.01461,
+    "min": 0.01315,
+    "max": 0.01695,
+    "years": 7
+  },
+  "regional_income": {
+    "market_income_cv": 0.178,
+    "market_income_cv_range": [
+      0.1749,
+      0.1805
+    ],
+    "gdp_per_capita_cv": 0.1793
+  },
+  "fiscal_capacity": {
+    "schools": {
+      "income_elasticity": 0.88,
+      "years": 6
+    },
+    "environment": {
+      "income_elasticity": 0.709,
+      "years": 6
+    },
+    "transit": {
+      "income_elasticity": 1.246,
+      "years": 6
+    }
+  },
+  "emissions_spread": {
+    "year": "2022",
+    "log_sd": 0.559,
+    "measure": "energy CO2 per person"
+  }
+}

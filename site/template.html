@@ -202,7 +202,8 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <li><strong>Transit stays with the provinces and their cities.</strong> A national network would win only if it saved about 10% or more over separate systems. Cost studies find savings from size only for small operators (in Italy, below the sector's average output; for large US systems, little or none), so merging Canada's already-large metro systems would save little. With savings sampled at 0% to 10%, no fixed national rule beats provincial control; cities win only where almost no commuting crosses the metro boundary.</li>
       <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
       <li><strong>A carbon price is the best climate rule and the hardest to pass.</strong> Households see a charge about 19 times the real gain and, surveys found, little of the rebate; it would take voters noticing about 94% of the rebate for most regions to feel better off. The best rule that passes, a quantity floor, keeps about half the gain, and is roughly what Canada kept in 2025.</li>
-      <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, the model picks today's rule in every area. Two of three reforms since then moved its way; the one that didn't (the 1996 welfare block grant) was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
+      <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, and with opinion from election studies back to 1993, the model picks today's rule in every area with a clear winner. Two of three reforms since then moved its way; the one that didn't (the 1996 welfare block grant) was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
+      <li><strong>On the United States, two of five verdicts match.</strong> Rebuilt from US data, the model says national for redistribution and the environment, as the US largely does. It says a national carbon price, which the US lacks, and equalization for schools and transit, where state spending tracks state income far more steeply than in Canada.</li>
       <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
     </ol>
     <p class="note">Every factual claim is logged with its sources in the repository's VERIFICATION.md; three calibration errors caught by these checks are listed in § 7, and a bug caught before publishing is described in the repository's validation notes.</p>
@@ -380,6 +381,25 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
       <p><strong>What it missed.</strong> The model recommended a carbon price in 2016 and still does, but the consumer charge was set to zero in 2025. The "who loses" analysis below finds no region that loses in the model, so the repeal reflects something it leaves out: how visible the cost was against the rebate, and politics generally.</p>
     </div>
     <p class="note" id="bt-note"></p>
+    <div class="fig-title">Opinion over time: how far apart provinces are, in units of disagreement within one</div>
+    <div class="table-wrap"><table id="ces-table"></table></div>
+    <p class="note">Canadian Election Studies 1993 to 2019, the same method as the 2019 calibration (sampling noise removed). Same question where it exists: should government spend more, less or the same on education and the environment (2004 on), and how much should be done to reduce the gap between rich and poor (2004 on). Marked * where an older study only asked a related question: cutting education spending (1993, 1997), environment against jobs (1993 to 2011), the government doing more on the income gap (1993, 1997). Climate in 2008: the Liberal Green Shift carbon tax "would really hurt the economy", reversed. Blank where not asked; 0 where the gap is within sampling noise.</p>
+    <div class="stack" id="ces-text">
+      <p><strong>The opinion data were the one input the backtest couldn't date; now they are, and nothing moves.</strong> On the same questions, provinces' gap on redistribution held at 0.19 to 0.26 of the disagreement inside a province from 2004 to 2019, and on the environment 0.12 to 0.20. Schools swing more (0.06 to 0.25) and the provinces' order isn't stable from one study to the next, which fits schools being the area with no clear winner. The 2008 carbon-tax question puts provinces at 0.18 against 2019's 0.24, in nearly the same order (correlation of provincial averages 0.90).</p>
+      <p>Only two inputs depend on these numbers. With 2004's figure for schools, disagreement inside a province can fall from the model's 0.25-0.30 to about 0.10; with 2008's for climate, the gap between provinces narrows slightly. Rerun on the same sampled worlds with both ranges widened, schools still pick equalization (no clear winner, 10% of the gain) and climate still a carbon price (99%). The environment is unaffected: even its largest dated gap leaves disagreement inside provinces above the model's ceiling.</p>
+    </div>
+  </section>
+
+  <section class="col stack" aria-labelledby="s-us">
+    <div class="sec-head"><span class="sec-num">Abroad</span><h2 id="s-us">The same model on the United States</h2></div>
+    <p>Three Canadian reforms are a small sample. The strongest test available is another federation: feed the model that country's measurements and ask whether its verdicts match how that country divides powers. Every measured input was rebuilt for the 50 states: state and local spending by function (Census Bureau, 2017-2022), market-income inequality (OECD), how strongly state spending rises with state income (BEA), CO2 per person (EIA). Mobility was refitted so the model reproduces US migration between states, about twice Canada's rate. Everything unmeasured keeps its Canadian range.</p>
+    <div class="table-wrap"><table id="us-table"></table></div>
+    <div class="stack" id="us-text">
+      <p><strong>Two of five match.</strong> Redistribution comes out national, as it largely is in the US (Social Security, SNAP, the earned income tax credit). The environment comes out national too: the model prefers one standard, with a floor states may exceed close behind (it wins 29% of worlds), and the US uses federal minimum standards that states implement and may exceed.</p>
+      <p><strong>Three don't, and the reasons differ.</strong> For climate the model says a national carbon price in every sampled world, as it does for Canada; the US has none, and the politics analysis above suggests why a visible price is hard to pass. For schools and transit the model favours equalization, because US state spending rises steeply with state income (an elasticity of 0.7 to 1.2 against Canada's 0.05 to 0.4, where equalization already exists). With US data, school equalization keeps 36% of the attainable gain against 10% for Canada: the model's case for it is stronger where it is missing. The US pays for transit and highways with matching grants, a rule the model says does slightly worse than leaving states alone.</p>
+      <p><strong>What this test can and can't show.</strong> It is one country and five areas, so two matches out of five is weak evidence either way. The mismatches are where the model says the US arrangement leaves gains on the table, not proof the model is wrong; the model scores welfare, not what Congress passes. It still has 16 regions rather than 50 states, and it keeps Canada's cost-of-funds ratio, city map and unmeasured ranges.</p>
+    </div>
+    <p class="note" id="us-note"></p>
   </section>
 
   <section class="col stack" aria-labelledby="s-losers">
@@ -1165,5 +1185,41 @@ legend(document.getElementById("mode-legend"), MODES);
   ["Area", "Today", ...years].forEach((x) => el("th", { text: x }, h));
   const b = el("tbody", {}, t);
   Object.keys(AREA).forEach((a) => { const tr = el("tr", {}, b); [AREA[a], lab(H.now[a]), ...years.map((y) => lab(H.horizons[y][a]))].forEach((c) => el("td", { text: c }, tr)); });
+})();
+
+/* opinion over time */
+(function opinion() {
+  const C = DATA.ces_vintages;
+  if (!C) return;
+  const r2 = (x) => (+x).toFixed(2);
+  const years = Object.keys(C.years).sort();
+  const rows = [["Schools", "schools"], ["Environment (spending)", "environment"], ["Environment against jobs*", "environment_jobs"], ["Redistribution", "redistribution"], ["Climate (carbon tax)", "climate"]];
+  const t = document.getElementById("ces-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Question", ...years].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  rows.forEach(([lab, k]) => {
+    const tr = el("tr", {}, b);
+    el("td", { text: lab }, tr);
+    years.forEach((y) => { const v = C.years[y][k]; el("td", { class: "mono", text: v ? r2(v.rho) + (v.proxy && k !== "environment_jobs" ? "*" : "") : "" }, tr); });
+  });
+})();
+
+/* united states */
+(function us() {
+  const U = DATA.us_run;
+  if (!U) return;
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const lab = (robust, mode, g) => { const last = robust.split(" ").pop(); return policyText({ mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }) + (g < 0.1 ? " (no clear winner)" : ` (keeps ${pct(g)})`); };
+  const t = document.getElementById("us-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Area", "Model, Canada", "Model, United States", "What the US does"].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  Object.keys(AREA).forEach((a) => {
+    const c = U.canada[a], r = U.results && U.results[a];
+    const cmode = c.robust.startsWith("price floor") ? "price_floor" : c.robust.split(" ")[0];
+    const tr = el("tr", {}, b);
+    [AREA[a], lab(c.robust, cmode, c.gain_captured), r ? lab(r.robust, r.robust_mode, r.gain_captured) : "pending", r ? r.actual : ""].forEach((x) => el("td", { text: x }, tr));
+  });
 })();
 </script>

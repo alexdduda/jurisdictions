@@ -100,8 +100,8 @@ REFORMS = [
     },
 ]
 NOT_DATED = [
-    "within-province disagreement (2019 Canadian Election Study)",
-    "carbon-tax opinion and its link to emissions (2019 Canadian Election Study)",
+    "within-province disagreement (dated separately: validation/opinion_vintages.py, 1993-2015 studies)",
+    "carbon-tax opinion and its link to emissions (2019 study; the 2008 Green Shift question is checked in validation/opinion_vintages.py)",
     "city map for transit (2016 Census)",
     "cost of public funds, spillovers, scale economies (never measured; same ranges as today)",
 ]

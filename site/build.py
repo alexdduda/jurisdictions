@@ -76,6 +76,9 @@ def main() -> None:
         "politics": json.loads((ROOT / "validation" / "politics.json").read_text()) if (ROOT / "validation" / "politics.json").exists() else None,
         "feasibility": json.loads((ROOT / "validation" / "feasibility.json").read_text()) if (ROOT / "validation" / "feasibility.json").exists() else None,
         "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,
+        "ces_vintages": json.loads((ROOT / "data" / "ces_vintages.json").read_text()) if (ROOT / "data" / "ces_vintages.json").exists() else None,
+        "opinion_vintages": json.loads((ROOT / "validation" / "opinion_vintages.json").read_text()) if (ROOT / "validation" / "opinion_vintages.json").exists() else None,
+        "us_run": json.loads((ROOT / "validation" / "us_run.json").read_text()) if (ROOT / "validation" / "us_run.json").exists() else None,
     }
     template = (ROOT / "site" / "template.html").read_text()
     payload = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")

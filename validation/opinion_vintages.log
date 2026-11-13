@@ -1,0 +1,6 @@
+    schools: 31800 runs in 250s
+      wins: central 46%, floor 10%, ceiling 0%, matched 9%, equalized 35% | robust: equalized 100% (captures 10% of the tailored gain)
+schools {'robust': 'equalized 100%', 'robust_mode': 'equalized', 'gain_captured': 0.097, 'win_share': {'central': 0.455, 'floor': 0.1, 'ceiling': 0.005, 'matched': 0.09, 'equalized': 0.35}}
+    climate: 29400 runs in 269s
+      wins: floor 0%, price 100% | robust: price 1.2 (captures 99% of the tailored gain)
+climate {'robust': 'price 1.2', 'robust_mode': 'price', 'gain_captured': 0.991, 'win_share': {'floor': 0.005, 'price': 0.995}}

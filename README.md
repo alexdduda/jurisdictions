@@ -286,17 +286,29 @@ three reforms (1996 block grant for welfare, 2006 Metrolinx, 2016 national
 carbon price floor): spending by function from the older FMS classification
 (`data/scripts/fetch_fms_1989_2009.py`, table 10-10-0039, bridged to today's
 classification on their overlap year), and inequality, migration, regional
-incomes and emissions from the ten years before each date. All 13 verdicts
-pick the same rule as today. Two of the three reforms moved the way the model
-recommends; the 1996 block grant did not, and afterwards provincial
-social-services spending fell from 4.4% to 3.4% of GDP and spread out
-between provinces. Survey opinion (2019) and the city map (2016) could not be
-dated and are held at today's values.
+incomes and emissions from the ten years before each date. Every verdict
+with a clear winner (environment, redistribution, climate) picks the same rule
+as today; schools and transit, with no clear winner, swap between near-ties.
+Two of the three reforms moved the way the model recommends; the 1996 block
+grant did not, and afterwards provincial social-services spending fell from
+4.4% to 3.4% of GDP and spread out between provinces. The city map (2016) is
+held at today's values.
+
+Survey opinion is dated separately. `data/scripts/ces_vintages.py` applies the
+2019 method to the 1993, 1997, 2004, 2008, 2011 and 2015 Canadian Election
+Studies (Borealis, CC BY-NC 4.0; files go in `data/raw/ces/<year>/`) and
+writes `data/ces_vintages.json`. On the same questions the gap between
+provinces, in units of disagreement within one, held at 0.19-0.26 for
+redistribution and 0.12-0.20 for the environment; schools swing from 0.06 to
+0.25. The 2008 carbon-tax question gives 0.18 against 2019's 0.24.
+`validation/opinion_vintages.py` reruns the two areas that depend on these
+numbers with the dated ranges: schools stay equalization (no clear winner) and
+climate a carbon price.
 
 `validation/feasibility.py` runs each recommended rule against provinces
 deciding and measures the change for the people starting in each region.
 Equalization has concentrated losers (about a third of regions, the worst
-losing 2.5 times the average gain); a carbon price has almost none, so the
+losing over three times the average gain); a carbon price has almost none, so the
 model can't explain the 2025 repeal of the consumer charge through lost
 welfare.
 
@@ -324,6 +336,26 @@ none as voters see it: payments are about 19 times the real gain, so most
 regions gain only if voters see about 94% of the rebate. The best rule that
 passes is a quantity floor, keeping about half the gain. Other areas lose
 little to politics.
+
+### The same model on the United States
+
+`data/scripts/us_targets.py` rebuilds every measured input for the 50 states
+(`data/us/targets.json`): state and local direct expenditure by function from
+the Census Bureau's Annual Survey of State and Local Government Finances,
+2017-2022 (elementary and secondary education; sewerage and solid waste;
+highways, airports, parking, ports and transit), market-income Gini from the
+OECD Income Distribution Database (0.51; the same source gives Canada 0.43),
+movers between states from the Current Population Survey (1.46% a year), state
+market income and GDP from BEA, and energy CO2 per person from EIA. Raw files
+go in `data/raw/us/`. Mobility is refitted to US migration and income spread
+by grid search; for redistribution the model can't hit both at once and the
+range straddles them. `validation/us_run.py` reruns all five areas on the same
+sampled worlds and compares with how the US assigns them: redistribution and
+the environment match (national); climate (a national carbon price), schools
+and transit (equalization) do not. State spending rises with state income
+about two to twenty times as steeply as in Canada, where equalization exists,
+which is why equalization does better on US data. Kept from Canada: the
+cost-of-funds ratio, city and language maps, unmeasured ranges, 16 regions.
 
 ### Accuracy checks
 
