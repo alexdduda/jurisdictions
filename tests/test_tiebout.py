@@ -386,3 +386,131 @@ class LanguageAndSchools(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GrantDesigns(unittest.TestCase):
+    """Foundation grants and two-way equalization (added with the grant-design fix)."""
+
+    def _levels(self, w, policy):
+        from tiebout.model import _Run
+        run = _Run(w, {"a": policy}, 0)
+        residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+        return run, run.region_state(residents)[0][-1]
+
+    def test_foundation_zero_is_local(self):
+        w = world(Domain("a", heterogeneity=0.2), move_share=0.0)
+        self.assertAlmostEqual(simulate(w, {}, 0).welfare, simulate(w, {"a": Policy("foundation", 0.0)}, 0).welfare, places=12)
+
+    def test_foundation_is_a_floor_the_nation_pays_for(self):
+        w = world(Domain("a", heterogeneity=0.2, within=0.0), move_share=0.0, national_overhead=0.0, local_overhead=0.0)
+        _, floor = self._levels(w, Policy("floor", 0.6))
+        _, found = self._levels(w, Policy("foundation", 0.6))
+        self.assertEqual(floor, found)  # same levels
+        # With free national money and no capacity effects, paying for the floor
+        # nationally only moves costs around: welfare equal to the unfunded floor.
+        self.assertAlmostEqual(simulate(w, {"a": Policy("floor", 0.6)}, 0).welfare,
+                               simulate(w, {"a": Policy("foundation", 0.6)}, 0).welfare, places=9)
+
+    def test_foundation_helps_poor_regions_when_local_money_is_dear_there(self):
+        w = world(Domain("a", heterogeneity=0.0, within=0.0, capacity_elasticity=1.0),
+                  productivity_sd=0.3, move_share=0.0, national_overhead=0.0)
+        self.assertGreater(simulate(w, {"a": Policy("foundation", 0.4)}, 0).welfare,
+                           simulate(w, {"a": Policy("floor", 0.4)}, 0).welfare)
+
+    def test_two_way_equalization_lowers_rich_regions(self):
+        w = world(Domain("a", heterogeneity=0.0, within=0.0, capacity_elasticity=1.0),
+                  productivity_sd=0.3, move_share=0.0)
+        run, local = self._levels(w, Policy("local"))
+        _, one = self._levels(w, Policy("equalized", 1.0))
+        _, both = self._levels(w, Policy("equalized_both", 1.0))
+        rich = max(range(run.R), key=lambda r: run.regional_income[r])
+        poor = min(range(run.R), key=lambda r: run.regional_income[r])
+        self.assertLess(both[rich], local[rich])
+        self.assertAlmostEqual(one[rich], local[rich])
+        self.assertAlmostEqual(both[poor], one[poor])
+
+    def test_bridge_round_trips_new_modes(self):
+        src = """
+            scope nation {
+              law schools: funded = 0.4
+              law health: levelled = 0.5
+            }"""
+        arr, warnings = jur_to_arrangement(src, DEFAULT_WORLD)
+        self.assertEqual(warnings, [])
+        self.assertEqual(arr["schools"], Policy("foundation", 0.4))
+        self.assertEqual(arr["health"], Policy("equalized_both", 0.5))
+
+
+class Housing(unittest.TestCase):
+    def test_off_by_default(self):
+        self.assertEqual(DEFAULT_WORLD.housing, 0.0)
+
+    def test_rent_paid_equals_rent_received(self):
+        from tiebout.model import _Run
+        w = world(Domain("a", heterogeneity=0.2), productivity_sd=0.2, housing=0.25, move_share=0.3)
+        run = _Run(w, {}, 0)
+        residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+        pops = [len(x) for x in residents]
+        run.housing_step(residents, pops)
+        total = sum(run.net_rent(i, run.region[i], pops) for i in range(run.N))
+        self.assertAlmostEqual(total, 0.0, places=6)
+
+    def test_housing_prices_poorer_people_out_of_richer_regions(self):
+        # Rent is the same amount for every resident of a region, so it weighs more
+        # on low incomes: housing raises sorting by income rather than damping it.
+        red = Domain("redistribution", kind="redistribution")
+        base = dict(move_share=0.3, steps=12, moving_cost=0.02, productivity_sd=0.05, income_sigma=0.9)
+        sorting = [sum(simulate(world(red, housing=h, **base), {}, s).income_sorting for s in range(3))
+                   for h in (0.0, 0.3)]
+        self.assertGreater(sorting[1], sorting[0])
+
+
+class RealGeography(unittest.TestCase):
+    def test_borders_are_symmetric(self):
+        from tiebout.geography import layout
+        from tiebout.geography import GEOGRAPHIES
+        for g in GEOGRAPHIES:
+            _, _, nbrs, _ = layout(g, 1600)
+            for r, ns in enumerate(nbrs):
+                self.assertTrue(ns, g)
+                for n in ns:
+                    self.assertIn(r, nbrs[n], (g, r, n))
+
+    def test_sizes_follow_population(self):
+        from tiebout.geography import MIN_AGENTS, layout
+        codes, counts, _, shares = layout("provinces", 1600)
+        self.assertEqual(len(codes), 10)
+        self.assertEqual(counts[codes.index("ON")], max(counts))
+        self.assertTrue(all(c >= MIN_AGENTS for c in counts))
+
+    def test_provinces_world_runs_with_profiles(self):
+        w = replace(DEFAULT_WORLD, geography="provinces", province_profile="canada", steps=4, measure_steps=1)
+        o = simulate(w, {"climate": Policy("price", 1.2), "transit": Policy("central", 0.4)}, 0)
+        self.assertEqual(len(o.by_origin), 10)
+
+    def test_weights_make_welfare_population_weighted(self):
+        from tiebout.model import _Run
+        run = _Run(replace(DEFAULT_WORLD, geography="us_states", language_profile="", city_profile=""), {}, 0)
+        self.assertEqual(run.R, 50)
+        self.assertAlmostEqual(sum(run.weight), run.N, places=6)
+
+
+class Legislature(unittest.TestCase):
+    """Besley and Coate's common pool: coalition members overspend, the rest get nothing."""
+
+    def test_coalition_overspends_and_others_get_nothing(self):
+        from tiebout.model import _Run
+        w = world(Domain("a", heterogeneity=0.1, within=0.0), move_share=0.0, national_overhead=0.0)
+        run = _Run(w, {"a": Policy("legislature")}, 0)
+        residents = [[i for i, r in enumerate(run.region) if r == k] for k in range(run.R)]
+        p = run.region_state(residents)[0][-1]
+        zero = sum(v == 0 for v in p)
+        self.assertGreater(zero, 0)
+        self.assertLess(zero, run.R)
+        # The planner's level for a median taste of 0.5 is 0.5; members ask for far more.
+        self.assertTrue(all(v > 0.5 for v in p if v > 0))
+
+    def test_legislature_does_worse_than_a_planner_setting_one_level(self):
+        w = world(Domain("a", heterogeneity=0.05, within=0.05), move_share=0.0)
+        self.assertLess(simulate(w, {"a": Policy("legislature")}, 0).welfare,
+                        simulate(w, {"a": Policy("central", 0.5)}, 0).welfare)

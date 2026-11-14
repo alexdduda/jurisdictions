@@ -1,42 +1,52 @@
-1996: inputs {"spending_years": "FY1988-1995 (FMS)", "other_years": "1986-1995", "heterogeneity": {"schools": [0.0286, 0.0446], "environment": [0.0492, 0.0702], "transit": [0.0462, 0.0628], "social protection": [0.0415, 0.0698]}, "income_sigma": 0.7643, "market_gini": 0.4111, "migration_rate": 0.01085, "market_income_cv": 0.1487, "capacity_elasticity": {"schools": 0.128, "environment": 1.355, "transit": -0.129}, "emissions_spread": {"year": "1990", "log_sd": 0.534}, "inside_mobility_targets": false}
-    schools: 31800 runs in 299s
-      wins: local 1%, central 42%, floor 8%, ceiling 0%, matched 15%, equalized 34% | robust: matched 10% (captures 9% of the tailored gain)
-  1996 schools: matched 10% (299s)
-    environment: 31800 runs in 302s
-      wins: central 70%, floor 30% | robust: central 0.3 (captures 74% of the tailored gain)
-  1996 environment: central 0.3 (302s)
-    transit: 34800 runs in 680s
-      wins: central 38%, floor 23%, ceiling 8%, matched 6%, equalized 13%, city 12% | robust: floor 0.1 (captures 2% of the tailored gain)
-  1996 transit: floor 0.1 (680s)
-    redistribution: 31200 runs in 286s
+=== backtest Fri Nov 13 19:45:01 EST 2026
+1996: inputs {"spending_years": "FY1988-1995 (FMS)", "other_years": "1986-1995", "heterogeneity": {"schools": [0.0286, 0.0446], "environment": [0.0492, 0.0702], "transit": [0.0462, 0.0628], "social protection": [0.0415, 0.0698], "health": [0.0241, 0.032]}, "income_sigma": 0.7643, "market_gini": 0.4111, "migration_rate": 0.01085, "market_income_cv": 0.1487, "capacity_elasticity": {"schools": 0.128, "environment": 1.355, "transit": -0.129, "health": 0.331}, "emissions_spread": {"year": "1990", "log_sd": 0.534}, "inside_mobility_targets": false}
+    schools: 42000 runs in 1290s
+      wins: local 0%, central 34%, floor 8%, matched 8%, equalized 2%, foundation 15%, equalized_both 34% | robust: equalized both ways 100% (captures 10% of the tailored gain)
+  1996 schools: equalized both ways 100% (1290s)
+    environment: 42000 runs in 320s
+      wins: central 62%, floor 19%, matched 4%, equalized 2%, foundation 1%, equalized_both 12% | robust: matched 20% (captures 29% of the tailored gain)
+  1996 environment: matched 20% (320s)
+    transit: 45000 runs in 723s
+      wins: central 9%, floor 16%, ceiling 7%, matched 7%, equalized 4%, city 17%, foundation 26%, equalized_both 14% | robust: equalized both ways 100% (captures 3% of the tailored gain)
+  1996 transit: equalized both ways 100% (723s)
+    health: 42000 runs in 338s
+      wins: local 1%, central 61%, floor 12%, matched 5%, equalized 0%, equalized_both 20% | robust: equalized both ways 100% (captures 6% of the tailored gain)
+  1996 health: equalized both ways 100% (338s)
+    redistribution: 31200 runs in 305s
       wins: central 98%, floor 2% | robust: central 0.25 (captures 89% of the tailored gain)
-  1996 redistribution: central 0.25 (286s)
-2006: inputs {"spending_years": "FY1996-2005 (FMS)", "other_years": "1996-2005", "heterogeneity": {"schools": [0.032, 0.0529], "environment": [0.0406, 0.0579], "transit": [0.0502, 0.0716], "social protection": [0.0529, 0.0835]}, "income_sigma": 0.8226, "market_gini": 0.4392, "migration_rate": 0.00889, "market_income_cv": 0.1599, "capacity_elasticity": {"schools": 0.156, "environment": 0.697, "transit": -0.106}, "emissions_spread": {"year": "2005", "log_sd": 0.652}, "inside_mobility_targets": false}
-    schools: 31800 runs in 276s
-      wins: local 1%, central 40%, floor 6%, ceiling 0%, matched 18%, equalized 34% | robust: matched 10% (captures 10% of the tailored gain)
-  2006 schools: matched 10% (277s)
-    environment: 31800 runs in 310s
-      wins: central 67%, floor 33% | robust: central 0.3 (captures 73% of the tailored gain)
-  2006 environment: central 0.3 (310s)
-    transit: 34800 runs in 700s
-      wins: local 2%, central 36%, floor 22%, ceiling 9%, matched 6%, equalized 10%, city 15% | robust: floor 0.1 (captures 2% of the tailored gain)
-  2006 transit: floor 0.1 (700s)
-    redistribution: 31200 runs in 290s
+  1996 redistribution: central 0.25 (305s)
+2006: inputs {"spending_years": "FY1996-2005 (FMS)", "other_years": "1996-2005", "heterogeneity": {"schools": [0.032, 0.0529], "environment": [0.0406, 0.0579], "transit": [0.0502, 0.0716], "social protection": [0.0529, 0.0835], "health": [0.0144, 0.0217]}, "income_sigma": 0.8226, "market_gini": 0.4392, "migration_rate": 0.00889, "market_income_cv": 0.1599, "capacity_elasticity": {"schools": 0.156, "environment": 0.697, "transit": -0.106, "health": -0.08}, "emissions_spread": {"year": "2005", "log_sd": 0.652}, "inside_mobility_targets": false}
+    schools: 42000 runs in 362s
+      wins: central 34%, floor 6%, matched 8%, equalized 0%, foundation 15%, equalized_both 37% | robust: equalized both ways 100% (captures 10% of the tailored gain)
+  2006 schools: equalized both ways 100% (362s)
+    environment: 42000 runs in 373s
+      wins: central 60%, floor 21%, matched 10%, foundation 0%, equalized_both 8% | robust: matched 20% (captures 33% of the tailored gain)
+  2006 environment: matched 20% (373s)
+    transit: 45000 runs in 1991s
+      wins: local 2%, central 9%, floor 14%, ceiling 7%, matched 6%, equalized 2%, city 18%, foundation 28%, equalized_both 16% | robust: equalized both ways 100% (captures 2% of the tailored gain)
+  2006 transit: equalized both ways 100% (1991s)
+    health: 42000 runs in 427s
+      wins: local 0%, central 60%, floor 21%, matched 7%, equalized 2%, equalized_both 10% | robust: matched 10% (captures 3% of the tailored gain)
+  2006 health: matched 10% (427s)
+    redistribution: 31200 runs in 377s
       wins: central 98%, floor 2% | robust: central 0.3 (captures 87% of the tailored gain)
-  2006 redistribution: central 0.3 (290s)
-2016: inputs {"spending_years": "FY2008-2015 (CCOFOG)", "other_years": "2006-2015", "heterogeneity": {"schools": [0.028, 0.0398], "environment": [0.0587, 0.0667], "transit": [0.0626, 0.0743], "social protection": [0.0617, 0.0662]}, "income_sigma": 0.8111, "market_gini": 0.4337, "migration_rate": 0.00793, "market_income_cv": 0.1681, "capacity_elasticity": {"schools": 0.485, "environment": 0.449, "transit": 0.059}, "emissions_spread": {"year": "2005", "log_sd": 0.652}, "inside_mobility_targets": false}
-    schools: 31800 runs in 312s
-      wins: local 2%, central 42%, floor 6%, ceiling 0%, matched 13%, equalized 36% | robust: equalized 100% (captures 12% of the tailored gain)
-  2016 schools: equalized 100% (312s)
-    environment: 31800 runs in 315s
-      wins: central 66%, floor 34% | robust: central 0.3 (captures 73% of the tailored gain)
-  2016 environment: central 0.3 (315s)
-    transit: 34800 runs in 701s
-      wins: local 0%, central 36%, floor 16%, ceiling 8%, matched 6%, equalized 18%, city 15% | robust: equalized 100% (captures 2% of the tailored gain)
-  2016 transit: equalized 100% (701s)
-    redistribution: 31200 runs in 316s
+  2006 redistribution: central 0.3 (377s)
+2016: inputs {"spending_years": "FY2008-2015 (CCOFOG)", "other_years": "2006-2015", "heterogeneity": {"schools": [0.028, 0.0398], "environment": [0.0587, 0.0667], "transit": [0.0626, 0.0743], "social protection": [0.0617, 0.0662], "health": [0.0207, 0.0278]}, "income_sigma": 0.8111, "market_gini": 0.4337, "migration_rate": 0.00793, "market_income_cv": 0.1681, "capacity_elasticity": {"schools": 0.485, "environment": 0.449, "transit": 0.059, "health": 0.079}, "emissions_spread": {"year": "2005", "log_sd": 0.652}, "inside_mobility_targets": false}
+    schools: 42000 runs in 457s
+      wins: central 35%, floor 8%, matched 4%, equalized 2%, foundation 15%, equalized_both 36% | robust: equalized both ways 100% (captures 14% of the tailored gain)
+  2016 schools: equalized both ways 100% (457s)
+    environment: 42000 runs in 456s
+      wins: central 58%, floor 20%, matched 14%, foundation 0%, equalized_both 7% | robust: matched 20% (captures 36% of the tailored gain)
+  2016 environment: matched 20% (456s)
+    transit: 45000 runs in 969s
+      wins: local 0%, central 9%, floor 10%, ceiling 7%, matched 6%, equalized 4%, city 18%, foundation 25%, equalized_both 20% | robust: equalized both ways 100% (captures 4% of the tailored gain)
+  2016 transit: equalized both ways 100% (969s)
+    health: 42000 runs in 441s
+      wins: local 0%, central 60%, floor 16%, matched 6%, equalized_both 17% | robust: matched 10% (captures 3% of the tailored gain)
+  2016 health: matched 10% (441s)
+    redistribution: 31200 runs in 393s
       wins: central 98%, floor 2% | robust: central 0.25 (captures 87% of the tailored gain)
-  2016 redistribution: central 0.25 (316s)
-    climate: 29400 runs in 300s
+  2016 redistribution: central 0.25 (393s)
+    climate: 29400 runs in 329s
       wins: floor 0%, price 100% | robust: price 1.2 (captures 99% of the tailored gain)
-  2016 climate: price 1.2 (300s)
+  2016 climate: price 1.2 (329s)

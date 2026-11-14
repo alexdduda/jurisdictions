@@ -20,9 +20,10 @@ after each simulation so the model's welfare accounting is unchanged:
    that the price cuts a share `abated` of national emissions.
 
 2. A vote. A rule passes when the regions holding a majority of people
-   perceive themselves better off than under provinces deciding. (Each region
-   starts with 1/16 of the people.) A two-thirds threshold stands in for the
-   general amending formula (seven provinces with half the population).
+   perceive themselves better off than under provinces deciding (people counted
+   by the region they started in). A two-thirds threshold stands in for the
+   general amending formula; with --provinces, where regions are the ten real
+   provinces, the formula itself is applied: seven provinces with half the people.
 
 For each policy area this samples worlds from the Canadian ranges, scores
 each kind of rule (its best level from results/uncertainty_canada.json), and
@@ -46,6 +47,8 @@ from statistics import mean
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "validation"))
+from calibrate_mobility import provinces_ranges  # noqa: E402
 from tiebout.config import DEFAULT_WORLD  # noqa: E402
 from tiebout.model import LOCAL, Policy, _clamp, _Run  # noqa: E402
 from tiebout.optimize import make_pool  # noqa: E402
@@ -57,9 +60,28 @@ SALIENCE = {"rebate_seen": (0.0, 0.6), "abated": (0.05, 0.30)}
 THRESHOLDS = {"majority": 0.5, "two_thirds": 2 / 3}
 
 
+def _shares(world) -> list[float]:
+    if world.geography:
+        from tiebout.geography import layout
+        return list(layout(world.geography, world.grid ** 2 * world.agents_per_region)[3])
+    return [1 / world.grid ** 2] * world.grid ** 2
+
+
+def support(values: list[float], shares: list[float]) -> float:
+    """Share of people (by home region) in regions that see a gain."""
+    return sum(w for w, x in zip(shares, values) if x > 0)
+
+
+def amending(values: list[float], shares: list[float]) -> bool:
+    """General amending formula: at least 7 of the 10 provinces, holding at least half the people."""
+    yes = [w for w, x in zip(shares, values) if x > 0]
+    return len(yes) >= 7 and sum(yes) >= 0.5
+
+
 def _case(args):
     world, name, policies, seed, salience = args
     d = world.domain(name)
+    shares = _shares(world)
     base = _Run(world, {}, seed).run().by_origin
     out = []
     for policy in policies:
@@ -81,22 +103,30 @@ def _case(args):
         # perceive a gain: region r is for it once seen >= 1 - delta_r / pay_r.
         needed = None
         if any(pay):
-            need = sorted(max(0.0, 1 - delta[r] / pay[r]) if pay[r] > 0 else (0.0 if delta[r] > 0 else 2.0)
+            need = sorted((max(0.0, 1 - delta[r] / pay[r]) if pay[r] > 0 else (0.0 if delta[r] > 0 else 2.0), shares[r])
                           for r in range(len(delta)))
-            needed = need[len(need) // 2]
-        out.append({"gain": mean(delta), "delta": delta, "perceived": perceived, "needed": needed,
-                    "payment_over_gain": (mean(pay) / mean(delta)) if any(pay) and mean(delta) > 0 else None})
+            # Smallest awareness at which regions holding more than half the people see a gain.
+            acc = 0.0
+            for v, w in need:
+                acc += w
+                if acc > 0.5:
+                    needed = v
+                    break
+        g = sum(w * x for w, x in zip(shares, delta))
+        paid = sum(w * x for w, x in zip(shares, pay))
+        out.append({"gain": g, "delta": delta, "perceived": perceived, "needed": needed, "shares": shares,
+                    "payment_over_gain": (paid / g) if any(pay) and g > 0 else None})
     return out
 
 
 def main(provinces: bool = False, only: tuple = ()) -> dict:
-    base_world = replace(DEFAULT_WORLD, province_profile="canada") if provinces else DEFAULT_WORLD
+    base_world = replace(DEFAULT_WORLD, province_profile="canada", geography="provinces") if provinces else DEFAULT_WORLD
     names = None
     if provinces:
         from tiebout.provinces import profile
-        names = profile("canada")["names"]
+        names = profile("canada", "provinces")["names"]
     saved = json.loads((ROOT / "results" / "uncertainty_canada.json").read_text())["domains"]
-    ranges = canada_ranges()
+    ranges = provinces_ranges() if provinces else canada_ranges()
     out = {"draws": DRAWS, "seeds": SEEDS, "salience_ranges": SALIENCE, "areas": {}, "province_profile": provinces}
     with make_pool() as pool:
         prev = json.loads(OUT.read_text()) if (only and OUT.exists() and not provinces) else None
@@ -128,10 +158,12 @@ def main(provinces: bool = False, only: tuple = ()) -> dict:
                              "payment_over_real_gain_median": round(sorted(r["payment_over_gain"] for r in rows if r["payment_over_gain"])[len(need) // 2], 1)}
                 area["rules"][lab] = {**extra,
                     "mean_gain": round(mean(r["gain"] for r in rows), 5),
-                    **{f"passes_{k}_real": round(mean(sum(x > 0 for x in r["delta"]) / len(r["delta"]) > t for r in rows), 3)
+                    **{f"passes_{k}_real": round(mean(support(r["delta"], r["shares"]) > t for r in rows), 3)
                        for k, t in THRESHOLDS.items()},
-                    **{f"passes_{k}_perceived": round(mean(sum(x > 0 for x in r["perceived"]) / len(r["perceived"]) > t for r in rows), 3)
+                    **{f"passes_{k}_perceived": round(mean(support(r["perceived"], r["shares"]) > t for r in rows), 3)
                        for k, t in THRESHOLDS.items()},
+                    **({"passes_amending_formula_perceived": round(mean(amending(r["perceived"], r["shares"]) for r in rows), 3)}
+                       if provinces else {}),
                 }
             if names:
                 # Share of worlds in which each province group perceives itself worse off.
@@ -147,7 +179,7 @@ def main(provinces: bool = False, only: tuple = ()) -> dict:
                 for c in cases:
                     top = max(r["gain"] for r in c)
                     passing = [(r["gain"], labels[i]) for i, r in enumerate(c)
-                               if sum(x > 0 for x in r["perceived"]) / len(r["perceived"]) > t and r["gain"] > 0]
+                               if support(r["perceived"], r["shares"]) > t and r["gain"] > 0]
                     g, lab = max(passing) if passing else (0.0, "nothing passes")
                     picks[lab] = picks.get(lab, 0) + 1
                     if top > 0:

@@ -4,7 +4,9 @@
 
   taste_z       province mean on the latent scale of the 2019 Canadian Election
                 Study item (data/ces_disagreement.json), in units of the
-                within-province spread, centred on the population-weighted mean
+                within-province spread, centred on the population-weighted mean;
+                health from the 2004, 2008 and 2011 studies (data/ces_vintages.json),
+                averaged, since 2019 didn't ask
   emissions     2024 tonnes CO2e per person (ECCC regional table, Statistics
                 Canada population), relative to the population-weighted mean
   income        average market income 2015-2024 (table 11-10-0190), relative
@@ -37,6 +39,11 @@ def main():
         m = ces[key]["province_means"]
         c = wmean(m)
         taste[area] = {p: round(m[p] - c, 4) for p in ca.PROVINCES}
+    # Health: the 2019 study didn't ask; average the same question in 2004, 2008, 2011.
+    vint = json.loads((ROOT / "data" / "ces_vintages.json").read_text())["years"]
+    hm = {p: mean(vint[y]["health"]["province_means"][p] for y in ("2004", "2008", "2011")) for p in ca.PROVINCES}
+    c = wmean(hm)
+    taste["health"] = {p: round(hm[p] - c, 4) for p in ca.PROVINCES}
     with (ROOT / "data" / "historical" / "ghg_by_province_1990_2005_2024.csv").open() as f:
         per = {r["province"]: float(r["mt_2024"]) * 1e6 / p24[r["province"]] for r in csv.DictReader(f)}
     em = {p: round(per[p] / wmean(per), 4) for p in ca.PROVINCES}

@@ -1,0 +1,207 @@
+{
+  "source": "Canadian Election Study 1997, 2004, 2008, 2011 (Borealis, CC BY-NC 4.0), provincial weights",
+  "questions": {
+    "power": {
+      "2008": {
+        "variable": "ces08_PES_G13",
+        "respondents": 3255,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.279,
+          "Prince Edward Island": -0.175,
+          "Nova Scotia": -0.139,
+          "New Brunswick": 0.202,
+          "Quebec": 0.489,
+          "Ontario": -0.138,
+          "Manitoba": 0.013,
+          "Saskatchewan": 0.257,
+          "Alberta": 0.228,
+          "British Columbia": -0.002
+        }
+      },
+      "2011": {
+        "variable": "PES11_55",
+        "respondents": 3009,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.261,
+          "Prince Edward Island": -0.274,
+          "Nova Scotia": -0.042,
+          "New Brunswick": 0.068,
+          "Quebec": 0.401,
+          "Ontario": -0.3,
+          "Manitoba": -0.135,
+          "Saskatchewan": 0.122,
+          "Alberta": 0.006,
+          "British Columbia": -0.175
+        }
+      }
+    },
+    "treated": {
+      "1997": {
+        "variable": "cpsj12",
+        "respondents": 3498,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.407,
+          "Prince Edward Island": 0.214,
+          "Nova Scotia": 0.383,
+          "New Brunswick": 0.2,
+          "Quebec": 0.196,
+          "Ontario": -0.039,
+          "Manitoba": 0.296,
+          "Saskatchewan": 0.328,
+          "Alberta": 0.267,
+          "British Columbia": 0.389
+        }
+      },
+      "2004": {
+        "variable": "cps_p5",
+        "respondents": 3964,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.609,
+          "Prince Edward Island": 0.189,
+          "Nova Scotia": 0.548,
+          "New Brunswick": 0.436,
+          "Quebec": 0.224,
+          "Ontario": -0.153,
+          "Manitoba": 0.372,
+          "Saskatchewan": 0.58,
+          "Alberta": 0.491,
+          "British Columbia": 0.654
+        }
+      },
+      "2008": {
+        "variable": "ces08_PES_P12",
+        "respondents": 3414,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.66,
+          "Prince Edward Island": 0.209,
+          "Nova Scotia": 0.524,
+          "New Brunswick": 0.444,
+          "Quebec": 0.151,
+          "Ontario": 0.192,
+          "Manitoba": 0.288,
+          "Saskatchewan": 0.459,
+          "Alberta": 0.131,
+          "British Columbia": 0.35
+        }
+      },
+      "2011": {
+        "variable": "PES11_38",
+        "respondents": 3120,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.413,
+          "Prince Edward Island": 0.168,
+          "Nova Scotia": 0.488,
+          "New Brunswick": 0.336,
+          "Quebec": 0.362,
+          "Ontario": 0.065,
+          "Manitoba": 0.184,
+          "Saskatchewan": 0.347,
+          "Alberta": 0.274,
+          "British Columbia": 0.32
+        }
+      }
+    },
+    "looks_after": {
+      "2004": {
+        "variable": "pes_d2",
+        "respondents": 2951,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.0,
+          "Prince Edward Island": 0.138,
+          "Nova Scotia": 0.0,
+          "New Brunswick": 0.099,
+          "Quebec": 0.174,
+          "Ontario": 0.042,
+          "Manitoba": 0.199,
+          "Saskatchewan": 0.132,
+          "Alberta": 0.444,
+          "British Columbia": 0.009
+        }
+      },
+      "2008": {
+        "variable": "ces08_PES_F9",
+        "respondents": 3522,
+        "net_provincial": {
+          "Newfoundland and Labrador": 0.468,
+          "Prince Edward Island": 0.212,
+          "Nova Scotia": 0.102,
+          "New Brunswick": 0.258,
+          "Quebec": 0.303,
+          "Ontario": 0.154,
+          "Manitoba": 0.239,
+          "Saskatchewan": 0.341,
+          "Alberta": 0.425,
+          "British Columbia": 0.2
+        }
+      }
+    }
+  },
+  "provinces": {
+    "Newfoundland and Labrador": {
+      "power": 0.27,
+      "treated": 0.522,
+      "looks_after": 0.234,
+      "attachment": 0.342
+    },
+    "Prince Edward Island": {
+      "power": -0.225,
+      "treated": 0.195,
+      "looks_after": 0.175,
+      "attachment": 0.048
+    },
+    "Nova Scotia": {
+      "power": -0.091,
+      "treated": 0.486,
+      "looks_after": 0.051,
+      "attachment": 0.149
+    },
+    "New Brunswick": {
+      "power": 0.135,
+      "treated": 0.354,
+      "looks_after": 0.178,
+      "attachment": 0.222
+    },
+    "Quebec": {
+      "power": 0.445,
+      "treated": 0.233,
+      "looks_after": 0.238,
+      "attachment": 0.305
+    },
+    "Ontario": {
+      "power": -0.219,
+      "treated": 0.016,
+      "looks_after": 0.098,
+      "attachment": -0.035
+    },
+    "Manitoba": {
+      "power": -0.061,
+      "treated": 0.285,
+      "looks_after": 0.219,
+      "attachment": 0.148
+    },
+    "Saskatchewan": {
+      "power": 0.19,
+      "treated": 0.428,
+      "looks_after": 0.237,
+      "attachment": 0.285
+    },
+    "Alberta": {
+      "power": 0.117,
+      "treated": 0.291,
+      "looks_after": 0.434,
+      "attachment": 0.281
+    },
+    "British Columbia": {
+      "power": -0.088,
+      "treated": 0.428,
+      "looks_after": 0.105,
+      "attachment": 0.148
+    }
+  },
+  "health_waits_blame_2004": {
+    "both": 0.297,
+    "federal": 0.3,
+    "provincial": 0.385,
+    "neither": 0.017
+  }
+}

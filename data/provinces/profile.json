@@ -47,6 +47,18 @@
       "Saskatchewan": -0.5127,
       "Alberta": -0.4297,
       "British Columbia": -0.0537
+    },
+    "health": {
+      "Newfoundland and Labrador": 0.5305,
+      "Prince Edward Island": 0.2068,
+      "Nova Scotia": 0.3135,
+      "New Brunswick": 0.2208,
+      "Quebec": 0.0535,
+      "Ontario": 0.0425,
+      "Manitoba": -0.1029,
+      "Saskatchewan": -0.1929,
+      "Alberta": -0.2275,
+      "British Columbia": -0.0899
     }
   },
   "emissions": {

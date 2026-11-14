@@ -10,8 +10,9 @@ they were.
 Same questions where they exist: "should the federal government spend more,
 less or about the same on education / the environment" (2004 to 2019) and "how
 much should be done to reduce the gap between the rich and the poor" (2004 to
-2019). Earlier studies didn't ask them, so the nearest items stand in, flagged
-`proxy`: cutting education spending "a lot / some / not at all" (1993, 1997),
+2019), and the same for health care (2004 to 2015; the 2019 study
+didn't ask it). Earlier studies didn't ask them, so the nearest items stand in, flagged
+`proxy`: cutting education or health spending "a lot / some / not at all" (1993, 1997),
 "protecting the environment is more important than creating jobs" (1993 to
 2011, also run where the spending item exists so the two can be compared), and
 "the government must do more to reduce the income gap" (1993, 1997). For
@@ -55,23 +56,23 @@ HURTS_7 = {"1": "low", "3": "low", "5": "high", "7": "high"}  # agreeing the tax
 # year: (province variable, province codes, weight, {area: (variable, coding, proxy?)})
 SURVEYS = {
     "1993": ("CPSPROV", EAST_WEST_1993, "CPSPWGT1", {
-        "schools": ("CPSL7F", CUT_3, True), "environment_jobs": ("MBSA12", AGREE_4, True),
+        "schools": ("CPSL7F", CUT_3, True), "health": ("CPSL7D", CUT_3, True), "environment_jobs": ("MBSA12", AGREE_4, True),
         "redistribution": ("MBSA8", AGREE_4, True)}),
     "1997": ("province", SGC, "cpspwgt1", {
-        "schools": ("pese6f", CUT_3, True), "environment_jobs": ("mbsa6", AGREE_4, True),
+        "schools": ("pese6f", CUT_3, True), "health": ("pese6d", CUT_3, True), "environment_jobs": ("mbsa6", AGREE_4, True),
         "redistribution": ("mbsa4", AGREE_4, True)}),
     "2004": ("province", SGC, "cespwgt", {
-        "schools": ("pes_d1d", SPEND_3, False), "environment": ("pes_d1f", SPEND_3, False),
+        "schools": ("pes_d1d", SPEND_3, False), "health": ("pes_d1c", SPEND_3, False), "environment": ("pes_d1f", SPEND_3, False),
         "environment_jobs": ("mbs_a6", AGREE_4, True), "redistribution": ("cps_f6", GAP_5, False)}),
     "2008": ("ces08_PROVINCE", SGC, "ces08_PROVWGT", {
-        "schools": ("ces08_PES_D1D", SPEND_3, False), "environment": ("ces08_PES_D1F", SPEND_3, False),
+        "schools": ("ces08_PES_D1D", SPEND_3, False), "health": ("ces08_PES_D1C", SPEND_3, False), "environment": ("ces08_PES_D1F", SPEND_3, False),
         "environment_jobs": ("ces08_MBS_A15", AGREE_4, True), "redistribution": ("ces08_PES_F6", GAP_5, False),
         "climate": ("ces08_CPS_J0", HURTS_7, False)}),
     "2011": ("PROVINCE11", SGC, "PROVINCIAL_WEIGHT", {
-        "schools": ("CPS11_34", SPEND_3, False), "environment": ("CPS11_35", SPEND_3, False),
+        "schools": ("CPS11_34", SPEND_3, False), "health": ("CPS11_32", SPEND_3, False), "environment": ("CPS11_35", SPEND_3, False),
         "environment_jobs": ("MBS11_C14", AGREE_4, True), "redistribution": ("PES11_41", GAP_5, False)}),
     "2015": ("province", ALPHA_2015, "ProvWgt", {
-        "schools": ("spnd_educ", SPEND_2015, False), "environment": ("spnd_envi", SPEND_2015, False),
+        "schools": ("spnd_educ", SPEND_2015, False), "health": ("spnd_hlth", SPEND_2015, False), "environment": ("spnd_envi", SPEND_2015, False),
         "redistribution": ("p_gap", GAP_5, False)}),
 }
 inv = NormalDist().inv_cdf

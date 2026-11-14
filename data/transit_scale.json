@@ -1,0 +1,70 @@
+{
+  "source": "NTD Annual Data - Metrics (ekg5-frzt), bus, full reporters, at least 1,000 revenue hours",
+  "fits": {
+    "2023 DO": {
+      "n": 286,
+      "b_size": 0.1176,
+      "se_size": 0.0131,
+      "c_urban_pop": 0.033,
+      "se_urban_pop": 0.0121
+    },
+    "2023 PT": {
+      "n": 169,
+      "b_size": 0.0689,
+      "se_size": 0.0167,
+      "c_urban_pop": 0.0072,
+      "se_urban_pop": 0.0147
+    },
+    "2023 all": {
+      "n": 455,
+      "b_size": 0.1092,
+      "se_size": 0.0098,
+      "c_urban_pop": 0.018,
+      "se_urban_pop": 0.009
+    },
+    "2024 DO": {
+      "n": 288,
+      "b_size": 0.1026,
+      "se_size": 0.0131,
+      "c_urban_pop": 0.0471,
+      "se_urban_pop": 0.0122
+    },
+    "2024 PT": {
+      "n": 172,
+      "b_size": 0.0557,
+      "se_size": 0.0173,
+      "c_urban_pop": 0.0208,
+      "se_urban_pop": 0.0149
+    },
+    "2024 all": {
+      "n": 460,
+      "b_size": 0.0959,
+      "se_size": 0.0099,
+      "c_urban_pop": 0.0308,
+      "se_urban_pop": 0.009
+    }
+  },
+  "directly_operated_b": {
+    "mean": 0.1101,
+    "two_se_range": [
+      0.0764,
+      0.1438
+    ]
+  },
+  "saving_from_merging": {
+    "5": {
+      "central": -0.194,
+      "range": [
+        -0.26,
+        -0.131
+      ]
+    },
+    "10": {
+      "central": -0.289,
+      "range": [
+        -0.393,
+        -0.192
+      ]
+    }
+  }
+}

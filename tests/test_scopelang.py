@@ -170,3 +170,19 @@ class Syntax(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FundedAndLevelled(unittest.TestCase):
+    def test_funded_floor_strikes_down_lower_writes(self):
+        r = run("scope nation { law schools: funded = 5  scope province { schools = 3 } }")
+        self.assertIn("struck_down", kinds(r))
+        self.assertEqual(r.value("province", "schools"), 5)
+
+    def test_funded_floor_allows_higher(self):
+        r = run("scope nation { law schools: funded = 5  scope province { schools = 7 } }")
+        self.assertEqual(r.diagnostics, [])
+        self.assertEqual(r.value("province", "schools"), 7)
+
+    def test_levelled_value_is_a_rate(self):
+        r = run("scope nation { law health: levelled = 2 }")
+        self.assertIn("error", kinds(r))

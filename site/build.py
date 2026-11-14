@@ -18,6 +18,24 @@ def city_summary():
     return summary()
 
 
+def load(path):
+    return json.loads(path.read_text()) if path.exists() else None
+
+
+def countries():
+    mob = load(ROOT / "validation" / "mobility.json") or {}
+    out = {}
+    for code, key in (("us", "us_states"), ("au", "au_states")):
+        c = load(ROOT / "validation" / f"country_{code}.json")
+        if c:
+            c.pop("inputs", None)
+            m = mob.get(key, {})
+            c["mobility_fits"] = {"public_goods": m.get("public_goods", {}).get("fits"),
+                                  "redistribution": m.get("redistribution", {}).get("fits")}
+            out[code] = c
+    return out or None
+
+
 def trim_points(points, keep):
     return [{k: p[k] for k in keep if k in p} for p in points]
 
@@ -77,8 +95,14 @@ def main() -> None:
         "feasibility": json.loads((ROOT / "validation" / "feasibility.json").read_text()) if (ROOT / "validation" / "feasibility.json").exists() else None,
         "city_sensitivity": json.loads((ROOT / "validation" / "city_sensitivity.json").read_text()) if (ROOT / "validation" / "city_sensitivity.json").exists() else None,
         "ces_vintages": json.loads((ROOT / "data" / "ces_vintages.json").read_text()) if (ROOT / "data" / "ces_vintages.json").exists() else None,
-        "opinion_vintages": json.loads((ROOT / "validation" / "opinion_vintages.json").read_text()) if (ROOT / "validation" / "opinion_vintages.json").exists() else None,
-        "us_run": json.loads((ROOT / "validation" / "us_run.json").read_text()) if (ROOT / "validation" / "us_run.json").exists() else None,
+        "countries": countries(),
+        "politics_provinces": load(ROOT / "validation" / "politics_provinces.json"),
+        "realities": load(ROOT / "validation" / "political_realities.json"),
+        "attachment": load(ROOT / "data" / "regional_attachment.json"),
+        "housing": load(ROOT / "validation" / "housing.json"),
+        "transit_scale": load(ROOT / "data" / "transit_scale.json"),
+        "environment_spillover": load(ROOT / "data" / "environment_spillover.json"),
+        "mobility": load(ROOT / "validation" / "mobility.json"),
     }
     template = (ROOT / "site" / "template.html").read_text()
     payload = json.dumps(data, separators=(",", ":")).replace("</", "<\\/")

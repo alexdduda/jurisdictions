@@ -15,18 +15,18 @@
     "schools": {
       "rules": {
         "central 0.3": {
-          "mean_gain": -0.01222,
-          "passes_majority_real": 0.2,
-          "passes_two_thirds_real": 0.15,
-          "passes_majority_perceived": 0.2,
-          "passes_two_thirds_perceived": 0.15
+          "mean_gain": -0.01067,
+          "passes_majority_real": 0.225,
+          "passes_two_thirds_real": 0.175,
+          "passes_majority_perceived": 0.225,
+          "passes_two_thirds_perceived": 0.175
         },
         "floor 0.1": {
-          "mean_gain": 1e-05,
-          "passes_majority_real": 0.133,
-          "passes_two_thirds_real": 0.1,
-          "passes_majority_perceived": 0.133,
-          "passes_two_thirds_perceived": 0.1
+          "mean_gain": 0.0,
+          "passes_majority_real": 0.025,
+          "passes_two_thirds_real": 0.017,
+          "passes_majority_perceived": 0.025,
+          "passes_two_thirds_perceived": 0.017
         },
         "ceiling 0.7": {
           "mean_gain": 0.0,
@@ -36,105 +36,155 @@
           "passes_two_thirds_perceived": 0
         },
         "matched 10%": {
-          "mean_gain": 0.00053,
-          "passes_majority_real": 0.65,
-          "passes_two_thirds_real": 0.475,
-          "passes_majority_perceived": 0.65,
-          "passes_two_thirds_perceived": 0.475
+          "mean_gain": 0.0003,
+          "passes_majority_real": 0.567,
+          "passes_two_thirds_real": 0.425,
+          "passes_majority_perceived": 0.567,
+          "passes_two_thirds_perceived": 0.425
         },
         "equalized 100%": {
-          "mean_gain": 0.00067,
-          "passes_majority_real": 0.825,
-          "passes_two_thirds_real": 0.483,
-          "passes_majority_perceived": 0.825,
-          "passes_two_thirds_perceived": 0.483
+          "mean_gain": 0.00066,
+          "passes_majority_real": 0.842,
+          "passes_two_thirds_real": 0.567,
+          "passes_majority_perceived": 0.842,
+          "passes_two_thirds_perceived": 0.567
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 0.00087,
+          "passes_majority_real": 0.858,
+          "passes_two_thirds_real": 0.633,
+          "passes_majority_perceived": 0.858,
+          "passes_two_thirds_perceived": 0.633
+        },
+        "foundation 0.1": {
+          "mean_gain": 0.00021,
+          "passes_majority_real": 0.475,
+          "passes_two_thirds_real": 0.475,
+          "passes_majority_perceived": 0.475,
+          "passes_two_thirds_perceived": 0.475
+        },
+        "legislature": {
+          "mean_gain": -1.72814,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.973,
+        "gain_kept": 0.976,
         "picks": {
-          "matched 10%": 0.442,
-          "equalized 100%": 0.375,
-          "central 0.3": 0.125,
-          "nothing passes": 0.058
+          "equalized both ways 100%": 0.417,
+          "matched 10%": 0.2,
+          "foundation 0.1": 0.158,
+          "central 0.3": 0.15,
+          "equalized 100%": 0.042,
+          "nothing passes": 0.033
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.721,
+        "gain_kept": 0.92,
         "picks": {
-          "matched 10%": 0.367,
-          "nothing passes": 0.275,
-          "equalized 100%": 0.233,
-          "central 0.3": 0.108,
-          "floor 0.1": 0.017
+          "equalized both ways 100%": 0.383,
+          "matched 10%": 0.183,
+          "foundation 0.1": 0.158,
+          "central 0.3": 0.142,
+          "nothing passes": 0.083,
+          "equalized 100%": 0.05
         }
       }
     },
     "environment": {
       "rules": {
         "central 0.3": {
-          "mean_gain": 0.03607,
-          "passes_majority_real": 0.883,
-          "passes_two_thirds_real": 0.817,
-          "passes_majority_perceived": 0.883,
-          "passes_two_thirds_perceived": 0.817
+          "mean_gain": -0.00301,
+          "passes_majority_real": 0.458,
+          "passes_two_thirds_real": 0.342,
+          "passes_majority_perceived": 0.458,
+          "passes_two_thirds_perceived": 0.342
         },
         "floor 0.2": {
-          "mean_gain": 0.03054,
-          "passes_majority_real": 0.992,
-          "passes_two_thirds_real": 0.967,
-          "passes_majority_perceived": 0.992,
-          "passes_two_thirds_perceived": 0.967
+          "mean_gain": 0.00142,
+          "passes_majority_real": 0.758,
+          "passes_two_thirds_real": 0.608,
+          "passes_majority_perceived": 0.758,
+          "passes_two_thirds_perceived": 0.608
         },
-        "ceiling 0.5": {
+        "ceiling 0.7": {
           "mean_gain": 0.0,
           "passes_majority_real": 0,
           "passes_two_thirds_real": 0,
           "passes_majority_perceived": 0,
           "passes_two_thirds_perceived": 0
         },
-        "matched 50%": {
-          "mean_gain": 0.02595,
-          "passes_majority_real": 0.858,
-          "passes_two_thirds_real": 0.808,
-          "passes_majority_perceived": 0.858,
-          "passes_two_thirds_perceived": 0.808
+        "matched 20%": {
+          "mean_gain": 0.00458,
+          "passes_majority_real": 0.8,
+          "passes_two_thirds_real": 0.7,
+          "passes_majority_perceived": 0.8,
+          "passes_two_thirds_perceived": 0.7
         },
         "equalized 100%": {
-          "mean_gain": 0.00118,
-          "passes_majority_real": 1,
-          "passes_two_thirds_real": 0.992,
-          "passes_majority_perceived": 1,
-          "passes_two_thirds_perceived": 0.992
+          "mean_gain": 0.001,
+          "passes_majority_real": 0.975,
+          "passes_two_thirds_real": 0.858,
+          "passes_majority_perceived": 0.975,
+          "passes_two_thirds_perceived": 0.858
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 0.00113,
+          "passes_majority_real": 0.975,
+          "passes_two_thirds_real": 0.858,
+          "passes_majority_perceived": 0.975,
+          "passes_two_thirds_perceived": 0.858
+        },
+        "foundation 0.2": {
+          "mean_gain": 0.00228,
+          "passes_majority_real": 0.558,
+          "passes_two_thirds_real": 0.483,
+          "passes_majority_perceived": 0.558,
+          "passes_two_thirds_perceived": 0.483
+        },
+        "legislature": {
+          "mean_gain": -1.61999,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.994,
+        "gain_kept": 0.999,
         "picks": {
-          "central 0.3": 0.517,
-          "floor 0.2": 0.325,
-          "matched 50%": 0.15,
+          "matched 20%": 0.275,
+          "foundation 0.2": 0.25,
+          "central 0.3": 0.233,
+          "floor 0.2": 0.117,
+          "equalized both ways 100%": 0.117,
           "equalized 100%": 0.008
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.994,
+        "gain_kept": 0.951,
         "picks": {
-          "central 0.3": 0.517,
-          "floor 0.2": 0.325,
-          "matched 50%": 0.15,
-          "equalized 100%": 0.008
+          "foundation 0.2": 0.258,
+          "matched 20%": 0.242,
+          "central 0.3": 0.208,
+          "floor 0.2": 0.125,
+          "equalized both ways 100%": 0.108,
+          "equalized 100%": 0.033,
+          "nothing passes": 0.025
         }
       }
     },
     "transit": {
       "rules": {
         "central 0.3": {
-          "mean_gain": -0.02259,
-          "passes_majority_real": 0.242,
-          "passes_two_thirds_real": 0.183,
-          "passes_majority_perceived": 0.242,
-          "passes_two_thirds_perceived": 0.183
+          "mean_gain": -0.03653,
+          "passes_majority_real": 0.117,
+          "passes_two_thirds_real": 0.083,
+          "passes_majority_perceived": 0.117,
+          "passes_two_thirds_perceived": 0.083
         },
         "floor 0.1": {
           "mean_gain": 0.00014,
@@ -164,6 +214,27 @@
           "passes_majority_perceived": 0.608,
           "passes_two_thirds_perceived": 0.35
         },
+        "equalized both ways 100%": {
+          "mean_gain": 0.00017,
+          "passes_majority_real": 0.842,
+          "passes_two_thirds_real": 0.517,
+          "passes_majority_perceived": 0.842,
+          "passes_two_thirds_perceived": 0.517
+        },
+        "foundation 0.1": {
+          "mean_gain": 3e-05,
+          "passes_majority_real": 0.442,
+          "passes_two_thirds_real": 0.417,
+          "passes_majority_perceived": 0.442,
+          "passes_two_thirds_perceived": 0.417
+        },
+        "legislature": {
+          "mean_gain": -1.8224,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
+        },
         "city + 10% grant": {
           "mean_gain": -0.01259,
           "passes_majority_real": 0.233,
@@ -173,27 +244,113 @@
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.832,
+        "gain_kept": 0.908,
         "picks": {
-          "central 0.3": 0.225,
-          "equalized 100%": 0.208,
-          "floor 0.1": 0.208,
-          "nothing passes": 0.158,
-          "city + 10% grant": 0.092,
-          "matched 10%": 0.083,
-          "ceiling 0.7": 0.025
+          "equalized both ways 100%": 0.25,
+          "foundation 0.1": 0.2,
+          "city + 10% grant": 0.15,
+          "floor 0.1": 0.108,
+          "equalized 100%": 0.083,
+          "nothing passes": 0.067,
+          "matched 10%": 0.067,
+          "central 0.3": 0.058,
+          "ceiling 0.7": 0.017
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.639,
+        "gain_kept": 0.766,
         "picks": {
-          "nothing passes": 0.308,
-          "equalized 100%": 0.192,
-          "floor 0.1": 0.183,
-          "central 0.3": 0.183,
-          "matched 10%": 0.075,
-          "city + 10% grant": 0.05,
+          "foundation 0.1": 0.233,
+          "equalized both ways 100%": 0.208,
+          "nothing passes": 0.158,
+          "floor 0.1": 0.1,
+          "city + 10% grant": 0.1,
+          "equalized 100%": 0.092,
+          "central 0.3": 0.058,
+          "matched 10%": 0.042,
           "ceiling 0.7": 0.008
+        }
+      }
+    },
+    "health": {
+      "rules": {
+        "central 0.3": {
+          "mean_gain": -0.00575,
+          "passes_majority_real": 0.358,
+          "passes_two_thirds_real": 0.317,
+          "passes_majority_perceived": 0.358,
+          "passes_two_thirds_perceived": 0.317
+        },
+        "floor 0.1": {
+          "mean_gain": 0.0,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
+        },
+        "ceiling 0.5": {
+          "mean_gain": 0.0,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
+        },
+        "matched 10%": {
+          "mean_gain": 0.00022,
+          "passes_majority_real": 0.617,
+          "passes_two_thirds_real": 0.517,
+          "passes_majority_perceived": 0.617,
+          "passes_two_thirds_perceived": 0.517
+        },
+        "equalized 100%": {
+          "mean_gain": 2e-05,
+          "passes_majority_real": 0.617,
+          "passes_two_thirds_real": 0.317,
+          "passes_majority_perceived": 0.617,
+          "passes_two_thirds_perceived": 0.317
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 3e-05,
+          "passes_majority_real": 0.833,
+          "passes_two_thirds_real": 0.508,
+          "passes_majority_perceived": 0.833,
+          "passes_two_thirds_perceived": 0.508
+        },
+        "foundation 0.1": {
+          "mean_gain": 5e-05,
+          "passes_majority_real": 0.45,
+          "passes_two_thirds_real": 0.45,
+          "passes_majority_perceived": 0.45,
+          "passes_two_thirds_perceived": 0.45
+        },
+        "legislature": {
+          "mean_gain": -1.7399,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0
+        }
+      },
+      "best_that_passes_majority": {
+        "gain_kept": 0.956,
+        "picks": {
+          "central 0.3": 0.308,
+          "matched 10%": 0.258,
+          "equalized both ways 100%": 0.192,
+          "foundation 0.1": 0.133,
+          "nothing passes": 0.067,
+          "equalized 100%": 0.042
+        }
+      },
+      "best_that_passes_two_thirds": {
+        "gain_kept": 0.782,
+        "picks": {
+          "central 0.3": 0.308,
+          "nothing passes": 0.208,
+          "matched 10%": 0.208,
+          "foundation 0.1": 0.142,
+          "equalized both ways 100%": 0.125,
+          "equalized 100%": 0.008
         }
       }
     },
@@ -242,14 +399,14 @@
     "climate": {
       "rules": {
         "central 0.7": {
-          "mean_gain": 0.12009,
-          "passes_majority_real": 0.9,
+          "mean_gain": 0.12043,
+          "passes_majority_real": 0.908,
           "passes_two_thirds_real": 0.883,
-          "passes_majority_perceived": 0.9,
+          "passes_majority_perceived": 0.908,
           "passes_two_thirds_perceived": 0.883
         },
         "floor 0.7": {
-          "mean_gain": 0.13747,
+          "mean_gain": 0.13772,
           "passes_majority_real": 0.992,
           "passes_two_thirds_real": 0.958,
           "passes_majority_perceived": 0.992,
@@ -262,7 +419,7 @@
             "p90": 0.975
           },
           "payment_over_real_gain_median": 19.0,
-          "mean_gain": 0.27594,
+          "mean_gain": 0.27608,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
           "passes_majority_perceived": 0,
@@ -275,7 +432,7 @@
             "p90": 0.975
           },
           "payment_over_real_gain_median": 19.0,
-          "mean_gain": 0.27594,
+          "mean_gain": 0.27608,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
           "passes_majority_perceived": 0,
@@ -283,19 +440,19 @@
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.482,
+        "gain_kept": 0.483,
         "picks": {
-          "floor 0.7": 0.925,
+          "floor 0.7": 0.933,
           "nothing passes": 0.05,
-          "central 0.7": 0.025
+          "central 0.7": 0.017
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.481,
+        "gain_kept": 0.482,
         "picks": {
-          "floor 0.7": 0.917,
+          "floor 0.7": 0.925,
           "nothing passes": 0.058,
-          "central 0.7": 0.025
+          "central 0.7": 0.017
         }
       }
     }

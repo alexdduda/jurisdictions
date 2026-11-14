@@ -17,6 +17,10 @@ Same measures as tiebout/canada.py, on the 50 states (not DC, a city-state),
                                 agriculture, forestry and fish and game)
                    transit      highways + air + parking + sea and inland port +
                                 transit utility (COFOG 7045 is all transport)
+                   health       hospitals + health (public hospitals and public
+                                health; Medicaid is in "public welfare" and can't
+                                be separated, so this is a small part of what
+                                Canada's COFOG 707 covers)
                  Like Canada's consolidated provincial-local figures, these
                  include spending paid for by federal grants.
   inequality     market-income Gini, OECD Income Distribution Database (same
@@ -59,6 +63,9 @@ FUNCTIONS = {
     "environment": ["Sewerage", "Solid waste management"],
     "transit": ["Highways", "Air transportation (airports)", "Parking facilities", "Sea and inland port facilities",
                 "Transit"],
+    # Public hospitals and public health. Medicaid is inside "public welfare" in this
+    # table and can't be separated, so most public health spending in the US is missing.
+    "health": ["Hospitals", "Health"],
 }
 TOTAL = "Direct general expenditure"
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}

@@ -1,0 +1,400 @@
+{
+  "inputs": {
+    "disagreement": {
+      "schools": {
+        "years": 10,
+        "mean_per_capita": 1923,
+        "cv": {
+          "levels": 0.117,
+          "shares": 0.0973,
+          "residual": 0.148
+        },
+        "heterogeneity_range": [
+          0.0243,
+          0.037
+        ]
+      },
+      "environment": {
+        "years": 10,
+        "mean_per_capita": 451,
+        "cv": {
+          "levels": 0.2147,
+          "shares": 0.2248,
+          "residual": 0.1776
+        },
+        "heterogeneity_range": [
+          0.0444,
+          0.0562
+        ]
+      },
+      "transit": {
+        "years": 10,
+        "mean_per_capita": 1387,
+        "cv": {
+          "levels": 0.2339,
+          "shares": 0.2113,
+          "residual": 0.2404
+        },
+        "heterogeneity_range": [
+          0.0528,
+          0.0601
+        ]
+      },
+      "health": {
+        "years": 10,
+        "mean_per_capita": 3801,
+        "cv": {
+          "levels": 0.1054,
+          "shares": 0.0802,
+          "residual": 0.126
+        },
+        "heterogeneity_range": [
+          0.0201,
+          0.0315
+        ]
+      }
+    },
+    "fiscal_capacity": {
+      "schools": {
+        "income_elasticity": -0.003,
+        "years": 10
+      },
+      "environment": {
+        "income_elasticity": -0.849,
+        "years": 10
+      },
+      "transit": {
+        "income_elasticity": 0.569,
+        "years": 10
+      },
+      "health": {
+        "income_elasticity": -0.119,
+        "years": 10
+      }
+    },
+    "inequality": {
+      "market_gini": 0.4617,
+      "income_sigma": 0.8704,
+      "years": 4
+    },
+    "migration": {
+      "annual_rate": 0.01475,
+      "min": 0.01257,
+      "max": 0.01745,
+      "years": 10
+    },
+    "regional_income": {
+      "market_income_cv": 0.113,
+      "market_income_cv_range": [
+        0.1009,
+        0.1476
+      ],
+      "gdp_per_capita_cv": 0.2454,
+      "years": 10
+    },
+    "emissions_spread": {
+      "year": "2023-24",
+      "log_sd": 0.402,
+      "measure": "emissions per person including land use, five mainland states"
+    }
+  },
+  "mobility": {
+    "public_goods": {
+      "national_overhead": [
+        0.2,
+        1.9
+      ],
+      "overhead_log_ratio": [
+        -0.3798,
+        0.3097
+      ],
+      "move_share": [
+        0.05,
+        0.050006
+      ],
+      "moving_cost": [
+        0.005,
+        0.0050015
+      ],
+      "productivity_sd": [
+        0.1,
+        0.100011
+      ],
+      "congestion": [
+        0.03,
+        0.2
+      ]
+    },
+    "redistribution": {
+      "income_sigma": [
+        0.84,
+        0.9
+      ],
+      "deadweight": [
+        0.4,
+        0.9
+      ],
+      "move_share": [
+        0.03,
+        0.030004
+      ],
+      "moving_cost": [
+        0.005,
+        0.01
+      ],
+      "productivity_sd": [
+        0.04,
+        0.040005
+      ],
+      "congestion": [
+        0.03,
+        0.2
+      ]
+    },
+    "targets": {
+      "migration": [
+        0.0126,
+        0.0175
+      ],
+      "income_spread": [
+        0.1,
+        0.15
+      ]
+    }
+  },
+  "canada": {
+    "schools": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.122,
+      "win_share": {
+        "central": 0.35,
+        "floor": 0.075,
+        "matched": 0.055,
+        "equalized": 0.015,
+        "foundation": 0.15,
+        "equalized_both": 0.355
+      }
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.393,
+      "win_share": {
+        "central": 0.545,
+        "floor": 0.195,
+        "matched": 0.19,
+        "equalized": 0.005,
+        "foundation": 0.01,
+        "equalized_both": 0.055
+      }
+    },
+    "transit": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.042,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.085,
+        "floor": 0.125,
+        "ceiling": 0.065,
+        "matched": 0.06,
+        "equalized": 0.035,
+        "city": 0.175,
+        "foundation": 0.265,
+        "equalized_both": 0.185
+      }
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.595,
+        "floor": 0.23,
+        "ceiling": 0.005,
+        "matched": 0.075,
+        "equalized": 0.01,
+        "equalized_both": 0.08
+      }
+    },
+    "redistribution": {
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      }
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      }
+    }
+  },
+  "results": {
+    "schools": {
+      "robust": "floor 0.1",
+      "robust_mode": "floor",
+      "gain_captured": 0.03,
+      "win_share": {
+        "local": 0.095,
+        "central": 0.41,
+        "floor": 0.31,
+        "ceiling": 0.035,
+        "matched": 0.08,
+        "foundation": 0.07
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -2.161,
+        "floor": 0.03,
+        "ceiling": 0.0,
+        "matched": 0.016,
+        "equalized": 0.0,
+        "equalized_both": 0.0,
+        "foundation": -0.017,
+        "legislature": -188.447
+      },
+      "share_on_targets": 0.235,
+      "median_migration": 0.01194,
+      "median_income_spread": 0.1041,
+      "actual": "States run schools; the Commonwealth pays at least 20% of a needs-based Schooling Resource Standard per student in government schools (80% in non-government ones), with loadings for disadvantage",
+      "actual_in_model_terms": "foundation"
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.366,
+      "win_share": {
+        "local": 0.01,
+        "central": 0.395,
+        "floor": 0.22,
+        "ceiling": 0.005,
+        "matched": 0.325,
+        "foundation": 0.045
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -1.052,
+        "floor": 0.094,
+        "ceiling": 0.0,
+        "matched": 0.366,
+        "equalized": 0.0,
+        "equalized_both": 0.0,
+        "foundation": 0.084,
+        "legislature": -97.981
+      },
+      "share_on_targets": 0.335,
+      "median_migration": 0.01285,
+      "median_income_spread": 0.1025,
+      "actual": "States regulate and spend; national law (the EPBC Act) covers nine matters of national environmental significance, such as World Heritage properties, Ramsar wetlands and threatened species",
+      "actual_in_model_terms": "local, with a narrow national floor"
+    },
+    "transit": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.301,
+      "win_share": {
+        "central": 0.035,
+        "floor": 0.035,
+        "equalized": 0.06,
+        "city": 0.085,
+        "foundation": 0.355,
+        "equalized_both": 0.43
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -7.877,
+        "floor": 0.062,
+        "ceiling": 0.0,
+        "matched": -0.465,
+        "equalized": 0.227,
+        "equalized_both": 0.301,
+        "foundation": 0.054,
+        "legislature": -290.524,
+        "city": -1.837
+      },
+      "share_on_targets": 0.48,
+      "median_migration": 0.01361,
+      "median_income_spread": 0.1028,
+      "actual": "State governments run public transport; the Commonwealth co-funds some infrastructure",
+      "actual_in_model_terms": "local, with grants"
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.047,
+      "win_share": {
+        "local": 0.135,
+        "central": 0.545,
+        "floor": 0.185,
+        "ceiling": 0.01,
+        "matched": 0.11,
+        "foundation": 0.015
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -1.136,
+        "floor": 0.001,
+        "ceiling": 0.0,
+        "matched": 0.047,
+        "equalized": 0.0,
+        "equalized_both": 0.0,
+        "foundation": -0.011,
+        "legislature": -149.18
+      },
+      "share_on_targets": 0.03,
+      "median_migration": 0.00896,
+      "median_income_spread": 0.1042,
+      "actual": "States run public hospitals; the Commonwealth pays 45% of the growth in their efficient cost, priced by activity, under the National Health Reform Agreement, and runs Medicare",
+      "actual_in_model_terms": "matched"
+    },
+    "redistribution": {
+      "robust": "central 0.3",
+      "robust_mode": "central",
+      "gain_captured": 0.899,
+      "win_share": {
+        "central": 1.0
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.899,
+        "floor": 0.522,
+        "ceiling": 0.247
+      },
+      "share_on_targets": 0.03,
+      "median_migration": 0.01229,
+      "median_income_spread": 0.1915,
+      "actual": "Federal: pensions and allowances are paid by the Commonwealth",
+      "actual_in_model_terms": "central"
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.968,
+      "win_share": {
+        "central": 0.125,
+        "price": 0.875
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.606,
+        "floor": 0.61,
+        "price": 0.968,
+        "price_floor": 0.968
+      },
+      "share_on_targets": 0.185,
+      "median_migration": 0.01111,
+      "median_income_spread": 0.104,
+      "actual": "A national carbon price ran from 1 July 2012 and was repealed in July 2014; large emitters now face the national Safeguard Mechanism, baselines declining 4.9% a year with tradable credits",
+      "actual_in_model_terms": "national standard"
+    }
+  }
+}

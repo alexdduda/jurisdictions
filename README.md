@@ -118,8 +118,14 @@ look at a few other regions and move if it's worth the moving cost
 (Tiebout, "A Pure Theory of Local Expenditures", *Journal of Political
 Economy* 64(5), 1956: "voting with your feet").
 
-The optimizer chooses, for every policy domain, one of the same five modes as
-scopelang (local, central, floor, ceiling, matched) plus its level. It uses
+The optimizer chooses, for every policy domain, one of scopelang's modes
+(local, central, floor, ceiling, matched, equalized) plus its level, or one of
+three further designs: equalization both ways (richer regions pay in as well as
+poorer ones being topped up), a foundation grant (the centre funds a minimum and
+regions top up, like Australia's school funding) and a legislature of regional
+delegates setting one national level paid for by everyone (Besley and Coate,
+*J. Public Econ.* 87(12), 2003). Transit adds "cities decide"; climate has its
+own instruments (below). It uses
 coordinate descent, with every candidate scored on the same seeds.
 
 ### The trade-offs it's balancing
@@ -145,7 +151,9 @@ grant at the spillover rate restores the social optimum.
 | redistribution | n/a | n/a (mobility is the issue) | n/a |
 
 These numbers are **assumptions**, chosen so each domain sits in a different
-corner. The report's phase maps vary them to show which properties of a policy
+corner. The calibrated runs below replace them with Canadian measurements or
+ranges, and add health (spending net of the share aged 65 and over, and
+2004-2011 survey questions). The report's phase maps vary them to show which properties of a policy
 area push it up or down a level. That generalises better than the headline
 optimum does.
 
@@ -191,8 +199,9 @@ measurements wherever Canadian evidence exists:
 | mobility | 17-10-0022 interprovincial migration, 0.75% a year, used as an upper bound |
 | cost of raising money, national vs. provincial | Computed on one basis from 2025 income tax rates (`validation/cost_of_funds.py`): provincial/federal ratio 0.68 to 1.36 by province, 1.01 to 1.02 for Canada; federal level from Dahlby and Ferede |
 
-Spillovers, scale savings and crowding have no Canadian data and stay as wide
-guesses. Rebuild the targets with `python3 -m tiebout.canada` after
+Transit scale savings and the environmental spillover are now measured
+(below, "Measured inputs that replaced guesses"); other spillovers and crowding
+have no Canadian data and stay as wide guesses. Rebuild the targets with `python3 -m tiebout.canada` after
 downloading the raw tables into `data/raw/` (not committed; table numbers
 above, CSVs from statcan.gc.ca, the survey from Harvard Dataverse
 doi:10.7910/DVN/DUS88V). The survey script needs pandas and pyreadstat; the
@@ -222,17 +231,20 @@ Cities win only when almost no commuting crosses the metro boundary
 (Statistics Canada draws metro areas so that most of it doesn't). National
 transit wins only if one national system saves about 10% or more over city or
 provincial systems (5% in the one-city model). Cost studies find economies of
-scale only for small operators (Abrate et al. 2016; Berechman and Giuliano's
-review of US systems), so the calibrated range is 0% to 10%, and with it no
-fixed national rule beats provincial control. `validation/city_sensitivity.py` reruns the
+scale only for small operators (Abrate et al. 2016), and US bus agencies' costs
+rise with size (National Transit Database), so the calibrated range is -10% to
++5%, and with it no fixed national rule beats provincial control; no rule is a
+clear winner. `validation/city_sensitivity.py` reruns the
 analysis with the gap between metro areas halved and with Toronto, Montreal and
 Vancouver at post-pandemic (May 2023) transit use: the robust rule is the same
-in every case. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
+in every case (equalization both ways, about 4% of the gain). With one city per
+province instead, a national standard wins 77% of worlds: the city map
+matters. Re-run one area with `python -m tiebout uncertainty --ranges canada --only
 transit`.
 
 ### Climate and carbon pricing
 
-Climate is a fifth area, separate from public environmental spending, because
+Climate is a separate area, separate from public environmental spending, because
 it works through regulation: emitters pay, so no cost of public funds applies,
 and abatement costs differ by province. Rules: provinces decide, a uniform
 national quantity standard, a quantity floor, a national carbon price, or a
@@ -244,8 +256,9 @@ between high emissions and low support (r = -0.82 across provinces).
 A carbon price wins 99% of sampled worlds and keeps 99% of the attainable
 gain; a uniform quantity standard keeps 44%. With equal costs the two are
 identical; any cost difference favours the price. The model leaves out trade
-exposure, emissions leaking abroad, revenue use and the politics that ended
-Canada's consumer carbon charge in April 2025.
+exposure, emissions leaking abroad, and revenue use. The politics that ended
+Canada's consumer carbon charge (zero from April 2025, repealed in law by Bill
+C-4 in March 2026) is modelled in "Political realities" below.
 
 ### Schools and language
 
@@ -286,10 +299,10 @@ three reforms (1996 block grant for welfare, 2006 Metrolinx, 2016 national
 carbon price floor): spending by function from the older FMS classification
 (`data/scripts/fetch_fms_1989_2009.py`, table 10-10-0039, bridged to today's
 classification on their overlap year), and inequality, migration, regional
-incomes and emissions from the ten years before each date. Every verdict
-with a clear winner (environment, redistribution, climate) picks the same rule
-as today; schools and transit, with no clear winner, swap between near-ties.
-Two of the three reforms moved the way the model recommends; the 1996 block
+incomes and emissions from the ten years before each date. Schools, the
+environment, transit and redistribution pick the same rule with each decade's
+data as with today's; health, with no clear winner, swaps between near-ties
+with the oldest data. Two of the three reforms moved the way the model recommends; the 1996 block
 grant did not, and afterwards provincial social-services spending fell from
 4.4% to 3.4% of GDP and spread out between provinces. The city map (2016) is
 held at today's values.
@@ -301,16 +314,16 @@ writes `data/ces_vintages.json`. On the same questions the gap between
 provinces, in units of disagreement within one, held at 0.19-0.26 for
 redistribution and 0.12-0.20 for the environment; schools swing from 0.06 to
 0.25. The 2008 carbon-tax question gives 0.18 against 2019's 0.24.
-`validation/opinion_vintages.py` reruns the two areas that depend on these
-numbers with the dated ranges: schools stay equalization (no clear winner) and
-climate a carbon price.
+The default ranges for disagreement within a province and for climate opinion
+now span these dated values, so every verdict already allows for them.
 
 `validation/feasibility.py` runs each recommended rule against provinces
 deciding and measures the change for the people starting in each region.
-Equalization has concentrated losers (about a third of regions, the worst
-losing over three times the average gain); a carbon price has almost none, so the
-model can't explain the 2025 repeal of the consumer charge through lost
-welfare.
+With random regions, equalization both ways
+leaves about a third of regions worse off (the worst losing about three times
+the average gain); a carbon price has almost none, so the welfare model can't
+explain the 2025 repeal of the consumer charge through lost welfare. The
+political layer below does.
 
 ### Real provinces
 
@@ -318,11 +331,15 @@ By default each region's average taste, abatement cost and productivity are
 random draws with Canada's measured spread. `World.province_profile="canada"`
 (`tiebout/provinces.py`, data from `data/scripts/province_profile.py`) gives
 each region its province's measured values instead: 2019 Canadian Election
-Study means, 2024 emissions per person, 2015-2024 market income.
-`validation/provinces_run.py` reruns the analysis that way (same verdicts,
-except schools moves to a small matching grant, still no clear winner), and
+Study means, 2024 emissions per person, 2015-2024 market income. With
+`World.geography="provinces"` (`tiebout/geography.py`) the regions are the ten
+provinces themselves, sized by 2024 population and joined where they border;
+mobility is refitted to them (`validation/calibrate_mobility.py`).
+`validation/provinces_run.py` reruns the analysis that way: the same rules,
+except transit moves to a small national floor (still no clear winner).
 `feasibility.py --provinces` / `politics.py --provinces` name who loses and who
-opposes: mostly Alberta.
+opposes: Alberta and Saskatchewan under the environment's matching grant,
+Ontario and Alberta under national redistribution.
 
 ### Politics: which rules would pass
 
@@ -333,29 +350,68 @@ awareness and underestimation in Canada), and a rule passes when regions
 holding a majority (or two thirds) of people perceive a gain over provinces
 deciding. A carbon price passes in every sampled world on real welfare and in
 none as voters see it: payments are about 19 times the real gain, so most
-regions gain only if voters see about 94% of the rebate. The best rule that
-passes is a quantity floor, keeping about half the gain. Other areas lose
-little to politics.
+regions gain only if voters see about 94% of the rebate (84% with the real
+provinces). The best rule that passes is a quantity floor, keeping about half
+the gain. Other areas lose little to politics.
 
-### The same model on the United States
+### Political realities
 
-`data/scripts/us_targets.py` rebuilds every measured input for the 50 states
-(`data/us/targets.json`): state and local direct expenditure by function from
-the Census Bureau's Annual Survey of State and Local Government Finances,
-2017-2022 (elementary and secondary education; sewerage and solid waste;
-highways, airports, parking, ports and transit), market-income Gini from the
-OECD Income Distribution Database (0.51; the same source gives Canada 0.43),
-movers between states from the Current Population Survey (1.46% a year), state
-market income and GDP from BEA, and energy CO2 per person from EIA. Raw files
-go in `data/raw/us/`. Mobility is refitted to US migration and income spread
-by grid search; for redistribution the model can't hit both at once and the
-range straddles them. `validation/us_run.py` reruns all five areas on the same
-sampled worlds and compares with how the US assigns them: redistribution and
-the environment match (national); climate (a national carbon price), schools
-and transit (equalization) do not. State spending rises with state income
-about two to twenty times as steeply as in Canada, where equalization exists,
-which is why equalization does better on US data. Kept from Canada: the
-cost-of-funds ratio, city and language maps, unmeasured ranges, 16 regions.
+`validation/political_realities.py` adds what the welfare model leaves out, on
+the ten real provinces, starting from today's arrangement:
+
+| part | how it's set | source |
+|---|---|---|
+| status quo | reforms are judged against today's arrangement in each area | Canada Health Act and Canada Health Transfer; Canada Public Transit Fund; Bill C-4 (2026) |
+| loss aversion | 1.8 to 2.1 | Brown, Imai, Vieider and Camerer, *J. Econ. Lit.* 62(2), 2024 |
+| visible payments | 0% to 60% of the carbon rebate noticed | Mildenberger et al. 2022 (awareness 55% to 75%, underestimated) |
+| attachment to the province | measured per province, weight sampled from nothing to the area's whole gain | 1997-2011 Canadian Election Studies (`data/scripts/regional_attachment.py`) |
+| constitution | Ottawa alone needs provinces with half the people; a mandate in a provincial field needs seven provinces with half the people | Constitution Act, 1867 ss. 91-94A; s. 38 of the 1982 Act; 2021 SCC 11; [1997] 3 SCR 213 |
+| repeal | a carbon price must keep a majority through three elections | nine general elections, 2000 to 2025 |
+| fiscal crises | 30% to 60% chance a decade; Ottawa's money cut 15% to 40% | 1990 cap upheld in Reference re CAP, [1991] 2 SCR 525; 1995 budget |
+
+How much each kind of rule puts Ottawa in charge, and how much attachment
+weighs, are assumptions, labelled as such. Results
+(`validation/political_realities.json`): for climate a planner would adopt a
+carbon price in 88% of worlds, but with politics today's arrangement stays in
+all of them, and visible payments alone explain it (without them a price floor
+passes in 77%). Redistribution is already national and stays so. Elsewhere
+politics keeps today's arrangement in 13% to 23% of worlds and gives up 7% to
+36% of a small gain; fiscal crises cost the most. Each part is also switched
+off on its own and run on its own.
+
+### Other federations
+
+`validation/country_run.py us au` reruns every area with each country's own
+measurements and its real states (`tiebout/geography.py`), mobility refitted
+to its migration and income spread:
+
+- United States (`data/scripts/us_targets.py`, `data/us/targets.json`): state
+  and local spending by function (Census Bureau, 2017-2022), market-income
+  Gini (OECD), movers between states (CPS), state income (BEA), CO2 per person
+  (EIA).
+- Australia (`data/scripts/au_targets.py`, `data/au/targets.json`): state and
+  local expenses by purpose (ABS Government Finance Statistics 2024-25),
+  interstate departures and population (ABS 3101.0), household primary income
+  (ABS 5220.0), market-income Gini (OECD), state emissions (DCCEEW 2024).
+
+The model mostly fails this test: one of six US verdicts matches (national
+redistribution) and two of six Australian ones (national redistribution,
+matching grants for health). It recommends a national carbon price for both.
+Only 0% to 48% of sampled worlds reproduce each country's migration and
+income spread, against about 60% for Canada.
+
+### Measured inputs that replaced guesses
+
+- Transit scale (`data/scripts/transit_scale.py`): US bus agencies' cost per
+  vehicle-hour rises with size (elasticity about +0.11, National Transit
+  Database 2023-2024), so the saving from one bigger network is sampled at
+  -10% to +5%.
+- Environmental spillover (`data/scripts/environment_spillover.py`): weighted
+  by provincial spending on each part (table 10-10-0005), 10% to 31% instead
+  of 30% to 80%. Each part's spillover is assumed.
+- Housing (`validation/housing.py`): with rents at 10% to 30% of income the
+  environment, health, redistribution and climate keep their rule and schools and transit swap between near-ties, but almost no sampled world matches Canada's
+  income spread, so housing stays off by default.
 
 ### Accuracy checks
 
@@ -363,7 +419,7 @@ cost-of-funds ratio, city and language maps, unmeasured ranges, 16 regions.
   seeds. The winning rule agrees in 142 of 150; every flip is between
   near-equivalent rules.
 - The one-area-at-a-time shortcut is checked against joint optimisation of all
-  five areas on 16 worlds: 91% agreement, at least 97% of the joint gain kept.
+  six areas on 8 worlds: 81% agreement, at least 95% of the joint gain kept.
 
 See [VERIFICATION.md](VERIFICATION.md) for every factual claim and its sources,
 and [COMPARISONS.md](COMPARISONS.md) for how each finding compares with
@@ -371,9 +427,10 @@ published work.
 
 ### What it leaves out
 
-Governments are honest median voters, the centre knows the spillover rates,
-central policy has to be uniform, and regions can't learn from each other's
-experiments. Each of these would shift the answer; see the end of the report.
+In the welfare model governments are honest median voters; the political
+layer adds some politics but not parties, lobbying or capture. The centre knows
+the spillover rates, central policy has to be uniform, and regions can't learn
+from each other's experiments. Each of these would shift the answer; see the end of the report.
 
 ## Layout
 
@@ -381,7 +438,12 @@ experiments. Each of these would shift the answer; see the end of the report.
 scopelang/   lexer.py, parser.py, interpreter.py (the precedence rules live here)
 tiebout/     model.py (simulation), optimize.py (search), experiments.py (study + report),
              bridge.py (scopelang <-> arrangements), config.py (default world),
-             cities.py (metropolitan areas per region)
+             cities.py (metropolitan areas per region), geography.py (real provinces and states),
+             provinces.py (provincial profiles), canada.py, uncertainty.py, thresholds.py
+validation/  backtest, provinces, feasibility, politics, political_realities, countries,
+             housing, city sensitivity, horizons, early warning (each writes a .json)
+data/        derived inputs (targets.json, us/, au/, ...); data/scripts/ rebuild them from raw files
+site/        template.html + build.py -> index.html (the published page)
 examples/    cannabis.jur, min_wage.jur, river.jur, dispute.jur
 tests/
 ```
@@ -416,6 +478,16 @@ tests/
 - **Inequality aversion:** Layard, R., Mayraz, G. and Nickell, S. (2008), "The
   Marginal Utility of Income", *Journal of Public Economics* 92(8-9):
   1846-1857 (combined estimate 1.26).
+- **Canadian Election Studies 1993 to 2011** (Borealis, CC BY-NC 4.0): dated
+  opinion and attachment to the province; only provincial aggregates committed.
+- **United States:** Census Bureau Annual Survey of State and Local Government
+  Finances; BEA SAINC4; Current Population Survey; EIA state CO2; OECD Income
+  Distribution Database; FTA National Transit Database (public domain).
+- **Australia:** ABS 5512.0, 3101.0 and 5220.0 (CC BY 4.0); DCCEEW State and
+  Territory Greenhouse Gas Inventories 2024.
+- **Loss aversion:** Brown, A. L., Imai, T., Vieider, F. M. and Camerer, C. F.
+  (2024), "Meta-analysis of Empirical Estimates of Loss Aversion", *Journal of
+  Economic Literature* 62(2): 485-516.
 - **Industrial carbon price path** ($95 per tonne in 2026 to $140 in 2040): as
   reported by the International Carbon Action Partnership and EY, May 2026.
 - `audit/` holds automated reviews by [ai-auditor](https://github.com/alexdduda/ai-auditor)

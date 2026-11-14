@@ -1,0 +1,6 @@
+canada_provinces public_goods fits 26 {'move_share': (0.02, 0.12), 'moving_cost': (0.02, 0.07), 'productivity_sd': (0.1, 0.2)}  
+canada_provinces redistribution fits 10 {'move_share': (0.02, 0.03), 'moving_cost': (0.01, 0.05), 'productivity_sd': (0.0, 0.07)}  
+us_states public_goods fits 7 {'move_share': (0.03, 0.12), 'moving_cost': (0.005, 0.01), 'productivity_sd': (0.05, 0.15)}  
+us_states redistribution fits 0 {'move_share': (0.02, 0.02), 'moving_cost': (0.005, 0.005), 'productivity_sd': (0.04, 0.04)} nearest {'move_share': 0.02, 'moving_cost': 0.005, 'productivity_sd': 0.04, 'migration': 0.01193, 'income_spread': 0.2225}
+au_states public_goods fits 1 {'move_share': (0.05, 0.05), 'moving_cost': (0.005, 0.005), 'productivity_sd': (0.1, 0.1)}  
+au_states redistribution fits 2 {'move_share': (0.03, 0.03), 'moving_cost': (0.005, 0.01), 'productivity_sd': (0.04, 0.04)}  

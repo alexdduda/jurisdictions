@@ -1,12 +1,37 @@
-    environment: 31800 runs in 481s
-      wins: central 64%, floor 34%, matched 2% | robust: central 0.3 (captures 72% of the tailored gain)
-2046 environment central 0.3 0.72
-    transit: 34800 runs in 515s
-      wins: local 0%, central 36%, floor 20%, ceiling 8%, matched 7%, equalized 14%, city 14% | robust: equalized 100% (captures 2% of the tailored gain)
-2046 transit equalized 100% 0.019
-    redistribution: 31200 runs in 274s
+=== horizons Fri Nov 13 17:25:52 EST 2026
+    schools: 42000 runs in 432s
+      wins: central 35%, floor 6%, matched 6%, equalized 0%, foundation 15%, equalized_both 37% | robust: equalized both ways 100% (captures 12% of the tailored gain)
+2036 schools equalized both ways 100% 0.121
+    environment: 42000 runs in 442s
+      wins: central 55%, floor 19%, matched 19%, equalized 0%, foundation 2%, equalized_both 6% | robust: matched 20% (captures 39% of the tailored gain)
+2036 environment matched 20% 0.393
+    transit: 45000 runs in 928s
+      wins: central 8%, floor 12%, ceiling 7%, matched 6%, equalized 1%, city 18%, foundation 26%, equalized_both 21% | robust: equalized both ways 100% (captures 4% of the tailored gain)
+2036 transit equalized both ways 100% 0.041
+    health: 42000 runs in 420s
+      wins: local 0%, central 60%, floor 20%, ceiling 0%, matched 8%, equalized 2%, equalized_both 10% | robust: matched 10% (captures 3% of the tailored gain)
+2036 health matched 10% 0.033
+    redistribution: 31200 runs in 374s
+      wins: central 98%, floor 2% | robust: central 0.25 (captures 85% of the tailored gain)
+2036 redistribution central 0.25 0.848
+    climate: 29400 runs in 359s
+      wins: floor 0%, price 100% | robust: price 1.2 (captures 99% of the tailored gain)
+2036 climate price 1.2 0.986
+    schools: 42000 runs in 448s
+      wins: central 35%, floor 6%, matched 6%, equalized 2%, foundation 16%, equalized_both 35% | robust: equalized both ways 100% (captures 12% of the tailored gain)
+2046 schools equalized both ways 100% 0.12
+    environment: 42000 runs in 483s
+      wins: central 54%, floor 19%, matched 20%, foundation 2%, equalized_both 6% | robust: matched 20% (captures 39% of the tailored gain)
+2046 environment matched 20% 0.391
+    transit: 45000 runs in 1845s
+      wins: central 8%, floor 12%, ceiling 8%, matched 7%, equalized 2%, city 18%, foundation 26%, equalized_both 19% | robust: equalized both ways 100% (captures 4% of the tailored gain)
+2046 transit equalized both ways 100% 0.044
+    health: 42000 runs in 436s
+      wins: local 0%, central 60%, floor 20%, matched 7%, equalized 2%, equalized_both 11% | robust: matched 10% (captures 3% of the tailored gain)
+2046 health matched 10% 0.033
+    redistribution: 31200 runs in 397s
       wins: central 98%, floor 2% | robust: central 0.25 (captures 81% of the tailored gain)
 2046 redistribution central 0.25 0.812
-    climate: 29400 runs in 270s
+    climate: 29400 runs in 1784s
       wins: central 2%, price 98% | robust: price 1.2 (captures 98% of the tailored gain)
 2046 climate price 1.2 0.979

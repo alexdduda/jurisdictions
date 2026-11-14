@@ -16,6 +16,30 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 
 ## Confirmed
 
+- US federal share of public elementary and secondary school revenue: 11.7% in fiscal 2024, 13.7% in 2022 (Congressional Research Service IF12519, from NCES data, as summarised; the PDF itself was not read).
+- Medicaid's regular federal matching rate (FMAP) runs from a statutory 50% to 83% (CRS R43847; MACPAC).
+- FTA Capital Investment Grants: total federal funds may not exceed 80% of a project's cost (FTA 5309 fact sheet). The 80% federal share for highways was not confirmed and is not used.
+- Australia: the Commonwealth pays at least 20% of the Schooling Resource Standard for government schools and 80% for non-government schools (Department of Education); 45% of the efficient growth in public hospital costs under the National Health Reform Agreement (Parliamentary Library; publichospitalfunding.gov.au); the carbon pricing mechanism ran from 1 July 2012 and was repealed in July 2014 (IEA policy database; Allens); Safeguard Mechanism baselines decline by a default 4.9% a year with tradable credits (Clean Energy Regulator).
+
+- The 1995 federal budget folded the Canada Assistance Plan and Established Programs Financing into the Canada Health and Social Transfer from 1996-97. Total entitlement fell by nearly $3.0 billion from 1995-96 to 1996-97 and was set at $26.9 billion for 1996-97 and $25.1 billion from 1997-98, against about $29.6 billion under the old programmes; cash was floored at $11 billion, then $12.5 billion (Library of Parliament PRB 98-3E; Fraser Institute, *The Budget that Changed Canada*). Fraser puts the cut at over 15% of total transfers, and projected non-equalization cash falling 40%, from $16.9 to $10.3 billion, before the floor was raised. Used for the 15% to 40% crisis-cut range in `validation/political_realities.py`.
+- *Reference re Greenhouse Gas Pollution Pricing Act*, 2021 SCC 11 (25 March 2021, 6-3): the Act is valid under the national concern branch of peace, order and good government, as minimum national standards of carbon-price stringency that apply only where provincial systems fall short (Supreme Court case in brief; McCarthy Tetrault; ABlawg).
+- *R. v. Hydro-Quebec*, [1997] 3 SCR 213 (5-4): the Canadian Environmental Protection Act's toxic-substance provisions upheld under the criminal law power (Ecojustice; Canadian Environmental Law Association; McGill Law Journal case comment).
+- Canada held nine general elections from 2000 to 2025 (2000, 2004, 2006, 2008, 2011, 2015, 2019, 2021, 2025): about three a decade, the `ELECTIONS` setting.
+- Loss aversion: mean coefficient 1.955, 95% interval 1.82 to 2.10, across 607 estimates from 150 articles (Brown, Imai, Vieider and Camerer, *Journal of Economic Literature* 62(2), 2024, 485-516; RePEc record and CESifo working paper 8848, which gives 1.8 to 2.1). The model samples 1.8 to 2.1.
+- The 1990 federal budget capped growth of Canada Assistance Plan payments to Ontario, Alberta and British Columbia at 5% a year (Government Expenditure Restraint Act, 1991), extended through 1994-95 by the 1991 budget; the Supreme Court upheld it, *Reference re Canada Assistance Plan (B.C.)*, [1991] 2 SCR 525, 15 August 1991 (Wikipedia; Courthouse Libraries BC; National Council of Welfare). Ottawa can therefore cut its own grants unilaterally.
+- From 2017-18 the Canada Health Transfer grows with a three-year moving average of nominal GDP, at least 3% a year, replacing the 6% escalator (announced December 2011; Department of Finance; Library of Parliament).
+- The Canada Health Transfer is paid on an equal per-person cash basis since 2014-15, conditional on the Canada Health Act's five criteria; $52.1 billion in 2024-25 (Department of Finance). Hence today's health arrangement is read as a per-person grant with national standards (`foundation`).
+- The Canada Public Transit Fund: a permanent fund averaging $3 billion a year from 2026-27, mostly for capital (2021 backgrounder; 2024 launch backgrounder, Housing, Infrastructure and Communities Canada; CBC).
+- Carbon rebate awareness (Mildenberger et al. 2022, as reported by phys.org and Canary Media): 55% of Ontario residents correctly believed they received a rebate, 75% in Saskatchewan, and recipients underestimated its size. So the share of the rebate perceived, sampled 0 to 0.6, sits below awareness, as it should when those aware also underestimate.
+- Shelter was 31.4% of household consumption in 2021 ($21,106 of $67,126; Statistics Canada, Survey of Household Spending; *The Daily*). Shelter includes structures and utilities as well as land, so it bounds from above the 10% to 30% of income the housing test charges as rent.
+- Milligan and Smart's preferred elasticity of taxable income for the top 1% falls from 0.69 to about 0.4 once shifting between provinces is separated out, and is small for lower earners (*Canadian Journal of Economics* 48(2), 2015; Milligan in *Policy Options*). So 0.1 to 0.4 for all taxpayers is bounded above by the top-earner figure.
+- Constitution Act, 1867: education s. 93, hospitals s. 92(7), municipal institutions s. 92(8), local works s. 92(10), taxation s. 91(3); unemployment insurance added as s. 91(2A) in 1940 and old age pensions as s. 94A in 1951; the general amending formula, s. 38 of the Constitution Act, 1982, needs seven provinces with at least half the population (Justice Laws Website).
+
+- US: SNAP food benefits were 100% federally funded for almost 50 years; the 2025 reconciliation law makes most states pay a share tied to their payment error rates and cuts the federal share of administrative costs from 50% to 25% from 1 October 2026 (Center on Budget and Policy Priorities, 2025-2026). TANF replaced AFDC on 22 August 1996 as a block grant fixed at $16.5 billion a year (CRS 96-720, R44668; CBPP). States may adopt air plans stricter than federal law requires (*Union Electric Co. v. EPA*, 427 U.S. 246 (1976); 42 U.S.C. 7416). These replace a general-knowledge summary that called SNAP federal. California's cap-and-trade was extended to 2045 and renamed cap-and-invest by AB 1207 and SB 840, signed 19 September 2025 (ICAP; National Law Review; AP). The Regional Greenhouse Gas Initiative's current membership was not checked.
+- Australia: the EPBC Act gives the Commonwealth nine matters of national environmental significance (World Heritage, National Heritage, Ramsar wetlands, threatened species among them); states regulate the rest under their residual powers, and some assess national matters under bilateral agreements (Parliamentary Library quick guide; Environmental Defenders Office).
+
+- Bill C-4, the Making Life More Affordable for Canadians Act, received royal assent on 12 March 2026; Part 3 repeals Part 1 of the Greenhouse Gas Pollution Pricing Act (the fuel charge) and the Fuel Charge Regulations, and leaves Part 2, the output-based pricing system for industry, in place (Department of Finance release; Library of Parliament legislative summary 45-1-C4; Parliament first-reading text).
+
 | claim | sources |
 |---|---|
 | Federal cannabis minimum age 18; provinces may raise it | Alberta government cannabis page; Miller Thomson summary of Bill C-45 |
@@ -70,14 +94,25 @@ only secondary sources could be reached, that is stated. Checked October 2026.
 | Emissions per person vs. carbon-tax support across provinces: r = -0.82, p = 0.003 | 2024 ECCC emissions, Statistics Canada population, CES 2019 |
 | Provincial spending spread, income elasticities, market-income spread | `tiebout/canada.py`, `validation/` |
 | Between/within-province disagreement 1993-2015 (redistribution 0.19-0.26, environment 0.12-0.20, schools 0.06-0.25 on the same questions; 2008 carbon tax 0.18) | `data/scripts/ces_vintages.py`, Canadian Election Studies on Borealis |
+| Health spending spread across provinces 0.021-0.026 (four measures, one net of the share aged 65 and over); capacity elasticity 0.012; election-study gap on health spending 0.19-0.25 (2004-2011) | `tiebout/canada.py`, `validation/migration_and_capacity.py`, `data/scripts/ces_vintages.py` |
+| US bus operators' cost per vehicle revenue hour rises with size: elasticity +0.10 to +0.12 (2023, 2024, directly operated, controlling for urban-area population; n = 286, 288) | `data/scripts/transit_scale.py`, NTD Metrics (ekg5-frzt) |
+| Provincial and local environmental protection spending, 2015-2024: waste 31%, wastewater 32%, pollution abatement 13%, biodiversity 12%, other 12% | `data/scripts/environment_spillover.py`, table 10-10-0005 |
+| Australia: state spending spread, market-income Gini 0.46 (OECD), interstate departures 1.48% a year, household primary income spread 0.11, emissions log sd 0.40 (five mainland states) | `data/scripts/au_targets.py` |
 | US: state spending spread, market-income Gini 0.51 (OECD), interstate migration 1.46% a year (CPS A-1), state market-income spread 0.18 (BEA), spending income elasticity 0.71 to 1.25, energy-CO2 log sd 0.56 (EIA) | `data/scripts/us_targets.py` |
+| Model results on this page (verdicts, win shares, losers, political layer, other countries) | `results/uncertainty_canada.json`, `validation/*.json`; rerun with the commands in README.md. Simulation outputs, not facts: they are only as good as the inputs listed here |
+| Political layer: a planner adopts a carbon price in 88% of worlds; with politics today's arrangement stays in all; without visible payments a price floor passes in 77% | `validation/political_realities.json` (40 worlds x 3 seeds per area) |
+| Attachment to the province (CES 1997-2011): net share siding with the province on power, fair treatment and which government looks after you; Quebec 0.31, Newfoundland and Labrador 0.34, Saskatchewan 0.29, Alberta 0.28, Ontario -0.04. In 2004, 39% blamed the provincial government for longer health waits, 30% the federal government, 30% both | `data/scripts/regional_attachment.py` |
 
 ## Not verified
 
-- How the US assigns each area (`ACTUAL` in `validation/us_run.py`): summarised from general knowledge of US federal programs, not checked against a source in this project.
+- In `validation/political_realities.py`: how far each kind of rule puts Ottawa in charge (INTRUSION), the size of the attachment cost (identity_scale 0 to 1), the reading of today's arrangement in model terms (STATUS_QUO), and the legal reading that a uniform federal carbon price displacing stricter provincial ones would need amendment (the 2021 reference upheld minimum standards; a uniform price is untested).
 
-- Elasticity of taxable income for all Canadian taxpayers, sampled 0.1 to 0.4 in `validation/cost_of_funds.py`: an assumption. Sillamaa and Veall (2001) find Canadian responses smaller than the US's, and a summary of Saez, Slemrod and Giertz (2012) gives about 0.25 as a mid-range figure, but no abstract read states a number.
-- Share of the carbon rebate voters perceive, sampled 0 to 0.6 in `validation/politics.py`: an assumption informed by Mildenberger et al. (2022), which reports underestimation without a single figure in what was read.
+- Per-part spillover ranges for environmental spending in `data/scripts/environment_spillover.py` (waste 0-5%, wastewater 10-30%, pollution abatement 30-70%, biodiversity 10-40%, other 10-50%): assumptions; only the spending shares are measured.
+- Housing costs of 10% to 30% of income in `validation/housing.py`: the share that is land rent is not measured; the upper end is checked against shelter's 31.4% of consumption (Confirmed above).
+
+
+- Elasticity of taxable income for all Canadian taxpayers, sampled 0.1 to 0.4 in `validation/cost_of_funds.py`: an assumption. Sillamaa and Veall (2001) find Canadian responses smaller than the US's, and a summary of Saez, Slemrod and Giertz (2012) gives about 0.25 as a mid-range figure, but no abstract read states a number. Bounded above by the top-earner figure (Confirmed above); the lower end is not checked.
+- Share of the carbon rebate voters perceive, sampled 0 to 0.6 in `validation/politics.py`: an assumption informed by Mildenberger et al. (2022), bounded above by the measured awareness of 55% to 75% (Confirmed above); how much aware recipients underestimate is not measured in what was read.
 
 - The May 2023 transit shares for Toronto, Montreal and Vancouver (Labour Force
   Survey) are used only in a sensitivity scenario. The Statistics Canada page
@@ -90,7 +125,7 @@ only secondary sources could be reached, that is stated. Checked October 2026.
   downloaded). The model only assumes interprovincial transit spillover is
   small (0 to 10%).
 - Research claiming transit economies of scale run out at metropolitan size
-  (cited by the automated review). Not used as evidence; the page presents
-  scale savings as unmeasured.
-- Whether Bill C-4 (2025) has repealed the consumer fuel charge in statute.
-  The page says only that the charge was set to zero.
+  (cited by the automated review). Not used as evidence. The model's range
+  (-10% to +5%) now comes from US National Transit Database bus agencies
+  (Computed above); no Canadian estimate exists.
+

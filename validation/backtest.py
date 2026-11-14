@@ -64,19 +64,20 @@ FMS_ITEMS = {
     "Environmental protection [705]": "Environment",
     "Transport [7045]": "Transportation and communication",
     "Social protection [710]": "Social services",
+    "Health [707]": "Health",
 }
 TOTAL = "Total expenditures"
 
 VINTAGES = {
     1996: {"spending": "fms", "spend_years": range(1988, 1996), "years": range(1986, 1996),
            "emissions_year": "1990",
-           "domains": ("schools", "environment", "transit", "redistribution")},
+           "domains": ("schools", "environment", "transit", "health", "redistribution")},
     2006: {"spending": "fms", "spend_years": range(1996, 2006), "years": range(1996, 2006),
            "emissions_year": "2005",
-           "domains": ("schools", "environment", "transit", "redistribution")},
+           "domains": ("schools", "environment", "transit", "health", "redistribution")},
     2016: {"spending": "ccofog", "spend_years": range(2008, 2016), "years": range(2006, 2016),
            "emissions_year": "2005",
-           "domains": ("schools", "environment", "transit", "redistribution", "climate")},
+           "domains": ("schools", "environment", "transit", "health", "redistribution", "climate")},
 }
 
 REFORMS = [
@@ -100,8 +101,8 @@ REFORMS = [
     },
 ]
 NOT_DATED = [
-    "within-province disagreement (dated separately: validation/opinion_vintages.py, 1993-2015 studies)",
-    "carbon-tax opinion and its link to emissions (2019 study; the 2008 Green Shift question is checked in validation/opinion_vintages.py)",
+    "within-province disagreement (dated separately from the 1993-2015 studies in data/ces_vintages.json; the default ranges already span them)",
+    "carbon-tax opinion and its link to emissions (2019 study; the 2008 Green Shift question is in data/ces_vintages.json)",
     "city map for transit (2016 Census)",
     "cost of public funds, spillovers, scale economies (never measured; same ranges as today)",
 ]
@@ -140,7 +141,7 @@ def measure(spend_years, years, spending: str) -> dict:
         spend = ca.spending()
     try:
         with_years(spend_years)
-        dis = ca.disagreement(pop, gdp, spend, kids)
+        dis = ca.disagreement(pop, gdp, spend, kids, ca.seniors_share(pop))
         mc.FUNCTIONS = {k: v for k, v in ca.FUNCTIONS.items() if k != "social protection"}
         capacity = mc.capacity_test(pop, gdp, spend)
     finally:

@@ -1,0 +1,182 @@
+{
+  "housing_range": [
+    0.1,
+    0.3
+  ],
+  "now": {
+    "schools": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.122,
+      "win_share": {
+        "central": 0.35,
+        "floor": 0.075,
+        "matched": 0.055,
+        "equalized": 0.015,
+        "foundation": 0.15,
+        "equalized_both": 0.355
+      },
+      "share_on_canadian_targets": 0.615
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.393,
+      "win_share": {
+        "central": 0.545,
+        "floor": 0.195,
+        "matched": 0.19,
+        "equalized": 0.005,
+        "foundation": 0.01,
+        "equalized_both": 0.055
+      },
+      "share_on_canadian_targets": 0.66
+    },
+    "transit": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.042,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.085,
+        "floor": 0.125,
+        "ceiling": 0.065,
+        "matched": 0.06,
+        "equalized": 0.035,
+        "city": 0.175,
+        "foundation": 0.265,
+        "equalized_both": 0.185
+      },
+      "share_on_canadian_targets": 0.235
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.595,
+        "floor": 0.23,
+        "ceiling": 0.005,
+        "matched": 0.075,
+        "equalized": 0.01,
+        "equalized_both": 0.08
+      },
+      "share_on_canadian_targets": 0.68
+    },
+    "redistribution": {
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      },
+      "share_on_canadian_targets": 0.555
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      },
+      "share_on_canadian_targets": 0.53
+    }
+  },
+  "results": {
+    "schools": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.088,
+      "win_share": {
+        "local": 0.145,
+        "central": 0.335,
+        "floor": 0.165,
+        "ceiling": 0.005,
+        "matched": 0.165,
+        "equalized": 0.005,
+        "foundation": 0.17,
+        "equalized_both": 0.01
+      },
+      "share_on_canadian_targets": 0.005,
+      "median_income_spread": 0.3697,
+      "median_migration": 0.00521
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.455,
+      "win_share": {
+        "central": 0.485,
+        "floor": 0.095,
+        "ceiling": 0.005,
+        "matched": 0.41,
+        "equalized": 0.005
+      },
+      "share_on_canadian_targets": 0.005,
+      "median_income_spread": 0.3941,
+      "median_migration": 0.00649
+    },
+    "transit": {
+      "robust": "floor 0.1",
+      "robust_mode": "floor",
+      "gain_captured": 0.029,
+      "win_share": {
+        "local": 0.025,
+        "central": 0.055,
+        "floor": 0.25,
+        "ceiling": 0.1,
+        "matched": 0.045,
+        "equalized": 0.025,
+        "city": 0.15,
+        "foundation": 0.3,
+        "equalized_both": 0.05
+      },
+      "share_on_canadian_targets": 0.005,
+      "median_income_spread": 0.3849,
+      "median_migration": 0.00993
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.032,
+      "win_share": {
+        "local": 0.065,
+        "central": 0.595,
+        "floor": 0.17,
+        "ceiling": 0.015,
+        "matched": 0.075,
+        "equalized": 0.035,
+        "foundation": 0.01,
+        "equalized_both": 0.035
+      },
+      "share_on_canadian_targets": 0.0,
+      "median_income_spread": 0.3997,
+      "median_migration": 0.00542
+    },
+    "redistribution": {
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 1.0
+      },
+      "share_on_canadian_targets": 0.055,
+      "median_income_spread": 0.3056,
+      "median_migration": 0.00247
+    },
+    "climate": {
+      "robust": "price 1",
+      "robust_mode": "price",
+      "gain_captured": 0.989,
+      "win_share": {
+        "price": 1.0
+      },
+      "share_on_canadian_targets": 0.0,
+      "median_income_spread": 0.3839,
+      "median_migration": 0.00753
+    }
+  }
+}

@@ -24,6 +24,9 @@
   --m-city: #4a3aa7;
   --m-price: #e34948;
   --m-price_floor: var(--m-floor);
+  --m-foundation: #8a5a2b;
+  --m-equalized_both: #6f8f1f;
+  --m-legislature: #7d7d7d;
   --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Newsreader", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -34,14 +37,14 @@
   :root:not([data-theme="light"]) {
     --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
     --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767;
+    --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767; --m-foundation: #b98352; --m-equalized_both: #93b43a; --m-legislature: #a3a3a3;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111318; --surface: #1a1a19; --ink: #eef0f4; --ink-2: #b6bcc8; --ink-3: #8a91a0;
   --rule: #2c303a; --accent: #9aa6f5; --code-bg: #1d2129; --struck: #f07a80; --grid: #2a2d34;
-  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767;
+  --m-local: #3987e5; --m-central: #d95926; --m-floor: #199e70; --m-ceiling: #c98500; --m-matched: #d55181; --m-equalized: #008300; --m-city: #9085e9; --m-price: #e66767; --m-foundation: #b98352; --m-equalized_both: #93b43a; --m-legislature: #a3a3a3;
   color-scheme: dark;
 }
 
@@ -196,14 +199,16 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <ol class="plain findings">
       <li><strong>Canadians disagree with each other far more than provinces do.</strong> Between-province disagreement is 8% of within-province disagreement on education, about 20% on the environment and redistribution, and 24% on the carbon tax. The classic case for provincial control, that provinces want different things, is weaker in Canada than usually assumed.</li>
       <li><strong>Where provinces do differ, costs explain it.</strong> Provinces that emit more per person support the carbon tax less (correlation -0.82 across the ten provinces, p = 0.003).</li>
-      <li><strong>For climate, the instrument matters more than the level.</strong> A carbon price keeps 99% of the attainable gain; one national quantity standard keeps 44%. A national price floor that provinces may exceed, the 2018 design, does as well as a uniform price.</li>
-      <li><strong>Neither Ottawa nor the provinces raise a dollar more cheaply.</strong> Published estimates seemed to settle schools and the environment either way, but they mixed years, methods and the provinces' own point of view. On one basis (2025 income tax, income moving between provinces counted as no loss to Canada) the provincial cost is 1.01 to 1.02 times the federal for Canada as a whole, 0.68 to 1.36 province by province. That makes the environment narrowly national and keeps schools provincial, with equalization.</li>
-      <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26).</li>
-      <li><strong>Transit stays with the provinces and their cities.</strong> A national network would win only if it saved about 10% or more over separate systems. Cost studies find savings from size only for small operators (in Italy, below the sector's average output; for large US systems, little or none), so merging Canada's already-large metro systems would save little. With savings sampled at 0% to 10%, no fixed national rule beats provincial control; cities win only where almost no commuting crosses the metro boundary.</li>
-      <li><strong>Equalization, Canada's actual tool, beats centralizing where provinces raise money cheaply:</strong> it closes poorer provinces' gap in ability to pay without taking decisions away from them, and wins about a quarter of the sampled worlds for schools.</li>
-      <li><strong>A carbon price is the best climate rule and the hardest to pass.</strong> Households see a charge about 19 times the real gain and, surveys found, little of the rebate; it would take voters noticing about 94% of the rebate for most regions to feel better off. The best rule that passes, a quantity floor, keeps about half the gain, and is roughly what Canada kept in 2025.</li>
-      <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, and with opinion from election studies back to 1993, the model picks today's rule in every area with a clear winner. Two of three reforms since then moved its way; the one that didn't (the 1996 welfare block grant) was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
-      <li><strong>On the United States, two of five verdicts match.</strong> Rebuilt from US data, the model says national for redistribution and the environment, as the US largely does. It says a national carbon price, which the US lacks, and equalization for schools and transit, where state spending tracks state income far more steeply than in Canada.</li>
+      <li><strong>For climate, the instrument matters more than the level.</strong> A carbon price keeps 99% of the attainable gain; one national quantity standard keeps 44%, and a quantity floor provinces may exceed 49%. A national price floor that provinces may exceed, the 2018 design, does as well as a uniform price.</li>
+      <li><strong>A carbon price is also the rule politics kills.</strong> Households see a charge about 19 times the real gain and, surveys found, little of the rebate. Starting from today's arrangement on the ten real provinces, with loss aversion, repeal at elections and the other political parts added, Ottawa keeps today's industrial floor in every sampled world. The visible charge alone does it: take it away and a price floor passes in 77% of worlds. That is what happened: the consumer charge went to zero in April 2025 and was repealed in law in March 2026.</li>
+      <li><strong>Redistribution belongs at the national level</strong> in 98% of sampled worlds, even with nobody moving, and for any weight on inequality up to 1.5 (estimates center on 1.26). It is already national, and politics keeps it there in 92% of worlds.</li>
+      <li><strong>Neither Ottawa nor the provinces raise a dollar more cheaply,</strong> and that one number decides schools and the environment. On one basis (2025 income tax, income moving between provinces counted as no loss to Canada) the provincial cost is 1.01 to 1.02 times the federal for Canada as a whole, 0.68 to 1.36 province by province. That leaves the environment a near-tie: a national standard wins 55% of sampled worlds, but a 20% federal matching grant loses least across them and keeps 39% of the gain.</li>
+      <li><strong>Equalization is the best fixed rule for schools and transit, but not Canada's version.</strong> The version that does best takes from richer provinces as well as topping up poorer ones (12% of the gain for schools, against 9% for one-way equalization like Canada's). Neither is a clear winner, and taking money from provinces would need a constitutional amendment.</li>
+      <li><strong>Health, schools and transit have no clear winner.</strong> A national health system wins 60% of sampled worlds, but where it loses it loses badly, so the rule that loses least is a 10% matching grant keeping 3% of the gain. Transit's best rule keeps 4%: US transit agencies' costs rise slightly with size rather than fall, so one national network would not save money.</li>
+      <li><strong>A legislature of regional delegates is the worst rule tested.</strong> Each delegate wants spending in their region paid for by everyone (Besley and Coate's common pool), so it overspends by far more than any gain from coordinating.</li>
+      <li><strong>Politics costs little where there is little to gain.</strong> Outside climate, the political layer keeps today's arrangement in 13% to 23% of worlds and gives up 7% to 36% of a gain that was small to start with. Fiscal crises cost the most, because they cut Ottawa's grants after provinces have planned around them. Measured attachment to the province and the constitution's limits change little.</li>
+      <li><strong>The verdicts would have been the same decades ago.</strong> Rebuilt from only the data available before 1996, 2006 and 2016, every area picks the same rule as today except health with the oldest data, a near-tie either way. Two of three reforms since then moved the model's way; the one that didn't (the 1996 welfare block grant) followed a budget crisis, and was followed by lower and more uneven provincial spending, as the model predicts of provincial choice.</li>
+      <li><strong>The model does not predict other federations well.</strong> On the United States one of six verdicts matches how powers are divided (redistribution), on Australia two (redistribution and health). It recommends a national carbon price for both, which neither has.</li>
       <li><strong>Canadians move for income, not services.</strong> Within a province, years of rising income bring migrants (+0.32); rising service spending does not (-0.22). Richer provinces spend more on schools, the environment and social protection.</li>
     </ol>
     <p class="note">Every factual claim is logged with its sources in the repository's VERIFICATION.md; three calibration errors caught by these checks are listed in § 7, and a bug caught before publishing is described in the repository's validation notes.</p>
@@ -243,7 +248,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
   <section class="col stack" aria-labelledby="s2">
     <div class="sec-head"><span class="sec-num">§ 2</span><h2 id="s2">A model of the trade-off</h2></div>
     <p>The simulation is a grid of 16 regions and 1,600 people. Each person has an income and a taste for each public service. Every round, each region's government does what its median resident wants, within the national rules. Then people look around and move if another region suits them better and the move is worth its cost.</p>
-    <p>For each policy area, a search picks one of the five rules above and its level. It's balancing forces that pull in opposite directions:</p>
+    <p>For each policy area, a search picks one of the rules above and its level, plus two more grant designs and a legislature: equalization that also takes from richer regions, a foundation grant (Ottawa funds a minimum, regions top up, like Australia's school funding), and a national level set by a legislature of regional delegates (Besley and Coate's common pool). It's balancing forces that pull in opposite directions:</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Pushes power down to regions</th><th>Pushes power up to the nation</th></tr></thead>
@@ -254,7 +259,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
         </tbody>
       </table>
     </div>
-    <p>A fifth area, climate, works differently: cutting emissions is paid for by emitters rather than budgets, and costs differ widely between provinces. There the choice is between letting provinces decide, one national quantity standard, and a carbon price, either uniform or as a national floor provinces can exceed.</p>
+    <p>Health, added later, works like schools. A sixth area, climate, works differently: cutting emissions is paid for by emitters rather than budgets, and costs differ widely between provinces. There the choice is between letting provinces decide, one national quantity standard, and a carbon price, either uniform or as a national floor provinces can exceed.</p>
     <p>These are the ingredients of Wallace Oates' decentralisation theorem and the standard objections to it. The tests check that the model reproduces the textbook results. Left alone, a region provides only <em>taste × (1 − spillover)</em>, and a matching grant at the spillover rate restores the best level.</p>
   </section>
 
@@ -375,10 +380,10 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <div class="fig-title">Every verdict, then and now</div>
     <div class="table-wrap"><table id="bt-all"></table></div>
     <div class="stack" id="bt-text">
-      <p><strong>Stable where it matters.</strong> Every verdict with a clear winner (the environment, redistribution, climate) picks the same rule with 1986-1995, 1996-2005 or 2006-2015 data as with today's (one level moves a notch: national redistribution at 0.3 rather than 0.25 with 1996-2005 data), and the share of the attainable gain each keeps moves by at most 3 points. Schools and transit, which have no clear winner, swap between near-ties: with the two earlier decades' data schools pick a small matching grant rather than equalization, and transit a small national floor rather than equalization, each keeping within a point or two of the same small gain. Disagreement between provinces, inequality and migration all changed over those decades (migration fell from 1.09% to 0.79% a year), but not by enough to move a verdict. Restricting to sampled worlds as mobile as each decade gives the same answers.</p>
-      <p><strong>Two of three reforms point the model's way.</strong> Ontario moving Toronto-area transit from cities to a provincial body moves away from the model's weaker option (cities deciding alone does worse than provinces deciding), and the national carbon price floor moves toward what the model recommends with the data of the time. The 1996 block grant moved the other way.</p>
+      <p><strong>Stable where it matters.</strong> With data from 1986-1995, 1996-2005 or 2006-2015, schools, the environment, transit and redistribution pick the same rule as with today's data (one level moves a notch: national redistribution at 0.3 rather than 0.25 with 1996-2005 data). The share of the attainable gain each keeps moves by at most 11 points (the environment, 29% with the oldest data against 39% now). Health is the one change: with the oldest data it picks equalization both ways instead of a small matching grant, both keeping under 7% of the gain. Disagreement between provinces, inequality and migration all changed over those decades (migration fell from 1.09% to 0.79% a year), but not by enough to move a verdict.</p>
+      <p><strong>Two of three reforms point the model's way.</strong> Ontario moving Toronto-area transit from cities to a provincial body moves away from the model's weaker option (cities deciding alone does worse than provinces deciding), and the national carbon price floor moves toward what the model recommends with the data of the time. The 1996 block grant moved the other way. It came out of a budget crisis: the 1995 budget cut transfers by about 15% (40% of projected cash), after a 1990 cap on matching payments to the richest provinces that the Supreme Court upheld in 1991. The political layer below adds such crises.</p>
       <p><strong>Where it disagreed, the later data look like what the model predicts of provincial choice.</strong> After Ottawa stopped matching welfare spending, provincial and local social-services spending fell from 4.4% to 3.4% of provincial GDP (fiscal years 1988-95 against 1997-2008), and the gap between provinces widened (coefficient of variation of spending per person 0.28 to 0.35). The late-1990s recovery also cut welfare caseloads and the 1995 federal budget cut transfers, so this is consistent with the model, not proof of it.</p>
-      <p><strong>What it missed.</strong> The model recommended a carbon price in 2016 and still does, but the consumer charge was set to zero in 2025. The "who loses" analysis below finds no region that loses in the model, so the repeal reflects something it leaves out: how visible the cost was against the rebate, and politics generally.</p>
+      <p><strong>What it missed.</strong> The welfare model recommended a carbon price in 2016 and still does, but the consumer charge was set to zero in 2025 and repealed in law in 2026. The "who loses" analysis below finds no province that loses in real welfare, so the repeal reflects something the welfare model leaves out. The political layer below finds it: how visible the charge is against the rebate.</p>
     </div>
     <p class="note" id="bt-note"></p>
     <div class="fig-title">Opinion over time: how far apart provinces are, in units of disagreement within one</div>
@@ -386,18 +391,18 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <p class="note">Canadian Election Studies 1993 to 2019, the same method as the 2019 calibration (sampling noise removed). Same question where it exists: should government spend more, less or the same on education and the environment (2004 on), and how much should be done to reduce the gap between rich and poor (2004 on). Marked * where an older study only asked a related question: cutting education spending (1993, 1997), environment against jobs (1993 to 2011), the government doing more on the income gap (1993, 1997). Climate in 2008: the Liberal Green Shift carbon tax "would really hurt the economy", reversed. Blank where not asked; 0 where the gap is within sampling noise.</p>
     <div class="stack" id="ces-text">
       <p><strong>The opinion data were the one input the backtest couldn't date; now they are, and nothing moves.</strong> On the same questions, provinces' gap on redistribution held at 0.19 to 0.26 of the disagreement inside a province from 2004 to 2019, and on the environment 0.12 to 0.20. Schools swing more (0.06 to 0.25) and the provinces' order isn't stable from one study to the next, which fits schools being the area with no clear winner. The 2008 carbon-tax question puts provinces at 0.18 against 2019's 0.24, in nearly the same order (correlation of provincial averages 0.90).</p>
-      <p>Only two inputs depend on these numbers. With 2004's figure for schools, disagreement inside a province can fall from the model's 0.25-0.30 to about 0.10; with 2008's for climate, the gap between provinces narrows slightly. Rerun on the same sampled worlds with both ranges widened, schools still pick equalization (no clear winner, 10% of the gain) and climate still a carbon price (99%). The environment is unaffected: even its largest dated gap leaves disagreement inside provinces above the model's ceiling.</p>
+      <p>Only two inputs depend on these numbers. With 2004's figure for schools, disagreement inside a province can fall from the model's 0.25-0.30 to about 0.10; with 2008's for climate, the gap between provinces narrows slightly. Both widened ranges are now the default, so every verdict on this page already allows for them: schools still have no clear winner and climate still picks a carbon price (99%). The environment is unaffected: even its largest dated gap leaves disagreement inside provinces above the model's ceiling.</p>
     </div>
   </section>
 
   <section class="col stack" aria-labelledby="s-us">
-    <div class="sec-head"><span class="sec-num">Abroad</span><h2 id="s-us">The same model on the United States</h2></div>
-    <p>Three Canadian reforms are a small sample. The strongest test available is another federation: feed the model that country's measurements and ask whether its verdicts match how that country divides powers. Every measured input was rebuilt for the 50 states: state and local spending by function (Census Bureau, 2017-2022), market-income inequality (OECD), how strongly state spending rises with state income (BEA), CO2 per person (EIA). Mobility was refitted so the model reproduces US migration between states, about twice Canada's rate. Everything unmeasured keeps its Canadian range.</p>
+    <div class="sec-head"><span class="sec-num">Abroad</span><h2 id="s-us">The same model on the United States and Australia</h2></div>
+    <p>Three Canadian reforms are a small sample. A stronger test is another federation: give the model that country's measurements and see whether its verdicts match how the country divides powers. For each country every measured input was rebuilt from its own statistics, and the regions are its real states, sized by population and joined where they share a border. United States: state and local spending by function (Census Bureau), market-income inequality (OECD), state income (BEA), migration between states (Current Population Survey), CO2 per person (EIA). Australia: state and local spending by purpose (ABS Government Finance Statistics), interstate departures and household income (ABS), inequality (OECD), state emissions inventories (DCCEEW). Mobility was refitted to each country's migration and spread of incomes. What can't be measured keeps its Canadian range.</p>
     <div class="table-wrap"><table id="us-table"></table></div>
     <div class="stack" id="us-text">
-      <p><strong>Two of five match.</strong> Redistribution comes out national, as it largely is in the US (Social Security, SNAP, the earned income tax credit). The environment comes out national too: the model prefers one standard, with a floor states may exceed close behind (it wins 29% of worlds), and the US uses federal minimum standards that states implement and may exceed.</p>
-      <p><strong>Three don't, and the reasons differ.</strong> For climate the model says a national carbon price in every sampled world, as it does for Canada; the US has none, and the politics analysis above suggests why a visible price is hard to pass. For schools and transit the model favours equalization, because US state spending rises steeply with state income (an elasticity of 0.7 to 1.2 against Canada's 0.05 to 0.4, where equalization already exists). With US data, school equalization keeps 36% of the attainable gain against 10% for Canada: the model's case for it is stronger where it is missing. The US pays for transit and highways with matching grants, a rule the model says does slightly worse than leaving states alone.</p>
-      <p><strong>What this test can and can't show.</strong> It is one country and five areas, so two matches out of five is weak evidence either way. The mismatches are where the model says the US arrangement leaves gains on the table, not proof the model is wrong; the model scores welfare, not what Congress passes. It still has 16 regions rather than 50 states, and it keeps Canada's cost-of-funds ratio, city map and unmeasured ranges.</p>
+      <p><strong>The model does not predict how other federations divide powers.</strong> On the United States one of six verdicts matches clearly (national redistribution) and one partly (schools: the model says equalization; Title I grants aim at poorer districts but are a small share of school money). On Australia two match (national redistribution and matching grants for health, which the Commonwealth pays 45% of the growth in) and one partly (schools: a small national floor, where Australia funds a share of a needs-based standard). Both get a national carbon price, which neither has; Australia had one from 2012 to 2014.</p>
+      <p><strong>The fit to each country's mobility is weak.</strong> Only 0% to 27% of the sampled US worlds, and 3% to 48% of the Australian ones, reproduce that country's migration and income spread, against about 60% for Canada. The mobility settings were refitted, but the model's movers don't match both targets at once on fifty or six states. Treat these runs as a test the model mostly fails, not as advice to either country.</p>
+      <p><strong>Where it fails, it fails the same way as in Canada:</strong> it recommends a carbon price and more national money than federations choose. The political layer above explains the carbon price in Canada; it has not been built for the United States or Australia.</p>
     </div>
     <p class="note" id="us-note"></p>
   </section>
@@ -411,11 +416,10 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <p class="note">Each cell: the group's typical change as a multiple of the average gain (1.0 = gains like the average Canadian), and in brackets the share of sampled worlds in which it is worse off. Regions follow the model's 16: 4 Quebec, 6 Ontario, 2 British Columbia, 2 Alberta, 1 Manitoba and Saskatchewan, 1 Atlantic. Grouping hides Saskatchewan inside Manitoba.</p>
     <div class="table-wrap"><table id="prov-verdicts"></table></div>
     <div class="stack" id="fe-text">
-      <p><strong>Named, the losers are mostly Alberta.</strong> With every region set to its real province, a national environmental standard leaves Alberta with a tenth of the average gain and worse off in 46% of worlds; Manitoba and Saskatchewan in 23%. Alberta also gains least from national redistribution. On real welfare a carbon price leaves every group better off, Alberta included (about three quarters of the average gain). As voters see it, every group opposes a carbon price; a quantity standard is opposed mainly by Alberta (in 88% of worlds) and Manitoba and Saskatchewan (54%), and still passes.</p>
-      <p><strong>The verdicts barely change.</strong> Giving regions their real provinces' values instead of random ones keeps the same kind of rule for the environment, redistribution and climate. Schools switch to a small matching grant and transit to a small national floor, both near-ties with no clear winner either way.</p>
-      <p><strong>Equalization is the rule with concentrated losers.</strong> Under full equalization for schools (the best fixed rule there, though no clear winner), about a third of regions are worse off, and the hardest-hit loses over three times what the average person gains. That matches the politics: in 2021 Albertans voted 61.7% to remove equalization from the Constitution (a non-binding referendum).</p>
-      <p><strong>The carbon price has almost no losers in the model.</strong> Even the two regions with the highest abatement cost, standing in for Alberta and Saskatchewan, gain about four-fifths of the average gain, because they share in everyone else's cuts. In the model, the reason the consumer charge didn't last is not lost welfare. See the backtest above.</p>
-      <p><strong>A national environmental standard</strong> leaves few losers, and those are the regions that want less of it. Redistribution leaves about one region in eight worse off, by less than the average gain. Transit's best fixed rule, equalization, gains almost nothing on average and leaves over a third of regions worse off; named, Alberta loses in 56% of worlds and Manitoba and Saskatchewan in 48%. With no clear winner and those losers, there is no case for moving transit from the provinces.</p>
+      <p><strong>Named, the losers are mostly Alberta and Saskatchewan.</strong> With every region set to its real province, the environment's 20% matching grant leaves Alberta worse off in 81% of worlds and Saskatchewan in 74%; Quebec never loses. Alberta also loses in about half the worlds under the best rules for transit and health. On real welfare a carbon price leaves every province better off in almost every world, Saskatchewan least (about two fifths of the average gain).</p>
+      <p><strong>National redistribution has the clearest losers: the provinces that pay in.</strong> Ontario and Alberta are worse off in about three quarters of worlds, while the Atlantic provinces gain four to seven times the average. That matches the politics: in 2021 Albertans voted 61.7% to remove equalization from the Constitution (a non-binding referendum).</p>
+      <p><strong>The verdicts barely change.</strong> Giving regions their real provinces' values instead of random ones keeps the same rule for schools, the environment, health and climate, and national redistribution one notch higher (0.3). Transit switches to a small national floor, a near-tie with no clear winner either way.</p>
+      <p><strong>Equalization both ways has scattered losers.</strong> For schools, about a fifth of provinces are worse off in a typical world (a third of the 16 model regions), with Saskatchewan worse off in 40% of worlds; the Atlantic provinces gain about twice the average. Transit's best rule gains almost nothing on average and leaves Alberta worse off in about half the worlds. With no clear winner and those losers, there is no case for moving transit from the provinces.</p>
     </div>
   </section>
 
@@ -424,8 +428,39 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <p>The model scores rules by real welfare; voters judge them by what they see. Two additions, applied after each simulation: under a carbon price households see the charge on every tonne they still emit but, as surveys found in Canada, little of the rebate; and a rule must win the regions holding a majority of people (or two thirds, standing in for the amending formula). Costs of quantity standards are buried in prices, so only a price has a visible payment.</p>
     <div class="table-wrap"><table id="pol-table"></table></div>
     <div class="stack">
-      <p><strong>A carbon price passes in every sampled world on real welfare, and in none once payments are visible.</strong> The charge households pay is about 19 times the real gain, so most regions would see a net gain only if voters noticed about 94% of the rebate (87% to 98% across worlds). That doesn't depend on the assumed awareness range: it would take near-complete awareness. The best rule that does pass is a quantity floor, which keeps about half the gain. Canada's 2025 change, ending the consumer charge but keeping industrial pricing and regulation, is the model's best passable rule.</p>
-      <p><strong>Elsewhere politics costs little where the case is clear.</strong> National standards for the environment and redistribution pass in most worlds. Schools and transit, with no clear winner, are where votes bind: under a two-thirds rule nothing passes in about a quarter of worlds for schools (the best passable rule is usually a small matching grant) and about three in ten for transit. Since the gains there are small, so is what's lost.</p>
+      <p><strong>A carbon price passes in every sampled world on real welfare, and in none once payments are visible.</strong> The charge households pay is about 19 times the real gain, so most regions would see a net gain only if voters noticed about 94% of the rebate (87% to 98% across worlds). With the ten real provinces the charge is 15 times the gain and the rebate share needed is 84% (42% to 95%); the price still passes in only 3% of worlds. Surveys put awareness of the rebate at 55% to 75%, and those aware underestimated it. The best rule that does pass is a quantity floor, which keeps about half the gain (80% with the real provinces). Canada's 2025 change, ending the consumer charge but keeping industrial pricing and regulation, is the model's best passable rule.</p>
+      <p><strong>Elsewhere politics costs little where the case is clear.</strong> National redistribution and the environment's best rules pass in most worlds. Schools, transit and health, with no clear winner, are where votes bind: under a two-thirds rule nothing passes in 8% of worlds for schools, 16% for transit and 21% for health. With the real provinces, national redistribution is the exception: Ontario and Alberta, together just over half the people, oppose it in most worlds, it passes a majority in only 34%, and nothing passes two thirds in about half the worlds. Since it is already national, that is a reason it is hard to undo rather than to do.</p>
+    </div>
+  </section>
+
+  <section class="col stack" aria-labelledby="s-real">
+    <div class="sec-head"><span class="sec-num">Realities</span><h2 id="s-real">Adding the politics the model left out</h2></div>
+    <p>The welfare model says what a planner who cares only about welfare would pick. Canada's arrangements differ from it in ways the model can name. So a political layer was added on top, on the ten real provinces, starting from what Canada does today. It has seven parts. Each is measured where possible; the rest are sampled over a range and labelled.</p>
+    <ul class="stack" id="real-list">
+      <li><strong>Status quo.</strong> A reform is judged against today's arrangement, not against provinces deciding alone.</li>
+      <li><strong>Loss aversion.</strong> A loss weighs 1.8 to 2.1 times an equal gain: the 95% interval of the mean of 607 estimates (Brown, Imai, Vieider and Camerer, 2024).</li>
+      <li><strong>Visible payments.</strong> People see the carbon charge but not all of the rebate. Awareness of the rebate was 55% in Ontario and 75% in Saskatchewan, and those who knew underestimated it. The share of the rebate voters notice is sampled from 0 to 60%.</li>
+      <li><strong>Attachment to the province.</strong> Some people want their province, not Ottawa, to decide whatever the service. Each province's level is measured from three Canadian Election Study questions (1997 to 2011): federal or provincial power, whether Ottawa treats the province fairly, and which government looks after you. How much each kind of rule puts Ottawa in charge is an assumption. How much attachment weighs against services isn't measured: it is sampled from nothing up to the area's whole gain.</li>
+      <li><strong>The constitution and the courts.</strong> Ottawa can act alone through its own powers, its spending power and what the courts have upheld. That needs a Commons majority, taken here as provinces holding more than half the people. A mandate in a provincial field needs the amending formula: seven provinces with half the people.</li>
+      <li><strong>Repeal.</strong> A carbon price passed by Parliament must keep a majority through the next three elections, each with a fresh draw of how much of the rebate voters notice. Canada held nine general elections from 2000 to 2025. A constitutional change can't be repealed by an election.</li>
+      <li><strong>Fiscal crises.</strong> In a budget crisis Ottawa cuts its own money: grants and federal programmes fall 15% to 40%, the range of the 1995 budget's cut to provincial transfers. Mandates, standards and prices cost Ottawa nothing and are untouched. The Supreme Court confirmed in 1991 that Ottawa may cut its own grants unilaterally. The chance of a crisis in a decade, 30% to 60%, comes from the confirmed episodes since 1990.</li>
+    </ul>
+    <div class="fig-title">Attachment to the province (net share siding with the province; Canadian Election Studies 1997 to 2011)</div>
+    <div class="table-wrap"><table id="att-table"></table></div>
+    <div class="fig-title">What Ottawa would do, starting from today</div>
+    <div class="table-wrap"><table id="real-table"></table></div>
+    <p class="note">Each area: 40 sampled worlds, 3 seeds each, ten real provinces. Planner: the rule with the largest real gain over today's arrangement, if any. With politics: the rule Ottawa can pass with the largest expected gain as voters see it, discounted for repeal and fiscal crises; otherwise today's arrangement stays.</p>
+    <div class="fig-title">Which part of the politics does the work: share of worlds in which today's arrangement stays</div>
+    <div class="table-wrap"><table id="real-ablation"></table></div>
+    <p class="note">Left: everything except one part. Right: that part alone (with the status quo). Repeal only acts through visible payments, so on its own it changes nothing.</p>
+    <div class="fig-title">What Ottawa can do alone</div>
+    <div class="table-wrap"><table id="real-legal"></table></div>
+    <div class="stack" id="real-text">
+      <p><strong>Climate: politics reverses the verdict, and visible payments alone explain it.</strong> A planner would replace today's arrangement with a carbon price in 88% of worlds. With the political parts added, today's arrangement stays in all of them: the uniform price would need a constitutional amendment, and the price floor Ottawa can pass alone loses the vote as voters see it and would not survive an election if adopted. Switch off only the visible payments and a price floor passes in 77% of worlds; switch on only the visible payments and today's arrangement stays everywhere. Loss aversion alone keeps today's arrangement in 23% of worlds, against 12% for the planner. This is the model's account of Bill C-4.</p>
+      <p><strong>Redistribution: already where the model wants it.</strong> Today's national arrangement is the planner's own choice in 92% of worlds, and politics changes nothing. Handing it to the provinces would pass a Commons vote in 78% of worlds, with Ontario and Alberta for it, but voters elsewhere lose more than they gain. A fiscal crisis is the one part that moves it: on its own it lowers the share of worlds keeping today's arrangement to 69%.</p>
+      <p><strong>Schools, the environment, transit and health: small costs.</strong> Politics keeps today's arrangement in 23%, 17%, 22% and 13% of worlds, against 15%, 17%, 16% and 13% for the planner, and gives up 25%, 7%, 8% and 36% of the planner's (small) gain over today. Fiscal crises cost the most: without them, the loss for schools and health nearly vanishes, because a crisis cuts Ottawa's money after provinces have planned around it, so national programmes and grants are worth less in expectation. Loss aversion is the next largest. A national school standard would need an amendment; it passes the amending formula in 30% of worlds.</p>
+      <p><strong>Attachment and the constitution matter less than expected.</strong> Measured attachment differs only modestly between provinces (from -0.04 in Ontario to 0.34 in Newfoundland and Labrador and 0.31 in Quebec on a scale from -1 to 1), and the rules that win mostly run through Ottawa's spending power, which it can use alone. Switching attachment off changes the choice in at most 4% of worlds per area. How much attachment should weigh is not measured, so this is a finding about the measured differences between provinces, not about identity in general.</p>
+      <p><strong>What this layer still leaves out:</strong> parties, credit-claiming, lobbying, courts' future rulings, Quebec's distinct position beyond what the surveys measure, and how attachment would respond to a reform itself.</p>
     </div>
   </section>
 
@@ -441,11 +476,11 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <p>Sampling ranges fixes uncertainty about the <em>numbers</em>. It can't fix the model's <em>structure</em>. These would each move the answer, and none of them is in the simulation:</p>
     <ul class="plain">
       <li><strong>Data age.</strong> The data describe long-run structure (city sizes, the urban-rural split, which provinces emit more) from 2016 to 2024, and survey opinion from 2019. Structure changes slowly, and a reform to who decides would last decades, so a pre-pandemic year is arguably a better guide than 2021. Opinion and prices move faster: carbon-tax support has likely shifted since 2019. The model is not a forecast; where a verdict hinges on a fast-moving number, the threshold maps in § 6 show what value would flip it.</li>
-      <li><strong>Politics.</strong> Governments here are honest median voters. Capture by industry, lobbying, and the gap between what voters want and what they get at each level are all absent.</li>
+      <li><strong>Politics.</strong> In the welfare model governments are honest median voters. The political layer ("Adding the politics the model left out") adds the status quo, loss aversion, visible payments, attachment to the province, the constitution, repeal and fiscal crises, but not parties, capture by industry or lobbying.</li>
       <li><strong>Learning.</strong> Regions can't copy each other's successful experiments. That's one of the strongest real arguments for decentralisation, so the model probably understates it.</li>
       <li><strong>Uniformity.</strong> National policy has to be the same everywhere. Real national programs tailor somewhat, which narrows the case for regional control.</li>
       <li><strong>Who pays.</strong> Poorer regions now find local money dearer, and equalization is one of the rules tested. But equalization here tops up one service at a time; Canada's is unconditional and covers everything at once.</li>
-      <li><strong>Scale.</strong> Sixteen regions on a grid is not ten provinces of very different sizes.</li>
+      <li><strong>Scale.</strong> The main analysis uses sixteen regions on a grid. Rerun on the ten real provinces, sized by population and joined where they border, it picks the same rules except a near-tie for transit ("Who loses under each rule").</li>
     </ul>
     <h3>What two automated reviews challenged</h3>
     <p>The study's claims were run twice through <a href="https://github.com/alexdduda/ai-auditor">ai-auditor</a>, which extracts assumptions, searches for counter-evidence and proposes alternative answers. It is one model reviewing another, so its points are challenges, not verified findings, and studies it cites are checked against their sources before this page uses them. The second review gave the recommendations a confidence of 0.15 out of 1.</p>
@@ -453,7 +488,7 @@ ol.findings li::marker { color: var(--accent); font-family: var(--font-display);
     <ul class="plain">
       <li><strong>The verdicts restated guessed ranges.</strong> Replaced by Canadian measurements wherever any exist (§ 3); where none exist, verdicts are shown as thresholds (§ 6).</li>
       <li><strong>The cost-of-funds ranges excluded the cited evidence.</strong> A real error; corrected and re-run (see Corrections in § 7).</li>
-      <li><strong>Equalization was never tested,</strong> though it is how Canada actually handles provinces' different ability to pay. Now one of the six rules.</li>
+      <li><strong>Equalization was never tested,</strong> though it is how Canada actually handles provinces' different ability to pay. Now one of the rules, with a version that also takes from richer regions.</li>
       <li><strong>The welfare measure was untested.</strong> Redistribution is now mapped across a range of weights on inequality (§ 6).</li>
       <li><strong>Overclaims.</strong> The page called the services-migration test a match (it isn't), presented an argument about the redistribution failure as if shown, and gave schools a verdict that is really a close call. All three are corrected.</li>
     </ul>
@@ -482,10 +517,10 @@ python3 -m tiebout evaluate results/robust_arrangement.jur</pre>
 <script>
 const DATA = /*__DATA__*/null;
 
-const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized", "city", "price", "price_floor"];
-const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization", city: "Cities decide", price: "National carbon price", price_floor: "Carbon price floor" };
-const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized", city: "devolved", price: "preempt (price)", price_floor: "floor (price)" };
-const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+const MODES = ["local", "central", "floor", "ceiling", "matched", "equalized", "equalized_both", "foundation", "legislature", "city", "price", "price_floor"];
+const MODE_NAME = { local: "Regions decide", central: "National standard", floor: "National floor", ceiling: "National cap", matched: "Matching grant", equalized: "Equalization", equalized_both: "Equalization both ways", foundation: "Foundation grant", legislature: "Set by a legislature of regions", city: "Cities decide", price: "National carbon price", price_floor: "Carbon price floor" };
+const MODE_LAW = { local: "shadow", central: "preempt", floor: "floor", ceiling: "ceiling", matched: "matched", equalized: "equalized", equalized_both: "levelled", foundation: "funded", legislature: "preempt (legislature)", city: "devolved", price: "preempt (price)", price_floor: "floor (price)" };
+const DOMAIN_NAME = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
 const PARAM = {
   heterogeneity: "How much regions disagree",
   spillover: "Benefit leaking to neighbours",
@@ -524,7 +559,7 @@ function svgFill(svg, m) {
   el("svg:rect", { x: 6, width: 2, height: 8, fill: "var(--surface)" }, pat);
   return `url(#${id})`;
 }
-const pct = (x) => `${Math.round(x * 100)}%`;
+const pct = (x, d = 0) => `${d ? (x * 100).toFixed(d) : Math.round(x * 100)}%`;
 const SVGNS = "http://www.w3.org/2000/svg";
 
 function el(tag, attrs = {}, parent) {
@@ -551,6 +586,9 @@ function policyText(f) {
   if (f.mode === "local") return "Regions decide";
   if (f.mode === "matched") return `Matching grant, ${Math.round(f.level * 100)}%`;
   if (f.mode === "equalized") return `Equalization, ${Math.round(f.level * 100)}% of the gap`;
+  if (f.mode === "equalized_both") return `Equalization both ways, ${Math.round(f.level * 100)}% of the gap (rich regions pay in)`;
+  if (f.mode === "foundation") return `Foundation grant: Ottawa funds a minimum of ${+f.level.toFixed(3)}, provinces top up`;
+  if (f.mode === "legislature") return "National level set by a coalition of regional delegates";
   if (f.mode === "city") return f.level ? `Cities decide, ${Math.round(f.level * 100)}% federal grant` : "Cities decide";
   if (f.mode === "price") return `National carbon price at ${+f.level.toFixed(3)}`;
   if (f.mode === "price_floor") return `Carbon price floor at ${+f.level.toFixed(3)}, provinces may go higher`;
@@ -629,7 +667,8 @@ legend(document.getElementById("mode-legend"), MODES);
   const table = document.getElementById("win-table");
   const head = el("tr", {}, el("thead", {}, table));
   el("th", { text: "Policy area" }, head);
-  MODES.forEach((m) => el("th", { class: "num", text: MODE_NAME[m] }, head));
+  const USED = MODES.filter((m) => Object.values(DATA.unc.domains).some((d) => d.win_share[m]));
+  USED.forEach((m) => el("th", { class: "num", text: MODE_NAME[m] }, head));
   el("th", { text: "Lowest-regret single rule" }, head);
   el("th", { class: "num", text: "Gain kept" }, head);
   const tbody = el("tbody", {}, table);
@@ -652,7 +691,7 @@ legend(document.getElementById("mode-legend"), MODES);
       const r = el("svg:rect", { x, y: 0, width: Math.max(0, w - gap), height: H, fill: svgFill(svg, m), rx: 0 }, svg);
       hoverable(r, (e) => showTip(e, pct(d.win_share[m]), [{ color: modeColor(m), text: `${MODE_NAME[m]} wins this share of worlds` }]));
       if (w > 46) {
-        const light = ["ceiling", "floor", "matched", "price_floor"].includes(m);
+        const light = ["ceiling", "floor", "matched", "price_floor", "equalized_both", "legislature"].includes(m);
         el("svg:text", { x: x + 8, y: H / 2 + 4.5, text: pct(d.win_share[m]), style: { fill: light ? "#12161d" : "#ffffff", fontWeight: 600, pointerEvents: "none" } }, svg);
       }
       x += w;
@@ -677,7 +716,7 @@ legend(document.getElementById("mode-legend"), MODES);
 
     const tr = el("tr", {}, tbody);
     el("td", { text: DOMAIN_NAME[name] }, tr);
-    MODES.forEach((m) => el("td", { class: "num", text: d.win_share[m] ? pct(d.win_share[m]) : "–" }, tr));
+    USED.forEach((m) => el("td", { class: "num", text: d.win_share[m] ? pct(d.win_share[m]) : "–" }, tr));
     el("td", { text: policyText(d.robust) }, tr);
     el("td", { class: "num", text: pct(d.robust.gain_captured) }, tr);
   }
@@ -875,11 +914,13 @@ legend(document.getElementById("mode-legend"), MODES);
     ["Schools: how much provinces disagree", "0.10 to 0.30", het("schools"), `Spending, four measures; survey ρ = ${S ? r2(S.schools.rho) : "n/a"}`, "Stats Can 10-10-0005, 17-10-0005; CES 2019"],
     ["Environment: how much provinces disagree", "0.02 to 0.15", het("environment"), `Spending, three measures; survey ρ = ${S ? r2(S.environment.rho) : "n/a"}`, "Stats Can 10-10-0005; CES 2019"],
     ["Transit: how much provinces disagree", "0.05 to 0.20", het("transit"), "Spending, three measures (no survey question)", "Stats Can 10-10-0005"],
+    ["Health: how much provinces disagree", "0.02 to 0.15", het("health"), "Spending, four measures, one net of the share aged 65 and over; survey ρ 0.19 to 0.25 (2004-2011; 2019 didn't ask)", "Stats Can 10-10-0005, 17-10-0005; CES 2004-2011"],
+    ["Health: disagreement within a province", "0.05 to 0.15", "0.09 to 0.14", "Spending spread divided by the survey ratio: under the model's ceiling, unlike the other areas", "CES 2004-2011"],
     ["Disagreement within a province", "0.05 to 0.15", "0.25 to 0.30", "5 to 12 times the between-province spread; capped at the model's scale", "CES 2019"],
     ["Income inequality (log spread)", "0.40 to 1.00", `${r2(T.inequality.income_sigma - 0.03)} to ${r2(T.inequality.income_sigma + 0.03)}`, `Market-income Gini ${r2(T.inequality.market_gini)}`, "Stats Can 11-10-0134"],
     ["How unequal regions are in productivity", "all equal", "calibrated jointly with mobility", `Provincial average market incomes differ by ${(T.regional_income.market_income_cv * 100).toFixed(0)}%`, "Stats Can 11-10-0190"],
     ["People moving between regions per year", "up to 1.8%", "0.3% to 0.75%", `Canada: ${(T.migration.annual_rate * 100).toFixed(2)}% of people move province each year; the model's movers now follow jobs as well as services`, "Stats Can 17-10-0022"],
-    ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
+    ["How much richer provinces spend more", "not modelled", "schools 0.20, environment 0.16, transit 0.03, health 0.01", "Income elasticity of provincial spending, halved for the cost of the level", "Stats Can 10-10-0005, 36-10-0222"],
     ["Cost of raising a dollar, national vs. provincial", "0 to 35% extra each", "federal 20% to 190% extra; provincial 0.68 to 1.36 times federal", "Computed on one basis: 2025 income tax rates, one formula, counting income that moves between provinces as no loss to Canada. Ratio 1.01 to 1.02 for Canada as a whole; 0.68 (Alberta, high incomes) to 1.36 (Nova Scotia and Quebec) province by province. Earlier versions used 1/4 to 4 from published estimates that mixed years, methods and the provinces' own view", "CRA, Revenu Qu\u00e9bec 2025 rates; validation/cost_of_funds.py; federal level Dahlby and Ferede 2022"],
     ["Weight on inequality (redistribution)", "log utility only", "log utility, with 0.5 to 2.5 tested in § 6", "Estimated at 1.26 (1.19 to 1.34 across six surveys)", "Layard, Mayraz and Nickell 2008"],
     ["Official-language minority by region", "none", "19.5% French overall", "2021 Census, French as first official language spoken: Quebec 82.2%, New Brunswick 30.0%, Ontario 3.4%, Canada 21.4%; mapped onto 16 regions by population", "Stats Can, The Daily, Aug 17, 2022"],
@@ -890,7 +931,9 @@ legend(document.getElementById("mode-legend"), MODES);
     ["Climate: do high-emitting provinces want less?", "no climate area", "link 0.6 to 0.9", "Across the ten provinces, emissions per person and support for the carbon tax correlate at -0.82 (p = 0.003)", "ECCC 2024; CES 2019"],
     ["Cities in each province (transit's city level)", "no city level", "all 35 metro areas, 25 places", "71.0% of Canadians lived in a census metropolitan area in 2016; each area's size and transit use (2.3% to 24.3% of commuters) from the census, pre-pandemic", "2016 Census, The Daily (Feb. 8 and Nov. 29, 2017)"],
     ["Transit benefit commuters carry across the metro boundary", "no city level", "0 to 20%", "Statistics Canada adds a municipality to a metro area when at least 50% of its workers commute to the core, so fewer than half of those left outside commute in", "Census of Population 2021 Dictionary"],
-    ["Spillovers to neighbours; savings from one national system; crowding; size of the city-countryside taste gap", "guessed", "still guessed", "No clean Canadian measurement. Differences between cities are now taken from transit use; the overall city-countryside gap is still sampled over a wide range", "none"],
+    ["Environment: benefit felt in other provinces (spillover)", "30% to 80%", "10% to 31%", "Weighted by what provinces spend on each part: waste and wastewater, whose benefits mostly stay home, are about two thirds. The spillover of each part is assumed", "Stats Can 10-10-0005"],
+    ["Transit: saving from one bigger network", "0% to 20%", "-10% to +5%", "US bus operators' cost per vehicle-hour rises with size (elasticity about +0.11, +0.08 to +0.14 within two standard errors, for about 290 directly operated agencies); no Canadian estimate", "FTA National Transit Database 2023-2024"],
+    ["Other spillovers to neighbours; crowding; size of the city-countryside taste gap", "guessed", "still guessed", "No clean Canadian measurement. Differences between cities are now taken from transit use; the overall city-countryside gap is still sampled over a wide range", "none"],
   ];
   const table = document.getElementById("calib-table");
   const h = el("tr", {}, el("thead", {}, table));
@@ -955,7 +998,7 @@ legend(document.getElementById("mode-legend"), MODES);
   if (DATA.calibrated) {
     el("p", { text: `With calibrated mobility the shortcut is less exact: it picked the same rule as joint optimisation for ${pct(s.mode_agreement)} of policy areas and kept at least ${pct(s.min_gain_kept)} of the joint gain. More realistic sorting makes the policy areas interact more, so treat close calls between two rules with care.` }, txt);
     const het = DATA.targets.disagreement.schools.heterogeneity_range;
-    el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor and left schools to the provinces. Calibrating to Canada made both national standards. Correcting the cost of raising money (now centred on neither level being cheaper) sent schools back: on average no fixed national rule beats provincial control, and equalization does marginally best. For schools and the environment, the answer turned almost entirely on one number, whether Ottawa or the provinces raise a dollar more cheaply. Computing it on one basis (2025 income tax, same formula) put it at about 1 for Canada as a whole and 0.68 to 1.36 province by province, which made national standards for the environment and transit clearer (they now keep 72% and 63% of the attainable gain) and left schools a near-tie between a national standard and equalization." }, txt);
+    el("p", { text: "How the answer moved. The first, single-world study gave the environment a national floor and left schools to the provinces. Calibrating to Canada made both national standards. Correcting the cost of raising money (now centred on neither level being cheaper) sent schools back: on average no fixed national rule beats provincial control, and equalization does marginally best. For schools and the environment, the answer turned almost entirely on one number, whether Ottawa or the provinces raise a dollar more cheaply. Computing it on one basis (2025 income tax, same formula) put it at about 1 for Canada as a whole and 0.68 to 1.36 province by province, which made national standards for the environment and transit clearer for a time. Six further changes then replaced guesses with measurements or real structure: the ten real provinces, a measured transit cost curve (no saving from size), a measured environmental spillover (10% to 31%, against 30% to 80% assumed), health as a sixth area, two more grant designs, and a legislature of regional delegates. The environment moved from a national standard (72% of the gain) to a 20% matching grant (39%), transit to no clear winner, and schools to equalization both ways." }, txt);
   }
 })();
 
@@ -1020,8 +1063,8 @@ legend(document.getElementById("mode-legend"), MODES);
     el("td", { class: "mono", text: pct(r.win_share.central || 0) }, tr);
   });
   [
-    "No. In every version of the city map, a national standard stays the robust rule, keeps a similar share of the attainable gain, and cities win only 4 to 6% of sampled worlds. The best \u201ccities decide\u201d rule does worse than provincial control on average.",
-    "Why so little effect: in most sampled worlds the decision is made by two other numbers, how much one national network saves and whether Ottawa or the provinces raise money more cheaply. The map of cities matters only once those are set aside (the transit maps in \u00a7 6, which hold national savings at zero). There, real city sizes raise the savings a national network needs to win from about 5% to about 10%.",
+    "Yes, against the old model; no, among real maps. With one city per province, a national standard wins 77% of sampled worlds and keeps 57% of the gain. With every metro area, no rule is a clear winner: the best, equalization both ways, keeps about 4%, and cities win 13% to 18% of worlds. The 2023, halved-gap and 2041 versions of the real map all give the same answer. The best \u201ccities decide\u201d rule does worse than provincial control on average.",
+    "Why: metro areas differ widely in how much they use transit (2.3% to 24.3% of commuters), so one national level fits few of them, and US transit agencies' costs rise slightly with size, so a national network saves nothing to make up for it. In the transit maps in \u00a7 6, real city sizes raise the savings a national network needs to win to about 10%.",
     "The post-pandemic test uses May 2023 Labour Force Survey figures for the three largest areas, a different survey from the census, so it illustrates the direction of change rather than measuring it. The 2026 Census will allow a like-for-like update.",
   ].forEach((t) => el("p", { text: t }, txt));
 })();
@@ -1033,8 +1076,11 @@ legend(document.getElementById("mode-legend"), MODES);
     ["Canadians move for income, not services", "Day and Winer (2006, 2012): policy-induced migration in Canada is real but small next to wages and jobs", "Agrees"],
     ["Carbon price beats a uniform standard", "Ecofiscal Commission, Bridging the Gap (2019): pricing is lowest-cost; flexible regulation comes close", "Agrees; this model's standard is inflexible"],
     ["Redistribution is national", "Feldstein and Wrobel (1998): US states cannot redistribute, because wages adjust", "Agrees, by a different route (holds here even with no one moving)"],
-    ["Schools stay provincial", "Oates (1972); Besley and Coate (2003): the case for decentralization rests on political economy", "Consistent with Oates; Besley and Coate is the main challenge"],
-    ["Transit is a city question", "Horak (2025): transit is municipal in most provinces; OECD (Ahrend et al. 2014): fragmented metro areas are about 6% less productive per doubling of municipalities, almost halved by a metro-wide body", "Agrees; this model's \u201ccity\u201d is already the metro-wide body"],
+    ["Schools stay provincial; a legislature of regions is the worst rule", "Oates (1972); Besley and Coate (2003): with a legislature of regional delegates, shared costs lead to overspending", "Agrees: modelled as their legislature, it overspends by far more than any gain"],
+    ["Transit stays with provinces and cities", "Horak (2025): transit is municipal in most provinces; OECD (Ahrend et al. 2014): a metro-wide body offsets much of the cost of fragmentation", "Agrees; this model's \u201ccity\u201d is already the metro-wide body"],
+    ["Politics keeps today's arrangement for climate", "Brown, Imai, Vieider and Camerer (2024): loss aversion about 2; Mildenberger et al. (2022): rebates underestimated; Bill C-4 (2026) repealed the consumer charge", "Agrees with what happened"],
+    ["A budget crisis can reverse a cost-sharing rule", "Reference re Canada Assistance Plan (1991): Ottawa may cut its own grants alone; the 1995 budget then replaced cost sharing with a block grant", "Agrees; added to the political layer"],
+    ["The model mostly fails abroad", "US and Australian assignments (Union Electric v. EPA, 1976; EPBC Act; National Health Reform Agreement)", "Differs: 1 of 6 US verdicts and 2 of 6 Australian ones match"],
     ["Emissions explain carbon-tax opposition (r = -0.82)", "No published estimate found", "New"],
   ];
   const table = document.getElementById("compare-table");
@@ -1075,7 +1121,7 @@ legend(document.getElementById("mode-legend"), MODES);
 (function backtest() {
   const B = DATA.backtest;
   if (!B) return;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
   const asPolicy = (r) => {
     const last = r.robust.split(" ").pop();
     return { mode: r.robust_mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) || 0 };
@@ -1112,7 +1158,7 @@ legend(document.getElementById("mode-legend"), MODES);
 (function losers() {
   const F = DATA.feasibility;
   if (!F) return;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
   const WHO = {
     schools: "Mixed; slightly more the richer regions",
     environment: "Regions that want less of it",
@@ -1133,7 +1179,7 @@ legend(document.getElementById("mode-legend"), MODES);
 (function politics() {
   const P = DATA.politics;
   if (!P) return;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
   const lab = (x) => { const [m, ...rest] = x.split(" "); const last = rest.pop() || "0"; const mode = m === "price" && rest[0] === "floor" ? "price_floor" : m === "city" ? "city" : m; return policyText({ mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }); };
   const t = document.getElementById("pol-table");
   const h = el("tr", {}, el("thead", {}, t));
@@ -1151,7 +1197,7 @@ legend(document.getElementById("mode-legend"), MODES);
 /* by province */
 (function byProvince() {
   const F = DATA.feasibility_provinces, V = DATA.provinces_run;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
   if (F) {
     const groups = Object.keys(Object.values(F.areas)[0].by_province);
     const t = document.getElementById("fe-prov");
@@ -1177,7 +1223,7 @@ legend(document.getElementById("mode-legend"), MODES);
 (function horizons() {
   const H = DATA.horizons;
   if (!H) return;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
+  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
   const lab = (r) => { if (!r) return "pending"; const last = r.robust.split(" ").pop(); return policyText({ mode: r.robust_mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }) + (r.gain_captured < 0.1 ? " (no clear winner)" : ` (keeps ${pct(r.gain_captured)})`); };
   const years = Object.keys(H.horizons);
   const t = document.getElementById("horizon-table");
@@ -1193,7 +1239,7 @@ legend(document.getElementById("mode-legend"), MODES);
   if (!C) return;
   const r2 = (x) => (+x).toFixed(2);
   const years = Object.keys(C.years).sort();
-  const rows = [["Schools", "schools"], ["Environment (spending)", "environment"], ["Environment against jobs*", "environment_jobs"], ["Redistribution", "redistribution"], ["Climate (carbon tax)", "climate"]];
+  const rows = [["Schools", "schools"], ["Environment (spending)", "environment"], ["Environment against jobs*", "environment_jobs"], ["Health", "health"], ["Redistribution", "redistribution"], ["Climate (carbon tax)", "climate"]];
   const t = document.getElementById("ces-table");
   const h = el("tr", {}, el("thead", {}, t));
   ["Question", ...years].forEach((x) => el("th", { text: x }, h));
@@ -1205,21 +1251,93 @@ legend(document.getElementById("mode-legend"), MODES);
   });
 })();
 
-/* united states */
-(function us() {
-  const U = DATA.us_run;
-  if (!U) return;
-  const AREA = { schools: "Schools", environment: "Environment", transit: "Transit", redistribution: "Redistribution", climate: "Climate" };
-  const lab = (robust, mode, g) => { const last = robust.split(" ").pop(); return policyText({ mode, level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) }) + (g < 0.1 ? " (no clear winner)" : ` (keeps ${pct(g)})`); };
+/* parse a rule label such as "matched 10%", "price floor 1.2", "city + 10% grant", "equalized both ways 100%" */
+function labelPolicy(x) {
+  if (x === "keep today's arrangement") return "Keep today's arrangement";
+  if (x === "provinces decide" || x === "local") return "Provinces decide";
+  if (x === "legislature") return policyText({ mode: "legislature", level: 0 });
+  let m = x.match(/^city(?: \+ (\d+)% grant)?$/);
+  if (m) return policyText({ mode: "city", level: m[1] ? +m[1] / 100 : 0 });
+  m = x.match(/^equalized both ways (\d+)%$/);
+  if (m) return policyText({ mode: "equalized_both", level: +m[1] / 100 });
+  m = x.match(/^price floor ([\d.]+)$/);
+  if (m) return policyText({ mode: "price_floor", level: +m[1] });
+  const parts = x.split(" "), last = parts.pop();
+  return policyText({ mode: parts[0], level: last.endsWith("%") ? parseFloat(last) / 100 : parseFloat(last) });
+}
+const AREAS = { schools: "Schools", environment: "Environment", transit: "Transit", health: "Health", redistribution: "Redistribution", climate: "Climate" };
+
+/* other countries */
+(function countries() {
+  const C = DATA.countries;
+  if (!C) return;
+  const lab = (r) => r ? labelPolicy(r.robust) + (r.gain_captured < WEAK ? " (no clear winner)" : ` (keeps ${pct(r.gain_captured)})`) : "pending";
+  const NAMES = { us: "United States", au: "Australia" };
+  const codes = Object.keys(C).filter((c) => C[c]);
   const t = document.getElementById("us-table");
   const h = el("tr", {}, el("thead", {}, t));
-  ["Area", "Model, Canada", "Model, United States", "What the US does"].forEach((x) => el("th", { text: x }, h));
+  ["Area", "Model, Canada", ...codes.flatMap((c) => [`Model, ${NAMES[c]}`, `What ${NAMES[c] === "United States" ? "the US" : NAMES[c]} does`])].forEach((x) => el("th", { text: x }, h));
   const b = el("tbody", {}, t);
-  Object.keys(AREA).forEach((a) => {
-    const c = U.canada[a], r = U.results && U.results[a];
-    const cmode = c.robust.startsWith("price floor") ? "price_floor" : c.robust.split(" ")[0];
+  const any = C[codes[0]];
+  Object.keys(AREAS).forEach((a) => {
     const tr = el("tr", {}, b);
-    [AREA[a], lab(c.robust, cmode, c.gain_captured), r ? lab(r.robust, r.robust_mode, r.gain_captured) : "pending", r ? r.actual : ""].forEach((x) => el("td", { text: x }, tr));
+    el("td", { text: AREAS[a] }, tr);
+    el("td", { text: lab(any.canada[a]) }, tr);
+    codes.forEach((c) => { const r = C[c].results && C[c].results[a]; el("td", { text: lab(r) }, tr); el("td", { text: r ? r.actual : "" }, tr); });
+  });
+  const notes = codes.map((c) => {
+    const m = C[c].mobility;
+    const fit = (k) => C[c].mobility_fits && C[c].mobility_fits[k];
+    return `${NAMES[c]}: migration target ${pct(m.targets.migration[0], 1)} to ${pct(m.targets.migration[1], 1)} a year, income spread ${pct(m.targets.income_spread[0])} to ${pct(m.targets.income_spread[1])}` +
+      (fit("redistribution") === 0 ? "; no mobility setting reproduces both for redistribution, so the nearest is used" : "") + ".";
+  });
+  document.getElementById("us-note").textContent = notes.join(" ") + " Kept from Canada: the cost-of-funds ratio, the ratio of disagreement within to between regions, and every unmeasured range. Transit uses the two-place city model.";
+})();
+
+/* political realities */
+(function realities() {
+  const R = DATA.realities;
+  if (!R) return;
+  const NAMES = { NL: "Newfoundland and Labrador", PE: "Prince Edward Island", NS: "Nova Scotia", NB: "New Brunswick", QC: "Quebec", ON: "Ontario", MB: "Manitoba", SK: "Saskatchewan", AB: "Alberta", BC: "British Columbia" };
+  const A = DATA.attachment;
+  if (A) {
+    const t = document.getElementById("att-table");
+    const h = el("tr", {}, el("thead", {}, t));
+    ["Province", "More power to provinces", "Ottawa treats us worse", "Province looks after me", "Attachment"].forEach((x) => el("th", { text: x }, h));
+    const b = el("tbody", {}, t);
+    Object.entries(A.provinces).sort((x, y) => y[1].attachment - x[1].attachment).forEach(([p, v]) => {
+      const tr = el("tr", {}, b);
+      [p, v.power, v.treated, v.looks_after, v.attachment].forEach((c, i) => el("td", { class: i ? "num mono" : "", text: i ? (c > 0 ? "+" : "") + c.toFixed(2) : c }, tr));
+    });
+  }
+  const MECH = { loss_aversion: "Loss aversion", visible_payments: "Visible payments", attachment: "Attachment", constitution: "Constitution", repeal: "Repeal", fiscal_crisis: "Fiscal crises" };
+  const top = (c) => { const [k, v] = Object.entries(c.picks)[0]; return `${labelPolicy(k)} (${pct(v)})`; };
+  const t = document.getElementById("real-table");
+  const h = el("tr", {}, el("thead", {}, t));
+  ["Area", "Today, in model terms", "Planner picks, most often", "With politics, most often", "Today's arrangement stays: planner", "with politics"].forEach((x) => el("th", { text: x }, h));
+  const b = el("tbody", {}, t);
+  Object.entries(R.areas).forEach(([a, v]) => {
+    const tr = el("tr", {}, b);
+    [AREAS[a], `${labelPolicy(v.status_quo)}: ${v.status_quo_meaning}`, top(v.choices.planner), top(v.choices.all_politics), pct(v.choices.planner.keeps_today), pct(v.choices.all_politics.keeps_today)].forEach((c) => el("td", { text: c }, tr));
+  });
+  const t2 = document.getElementById("real-ablation");
+  const h2 = el("tr", {}, el("thead", {}, t2));
+  ["Area", "All", ...Object.values(MECH).map((m) => `Without ${m.toLowerCase()}`), ...Object.values(MECH).map((m) => `${m} only`)].forEach((x) => el("th", { text: x }, h2));
+  const b2 = el("tbody", {}, t2);
+  Object.entries(R.areas).forEach(([a, v]) => {
+    const tr = el("tr", {}, b2);
+    el("td", { text: AREAS[a] }, tr);
+    el("td", { class: "num", text: pct(v.choices.all_politics.keeps_today) }, tr);
+    Object.keys(MECH).forEach((m) => el("td", { class: "num", text: pct(v.choices.without[m].keeps_today) }, tr));
+    Object.keys(MECH).forEach((m) => el("td", { class: "num", text: pct(v.choices.only[m].keeps_today) }, tr));
+  });
+  const t3 = document.getElementById("real-legal");
+  const h3 = el("tr", {}, el("thead", {}, t3));
+  ["Area", "Ottawa alone (Commons majority)", "Needs the amending formula", "Basis"].forEach((x) => el("th", { text: x }, h3));
+  const b3 = el("tbody", {}, t3);
+  Object.entries(R.areas).forEach(([a, v]) => {
+    const tr = el("tr", {}, b3);
+    [AREAS[a], v.legal.alone.map((m) => MODE_NAME[m]).join(", "), v.legal.needs_amendment.map((m) => MODE_NAME[m]).join(", ") || "none", v.legal.basis].forEach((c) => el("td", { text: c }, tr));
   });
 })();
 </script>

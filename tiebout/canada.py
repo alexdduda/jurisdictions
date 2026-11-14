@@ -16,6 +16,9 @@ measured three ways and the spread between them is reported:
             explained by provincial GDP per capita
   per_child (schools only) spending per resident aged 5 to 17, so provinces
             with more children are not mistaken for provinces that care more
+  age_residual (health only) the residual after removing both GDP per capita
+            and the share aged 65 and older, so older provinces are not
+            mistaken for provinces that want more health care
 
 In the model, a region left alone provides p = taste * (1 - s) / price, so the
 spread of provision across regions is the spread of tastes: CV(p) = sd / 0.5.
@@ -43,6 +46,7 @@ FUNCTIONS = {
     "environment": "Environmental protection [705]",
     "transit": "Transport [7045]",
     "social protection": "Social protection [710]",
+    "health": "Health [707]",
 }
 TOP_LEVEL = [
     "General public services [701]", "Defence [702]", "Public order and safety [703]",
@@ -89,6 +93,32 @@ def school_age(pop) -> dict[tuple[str, str], float]:
     return dict(out)
 
 
+def seniors_share(pop) -> dict[tuple[str, str], float]:
+    """Share of the population aged 65 and older by (province, year), July 1."""
+    out = {}
+    for r in rows("17100005.csv"):
+        if (r["GEO"] in PROVINCES and r["REF_DATE"] in YEARS and r["Gender"] == "Total - gender"
+                and r["Age group"] == "65 years and older"):
+            v = value(r)
+            if v is not None and (r["GEO"], r["REF_DATE"]) in pop:
+                out[(r["GEO"], r["REF_DATE"])] = v / pop[(r["GEO"], r["REF_DATE"])]
+    return out
+
+
+def ols2_residual_sd(y: list[float], x1: list[float], x2: list[float]) -> float:
+    """Residual sd of y on two regressors and a constant."""
+    m1, m2, my = mean(x1), mean(x2), mean(y)
+    a = [v - m1 for v in x1]
+    b = [v - m2 for v in x2]
+    c = [v - my for v in y]
+    saa, sbb, sab = sum(v * v for v in a), sum(v * v for v in b), sum(u * v for u, v in zip(a, b))
+    sac, sbc = sum(u * v for u, v in zip(a, c)), sum(u * v for u, v in zip(b, c))
+    det = saa * sbb - sab * sab
+    ba, bb = (sac * sbb - sbc * sab) / det, (sbc * saa - sac * sab) / det
+    resid = [cc - ba * aa - bb * bbv for aa, bbv, cc in zip(a, b, c)]
+    return math.sqrt(sum(e * e for e in resid) / (len(resid) - 3))
+
+
 def gdp_per_capita(pop) -> dict[tuple[str, str], float]:
     out = {}
     for r in rows("36100222.csv"):
@@ -121,7 +151,7 @@ def ols_residual_sd(y: list[float], x: list[float]) -> float:
     return math.sqrt(sum(e * e for e in resid) / (len(resid) - 2))  # two fitted parameters
 
 
-def disagreement(pop, gdp, spend, kids) -> dict:
+def disagreement(pop, gdp, spend, kids, seniors=None) -> dict:
     out = {}
     for key, fn in FUNCTIONS.items():
         per_year = defaultdict(list)
@@ -142,6 +172,9 @@ def disagreement(pop, gdp, spend, kids) -> dict:
                 per_year["levels"].append(cv(per_cap))
                 per_year["shares"].append(cv(shares))
                 per_year["residual"].append(ols_residual_sd(logs, log_gdp))
+                if key == "health" and seniors and all((p, year) in seniors for p in PROVINCES):
+                    per_year["age_residual"].append(ols2_residual_sd(
+                        logs, log_gdp, [seniors[(p, year)] for p in PROVINCES]))
                 if key == "schools" and len(per_child) == len(PROVINCES):
                     # Education need tracks the number of school-age children, not total population.
                     per_year["per_child"].append(cv(per_child))
@@ -228,7 +261,7 @@ def main() -> None:
     kids = school_age(pop)
     targets = {
         "source": "Statistics Canada tables 10-10-0005, 11-10-0134, 11-10-0190, 17-10-0005, 17-10-0009, 17-10-0022, 36-10-0222; ten provinces, 2015-2024",
-        "disagreement": disagreement(pop, gdp, spend, kids),
+        "disagreement": disagreement(pop, gdp, spend, kids, seniors_share(pop)),
         "inequality": inequality(),
         "migration": migration(pop),
         "regional_income": regional_income(gdp),

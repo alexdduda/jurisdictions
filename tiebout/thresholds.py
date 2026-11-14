@@ -35,7 +35,7 @@ MAPS = [
     }),
     ("transit", {
         "key": "transit_scale",
-        "rows": ("scale", [0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]),
+        "rows": ("scale", [-0.1, -0.05, 0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5]),
         "cols": ("metro_spillover", [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]),
     }),
     ("environment", {
@@ -52,6 +52,12 @@ MAPS = [
     ("schools", {
         "key": "schools_content",
         "rows": ("content_weight", [0.0, 0.05, 0.1, 0.15, 0.2, 0.3]),
+        "cols": ("overhead_ratio", RATIOS),
+    }),
+    # Health: savings from national provision (drug and equipment purchasing) against
+    # which level raises money more cheaply. Spillover is small and held in range.
+    ("health", {
+        "rows": ("scale", [-0.1, -0.05, 0.0, 0.05, 0.1, 0.15, 0.2, 0.3]),
         "cols": ("overhead_ratio", RATIOS),
     }),
     ("redistribution", {

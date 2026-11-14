@@ -15,6 +15,12 @@ so scopelang lets a scope declare a *law* that picks the rule for one name:
     devolved the level two below decides (say, cities), skipping the one in
              between (provinces), whose writes are struck down; the value is
              the share of cost the declaring scope pays
+    funded   a floor the declaring scope pays for: lower levels may go higher
+             at their own cost, never lower (a foundation or conditional block
+             grant)
+    levelled like equalized, but both ways: poorer levels are topped up and
+             richer ones' ability to pay is pulled down toward the average
+             (the value is the share of the gap closed)
 
 Illegal writes are "struck down": reported and not applied, and the program
 keeps running, the way a court voids one statute without stopping the state.
@@ -43,7 +49,10 @@ MODE_MEANING = {
     "matched": "lower levels choose freely; {owner} pays {rate} of the cost",
     "equalized": "lower levels choose freely; {owner} closes {rate} of poorer ones' gap in ability to pay",
     "devolved": "the level below the next decides; the level in between may not; {owner} pays {rate} of the cost",
+    "funded": "lower levels may raise it but never go below what they inherit; {owner} pays for that minimum",
+    "levelled": "lower levels choose freely; {owner} closes {rate} of the gap in ability to pay, both ways",
 }
+RATE_MODES = ("matched", "equalized", "devolved", "levelled")
 
 
 class ScopeError(Exception):
@@ -66,7 +75,7 @@ class Law:
     mode: str
     owner: "Scope"
     line: int
-    rate: float | None = None  # only for `matched` and `equalized`
+    rate: float | None = None  # only for rate laws (RATE_MODES)
 
 
 @dataclass
@@ -235,7 +244,7 @@ class Interpreter:
         law = Law(stmt.name, stmt.mode, scope, stmt.line)
         if stmt.value is not None:
             value = self.eval(stmt.value, scope)
-            if stmt.mode in ("matched", "equalized", "devolved"):
+            if stmt.mode in RATE_MODES:
                 if not _is_number(value) or not 0 <= value <= 1:
                     raise ScopeError(stmt.line, f"a {stmt.mode} law's value is a rate between 0 and 1, got {fmt(value)}")
                 law.rate = float(value)
@@ -360,7 +369,7 @@ class Interpreter:
                 return f"preempted by {law.owner.name} (law at line {law.line})"
             if law.mode == "devolved" and law.owner in scope.parents:
                 return f"devolved by {law.owner.name} past {scope.name} to the level below (law at line {law.line})"
-            if law.mode not in ("floor", "ceiling"):
+            if law.mode not in ("floor", "ceiling", "funded"):
                 continue
             inherited = [
                 (v, src) for v, src, _ in self.candidates_from_parents(scope, name)
@@ -370,12 +379,12 @@ class Interpreter:
                 continue
             if not _is_number(value):
                 return f"{name} is a {law.mode} law, so it must be a number"
-            pick = max if law.mode == "floor" else min
+            pick = max if law.mode in ("floor", "funded") else min
             bound, source = pick(inherited, key=lambda item: item[0])
-            if law.mode == "floor" and value < bound:
+            if law.mode in ("floor", "funded") and value < bound:
                 return (
                     f"below the floor of {fmt(bound)} from {source.name} "
-                    f"(floor law of {law.owner.name}, line {law.line})"
+                    f"({law.mode} law of {law.owner.name}, line {law.line})"
                 )
             if law.mode == "ceiling" and value > bound:
                 return (
@@ -503,7 +512,7 @@ class Interpreter:
     def _annotations(self, scope: Scope) -> str:
         parts = []
         for name, law in scope.laws.items():
-            if law.mode in ("matched", "equalized", "devolved"):
+            if law.mode in RATE_MODES:
                 parts.append(f"law {name}: {law.mode} {fmt(law.rate) if law.rate is not None else ''}".rstrip())
             elif name in scope.vars:
                 parts.append(f"law {name}: {law.mode} = {fmt(scope.vars[name].value)}")
@@ -609,7 +618,7 @@ class Result:
         s = self.interp.scopes[scope]
         out = {}
         for name, law in s.laws.items():
-            if law.mode in ("matched", "equalized", "devolved"):
+            if law.mode in RATE_MODES:
                 out[name] = (law.mode, law.rate)
             else:
                 out[name] = (law.mode, s.vars[name].value if name in s.vars else None)

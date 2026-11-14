@@ -34,6 +34,9 @@ WIDE = {
         "schools": {"heterogeneity": (0.10, 0.30), "spillover": (0.00, 0.15), "scale": (0.00, 0.10), "within": (0.05, 0.15)},
         "environment": {"heterogeneity": (0.02, 0.15), "spillover": (0.30, 0.80), "scale": (0.00, 0.10), "within": (0.05, 0.15)},
         "transit": {"heterogeneity": (0.05, 0.20), "spillover": (0.05, 0.35), "scale": (0.10, 0.45), "within": (0.05, 0.15)},
+        # Health: no strong prior. Little spills across provinces except infectious
+        # disease; national buying of drugs and equipment could save a little.
+        "health": {"heterogeneity": (0.02, 0.15), "spillover": (0.00, 0.20), "scale": (0.00, 0.10), "within": (0.05, 0.15)},
         "redistribution": {},
         "climate": {"heterogeneity": (0.02, 0.15), "spillover": (0.3, 0.95), "within": (0.05, 0.15),
                     "abatement_sd": (0.0, 1.0), "abatement_taste_corr": (0.0, 0.9)},
@@ -123,13 +126,45 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     het = {k: tuple(v["heterogeneity_range"]) for k, v in targets["disagreement"].items()}
     sigma = targets["inequality"]["income_sigma"]
     domains = {name: dict(r) for name, r in WIDE["domains"].items()}
-    for name in ("schools", "environment", "transit"):
+    for name in ("schools", "environment", "transit", "health"):
+        if name not in het or name not in capacity:
+            continue  # older or foreign data without this area
         lo, hi = het[name]
-        domains[name]["heterogeneity"] = _widen((lo, hi), DECADE_DRIFT[name] * horizon_years / 10) if horizon_years else (lo, hi)
+        domains[name]["heterogeneity"] = _widen((lo, hi), DECADE_DRIFT.get(name, DECADE_DRIFT["schools"]) * horizon_years / 10) if horizon_years else (lo, hi)
         domains[name]["within"] = (0.25, 0.30)
         e = capacity[name]["income_elasticity"]
         lo_e, hi_e = (min(e), max(e)) if isinstance(e, (tuple, list)) else (e, e)  # a pair: cover both
         domains[name]["capacity_elasticity"] = (round(0.75 * max(lo_e, 0.0) / 2, 4), round(1.25 * max(hi_e, 0.0) / 2, 4))
+    # Environment: most provincial environmental spending is waste and wastewater,
+    # whose benefits stay home. Spending shares by sub-function are measured; each
+    # part's spillover is an assumption (data/scripts/environment_spillover.py).
+    # About 10% to 31%, against the guessed 30% to 80% of earlier versions.
+    env_sp = root / "data" / "environment_spillover.json"
+    if env_sp.exists():
+        domains["environment"]["spillover"] = tuple(json.loads(env_sp.read_text())["spillover_range"])
+    # Schools: on the same spending question, the 2004-2019 election studies put
+    # provinces 0.06 to 0.25 apart in units of within-province disagreement
+    # (data/scripts/ces_vintages.py), not just 2019's 0.08. With the highest,
+    # within = heterogeneity / rho falls to about 0.10, so the range runs from there
+    # to the model's ceiling instead of sitting at the ceiling.
+    rho_s = _same_question_rho(root, "schools")
+    if rho_s and "schools" in het:
+        domains["schools"]["within"] = (round(min(het["schools"][0] / rho_s[1], 0.30), 3), 0.30)
+    # Health: the 2019 study didn't ask about health spending, but the 1993-2015
+    # studies did (data/scripts/ces_vintages.py). On the same question (2004-2011,
+    # federal health spending) provinces sit 0.19 to 0.25 apart in units of
+    # within-province disagreement, so within = heterogeneity / rho is 0.09 to
+    # 0.14, under the model's ceiling. Spillover is small and unmeasured (patients
+    # treated out of province, infectious disease); national purchasing of drugs
+    # and equipment might save a little (no Canadian estimate of the saving: 0 to 10%).
+    if "health" in het and "health" in capacity:
+        lo, hi = het["health"]
+        rho = _health_rho(root)
+        domains["health"]["within"] = (round(lo / rho[1], 3), round(hi / rho[0], 3))
+        domains["health"]["spillover"] = (0.00, 0.15)
+        domains["health"]["scale"] = (0.00, 0.10)
+    else:
+        domains.pop("health")
     # Transit gets a city level. 72% of Canadians live in a census metropolitan area
     # (World.urban_share). How much more city residents want transit, and how much of
     # it commuters carry between city and suburbs, have no clean Canadian measure:
@@ -143,14 +178,16 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     # half of the workers left outside commute in. Commuting between municipalities
     # inside a metro area is handled by the metro-level body and doesn't count here.
     domains["transit"]["metro_spillover"] = (0.00, 0.20)
-    # National savings from one transit system. Cost studies find economies of scale
-    # only for small operators: in Italy, only below the sector's average output
-    # (Abrate, Erbetta, Fraquelli and Vannoni, Transport Policy 52, 2016); for 73
-    # medium and large US systems, little or none (reviewed by Berechman and
-    # Giuliano). Merging metropolitan systems that are already large saves little in
-    # operating cost; 0 to 10% allows for joint purchasing and planning. Earlier
-    # versions sampled the guessed 10% to 45%.
-    domains["transit"]["scale"] = (0.00, 0.10)
+    # National savings from one transit system, measured (data/scripts/transit_scale.py):
+    # across US bus operators (National Transit Database 2023-2024), cost per vehicle
+    # revenue hour rises with size, by an elasticity of +0.08 to +0.14 holding the
+    # urban area's population fixed, so merging 5 to 10 similar systems would cost
+    # 13% to 39% more, not less. This agrees with cost studies that find economies of
+    # scale only for small operators (Abrate, Erbetta, Fraquelli and Vannoni,
+    # Transport Policy 52, 2016). A national body need not merge operators, so the
+    # range is discounted to 10% dearer to 5% cheaper (joint purchasing and
+    # planning). Earlier versions sampled 10% to 45%, then 0% to 10%.
+    domains["transit"]["scale"] = (-0.10, 0.05)
     domains["transit"]["spillover"] = (0.00, 0.10)
     # Climate (a regulatory good; emitters pay). From the 2019 Canadian Election
     # Study carbon-tax question, between-province spread is 0.235 of within-province
@@ -170,8 +207,14 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     domains["schools"].update({
         "content_weight": (0.0, 0.3), "national_accommodation": (0.0, 0.8), "minority_move_mult": (1.5, 4.0),
     })
+    # The 2008 carbon-tax question puts provinces 0.18 apart against 2019's 0.235
+    # (data/scripts/ces_vintages.py): the lower bound covers 0.18 x 0.25.
+    clim_lo = 0.05
+    rho_c = _same_question_rho(root, "climate")
+    if rho_c:
+        clim_lo = round(min(clim_lo, rho_c[0] * 0.25), 3)
     domains["climate"] = {
-        "heterogeneity": (0.05, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
+        "heterogeneity": (clim_lo, 0.08), "within": (0.25, 0.30), "spillover": (0.60, 0.95),
         "abatement_sd": _widen((round(0.5 * emissions_spread, 2), round(1.5 * emissions_spread, 2)),
                                DECADE_DRIFT["emissions_spread"] * horizon_years / 10),
         "abatement_taste_corr": (0.60, 0.90),
@@ -211,6 +254,28 @@ def canada_ranges(targets: dict | None = None, capacity: dict | None = None,
     }
 
 
+def _same_question_rho(root: Path, area: str) -> tuple[float, float] | None:
+    """Range of between/within-province disagreement on one question across election studies."""
+    f = root / "data" / "ces_vintages.json"
+    if not f.exists():
+        return None
+    years = json.loads(f.read_text())["years"]
+    vals = [v[area]["rho"] for v in years.values() if area in v and not v[area]["proxy"] and v[area]["rho"] > 0]
+    return (min(vals), max(vals)) if vals else None
+
+
+def _health_rho(root: Path) -> tuple[float, float]:
+    """Range of between/within-province disagreement on health spending, same question, 2004-2011."""
+    f = root / "data" / "ces_vintages.json"
+    if f.exists():
+        years = json.loads(f.read_text())["years"]
+        vals = [v["health"]["rho"] for v in years.values()
+                if "health" in v and not v["health"]["proxy"] and v["health"]["rho"] > 0]
+        if vals:
+            return min(vals), max(vals)
+    return 0.186, 0.247
+
+
 def range_set(name: str) -> dict:
     if name == "wide":
         return WIDE
@@ -221,7 +286,8 @@ def range_set(name: str) -> dict:
 
 WEAK_WINNER = 0.1  # a fixed rule keeping under 10% of the tailored gain is no clear winner
 SIMPLICITY = {"local": 0, "central": 1, "floor": 2, "ceiling": 3, "matched": 4, "equalized": 5, "city": 6,
-              "price": 7, "price_floor": 8}
+              "price": 7, "price_floor": 8, "foundation": 9, "equalized_both": 10,
+              "legislature": 11}
 
 
 def latin_hypercube(ranges: dict[str, tuple[float, float]], n: int, rng: random.Random) -> list[dict[str, float]]:

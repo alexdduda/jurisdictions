@@ -3,7 +3,9 @@
 Same sampled worlds and seeds as results/uncertainty_canada.json, but each
 region's average taste (schools, environment, climate), abatement cost
 (climate) and productivity are its province's measured values instead of
-random draws (tiebout/provinces.py). What stays uncertain is what was never
+random draws (tiebout/provinces.py), and the regions are the ten provinces
+themselves, sized by population with real borders (tiebout/geography.py),
+rather than 16 equal regions standing in for province groups. What stays uncertain is what was never
 measured: spillovers, scale, cost of funds, mobility, transit's city
 parameters. Compares the verdicts.
 
@@ -18,6 +20,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "validation"))
+from calibrate_mobility import provinces_ranges  # noqa: E402
 from tiebout.config import DEFAULT_WORLD  # noqa: E402
 from tiebout.optimize import make_pool  # noqa: E402
 from tiebout.uncertainty import analyse_domain, range_set  # noqa: E402
@@ -35,8 +39,8 @@ def main() -> dict:
     saved = json.loads((ROOT / "results" / "uncertainty_canada.json").read_text())
     out = json.loads(OUT.read_text()) if OUT.exists() else {"provinces": {}}
     out["sampled"] = {k: brief(v) for k, v in saved["domains"].items()}
-    base = replace(DEFAULT_WORLD, province_profile="canada")
-    rs = range_set("canada")
+    base = replace(DEFAULT_WORLD, province_profile="canada", geography="provinces")
+    rs = provinces_ranges()
     with make_pool() as pool:
         for d in DEFAULT_WORLD.domains:
             if d.name in out["provinces"]:

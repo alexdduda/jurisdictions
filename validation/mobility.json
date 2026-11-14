@@ -1,0 +1,485 @@
+{
+  "canada_provinces": {
+    "targets": {
+      "migration": [
+        0.003,
+        0.0075
+      ],
+      "income_spread": [
+        0.12,
+        0.19
+      ]
+    },
+    "public_goods": {
+      "fits": 26,
+      "ranges": {
+        "move_share": [
+          0.02,
+          0.12
+        ],
+        "moving_cost": [
+          0.02,
+          0.07
+        ],
+        "productivity_sd": [
+          0.1,
+          0.2
+        ]
+      },
+      "nearest": null,
+      "kept": [
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.02,
+          "productivity_sd": 0.15,
+          "migration": 0.00734,
+          "income_spread": 0.1473
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.15,
+          "migration": 0.00557,
+          "income_spread": 0.1394
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.2,
+          "migration": 0.0075,
+          "income_spread": 0.1848
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.1,
+          "migration": 0.00344,
+          "income_spread": 0.1211
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.15,
+          "migration": 0.0051,
+          "income_spread": 0.1496
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.2,
+          "migration": 0.00641,
+          "income_spread": 0.1848
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.15,
+          "migration": 0.00469,
+          "income_spread": 0.1598
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.15,
+          "migration": 0.0062,
+          "income_spread": 0.1323
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.2,
+          "migration": 0.00688,
+          "income_spread": 0.1704
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.15,
+          "migration": 0.00516,
+          "income_spread": 0.1456
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.2,
+          "migration": 0.00641,
+          "income_spread": 0.1787
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.15,
+          "migration": 0.00417,
+          "income_spread": 0.1421
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.2,
+          "migration": 0.00578,
+          "income_spread": 0.1866
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.15,
+          "migration": 0.00698,
+          "income_spread": 0.1565
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.2,
+          "migration": 0.00734,
+          "income_spread": 0.1735
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.15,
+          "migration": 0.005,
+          "income_spread": 0.1702
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.2,
+          "migration": 0.00578,
+          "income_spread": 0.1826
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.15,
+          "migration": 0.00328,
+          "income_spread": 0.1529
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.2,
+          "migration": 0.0051,
+          "income_spread": 0.1819
+        },
+        {
+          "move_share": 0.08,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.15,
+          "migration": 0.00599,
+          "income_spread": 0.1702
+        },
+        {
+          "move_share": 0.08,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.2,
+          "migration": 0.00484,
+          "income_spread": 0.1539
+        },
+        {
+          "move_share": 0.08,
+          "moving_cost": 0.07,
+          "productivity_sd": 0.2,
+          "migration": 0.00339,
+          "income_spread": 0.1862
+        },
+        {
+          "move_share": 0.12,
+          "moving_cost": 0.02,
+          "productivity_sd": 0.1,
+          "migration": 0.00693,
+          "income_spread": 0.1216
+        },
+        {
+          "move_share": 0.12,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.1,
+          "migration": 0.00448,
+          "income_spread": 0.1204
+        },
+        {
+          "move_share": 0.12,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.15,
+          "migration": 0.00531,
+          "income_spread": 0.1347
+        },
+        {
+          "move_share": 0.12,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.15,
+          "migration": 0.00313,
+          "income_spread": 0.1399
+        }
+      ]
+    },
+    "redistribution": {
+      "fits": 10,
+      "ranges": {
+        "move_share": [
+          0.02,
+          0.03
+        ],
+        "moving_cost": [
+          0.01,
+          0.05
+        ],
+        "productivity_sd": [
+          0.0,
+          0.07
+        ]
+      },
+      "nearest": null,
+      "kept": [
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.02,
+          "migration": 0.00521,
+          "income_spread": 0.1848
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.07,
+          "migration": 0.00745,
+          "income_spread": 0.1357
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.02,
+          "productivity_sd": 0.0,
+          "migration": 0.00406,
+          "income_spread": 0.1643
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.02,
+          "productivity_sd": 0.07,
+          "migration": 0.005,
+          "income_spread": 0.1699
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.07,
+          "migration": 0.00375,
+          "income_spread": 0.1692
+        },
+        {
+          "move_share": 0.02,
+          "moving_cost": 0.05,
+          "productivity_sd": 0.07,
+          "migration": 0.00318,
+          "income_spread": 0.1523
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.02,
+          "productivity_sd": 0.0,
+          "migration": 0.00547,
+          "income_spread": 0.1856
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.0,
+          "migration": 0.00302,
+          "income_spread": 0.1356
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.02,
+          "migration": 0.00349,
+          "income_spread": 0.1769
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.035,
+          "productivity_sd": 0.07,
+          "migration": 0.005,
+          "income_spread": 0.1858
+        }
+      ]
+    }
+  },
+  "us_states": {
+    "targets": {
+      "migration": [
+        0.013,
+        0.017
+      ],
+      "income_spread": [
+        0.15,
+        0.2
+      ]
+    },
+    "public_goods": {
+      "fits": 7,
+      "ranges": {
+        "move_share": [
+          0.03,
+          0.12
+        ],
+        "moving_cost": [
+          0.005,
+          0.01
+        ],
+        "productivity_sd": [
+          0.05,
+          0.15
+        ]
+      },
+      "nearest": null,
+      "kept": [
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.005,
+          "productivity_sd": 0.15,
+          "migration": 0.0132,
+          "income_spread": 0.1917
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.005,
+          "productivity_sd": 0.05,
+          "migration": 0.01605,
+          "income_spread": 0.1541
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.05,
+          "migration": 0.01346,
+          "income_spread": 0.1514
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.1,
+          "migration": 0.01463,
+          "income_spread": 0.1667
+        },
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.15,
+          "migration": 0.01569,
+          "income_spread": 0.193
+        },
+        {
+          "move_share": 0.08,
+          "moving_cost": 0.005,
+          "productivity_sd": 0.05,
+          "migration": 0.01666,
+          "income_spread": 0.151
+        },
+        {
+          "move_share": 0.12,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.05,
+          "migration": 0.01356,
+          "income_spread": 0.1766
+        }
+      ]
+    },
+    "redistribution": {
+      "fits": 0,
+      "ranges": {
+        "move_share": [
+          0.02,
+          0.02
+        ],
+        "moving_cost": [
+          0.005,
+          0.005
+        ],
+        "productivity_sd": [
+          0.04,
+          0.04
+        ]
+      },
+      "nearest": {
+        "move_share": 0.02,
+        "moving_cost": 0.005,
+        "productivity_sd": 0.04,
+        "migration": 0.01193,
+        "income_spread": 0.2225
+      },
+      "kept": []
+    }
+  },
+  "au_states": {
+    "targets": {
+      "migration": [
+        0.0126,
+        0.0175
+      ],
+      "income_spread": [
+        0.1,
+        0.15
+      ]
+    },
+    "public_goods": {
+      "fits": 1,
+      "ranges": {
+        "move_share": [
+          0.05,
+          0.05
+        ],
+        "moving_cost": [
+          0.005,
+          0.005
+        ],
+        "productivity_sd": [
+          0.1,
+          0.1
+        ]
+      },
+      "nearest": null,
+      "kept": [
+        {
+          "move_share": 0.05,
+          "moving_cost": 0.005,
+          "productivity_sd": 0.1,
+          "migration": 0.01448,
+          "income_spread": 0.1279
+        }
+      ]
+    },
+    "redistribution": {
+      "fits": 2,
+      "ranges": {
+        "move_share": [
+          0.03,
+          0.03
+        ],
+        "moving_cost": [
+          0.005,
+          0.01
+        ],
+        "productivity_sd": [
+          0.04,
+          0.04
+        ]
+      },
+      "nearest": null,
+      "kept": [
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.005,
+          "productivity_sd": 0.04,
+          "migration": 0.01427,
+          "income_spread": 0.1479
+        },
+        {
+          "move_share": 0.03,
+          "moving_cost": 0.01,
+          "productivity_sd": 0.04,
+          "migration": 0.01328,
+          "income_spread": 0.1381
+        }
+      ]
+    }
+  }
+}

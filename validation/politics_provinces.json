@@ -15,462 +15,966 @@
     "schools": {
       "rules": {
         "central 0.3": {
-          "mean_gain": -0.01473,
-          "passes_majority_real": 0.175,
-          "passes_two_thirds_real": 0.125,
-          "passes_majority_perceived": 0.175,
-          "passes_two_thirds_perceived": 0.125,
+          "mean_gain": -0.01091,
+          "passes_majority_real": 0.292,
+          "passes_two_thirds_real": 0.2,
+          "passes_majority_perceived": 0.292,
+          "passes_two_thirds_perceived": 0.2,
+          "passes_amending_formula_perceived": 0.242,
           "opposed_by": {
-            "Quebec": 0.9,
-            "Ontario": 0.692,
-            "British Columbia": 0.808,
-            "Atlantic provinces": 0.783,
-            "Alberta": 0.675,
-            "Manitoba and Saskatchewan": 0.767
+            "Newfoundland and Labrador": 0.575,
+            "Prince Edward Island": 0.633,
+            "Nova Scotia": 0.583,
+            "New Brunswick": 0.675,
+            "Quebec": 0.883,
+            "Ontario": 0.675,
+            "Manitoba": 0.683,
+            "Saskatchewan": 0.633,
+            "Alberta": 0.7,
+            "British Columbia": 0.742
           }
         },
         "floor 0.1": {
-          "mean_gain": 0.0,
-          "passes_majority_real": 0.033,
-          "passes_two_thirds_real": 0.033,
-          "passes_majority_perceived": 0.033,
-          "passes_two_thirds_perceived": 0.033,
+          "mean_gain": 4e-05,
+          "passes_majority_real": 0.108,
+          "passes_two_thirds_real": 0.075,
+          "passes_majority_perceived": 0.108,
+          "passes_two_thirds_perceived": 0.075,
+          "passes_amending_formula_perceived": 0.1,
           "opposed_by": {
-            "Quebec": 0.017,
-            "Ontario": 0,
-            "British Columbia": 0.008,
-            "Atlantic provinces": 0.008,
-            "Alberta": 0,
-            "Manitoba and Saskatchewan": 0.017
+            "Newfoundland and Labrador": 0.05,
+            "Prince Edward Island": 0.083,
+            "Nova Scotia": 0.033,
+            "New Brunswick": 0.042,
+            "Quebec": 0.058,
+            "Ontario": 0.042,
+            "Manitoba": 0.042,
+            "Saskatchewan": 0.042,
+            "Alberta": 0.067,
+            "British Columbia": 0.042
           }
         },
         "ceiling 0.7": {
-          "mean_gain": 0.0,
+          "mean_gain": -0.0,
           "passes_majority_real": 0,
           "passes_two_thirds_real": 0,
           "passes_majority_perceived": 0,
           "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
           "opposed_by": {
-            "Quebec": 0,
-            "Ontario": 0,
-            "British Columbia": 0,
-            "Atlantic provinces": 0,
+            "Newfoundland and Labrador": 0,
+            "Prince Edward Island": 0.008,
+            "Nova Scotia": 0,
+            "New Brunswick": 0,
+            "Quebec": 0.008,
+            "Ontario": 0.008,
+            "Manitoba": 0.008,
+            "Saskatchewan": 0,
             "Alberta": 0,
-            "Manitoba and Saskatchewan": 0
+            "British Columbia": 0.008
           }
         },
         "matched 10%": {
-          "mean_gain": 0.00076,
-          "passes_majority_real": 0.642,
-          "passes_two_thirds_real": 0.492,
-          "passes_majority_perceived": 0.642,
-          "passes_two_thirds_perceived": 0.492,
+          "mean_gain": 0.00036,
+          "passes_majority_real": 0.542,
+          "passes_two_thirds_real": 0.475,
+          "passes_majority_perceived": 0.542,
+          "passes_two_thirds_perceived": 0.475,
+          "passes_amending_formula_perceived": 0.425,
           "opposed_by": {
-            "Quebec": 0.1,
-            "Ontario": 0.517,
-            "British Columbia": 0.242,
-            "Atlantic provinces": 0.208,
-            "Alberta": 0.742,
-            "Manitoba and Saskatchewan": 0.258
+            "Newfoundland and Labrador": 0.258,
+            "Prince Edward Island": 0.558,
+            "Nova Scotia": 0.392,
+            "New Brunswick": 0.15,
+            "Quebec": 0.275,
+            "Ontario": 0.5,
+            "Manitoba": 0.583,
+            "Saskatchewan": 0.25,
+            "Alberta": 0.633,
+            "British Columbia": 0.25
           }
         },
         "equalized 100%": {
-          "mean_gain": 0.00034,
-          "passes_majority_real": 0.642,
-          "passes_two_thirds_real": 0.317,
-          "passes_majority_perceived": 0.642,
-          "passes_two_thirds_perceived": 0.317,
+          "mean_gain": 0.00077,
+          "passes_majority_real": 0.775,
+          "passes_two_thirds_real": 0.617,
+          "passes_majority_perceived": 0.775,
+          "passes_two_thirds_perceived": 0.617,
+          "passes_amending_formula_perceived": 0.733,
           "opposed_by": {
-            "Quebec": 0.392,
-            "Ontario": 0.325,
-            "British Columbia": 0.45,
-            "Atlantic provinces": 0.208,
-            "Alberta": 0.475,
-            "Manitoba and Saskatchewan": 0.408
+            "Newfoundland and Labrador": 0.142,
+            "Prince Edward Island": 0.125,
+            "Nova Scotia": 0.083,
+            "New Brunswick": 0.142,
+            "Quebec": 0.242,
+            "Ontario": 0.292,
+            "Manitoba": 0.275,
+            "Saskatchewan": 0.275,
+            "Alberta": 0.333,
+            "British Columbia": 0.325
+          }
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 0.00101,
+          "passes_majority_real": 0.808,
+          "passes_two_thirds_real": 0.65,
+          "passes_majority_perceived": 0.808,
+          "passes_two_thirds_perceived": 0.65,
+          "passes_amending_formula_perceived": 0.717,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.183,
+            "Prince Edward Island": 0.167,
+            "Nova Scotia": 0.117,
+            "New Brunswick": 0.175,
+            "Quebec": 0.25,
+            "Ontario": 0.233,
+            "Manitoba": 0.3,
+            "Saskatchewan": 0.258,
+            "Alberta": 0.367,
+            "British Columbia": 0.325
+          }
+        },
+        "foundation 0.1": {
+          "mean_gain": 0.00018,
+          "passes_majority_real": 0.458,
+          "passes_two_thirds_real": 0.433,
+          "passes_majority_perceived": 0.458,
+          "passes_two_thirds_perceived": 0.433,
+          "passes_amending_formula_perceived": 0.458,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.492,
+            "Prince Edward Island": 0.5,
+            "Nova Scotia": 0.5,
+            "New Brunswick": 0.45,
+            "Quebec": 0.542,
+            "Ontario": 0.533,
+            "Manitoba": 0.533,
+            "Saskatchewan": 0.5,
+            "Alberta": 0.542,
+            "British Columbia": 0.542
+          }
+        },
+        "legislature": {
+          "mean_gain": -1.76403,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
+          "opposed_by": {
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 1,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 1,
+            "Ontario": 1,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
+            "Alberta": 1,
+            "British Columbia": 1
           }
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.919,
+        "gain_kept": 0.928,
         "picks": {
-          "matched 10%": 0.517,
-          "nothing passes": 0.217,
-          "equalized 100%": 0.175,
-          "central 0.3": 0.092
+          "equalized both ways 100%": 0.392,
+          "foundation 0.1": 0.167,
+          "matched 10%": 0.167,
+          "central 0.3": 0.133,
+          "nothing passes": 0.067,
+          "equalized 100%": 0.058,
+          "floor 0.1": 0.017
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.719,
+        "gain_kept": 0.858,
         "picks": {
-          "matched 10%": 0.425,
-          "nothing passes": 0.383,
-          "equalized 100%": 0.108,
-          "central 0.3": 0.083
+          "equalized both ways 100%": 0.35,
+          "foundation 0.1": 0.192,
+          "matched 10%": 0.167,
+          "nothing passes": 0.117,
+          "central 0.3": 0.108,
+          "equalized 100%": 0.05,
+          "floor 0.1": 0.017
         }
       }
     },
     "environment": {
       "rules": {
         "central 0.3": {
-          "mean_gain": 0.03496,
-          "passes_majority_real": 0.925,
-          "passes_two_thirds_real": 0.867,
-          "passes_majority_perceived": 0.925,
-          "passes_two_thirds_perceived": 0.867,
+          "mean_gain": -0.00264,
+          "passes_majority_real": 0.483,
+          "passes_two_thirds_real": 0.408,
+          "passes_majority_perceived": 0.483,
+          "passes_two_thirds_perceived": 0.408,
+          "passes_amending_formula_perceived": 0.342,
           "opposed_by": {
-            "Quebec": 0,
-            "Ontario": 0.083,
-            "British Columbia": 0.108,
-            "Atlantic provinces": 0.067,
-            "Alberta": 0.592,
-            "Manitoba and Saskatchewan": 0.3
+            "Newfoundland and Labrador": 0.483,
+            "Prince Edward Island": 0.367,
+            "Nova Scotia": 0.433,
+            "New Brunswick": 0.508,
+            "Quebec": 0.308,
+            "Ontario": 0.525,
+            "Manitoba": 0.6,
+            "Saskatchewan": 0.825,
+            "Alberta": 0.875,
+            "British Columbia": 0.617
           }
         },
         "floor 0.2": {
-          "mean_gain": 0.02931,
-          "passes_majority_real": 0.975,
-          "passes_two_thirds_real": 0.942,
-          "passes_majority_perceived": 0.975,
-          "passes_two_thirds_perceived": 0.942,
+          "mean_gain": 0.00179,
+          "passes_majority_real": 0.692,
+          "passes_two_thirds_real": 0.6,
+          "passes_majority_perceived": 0.692,
+          "passes_two_thirds_perceived": 0.6,
+          "passes_amending_formula_perceived": 0.483,
           "opposed_by": {
-            "Quebec": 0.008,
-            "Ontario": 0,
-            "British Columbia": 0.033,
-            "Atlantic provinces": 0.033,
-            "Alberta": 0.258,
-            "Manitoba and Saskatchewan": 0.125
+            "Newfoundland and Labrador": 0.275,
+            "Prince Edward Island": 0.283,
+            "Nova Scotia": 0.175,
+            "New Brunswick": 0.217,
+            "Quebec": 0.092,
+            "Ontario": 0.292,
+            "Manitoba": 0.342,
+            "Saskatchewan": 0.617,
+            "Alberta": 0.633,
+            "British Columbia": 0.35
           }
         },
-        "ceiling 0.5": {
-          "mean_gain": 0.0,
+        "ceiling 0.7": {
+          "mean_gain": -0.0,
           "passes_majority_real": 0,
           "passes_two_thirds_real": 0,
           "passes_majority_perceived": 0,
           "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
           "opposed_by": {
-            "Quebec": 0,
+            "Newfoundland and Labrador": 0,
+            "Prince Edward Island": 0,
+            "Nova Scotia": 0.008,
+            "New Brunswick": 0.008,
+            "Quebec": 0.008,
             "Ontario": 0,
-            "British Columbia": 0,
-            "Atlantic provinces": 0,
+            "Manitoba": 0,
+            "Saskatchewan": 0,
             "Alberta": 0,
-            "Manitoba and Saskatchewan": 0
+            "British Columbia": 0.008
           }
         },
-        "matched 50%": {
-          "mean_gain": 0.0287,
-          "passes_majority_real": 0.917,
-          "passes_two_thirds_real": 0.908,
-          "passes_majority_perceived": 0.917,
-          "passes_two_thirds_perceived": 0.908,
+        "matched 20%": {
+          "mean_gain": 0.00504,
+          "passes_majority_real": 0.875,
+          "passes_two_thirds_real": 0.842,
+          "passes_majority_perceived": 0.875,
+          "passes_two_thirds_perceived": 0.842,
+          "passes_amending_formula_perceived": 0.733,
           "opposed_by": {
-            "Quebec": 0,
-            "Ontario": 0.083,
-            "British Columbia": 0.083,
-            "Atlantic provinces": 0.083,
-            "Alberta": 0.375,
-            "Manitoba and Saskatchewan": 0.208
-          }
-        },
-        "equalized 100%": {
-          "mean_gain": 0.00122,
-          "passes_majority_real": 1,
-          "passes_two_thirds_real": 0.992,
-          "passes_majority_perceived": 1,
-          "passes_two_thirds_perceived": 0.992,
-          "opposed_by": {
-            "Quebec": 0,
-            "Ontario": 0.008,
-            "British Columbia": 0.05,
-            "Atlantic provinces": 0,
-            "Alberta": 0.125,
-            "Manitoba and Saskatchewan": 0.108
-          }
-        }
-      },
-      "best_that_passes_majority": {
-        "gain_kept": 1.0,
-        "picks": {
-          "central 0.3": 0.492,
-          "floor 0.2": 0.258,
-          "matched 50%": 0.25
-        }
-      },
-      "best_that_passes_two_thirds": {
-        "gain_kept": 1.0,
-        "picks": {
-          "central 0.3": 0.492,
-          "floor 0.2": 0.258,
-          "matched 50%": 0.25
-        }
-      }
-    },
-    "transit": {
-      "rules": {
-        "central 0.3": {
-          "mean_gain": -0.022,
-          "passes_majority_real": 0.242,
-          "passes_two_thirds_real": 0.192,
-          "passes_majority_perceived": 0.242,
-          "passes_two_thirds_perceived": 0.192,
-          "opposed_by": {
-            "Quebec": 0.758,
-            "Ontario": 0.733,
-            "British Columbia": 0.775,
-            "Atlantic provinces": 0.85,
-            "Alberta": 0.758,
-            "Manitoba and Saskatchewan": 0.758
-          }
-        },
-        "floor 0.1": {
-          "mean_gain": 0.00015,
-          "passes_majority_real": 0.517,
-          "passes_two_thirds_real": 0.45,
-          "passes_majority_perceived": 0.517,
-          "passes_two_thirds_perceived": 0.45,
-          "opposed_by": {
-            "Quebec": 0.142,
-            "Ontario": 0.092,
-            "British Columbia": 0.183,
-            "Atlantic provinces": 0.133,
-            "Alberta": 0.1,
-            "Manitoba and Saskatchewan": 0.058
-          }
-        },
-        "ceiling 0.7": {
-          "mean_gain": 1e-05,
-          "passes_majority_real": 0.042,
-          "passes_two_thirds_real": 0.042,
-          "passes_majority_perceived": 0.042,
-          "passes_two_thirds_perceived": 0.042,
-          "opposed_by": {
-            "Quebec": 0.05,
-            "Ontario": 0.017,
-            "British Columbia": 0.033,
-            "Atlantic provinces": 0.05,
-            "Alberta": 0.042,
-            "Manitoba and Saskatchewan": 0.067
-          }
-        },
-        "matched 10%": {
-          "mean_gain": -0.00188,
-          "passes_majority_real": 0.267,
-          "passes_two_thirds_real": 0.15,
-          "passes_majority_perceived": 0.267,
-          "passes_two_thirds_perceived": 0.15,
-          "opposed_by": {
-            "Quebec": 0.65,
-            "Ontario": 0.65,
-            "British Columbia": 0.558,
-            "Atlantic provinces": 0.717,
-            "Alberta": 0.542,
-            "Manitoba and Saskatchewan": 0.708
+            "Newfoundland and Labrador": 0.233,
+            "Prince Edward Island": 0.217,
+            "Nova Scotia": 0.075,
+            "New Brunswick": 0.15,
+            "Quebec": 0.008,
+            "Ontario": 0.125,
+            "Manitoba": 0.35,
+            "Saskatchewan": 0.758,
+            "Alberta": 0.817,
+            "British Columbia": 0.117
           }
         },
         "equalized 100%": {
-          "mean_gain": 7e-05,
-          "passes_majority_real": 0.542,
-          "passes_two_thirds_real": 0.233,
-          "passes_majority_perceived": 0.542,
-          "passes_two_thirds_perceived": 0.233,
+          "mean_gain": 0.00167,
+          "passes_majority_real": 0.95,
+          "passes_two_thirds_real": 0.917,
+          "passes_majority_perceived": 0.95,
+          "passes_two_thirds_perceived": 0.917,
+          "passes_amending_formula_perceived": 0.925,
           "opposed_by": {
-            "Quebec": 0.15,
-            "Ontario": 0.533,
-            "British Columbia": 0.367,
-            "Atlantic provinces": 0.283,
-            "Alberta": 0.558,
-            "Manitoba and Saskatchewan": 0.483
+            "Newfoundland and Labrador": 0.108,
+            "Prince Edward Island": 0.042,
+            "Nova Scotia": 0.017,
+            "New Brunswick": 0.017,
+            "Quebec": 0.033,
+            "Ontario": 0.075,
+            "Manitoba": 0.092,
+            "Saskatchewan": 0.208,
+            "Alberta": 0.192,
+            "British Columbia": 0.083
           }
         },
-        "city + 10% grant": {
-          "mean_gain": -0.0114,
-          "passes_majority_real": 0.233,
-          "passes_two_thirds_real": 0.192,
-          "passes_majority_perceived": 0.233,
-          "passes_two_thirds_perceived": 0.192,
-          "opposed_by": {
-            "Quebec": 0.75,
-            "Ontario": 0.75,
-            "British Columbia": 0.758,
-            "Atlantic provinces": 0.833,
-            "Alberta": 0.792,
-            "Manitoba and Saskatchewan": 0.833
-          }
-        }
-      },
-      "best_that_passes_majority": {
-        "gain_kept": 0.903,
-        "picks": {
-          "floor 0.1": 0.275,
-          "central 0.3": 0.217,
-          "equalized 100%": 0.167,
-          "nothing passes": 0.15,
-          "city + 10% grant": 0.083,
-          "matched 10%": 0.067,
-          "ceiling 0.7": 0.042
-        }
-      },
-      "best_that_passes_two_thirds": {
-        "gain_kept": 0.712,
-        "picks": {
-          "nothing passes": 0.292,
-          "floor 0.1": 0.267,
-          "central 0.3": 0.183,
-          "equalized 100%": 0.075,
-          "city + 10% grant": 0.075,
-          "matched 10%": 0.067,
-          "ceiling 0.7": 0.042
-        }
-      }
-    },
-    "redistribution": {
-      "rules": {
-        "central 0.25": {
-          "mean_gain": 0.02807,
+        "equalized both ways 100%": {
+          "mean_gain": 0.00205,
           "passes_majority_real": 0.967,
           "passes_two_thirds_real": 0.9,
           "passes_majority_perceived": 0.967,
           "passes_two_thirds_perceived": 0.9,
+          "passes_amending_formula_perceived": 0.95,
           "opposed_by": {
-            "Quebec": 0,
-            "Ontario": 0.05,
-            "British Columbia": 0.108,
-            "Atlantic provinces": 0,
-            "Alberta": 0.217,
-            "Manitoba and Saskatchewan": 0.067
+            "Newfoundland and Labrador": 0.125,
+            "Prince Edward Island": 0.075,
+            "Nova Scotia": 0.033,
+            "New Brunswick": 0.008,
+            "Quebec": 0.017,
+            "Ontario": 0.1,
+            "Manitoba": 0.125,
+            "Saskatchewan": 0.183,
+            "Alberta": 0.175,
+            "British Columbia": 0.125
           }
         },
-        "floor 0.3": {
-          "mean_gain": 0.01025,
-          "passes_majority_real": 0.825,
-          "passes_two_thirds_real": 0.692,
-          "passes_majority_perceived": 0.825,
-          "passes_two_thirds_perceived": 0.692,
+        "foundation 0.2": {
+          "mean_gain": 0.00246,
+          "passes_majority_real": 0.583,
+          "passes_two_thirds_real": 0.55,
+          "passes_majority_perceived": 0.583,
+          "passes_two_thirds_perceived": 0.55,
+          "passes_amending_formula_perceived": 0.508,
           "opposed_by": {
-            "Quebec": 0.175,
-            "Ontario": 0.175,
-            "British Columbia": 0.275,
-            "Atlantic provinces": 0.2,
-            "Alberta": 0.233,
-            "Manitoba and Saskatchewan": 0.217
+            "Newfoundland and Labrador": 0.358,
+            "Prince Edward Island": 0.333,
+            "Nova Scotia": 0.308,
+            "New Brunswick": 0.358,
+            "Quebec": 0.3,
+            "Ontario": 0.433,
+            "Manitoba": 0.417,
+            "Saskatchewan": 0.65,
+            "Alberta": 0.667,
+            "British Columbia": 0.45
           }
         },
-        "ceiling 0.25": {
-          "mean_gain": 0.00536,
-          "passes_majority_real": 0.475,
-          "passes_two_thirds_real": 0.35,
-          "passes_majority_perceived": 0.475,
-          "passes_two_thirds_perceived": 0.35,
+        "legislature": {
+          "mean_gain": -1.58762,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
           "opposed_by": {
-            "Quebec": 0.208,
-            "Ontario": 0.308,
-            "British Columbia": 0.292,
-            "Atlantic provinces": 0.267,
-            "Alberta": 0.492,
-            "Manitoba and Saskatchewan": 0.342
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 1,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 1,
+            "Ontario": 1,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
+            "Alberta": 1,
+            "British Columbia": 1
           }
         }
       },
       "best_that_passes_majority": {
         "gain_kept": 0.992,
         "picks": {
-          "central 0.25": 0.967,
-          "floor 0.3": 0.033
+          "matched 20%": 0.275,
+          "central 0.3": 0.258,
+          "foundation 0.2": 0.225,
+          "floor 0.2": 0.108,
+          "equalized both ways 100%": 0.1,
+          "equalized 100%": 0.025,
+          "nothing passes": 0.008
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.943,
+        "gain_kept": 0.992,
         "picks": {
-          "central 0.25": 0.9,
-          "floor 0.3": 0.058,
-          "nothing passes": 0.042
+          "matched 20%": 0.275,
+          "central 0.3": 0.258,
+          "foundation 0.2": 0.225,
+          "floor 0.2": 0.108,
+          "equalized both ways 100%": 0.1,
+          "equalized 100%": 0.025,
+          "nothing passes": 0.008
+        }
+      }
+    },
+    "transit": {
+      "rules": {
+        "central 0.3": {
+          "mean_gain": -0.03159,
+          "passes_majority_real": 0.175,
+          "passes_two_thirds_real": 0.133,
+          "passes_majority_perceived": 0.175,
+          "passes_two_thirds_perceived": 0.133,
+          "passes_amending_formula_perceived": 0.108,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.883,
+            "Prince Edward Island": 0.85,
+            "Nova Scotia": 0.858,
+            "New Brunswick": 0.9,
+            "Quebec": 0.8,
+            "Ontario": 0.85,
+            "Manitoba": 0.858,
+            "Saskatchewan": 0.725,
+            "Alberta": 0.8,
+            "British Columbia": 0.817
+          }
+        },
+        "floor 0.1": {
+          "mean_gain": 0.00033,
+          "passes_majority_real": 0.533,
+          "passes_two_thirds_real": 0.4,
+          "passes_majority_perceived": 0.533,
+          "passes_two_thirds_perceived": 0.4,
+          "passes_amending_formula_perceived": 0.45,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.183,
+            "Prince Edward Island": 0.383,
+            "Nova Scotia": 0.192,
+            "New Brunswick": 0.217,
+            "Quebec": 0.25,
+            "Ontario": 0.433,
+            "Manitoba": 0.292,
+            "Saskatchewan": 0.067,
+            "Alberta": 0.283,
+            "British Columbia": 0.358
+          }
+        },
+        "ceiling 0.7": {
+          "mean_gain": 0.00013,
+          "passes_majority_real": 0.058,
+          "passes_two_thirds_real": 0.058,
+          "passes_majority_perceived": 0.058,
+          "passes_two_thirds_perceived": 0.058,
+          "passes_amending_formula_perceived": 0.05,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.008,
+            "Prince Edward Island": 0.017,
+            "Nova Scotia": 0,
+            "New Brunswick": 0.025,
+            "Quebec": 0,
+            "Ontario": 0,
+            "Manitoba": 0.008,
+            "Saskatchewan": 0.017,
+            "Alberta": 0.017,
+            "British Columbia": 0
+          }
+        },
+        "matched 10%": {
+          "mean_gain": -0.0024,
+          "passes_majority_real": 0.333,
+          "passes_two_thirds_real": 0.15,
+          "passes_majority_perceived": 0.333,
+          "passes_two_thirds_perceived": 0.15,
+          "passes_amending_formula_perceived": 0.092,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.658,
+            "Prince Edward Island": 0.658,
+            "Nova Scotia": 0.7,
+            "New Brunswick": 0.725,
+            "Quebec": 0.733,
+            "Ontario": 0.567,
+            "Manitoba": 0.717,
+            "Saskatchewan": 0.808,
+            "Alberta": 0.692,
+            "British Columbia": 0.633
+          }
+        },
+        "equalized 100%": {
+          "mean_gain": 0.00014,
+          "passes_majority_real": 0.575,
+          "passes_two_thirds_real": 0.483,
+          "passes_majority_perceived": 0.575,
+          "passes_two_thirds_perceived": 0.483,
+          "passes_amending_formula_perceived": 0.5,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.208,
+            "Prince Edward Island": 0.192,
+            "Nova Scotia": 0.15,
+            "New Brunswick": 0.158,
+            "Quebec": 0.092,
+            "Ontario": 0.492,
+            "Manitoba": 0.258,
+            "Saskatchewan": 0.342,
+            "Alberta": 0.475,
+            "British Columbia": 0.325
+          }
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 0.00018,
+          "passes_majority_real": 0.767,
+          "passes_two_thirds_real": 0.625,
+          "passes_majority_perceived": 0.767,
+          "passes_two_thirds_perceived": 0.625,
+          "passes_amending_formula_perceived": 0.642,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.25,
+            "Prince Edward Island": 0.275,
+            "Nova Scotia": 0.142,
+            "New Brunswick": 0.192,
+            "Quebec": 0.092,
+            "Ontario": 0.333,
+            "Manitoba": 0.208,
+            "Saskatchewan": 0.275,
+            "Alberta": 0.467,
+            "British Columbia": 0.358
+          }
+        },
+        "foundation 0.1": {
+          "mean_gain": 0.00022,
+          "passes_majority_real": 0.492,
+          "passes_two_thirds_real": 0.458,
+          "passes_majority_perceived": 0.492,
+          "passes_two_thirds_perceived": 0.458,
+          "passes_amending_formula_perceived": 0.492,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.392,
+            "Prince Edward Island": 0.492,
+            "Nova Scotia": 0.4,
+            "New Brunswick": 0.442,
+            "Quebec": 0.483,
+            "Ontario": 0.533,
+            "Manitoba": 0.525,
+            "Saskatchewan": 0.217,
+            "Alberta": 0.45,
+            "British Columbia": 0.492
+          }
+        },
+        "legislature": {
+          "mean_gain": -0.98653,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
+          "opposed_by": {
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 1,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 1,
+            "Ontario": 1,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
+            "Alberta": 1,
+            "British Columbia": 1
+          }
+        },
+        "city + 10% grant": {
+          "mean_gain": -0.01123,
+          "passes_majority_real": 0.233,
+          "passes_two_thirds_real": 0.192,
+          "passes_majority_perceived": 0.233,
+          "passes_two_thirds_perceived": 0.192,
+          "passes_amending_formula_perceived": 0.133,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.767,
+            "Prince Edward Island": 0.792,
+            "Nova Scotia": 0.8,
+            "New Brunswick": 0.792,
+            "Quebec": 0.775,
+            "Ontario": 0.75,
+            "Manitoba": 0.767,
+            "Saskatchewan": 0.625,
+            "Alberta": 0.767,
+            "British Columbia": 0.767
+          }
+        }
+      },
+      "best_that_passes_majority": {
+        "gain_kept": 0.917,
+        "picks": {
+          "foundation 0.1": 0.208,
+          "equalized both ways 100%": 0.192,
+          "floor 0.1": 0.167,
+          "city + 10% grant": 0.117,
+          "central 0.3": 0.117,
+          "equalized 100%": 0.058,
+          "nothing passes": 0.058,
+          "matched 10%": 0.042,
+          "ceiling 0.7": 0.042
+        }
+      },
+      "best_that_passes_two_thirds": {
+        "gain_kept": 0.829,
+        "picks": {
+          "foundation 0.1": 0.208,
+          "equalized both ways 100%": 0.158,
+          "floor 0.1": 0.133,
+          "nothing passes": 0.125,
+          "city + 10% grant": 0.125,
+          "central 0.3": 0.092,
+          "equalized 100%": 0.083,
+          "ceiling 0.7": 0.042,
+          "matched 10%": 0.033
+        }
+      }
+    },
+    "health": {
+      "rules": {
+        "central 0.3": {
+          "mean_gain": -0.00568,
+          "passes_majority_real": 0.375,
+          "passes_two_thirds_real": 0.367,
+          "passes_majority_perceived": 0.375,
+          "passes_two_thirds_perceived": 0.367,
+          "passes_amending_formula_perceived": 0.342,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.483,
+            "Prince Edward Island": 0.575,
+            "Nova Scotia": 0.525,
+            "New Brunswick": 0.558,
+            "Quebec": 0.608,
+            "Ontario": 0.6,
+            "Manitoba": 0.667,
+            "Saskatchewan": 0.667,
+            "Alberta": 0.7,
+            "British Columbia": 0.65
+          }
+        },
+        "floor 0.1": {
+          "mean_gain": 2e-05,
+          "passes_majority_real": 0.058,
+          "passes_two_thirds_real": 0.05,
+          "passes_majority_perceived": 0.058,
+          "passes_two_thirds_perceived": 0.05,
+          "passes_amending_formula_perceived": 0.058,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0,
+            "Prince Edward Island": 0,
+            "Nova Scotia": 0,
+            "New Brunswick": 0.008,
+            "Quebec": 0,
+            "Ontario": 0.008,
+            "Manitoba": 0.008,
+            "Saskatchewan": 0.008,
+            "Alberta": 0.008,
+            "British Columbia": 0
+          }
+        },
+        "ceiling 0.5": {
+          "mean_gain": -0.0,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.008,
+            "Prince Edward Island": 0,
+            "Nova Scotia": 0.017,
+            "New Brunswick": 0.008,
+            "Quebec": 0.017,
+            "Ontario": 0,
+            "Manitoba": 0,
+            "Saskatchewan": 0,
+            "Alberta": 0,
+            "British Columbia": 0
+          }
+        },
+        "matched 10%": {
+          "mean_gain": 0.00022,
+          "passes_majority_real": 0.625,
+          "passes_two_thirds_real": 0.617,
+          "passes_majority_perceived": 0.625,
+          "passes_two_thirds_perceived": 0.617,
+          "passes_amending_formula_perceived": 0.508,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.042,
+            "Prince Edward Island": 0.3,
+            "Nova Scotia": 0.158,
+            "New Brunswick": 0.25,
+            "Quebec": 0.342,
+            "Ontario": 0.367,
+            "Manitoba": 0.567,
+            "Saskatchewan": 0.617,
+            "Alberta": 0.658,
+            "British Columbia": 0.483
+          }
+        },
+        "equalized 100%": {
+          "mean_gain": 3e-05,
+          "passes_majority_real": 0.667,
+          "passes_two_thirds_real": 0.558,
+          "passes_majority_perceived": 0.667,
+          "passes_two_thirds_perceived": 0.558,
+          "passes_amending_formula_perceived": 0.617,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.108,
+            "Prince Edward Island": 0.142,
+            "Nova Scotia": 0.067,
+            "New Brunswick": 0.042,
+            "Quebec": 0.133,
+            "Ontario": 0.367,
+            "Manitoba": 0.192,
+            "Saskatchewan": 0.292,
+            "Alberta": 0.833,
+            "British Columbia": 0.217
+          }
+        },
+        "equalized both ways 100%": {
+          "mean_gain": 4e-05,
+          "passes_majority_real": 0.742,
+          "passes_two_thirds_real": 0.575,
+          "passes_majority_perceived": 0.742,
+          "passes_two_thirds_perceived": 0.575,
+          "passes_amending_formula_perceived": 0.642,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.2,
+            "Prince Edward Island": 0.2,
+            "Nova Scotia": 0.117,
+            "New Brunswick": 0.083,
+            "Quebec": 0.15,
+            "Ontario": 0.317,
+            "Manitoba": 0.242,
+            "Saskatchewan": 0.258,
+            "Alberta": 0.783,
+            "British Columbia": 0.267
+          }
+        },
+        "foundation 0.1": {
+          "mean_gain": 6e-05,
+          "passes_majority_real": 0.45,
+          "passes_two_thirds_real": 0.45,
+          "passes_majority_perceived": 0.45,
+          "passes_two_thirds_perceived": 0.45,
+          "passes_amending_formula_perceived": 0.45,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.55,
+            "Prince Edward Island": 0.55,
+            "Nova Scotia": 0.533,
+            "New Brunswick": 0.542,
+            "Quebec": 0.542,
+            "Ontario": 0.542,
+            "Manitoba": 0.55,
+            "Saskatchewan": 0.55,
+            "Alberta": 0.55,
+            "British Columbia": 0.55
+          }
+        },
+        "legislature": {
+          "mean_gain": -1.71332,
+          "passes_majority_real": 0,
+          "passes_two_thirds_real": 0,
+          "passes_majority_perceived": 0,
+          "passes_two_thirds_perceived": 0,
+          "passes_amending_formula_perceived": 0,
+          "opposed_by": {
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 1,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 1,
+            "Ontario": 1,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
+            "Alberta": 1,
+            "British Columbia": 1
+          }
+        }
+      },
+      "best_that_passes_majority": {
+        "gain_kept": 0.89,
+        "picks": {
+          "central 0.3": 0.3,
+          "matched 10%": 0.242,
+          "equalized both ways 100%": 0.175,
+          "foundation 0.1": 0.15,
+          "nothing passes": 0.108,
+          "equalized 100%": 0.025
+        }
+      },
+      "best_that_passes_two_thirds": {
+        "gain_kept": 0.835,
+        "picks": {
+          "central 0.3": 0.3,
+          "matched 10%": 0.242,
+          "nothing passes": 0.167,
+          "foundation 0.1": 0.15,
+          "equalized both ways 100%": 0.125,
+          "equalized 100%": 0.017
+        }
+      }
+    },
+    "redistribution": {
+      "rules": {
+        "central 0.25": {
+          "mean_gain": 0.01141,
+          "passes_majority_real": 0.342,
+          "passes_two_thirds_real": 0.242,
+          "passes_majority_perceived": 0.342,
+          "passes_two_thirds_perceived": 0.242,
+          "passes_amending_formula_perceived": 0.342,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.042,
+            "Prince Edward Island": 0.033,
+            "Nova Scotia": 0.008,
+            "New Brunswick": 0.008,
+            "Quebec": 0,
+            "Ontario": 0.758,
+            "Manitoba": 0.075,
+            "Saskatchewan": 0.175,
+            "Alberta": 0.833,
+            "British Columbia": 0.233
+          }
+        },
+        "floor 0.3": {
+          "mean_gain": 0.00168,
+          "passes_majority_real": 0.608,
+          "passes_two_thirds_real": 0.4,
+          "passes_majority_perceived": 0.608,
+          "passes_two_thirds_perceived": 0.4,
+          "passes_amending_formula_perceived": 0.317,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.425,
+            "Prince Edward Island": 0.55,
+            "Nova Scotia": 0.392,
+            "New Brunswick": 0.358,
+            "Quebec": 0.358,
+            "Ontario": 0.492,
+            "Manitoba": 0.517,
+            "Saskatchewan": 0.358,
+            "Alberta": 0.417,
+            "British Columbia": 0.417
+          }
+        },
+        "ceiling 0.25": {
+          "mean_gain": -0.00125,
+          "passes_majority_real": 0.1,
+          "passes_two_thirds_real": 0.033,
+          "passes_majority_perceived": 0.1,
+          "passes_two_thirds_perceived": 0.033,
+          "passes_amending_formula_perceived": 0.042,
+          "opposed_by": {
+            "Newfoundland and Labrador": 0.283,
+            "Prince Edward Island": 0.392,
+            "Nova Scotia": 0.475,
+            "New Brunswick": 0.408,
+            "Quebec": 0.575,
+            "Ontario": 0.733,
+            "Manitoba": 0.433,
+            "Saskatchewan": 0.408,
+            "Alberta": 0.642,
+            "British Columbia": 0.55
+          }
+        }
+      },
+      "best_that_passes_majority": {
+        "gain_kept": 0.503,
+        "picks": {
+          "floor 0.3": 0.367,
+          "central 0.25": 0.342,
+          "nothing passes": 0.258,
+          "ceiling 0.25": 0.033
+        }
+      },
+      "best_that_passes_two_thirds": {
+        "gain_kept": 0.377,
+        "picks": {
+          "nothing passes": 0.483,
+          "floor 0.3": 0.258,
+          "central 0.25": 0.242,
+          "ceiling 0.25": 0.017
         }
       }
     },
     "climate": {
       "rules": {
         "central 0.7": {
-          "mean_gain": 0.16256,
+          "mean_gain": 0.17777,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
           "passes_majority_perceived": 1,
           "passes_two_thirds_perceived": 1,
+          "passes_amending_formula_perceived": 0.992,
           "opposed_by": {
+            "Newfoundland and Labrador": 0.025,
+            "Prince Edward Island": 0.025,
+            "Nova Scotia": 0,
+            "New Brunswick": 0.017,
             "Quebec": 0,
             "Ontario": 0,
-            "British Columbia": 0,
-            "Atlantic provinces": 0,
-            "Alberta": 0.875,
-            "Manitoba and Saskatchewan": 0.542
+            "Manitoba": 0,
+            "Saskatchewan": 0.8,
+            "Alberta": 0.808,
+            "British Columbia": 0
           }
         },
         "floor 0.7": {
-          "mean_gain": 0.16256,
+          "mean_gain": 0.17777,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
           "passes_majority_perceived": 1,
           "passes_two_thirds_perceived": 1,
+          "passes_amending_formula_perceived": 0.992,
           "opposed_by": {
+            "Newfoundland and Labrador": 0.025,
+            "Prince Edward Island": 0.025,
+            "Nova Scotia": 0,
+            "New Brunswick": 0.017,
             "Quebec": 0,
             "Ontario": 0,
-            "British Columbia": 0,
-            "Atlantic provinces": 0,
-            "Alberta": 0.875,
-            "Manitoba and Saskatchewan": 0.542
+            "Manitoba": 0,
+            "Saskatchewan": 0.8,
+            "Alberta": 0.808,
+            "British Columbia": 0
           }
         },
         "price 1.2": {
           "rebate_seen_needed_for_majority": {
-            "median": 0.89,
-            "p10": 0.758,
-            "p90": 0.959
+            "median": 0.837,
+            "p10": 0.424,
+            "p90": 0.949
           },
-          "payment_over_real_gain_median": 17.0,
-          "mean_gain": 0.32745,
+          "payment_over_real_gain_median": 15.3,
+          "mean_gain": 0.21956,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
-          "passes_majority_perceived": 0,
-          "passes_two_thirds_perceived": 0,
+          "passes_majority_perceived": 0.033,
+          "passes_two_thirds_perceived": 0.017,
+          "passes_amending_formula_perceived": 0,
           "opposed_by": {
-            "Quebec": 0.883,
-            "Ontario": 1,
-            "British Columbia": 1,
-            "Atlantic provinces": 1,
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 0.675,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 0.642,
+            "Ontario": 0.967,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
             "Alberta": 1,
-            "Manitoba and Saskatchewan": 1
+            "British Columbia": 0.983
           }
         },
         "price floor 1.2": {
           "rebate_seen_needed_for_majority": {
-            "median": 0.89,
-            "p10": 0.758,
-            "p90": 0.959
+            "median": 0.837,
+            "p10": 0.424,
+            "p90": 0.949
           },
-          "payment_over_real_gain_median": 17.0,
-          "mean_gain": 0.32745,
+          "payment_over_real_gain_median": 15.3,
+          "mean_gain": 0.21956,
           "passes_majority_real": 1,
           "passes_two_thirds_real": 1,
-          "passes_majority_perceived": 0,
-          "passes_two_thirds_perceived": 0,
+          "passes_majority_perceived": 0.033,
+          "passes_two_thirds_perceived": 0.017,
+          "passes_amending_formula_perceived": 0,
           "opposed_by": {
-            "Quebec": 0.883,
-            "Ontario": 1,
-            "British Columbia": 1,
-            "Atlantic provinces": 1,
+            "Newfoundland and Labrador": 1,
+            "Prince Edward Island": 0.675,
+            "Nova Scotia": 1,
+            "New Brunswick": 1,
+            "Quebec": 0.642,
+            "Ontario": 0.967,
+            "Manitoba": 1,
+            "Saskatchewan": 1,
             "Alberta": 1,
-            "Manitoba and Saskatchewan": 1
+            "British Columbia": 0.983
           }
         }
       },
       "best_that_passes_majority": {
-        "gain_kept": 0.479,
+        "gain_kept": 0.795,
         "picks": {
-          "floor 0.7": 1.0
+          "floor 0.7": 0.967,
+          "price floor 1.2": 0.033
         }
       },
       "best_that_passes_two_thirds": {
-        "gain_kept": 0.479,
+        "gain_kept": 0.792,
         "picks": {
-          "floor 0.7": 1.0
+          "floor 0.7": 0.983,
+          "price floor 1.2": 0.017
         }
       }
     }

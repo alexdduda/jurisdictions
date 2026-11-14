@@ -8,6 +8,8 @@
     matched   matched
     equalized equalized
     city      devolved
+    foundation funded
+    equalized_both levelled
 """
 
 from scopelang import run
@@ -15,8 +17,11 @@ from scopelang import run
 from .model import LOCAL, Policy, World
 
 TO_LAW = {"local": "shadow", "central": "preempt", "floor": "floor", "ceiling": "ceiling", "matched": "matched",
-          "equalized": "equalized", "city": "devolved"}
+          "equalized": "equalized", "city": "devolved", "foundation": "funded", "equalized_both": "levelled"}
 FROM_LAW = {v: k for k, v in TO_LAW.items()}
+# A legislature-set national level is a preempt law whose value the national
+# scope's own politics decides; it reads back as central.
+TO_LAW["legislature"] = "preempt"
 
 COMMENTS = {
     "local": "regions decide",
@@ -26,6 +31,9 @@ COMMENTS = {
     "matched": "regions decide; the nation pays this share of the cost",
     "equalized": "regions decide; the nation closes this share of poorer regions' capacity gap",
     "city": "cities decide, skipping the provinces; the nation pays this share of their cost",
+    "foundation": "regions decide, never below this level, which the nation pays for",
+    "equalized_both": "regions decide; the nation closes this share of every region's capacity gap, taking from richer ones",
+    "legislature": "the nation provides; a legislature of regional delegates sets the levels",
     "price": "one national carbon price; provinces may not change it",
     "price_floor": "a national minimum carbon price; provinces may go higher",
 }
@@ -38,6 +46,8 @@ def law_line(name: str, p: Policy) -> str:
         return f"law {name}_price: preempt = {p.level:g}"
     if p.mode == "price_floor":
         return f"law {name}_price: floor = {p.level:g}"
+    if p.mode == "legislature":
+        return f"law {name}: preempt  # level set by a legislature of regional delegates"
     return f"law {name}: {TO_LAW[p.mode]}" + ("" if p.mode == "local" else f" = {p.level:g}")
 
 

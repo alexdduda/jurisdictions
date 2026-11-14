@@ -1,0 +1,414 @@
+{
+  "inputs": {
+    "disagreement": {
+      "schools": {
+        "functions": [
+          "Elementary & secondary"
+        ],
+        "years": 6,
+        "mean_per_capita": 2160,
+        "cv": {
+          "levels": 0.2376,
+          "shares": 0.1434,
+          "residual": 0.1685
+        },
+        "heterogeneity_range": [
+          0.0358,
+          0.0594
+        ]
+      },
+      "environment": {
+        "functions": [
+          "Sewerage",
+          "Solid waste management"
+        ],
+        "years": 6,
+        "mean_per_capita": 262,
+        "cv": {
+          "levels": 0.2815,
+          "shares": 0.245,
+          "residual": 0.2397
+        },
+        "heterogeneity_range": [
+          0.0599,
+          0.0704
+        ]
+      },
+      "transit": {
+        "functions": [
+          "Highways",
+          "Air transportation (airports)",
+          "Parking facilities",
+          "Sea and inland port facilities",
+          "Transit"
+        ],
+        "years": 6,
+        "mean_per_capita": 978,
+        "cv": {
+          "levels": 0.4232,
+          "shares": 0.2594,
+          "residual": 0.2796
+        },
+        "heterogeneity_range": [
+          0.0649,
+          0.1058
+        ]
+      },
+      "health": {
+        "functions": [
+          "Hospitals",
+          "Health"
+        ],
+        "years": 6,
+        "mean_per_capita": 946,
+        "cv": {
+          "levels": 0.5696,
+          "shares": 0.5051,
+          "residual": 0.5588
+        },
+        "heterogeneity_range": [
+          0.1263,
+          0.1424
+        ]
+      }
+    },
+    "inequality": {
+      "market_gini": 0.5109,
+      "income_sigma": 0.9783
+    },
+    "migration": {
+      "annual_rate": 0.01461,
+      "min": 0.01315,
+      "max": 0.01695,
+      "years": 7
+    },
+    "regional_income": {
+      "market_income_cv": 0.178,
+      "market_income_cv_range": [
+        0.1749,
+        0.1805
+      ],
+      "gdp_per_capita_cv": 0.1793
+    },
+    "fiscal_capacity": {
+      "schools": {
+        "income_elasticity": 0.88,
+        "years": 6
+      },
+      "environment": {
+        "income_elasticity": 0.709,
+        "years": 6
+      },
+      "transit": {
+        "income_elasticity": 1.246,
+        "years": 6
+      },
+      "health": {
+        "income_elasticity": -0.003,
+        "years": 6
+      }
+    },
+    "emissions_spread": {
+      "year": "2022",
+      "log_sd": 0.559,
+      "measure": "energy CO2 per person"
+    }
+  },
+  "mobility": {
+    "public_goods": {
+      "national_overhead": [
+        0.2,
+        1.9
+      ],
+      "overhead_log_ratio": [
+        -0.3798,
+        0.3097
+      ],
+      "move_share": [
+        0.03,
+        0.12
+      ],
+      "moving_cost": [
+        0.005,
+        0.01
+      ],
+      "productivity_sd": [
+        0.05,
+        0.15
+      ],
+      "congestion": [
+        0.03,
+        0.2
+      ]
+    },
+    "redistribution": {
+      "income_sigma": [
+        0.948,
+        1.008
+      ],
+      "deadweight": [
+        0.4,
+        0.9
+      ],
+      "move_share": [
+        0.02,
+        0.020003
+      ],
+      "moving_cost": [
+        0.005,
+        0.0050015
+      ],
+      "productivity_sd": [
+        0.04,
+        0.040005
+      ],
+      "congestion": [
+        0.03,
+        0.2
+      ]
+    },
+    "targets": {
+      "migration": [
+        0.013,
+        0.017
+      ],
+      "income_spread": [
+        0.15,
+        0.2
+      ]
+    }
+  },
+  "canada": {
+    "schools": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.122,
+      "win_share": {
+        "central": 0.35,
+        "floor": 0.075,
+        "matched": 0.055,
+        "equalized": 0.015,
+        "foundation": 0.15,
+        "equalized_both": 0.355
+      }
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.393,
+      "win_share": {
+        "central": 0.545,
+        "floor": 0.195,
+        "matched": 0.19,
+        "equalized": 0.005,
+        "foundation": 0.01,
+        "equalized_both": 0.055
+      }
+    },
+    "transit": {
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.042,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.085,
+        "floor": 0.125,
+        "ceiling": 0.065,
+        "matched": 0.06,
+        "equalized": 0.035,
+        "city": 0.175,
+        "foundation": 0.265,
+        "equalized_both": 0.185
+      }
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.595,
+        "floor": 0.23,
+        "ceiling": 0.005,
+        "matched": 0.075,
+        "equalized": 0.01,
+        "equalized_both": 0.08
+      }
+    },
+    "redistribution": {
+      "robust": "central 0.25",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 0.98,
+        "floor": 0.02
+      }
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.991,
+      "win_share": {
+        "floor": 0.005,
+        "price": 0.995
+      }
+    }
+  },
+  "results": {
+    "schools": {
+      "robust": "equalized 100%",
+      "robust_mode": "equalized",
+      "gain_captured": 0.262,
+      "win_share": {
+        "central": 0.33,
+        "floor": 0.02,
+        "matched": 0.015,
+        "equalized": 0.245,
+        "foundation": 0.12,
+        "equalized_both": 0.27
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -2.37,
+        "floor": 0.035,
+        "ceiling": 0.0,
+        "matched": 0.005,
+        "equalized": 0.262,
+        "equalized_both": 0.219,
+        "foundation": 0.075,
+        "legislature": -291.159
+      },
+      "share_on_targets": 0.225,
+      "median_migration": 0.01503,
+      "median_income_spread": 0.1903,
+      "actual": "States and districts decide; federal money is about an eighth of school revenue (11.7% in fiscal 2024, 13.7% at the pandemic peak), much of it Title I grants aimed at poor districts",
+      "actual_in_model_terms": "local, with a small targeted grant"
+    },
+    "environment": {
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.431,
+      "win_share": {
+        "central": 0.35,
+        "floor": 0.08,
+        "matched": 0.305,
+        "equalized": 0.1,
+        "foundation": 0.055,
+        "equalized_both": 0.11
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -1.183,
+        "floor": 0.137,
+        "ceiling": 0.0,
+        "matched": 0.431,
+        "equalized": 0.313,
+        "equalized_both": 0.257,
+        "foundation": 0.165,
+        "legislature": -190.481
+      },
+      "share_on_targets": 0.22,
+      "median_migration": 0.01595,
+      "median_income_spread": 0.1972,
+      "actual": "Federal minimum standards (Clean Air Act, Clean Water Act) that states implement and may exceed",
+      "actual_in_model_terms": "floor"
+    },
+    "transit": {
+      "robust": "equalized both ways 75%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.372,
+      "win_share": {
+        "central": 0.015,
+        "equalized": 0.165,
+        "city": 0.06,
+        "foundation": 0.38,
+        "equalized_both": 0.38
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -8.876,
+        "floor": 0.02,
+        "ceiling": 0.001,
+        "matched": -0.525,
+        "equalized": 0.337,
+        "equalized_both": 0.372,
+        "foundation": 0.17,
+        "legislature": -434.224,
+        "city": -2.287
+      },
+      "share_on_targets": 0.275,
+      "median_migration": 0.01848,
+      "median_income_spread": 0.1849,
+      "actual": "Cities, transit agencies and states run it; federal capital grants pay a share of projects (at most 80% for transit capital investment grants)",
+      "actual_in_model_terms": "local, with matching grants"
+    },
+    "health": {
+      "robust": "floor 0.1",
+      "robust_mode": "floor",
+      "gain_captured": 0.445,
+      "win_share": {
+        "local": 0.115,
+        "central": 0.02,
+        "floor": 0.405,
+        "ceiling": 0.075,
+        "matched": 0.03,
+        "foundation": 0.355
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -22.967,
+        "floor": 0.445,
+        "ceiling": 0.014,
+        "matched": -1.266,
+        "equalized": 0.0,
+        "equalized_both": 0.0,
+        "foundation": 0.406,
+        "legislature": -708.942
+      },
+      "share_on_targets": 0.27,
+      "median_migration": 0.01791,
+      "median_income_spread": 0.1897,
+      "actual": "Mixed: federal Medicare for those 65 and over, Medicaid run by states with the federal government paying 50% to 83% of the cost by state income, private insurance for most others",
+      "actual_in_model_terms": "matched, for the public part"
+    },
+    "redistribution": {
+      "robust": "central 0.35",
+      "robust_mode": "central",
+      "gain_captured": 0.869,
+      "win_share": {
+        "central": 1.0
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.869,
+        "floor": 0.441,
+        "ceiling": 0.046
+      },
+      "share_on_targets": 0.0,
+      "median_migration": 0.01226,
+      "median_income_spread": 0.2557,
+      "actual": "Mostly federal (Social Security, SSI, the earned income tax credit). SNAP food benefits were fully federal for about 50 years until the 2025 budget law, which makes most states pay a share set by their error rates; Medicaid is cost-shared and cash welfare has been a fixed block grant ($16.5 billion a year) since 1996",
+      "actual_in_model_terms": "central, with some matching"
+    },
+    "climate": {
+      "robust": "price 1.2",
+      "robust_mode": "price",
+      "gain_captured": 0.996,
+      "win_share": {
+        "price": 1.0
+      },
+      "best_per_mode": {
+        "local": 0.0,
+        "central": 0.472,
+        "floor": 0.503,
+        "price": 0.996,
+        "price_floor": 0.996
+      },
+      "share_on_targets": 0.12,
+      "median_migration": 0.01872,
+      "median_income_spread": 0.2101,
+      "actual": "No national carbon price; some states price carbon (California's cap-and-trade, extended to 2045 and renamed cap-and-invest in 2025; the Regional Greenhouse Gas Initiative for power plants in north-eastern states); federal vehicle and power standards",
+      "actual_in_model_terms": "states decide, with some standards"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "source": "ABS 5512.0 (GFS 2024-25), 3101.0, 5220.0; OECD IDD; DCCEEW state inventories 2024; six states, 2015-16 to 2024-25",
+  "disagreement": {
+    "schools": {
+      "years": 10,
+      "mean_per_capita": 1923,
+      "cv": {
+        "levels": 0.117,
+        "shares": 0.0973,
+        "residual": 0.148
+      },
+      "heterogeneity_range": [
+        0.0243,
+        0.037
+      ]
+    },
+    "environment": {
+      "years": 10,
+      "mean_per_capita": 451,
+      "cv": {
+        "levels": 0.2147,
+        "shares": 0.2248,
+        "residual": 0.1776
+      },
+      "heterogeneity_range": [
+        0.0444,
+        0.0562
+      ]
+    },
+    "transit": {
+      "years": 10,
+      "mean_per_capita": 1387,
+      "cv": {
+        "levels": 0.2339,
+        "shares": 0.2113,
+        "residual": 0.2404
+      },
+      "heterogeneity_range": [
+        0.0528,
+        0.0601
+      ]
+    },
+    "health": {
+      "years": 10,
+      "mean_per_capita": 3801,
+      "cv": {
+        "levels": 0.1054,
+        "shares": 0.0802,
+        "residual": 0.126
+      },
+      "heterogeneity_range": [
+        0.0201,
+        0.0315
+      ]
+    }
+  },
+  "fiscal_capacity": {
+    "schools": {
+      "income_elasticity": -0.003,
+      "years": 10
+    },
+    "environment": {
+      "income_elasticity": -0.849,
+      "years": 10
+    },
+    "transit": {
+      "income_elasticity": 0.569,
+      "years": 10
+    },
+    "health": {
+      "income_elasticity": -0.119,
+      "years": 10
+    }
+  },
+  "inequality": {
+    "market_gini": 0.4617,
+    "income_sigma": 0.8704,
+    "years": 4
+  },
+  "migration": {
+    "annual_rate": 0.01475,
+    "min": 0.01257,
+    "max": 0.01745,
+    "years": 10
+  },
+  "regional_income": {
+    "market_income_cv": 0.113,
+    "market_income_cv_range": [
+      0.1009,
+      0.1476
+    ],
+    "gdp_per_capita_cv": 0.2454,
+    "years": 10
+  },
+  "emissions_spread": {
+    "year": "2023-24",
+    "log_sd": 0.402,
+    "measure": "emissions per person including land use, five mainland states"
+  }
+}

@@ -35,11 +35,30 @@ GROUP_NAMES = {"QC": "Quebec", "ON": "Ontario", "BC": "British Columbia", "AB": 
 
 
 @lru_cache(maxsize=None)
-def profile(name: str = "canada") -> dict:
+def profile(name: str = "canada", geography: str = "") -> dict:
+    """Per-region values. With geography "provinces", one region per province
+    (tiebout/geography.py order) instead of the 16 grouped regions."""
     if name != "canada":
         raise KeyError(f"unknown province profile {name!r}")
     raw = json.loads(DATA.read_text())
     pop = raw["population"]
+    if geography == "provinces":
+        from .geography import PROVINCES
+        tot = sum(pop[FULL[c]] for c in PROVINCES)
+        def per_province(values: dict, normalise: bool) -> tuple:
+            r = [values[FULL[c]] for c in PROVINCES]
+            if normalise:  # population-weighted mean of 1
+                m = sum(pop[FULL[c]] * v for c, v in zip(PROVINCES, r)) / tot
+                r = [v / m for v in r]
+            return tuple(r)
+        return {
+            "taste_z": {area: per_province(z, False) for area, z in raw["taste_z"].items()},
+            "abatement": per_province(raw["emissions"], True),
+            "income": per_province(raw["income"], True),
+            "names": tuple(FULL[c] for c in PROVINCES),
+        }
+    if geography:
+        raise KeyError(f"no province profile for geography {geography!r}")
 
     def by_group(values: dict) -> dict:
         out = {}

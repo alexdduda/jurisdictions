@@ -21,7 +21,7 @@ PROVINCES = ["Newfoundland and Labrador", "Prince Edward Island", "Nova Scotia",
 # Member ids in dimension 3 ("Revenue and expenditure"); sector 3 is
 # "Local and provincial and territorial governments".
 ITEMS = {34: "Total expenditures", 51: "Elementary and secondary education", 56: "Environment",
-         37: "Transportation and communication", 43: "Social services", 44: "Social assistance"}
+         37: "Transportation and communication", 43: "Social services", 44: "Social assistance", 38: "Health"}
 OUT = Path(__file__).resolve().parent.parent / "historical" / "fms_1989_2009.csv"
 
 

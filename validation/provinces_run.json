@@ -2,63 +2,102 @@
   "provinces": {
     "schools": {
       "win_share": {
-        "local": 0.08,
-        "central": 0.38,
-        "floor": 0.1,
-        "ceiling": 0.005,
-        "matched": 0.235,
-        "equalized": 0.2
+        "central": 0.32,
+        "floor": 0.145,
+        "matched": 0.04,
+        "equalized": 0.015,
+        "foundation": 0.17,
+        "equalized_both": 0.31
       },
-      "robust": "matched 10%",
-      "robust_mode": "matched",
-      "gain_captured": 0.14,
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.139,
       "best_per_mode": {
         "local": 0.0,
-        "central": -2.718,
-        "floor": 0.001,
+        "central": -1.463,
+        "floor": 0.014,
         "ceiling": 0.0,
-        "matched": 0.14,
-        "equalized": 0.063
+        "matched": 0.042,
+        "equalized": 0.108,
+        "equalized_both": 0.139,
+        "foundation": -0.016,
+        "legislature": -250.455
       }
     },
     "environment": {
       "win_share": {
-        "central": 0.615,
-        "floor": 0.3,
-        "matched": 0.085
+        "central": 0.525,
+        "floor": 0.17,
+        "matched": 0.225,
+        "equalized": 0.01,
+        "foundation": 0.005,
+        "equalized_both": 0.065
       },
-      "robust": "central 0.3",
-      "robust_mode": "central",
-      "gain_captured": 0.716,
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.404,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.716,
-        "floor": 0.612,
+        "central": -0.238,
+        "floor": 0.151,
         "ceiling": 0.0,
-        "matched": 0.585,
-        "equalized": 0.025
+        "matched": 0.404,
+        "equalized": 0.137,
+        "equalized_both": 0.16,
+        "foundation": 0.155,
+        "legislature": -125.328
       }
     },
     "transit": {
       "win_share": {
-        "central": 0.375,
-        "floor": 0.225,
-        "ceiling": 0.08,
-        "matched": 0.045,
-        "equalized": 0.125,
-        "city": 0.15
+        "local": 0.005,
+        "central": 0.105,
+        "floor": 0.2,
+        "ceiling": 0.135,
+        "matched": 0.035,
+        "equalized": 0.01,
+        "city": 0.165,
+        "foundation": 0.25,
+        "equalized_both": 0.095
       },
       "robust": "floor 0.1",
       "robust_mode": "floor",
-      "gain_captured": 0.018,
+      "gain_captured": 0.049,
       "best_per_mode": {
         "local": 0.0,
-        "central": -3.002,
-        "floor": 0.018,
-        "ceiling": 0.003,
-        "matched": -0.268,
-        "equalized": 0.014,
-        "city": -1.458
+        "central": -5.55,
+        "floor": 0.049,
+        "ceiling": 0.007,
+        "matched": -0.421,
+        "equalized": 0.025,
+        "equalized_both": 0.033,
+        "foundation": 0.008,
+        "legislature": -183.383,
+        "city": -1.719
+      }
+    },
+    "health": {
+      "win_share": {
+        "central": 0.6,
+        "floor": 0.25,
+        "matched": 0.065,
+        "equalized": 0.015,
+        "foundation": 0.005,
+        "equalized_both": 0.065
+      },
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -0.729,
+        "floor": 0.002,
+        "ceiling": 0.0,
+        "matched": 0.033,
+        "equalized": 0.003,
+        "equalized_both": 0.004,
+        "foundation": -0.008,
+        "legislature": -208.388
       }
     },
     "redistribution": {
@@ -67,90 +106,130 @@
       },
       "robust": "central 0.3",
       "robust_mode": "central",
-      "gain_captured": 0.909,
+      "gain_captured": 0.8,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.909,
-        "floor": 0.327,
-        "ceiling": 0.169
+        "central": 0.8,
+        "floor": 0.259,
+        "ceiling": 0.03
       }
     },
     "climate": {
       "win_share": {
         "price": 1.0
       },
-      "robust": "price 1.6",
+      "robust": "price 1.2",
       "robust_mode": "price",
-      "gain_captured": 0.976,
+      "gain_captured": 0.99,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.436,
-        "floor": 0.436,
-        "price": 0.976,
-        "price_floor": 0.976
+        "central": 0.801,
+        "floor": 0.801,
+        "price": 0.99,
+        "price_floor": 0.99
       }
     }
   },
   "sampled": {
     "schools": {
       "win_share": {
-        "local": 0.005,
-        "central": 0.425,
-        "floor": 0.06,
-        "matched": 0.135,
-        "equalized": 0.375
+        "central": 0.35,
+        "floor": 0.075,
+        "matched": 0.055,
+        "equalized": 0.015,
+        "foundation": 0.15,
+        "equalized_both": 0.355
       },
-      "robust": "equalized 100%",
-      "robust_mode": "equalized",
-      "gain_captured": 0.102,
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.122,
       "best_per_mode": {
         "local": 0.0,
-        "central": -1.954,
-        "floor": 0.002,
+        "central": -1.483,
+        "floor": 0.0,
         "ceiling": 0.0,
-        "matched": 0.085,
-        "equalized": 0.102
+        "matched": 0.037,
+        "equalized": 0.091,
+        "equalized_both": 0.122,
+        "foundation": -0.016,
+        "legislature": -252.198
       }
     },
     "environment": {
       "win_share": {
-        "central": 0.645,
-        "floor": 0.34,
-        "matched": 0.015
+        "central": 0.545,
+        "floor": 0.195,
+        "matched": 0.19,
+        "equalized": 0.005,
+        "foundation": 0.01,
+        "equalized_both": 0.055
       },
-      "robust": "central 0.3",
-      "robust_mode": "central",
-      "gain_captured": 0.722,
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.393,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.722,
-        "floor": 0.626,
+        "central": -0.277,
+        "floor": 0.139,
         "ceiling": 0.0,
-        "matched": 0.534,
-        "equalized": 0.024
+        "matched": 0.393,
+        "equalized": 0.088,
+        "equalized_both": 0.1,
+        "foundation": 0.154,
+        "legislature": -137.62
       }
     },
     "transit": {
       "win_share": {
-        "local": 0.01,
-        "central": 0.35,
-        "floor": 0.17,
-        "ceiling": 0.075,
-        "matched": 0.065,
-        "equalized": 0.18,
-        "city": 0.15
+        "local": 0.005,
+        "central": 0.085,
+        "floor": 0.125,
+        "ceiling": 0.065,
+        "matched": 0.06,
+        "equalized": 0.035,
+        "city": 0.175,
+        "foundation": 0.265,
+        "equalized_both": 0.185
       },
-      "robust": "equalized 100%",
-      "robust_mode": "equalized",
-      "gain_captured": 0.02,
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.042,
       "best_per_mode": {
         "local": 0.0,
-        "central": -3.372,
-        "floor": 0.016,
-        "ceiling": 0.003,
-        "matched": -0.294,
-        "equalized": 0.02,
-        "city": -1.746
+        "central": -8.3,
+        "floor": 0.024,
+        "ceiling": 0.004,
+        "matched": -0.43,
+        "equalized": 0.029,
+        "equalized_both": 0.042,
+        "foundation": -0.026,
+        "legislature": -446.818,
+        "city": -2.55
+      }
+    },
+    "health": {
+      "win_share": {
+        "local": 0.005,
+        "central": 0.595,
+        "floor": 0.23,
+        "ceiling": 0.005,
+        "matched": 0.075,
+        "equalized": 0.01,
+        "equalized_both": 0.08
+      },
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "best_per_mode": {
+        "local": 0.0,
+        "central": -0.757,
+        "floor": 0.0,
+        "ceiling": 0.0,
+        "matched": 0.033,
+        "equalized": 0.003,
+        "equalized_both": 0.004,
+        "foundation": -0.01,
+        "legislature": -212.994
       }
     },
     "redistribution": {
@@ -178,8 +257,8 @@
       "gain_captured": 0.991,
       "best_per_mode": {
         "local": 0.0,
-        "central": 0.436,
-        "floor": 0.485,
+        "central": 0.437,
+        "floor": 0.486,
         "price": 0.991,
         "price_floor": 0.991
       }

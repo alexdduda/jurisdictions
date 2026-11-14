@@ -1,0 +1,1734 @@
+{
+  "draws": 40,
+  "seeds": 3,
+  "elections": 3,
+  "ranges": {
+    "loss_aversion": [
+      1.8,
+      2.1
+    ],
+    "rebate_seen": [
+      0.0,
+      0.6
+    ],
+    "abated": [
+      0.05,
+      0.3
+    ],
+    "identity_scale": [
+      0.0,
+      1.0
+    ],
+    "crisis_chance": [
+      0.3,
+      0.6
+    ],
+    "crisis_cut": [
+      0.15,
+      0.4
+    ]
+  },
+  "intrusion": {
+    "local": 0.0,
+    "city": 0.25,
+    "equalized": 0.25,
+    "matched": 0.5,
+    "foundation": 0.5,
+    "equalized_both": 0.5,
+    "floor": 0.75,
+    "ceiling": 0.75,
+    "price_floor": 0.75,
+    "central": 1.0,
+    "price": 1.0
+  },
+  "attachment": {
+    "NL": 0.342,
+    "PE": 0.048,
+    "NS": 0.149,
+    "NB": 0.222,
+    "QC": 0.305,
+    "ON": -0.035,
+    "MB": 0.148,
+    "SK": 0.285,
+    "AB": 0.281,
+    "BC": 0.148
+  },
+  "areas": {
+    "schools": {
+      "status_quo": "local",
+      "status_quo_meaning": "provinces run schools; no federal school grant",
+      "legal": {
+        "alone": [
+          "equalized",
+          "foundation",
+          "local",
+          "matched"
+        ],
+        "needs_amendment": [
+          "ceiling",
+          "central",
+          "equalized_both",
+          "floor"
+        ],
+        "basis": "education is provincial (s. 93); Ottawa may only attach conditions to money it spends"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "equalized both ways 100%": 0.35,
+            "central 0.3": 0.342,
+            "keep today's arrangement": 0.15,
+            "matched 10%": 0.075,
+            "foundation 0.1": 0.042,
+            "equalized 100%": 0.042
+          },
+          "keeps_today": 0.15,
+          "mean_real_gain_vs_today": 0.00501
+        },
+        "all_politics": {
+          "picks": {
+            "equalized both ways 100%": 0.283,
+            "keep today's arrangement": 0.233,
+            "central 0.3": 0.217,
+            "matched 10%": 0.167,
+            "foundation 0.1": 0.05,
+            "equalized 100%": 0.05
+          },
+          "keeps_today": 0.233,
+          "mean_real_gain_vs_today": 0.00376
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "equalized both ways 100%": 0.333,
+              "central 0.3": 0.233,
+              "keep today's arrangement": 0.183,
+              "matched 10%": 0.15,
+              "equalized 100%": 0.067,
+              "foundation 0.1": 0.033
+            },
+            "keeps_today": 0.183,
+            "mean_real_gain_vs_today": 0.00381
+          },
+          "visible_payments": {
+            "picks": {
+              "equalized both ways 100%": 0.283,
+              "keep today's arrangement": 0.233,
+              "central 0.3": 0.217,
+              "matched 10%": 0.167,
+              "foundation 0.1": 0.05,
+              "equalized 100%": 0.05
+            },
+            "keeps_today": 0.233,
+            "mean_real_gain_vs_today": 0.00376
+          },
+          "attachment": {
+            "picks": {
+              "equalized both ways 100%": 0.283,
+              "keep today's arrangement": 0.225,
+              "central 0.3": 0.217,
+              "matched 10%": 0.167,
+              "foundation 0.1": 0.05,
+              "equalized 100%": 0.05,
+              "floor 0.1": 0.008
+            },
+            "keeps_today": 0.225,
+            "mean_real_gain_vs_today": 0.00376
+          },
+          "constitution": {
+            "picks": {
+              "equalized both ways 100%": 0.317,
+              "central 0.3": 0.217,
+              "keep today's arrangement": 0.208,
+              "matched 10%": 0.167,
+              "foundation 0.1": 0.05,
+              "equalized 100%": 0.033,
+              "floor 0.1": 0.008
+            },
+            "keeps_today": 0.208,
+            "mean_real_gain_vs_today": 0.00377
+          },
+          "repeal": {
+            "picks": {
+              "equalized both ways 100%": 0.283,
+              "keep today's arrangement": 0.233,
+              "central 0.3": 0.217,
+              "matched 10%": 0.167,
+              "foundation 0.1": 0.05,
+              "equalized 100%": 0.05
+            },
+            "keeps_today": 0.233,
+            "mean_real_gain_vs_today": 0.00376
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "central 0.3": 0.308,
+              "equalized both ways 100%": 0.275,
+              "keep today's arrangement": 0.233,
+              "matched 10%": 0.075,
+              "foundation 0.1": 0.058,
+              "equalized 100%": 0.05
+            },
+            "keeps_today": 0.233,
+            "mean_real_gain_vs_today": 0.00496
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "equalized both ways 100%": 0.308,
+              "central 0.3": 0.308,
+              "keep today's arrangement": 0.208,
+              "matched 10%": 0.075,
+              "foundation 0.1": 0.058,
+              "equalized 100%": 0.033,
+              "floor 0.1": 0.008
+            },
+            "keeps_today": 0.208,
+            "mean_real_gain_vs_today": 0.00498
+          },
+          "visible_payments": {
+            "picks": {
+              "equalized both ways 100%": 0.35,
+              "central 0.3": 0.342,
+              "keep today's arrangement": 0.15,
+              "matched 10%": 0.075,
+              "foundation 0.1": 0.042,
+              "equalized 100%": 0.042
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00501
+          },
+          "attachment": {
+            "picks": {
+              "equalized both ways 100%": 0.342,
+              "central 0.3": 0.342,
+              "keep today's arrangement": 0.15,
+              "matched 10%": 0.067,
+              "equalized 100%": 0.058,
+              "foundation 0.1": 0.042
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00501
+          },
+          "constitution": {
+            "picks": {
+              "central 0.3": 0.333,
+              "equalized both ways 100%": 0.292,
+              "keep today's arrangement": 0.175,
+              "matched 10%": 0.075,
+              "equalized 100%": 0.067,
+              "foundation 0.1": 0.05,
+              "floor 0.1": 0.008
+            },
+            "keeps_today": 0.175,
+            "mean_real_gain_vs_today": 0.00499
+          },
+          "repeal": {
+            "picks": {
+              "equalized both ways 100%": 0.35,
+              "central 0.3": 0.342,
+              "keep today's arrangement": 0.15,
+              "matched 10%": 0.075,
+              "foundation 0.1": 0.042,
+              "equalized 100%": 0.042
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00501
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "equalized both ways 100%": 0.392,
+              "central 0.3": 0.233,
+              "matched 10%": 0.15,
+              "keep today's arrangement": 0.15,
+              "equalized 100%": 0.042,
+              "foundation 0.1": 0.033
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00383
+          }
+        }
+      },
+      "rules": {
+        "central 0.3": {
+          "route": "amendment",
+          "passes": 0.3,
+          "opposed_by": {
+            "NL": 0.675,
+            "PE": 0.583,
+            "NS": 0.65,
+            "NB": 0.692,
+            "QC": 0.85,
+            "ON": 0.625,
+            "MB": 0.692,
+            "SK": 0.658,
+            "AB": 0.667,
+            "BC": 0.7
+          }
+        },
+        "floor 0.1": {
+          "route": "amendment",
+          "passes": 0.017,
+          "opposed_by": {
+            "NL": 0.958,
+            "PE": 0.908,
+            "NS": 0.783,
+            "NB": 0.825,
+            "QC": 0.917,
+            "ON": 0.042,
+            "MB": 0.95,
+            "SK": 0.975,
+            "AB": 0.975,
+            "BC": 0.975
+          }
+        },
+        "ceiling 0.7": {
+          "route": "amendment",
+          "passes": 0,
+          "opposed_by": {
+            "NL": 1.0,
+            "PE": 1.0,
+            "NS": 1.0,
+            "NB": 1.0,
+            "QC": 1.0,
+            "ON": 0.0,
+            "MB": 1.0,
+            "SK": 1.0,
+            "AB": 1.0,
+            "BC": 1.0
+          }
+        },
+        "matched 10%": {
+          "route": "Parliament",
+          "passes": 0.458,
+          "opposed_by": {
+            "NL": 0.342,
+            "PE": 0.558,
+            "NS": 0.383,
+            "NB": 0.267,
+            "QC": 0.367,
+            "ON": 0.542,
+            "MB": 0.575,
+            "SK": 0.317,
+            "AB": 0.642,
+            "BC": 0.375
+          }
+        },
+        "equalized 100%": {
+          "route": "Parliament",
+          "passes": 0.667,
+          "opposed_by": {
+            "NL": 0.225,
+            "PE": 0.15,
+            "NS": 0.092,
+            "NB": 0.142,
+            "QC": 0.3,
+            "ON": 0.342,
+            "MB": 0.3,
+            "SK": 0.35,
+            "AB": 0.442,
+            "BC": 0.375
+          }
+        },
+        "equalized both ways 100%": {
+          "route": "amendment",
+          "passes": 0.575,
+          "opposed_by": {
+            "NL": 0.283,
+            "PE": 0.15,
+            "NS": 0.1,
+            "NB": 0.192,
+            "QC": 0.358,
+            "ON": 0.267,
+            "MB": 0.292,
+            "SK": 0.425,
+            "AB": 0.408,
+            "BC": 0.358
+          }
+        },
+        "foundation 0.1": {
+          "route": "Parliament",
+          "passes": 0.4,
+          "opposed_by": {
+            "NL": 0.625,
+            "PE": 0.542,
+            "NS": 0.542,
+            "NB": 0.533,
+            "QC": 0.65,
+            "ON": 0.55,
+            "MB": 0.575,
+            "SK": 0.625,
+            "AB": 0.65,
+            "BC": 0.625
+          }
+        }
+      }
+    },
+    "environment": {
+      "status_quo": "floor 0.2",
+      "status_quo_meaning": "federal minimum standards (Canadian Environmental Protection Act) that provinces implement and may exceed",
+      "legal": {
+        "alone": [
+          "ceiling",
+          "central",
+          "equalized",
+          "floor",
+          "foundation",
+          "local",
+          "matched"
+        ],
+        "needs_amendment": [
+          "equalized_both"
+        ],
+        "basis": "shared; federal standards upheld under the criminal law power (R. v. Hydro-Quebec, [1997] 3 SCR 213)"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "matched 20%": 0.283,
+            "foundation 0.2": 0.217,
+            "central 0.3": 0.2,
+            "keep today's arrangement": 0.167,
+            "equalized both ways 100%": 0.092,
+            "equalized 100%": 0.042
+          },
+          "keeps_today": 0.167,
+          "mean_real_gain_vs_today": 0.00874
+        },
+        "all_politics": {
+          "picks": {
+            "matched 20%": 0.275,
+            "central 0.3": 0.275,
+            "keep today's arrangement": 0.167,
+            "foundation 0.2": 0.133,
+            "equalized both ways 100%": 0.125,
+            "equalized 100%": 0.025
+          },
+          "keeps_today": 0.167,
+          "mean_real_gain_vs_today": 0.00814
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "central 0.3": 0.317,
+              "matched 20%": 0.292,
+              "keep today's arrangement": 0.15,
+              "foundation 0.2": 0.108,
+              "equalized both ways 100%": 0.108,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00822
+          },
+          "visible_payments": {
+            "picks": {
+              "matched 20%": 0.275,
+              "central 0.3": 0.275,
+              "keep today's arrangement": 0.167,
+              "foundation 0.2": 0.133,
+              "equalized both ways 100%": 0.125,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00814
+          },
+          "attachment": {
+            "picks": {
+              "central 0.3": 0.308,
+              "matched 20%": 0.267,
+              "keep today's arrangement": 0.167,
+              "equalized both ways 100%": 0.133,
+              "foundation 0.2": 0.108,
+              "equalized 100%": 0.017
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00818
+          },
+          "constitution": {
+            "picks": {
+              "matched 20%": 0.275,
+              "central 0.3": 0.275,
+              "keep today's arrangement": 0.167,
+              "foundation 0.2": 0.133,
+              "equalized both ways 100%": 0.125,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00814
+          },
+          "repeal": {
+            "picks": {
+              "matched 20%": 0.275,
+              "central 0.3": 0.275,
+              "keep today's arrangement": 0.167,
+              "foundation 0.2": 0.133,
+              "equalized both ways 100%": 0.125,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00814
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "matched 20%": 0.267,
+              "foundation 0.2": 0.258,
+              "keep today's arrangement": 0.183,
+              "central 0.3": 0.15,
+              "equalized both ways 100%": 0.083,
+              "equalized 100%": 0.058
+            },
+            "keeps_today": 0.183,
+            "mean_real_gain_vs_today": 0.00867
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "foundation 0.2": 0.25,
+              "matched 20%": 0.25,
+              "keep today's arrangement": 0.183,
+              "central 0.3": 0.175,
+              "equalized both ways 100%": 0.092,
+              "equalized 100%": 0.05
+            },
+            "keeps_today": 0.183,
+            "mean_real_gain_vs_today": 0.00869
+          },
+          "visible_payments": {
+            "picks": {
+              "matched 20%": 0.283,
+              "foundation 0.2": 0.217,
+              "central 0.3": 0.2,
+              "keep today's arrangement": 0.167,
+              "equalized both ways 100%": 0.092,
+              "equalized 100%": 0.042
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00874
+          },
+          "attachment": {
+            "picks": {
+              "matched 20%": 0.283,
+              "foundation 0.2": 0.225,
+              "central 0.3": 0.192,
+              "keep today's arrangement": 0.167,
+              "equalized both ways 100%": 0.083,
+              "equalized 100%": 0.05
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00874
+          },
+          "constitution": {
+            "picks": {
+              "matched 20%": 0.283,
+              "foundation 0.2": 0.217,
+              "central 0.3": 0.2,
+              "keep today's arrangement": 0.167,
+              "equalized both ways 100%": 0.092,
+              "equalized 100%": 0.042
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00874
+          },
+          "repeal": {
+            "picks": {
+              "matched 20%": 0.283,
+              "foundation 0.2": 0.217,
+              "central 0.3": 0.2,
+              "keep today's arrangement": 0.167,
+              "equalized both ways 100%": 0.092,
+              "equalized 100%": 0.042
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.00874
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "central 0.3": 0.317,
+              "matched 20%": 0.292,
+              "keep today's arrangement": 0.15,
+              "equalized both ways 100%": 0.117,
+              "foundation 0.2": 0.108,
+              "equalized 100%": 0.017
+            },
+            "keeps_today": 0.15,
+            "mean_real_gain_vs_today": 0.00822
+          }
+        }
+      },
+      "rules": {
+        "local": {
+          "route": "Parliament",
+          "passes": 0.292,
+          "opposed_by": {
+            "NL": 0.625,
+            "PE": 0.725,
+            "NS": 0.833,
+            "NB": 0.7,
+            "QC": 0.85,
+            "ON": 0.75,
+            "MB": 0.667,
+            "SK": 0.242,
+            "AB": 0.267,
+            "BC": 0.633
+          }
+        },
+        "central 0.3": {
+          "route": "Parliament",
+          "passes": 0.467,
+          "opposed_by": {
+            "NL": 0.558,
+            "PE": 0.492,
+            "NS": 0.508,
+            "NB": 0.517,
+            "QC": 0.483,
+            "ON": 0.508,
+            "MB": 0.542,
+            "SK": 0.733,
+            "AB": 0.767,
+            "BC": 0.583
+          }
+        },
+        "ceiling 0.7": {
+          "route": "Parliament",
+          "passes": 0.233,
+          "opposed_by": {
+            "NL": 0.717,
+            "PE": 0.742,
+            "NS": 0.85,
+            "NB": 0.783,
+            "QC": 0.908,
+            "ON": 0.7,
+            "MB": 0.7,
+            "SK": 0.267,
+            "AB": 0.35,
+            "BC": 0.667
+          }
+        },
+        "matched 20%": {
+          "route": "Parliament",
+          "passes": 0.683,
+          "opposed_by": {
+            "NL": 0.408,
+            "PE": 0.358,
+            "NS": 0.4,
+            "NB": 0.317,
+            "QC": 0.283,
+            "ON": 0.333,
+            "MB": 0.442,
+            "SK": 0.492,
+            "AB": 0.558,
+            "BC": 0.258
+          }
+        },
+        "equalized 100%": {
+          "route": "Parliament",
+          "passes": 0.417,
+          "opposed_by": {
+            "NL": 0.467,
+            "PE": 0.558,
+            "NS": 0.617,
+            "NB": 0.467,
+            "QC": 0.658,
+            "ON": 0.6,
+            "MB": 0.542,
+            "SK": 0.233,
+            "AB": 0.217,
+            "BC": 0.475
+          }
+        },
+        "equalized both ways 100%": {
+          "route": "amendment",
+          "passes": 0.358,
+          "opposed_by": {
+            "NL": 0.492,
+            "PE": 0.517,
+            "NS": 0.567,
+            "NB": 0.458,
+            "QC": 0.65,
+            "ON": 0.525,
+            "MB": 0.475,
+            "SK": 0.233,
+            "AB": 0.225,
+            "BC": 0.467
+          }
+        },
+        "foundation 0.2": {
+          "route": "Parliament",
+          "passes": 0.45,
+          "opposed_by": {
+            "NL": 0.5,
+            "PE": 0.525,
+            "NS": 0.542,
+            "NB": 0.5,
+            "QC": 0.558,
+            "ON": 0.558,
+            "MB": 0.525,
+            "SK": 0.475,
+            "AB": 0.442,
+            "BC": 0.558
+          }
+        }
+      }
+    },
+    "transit": {
+      "status_quo": "city + 10% grant",
+      "status_quo_meaning": "cities run transit, with federal capital grants (Canada Public Transit Fund)",
+      "legal": {
+        "alone": [
+          "city",
+          "equalized",
+          "foundation",
+          "local",
+          "matched"
+        ],
+        "needs_amendment": [
+          "ceiling",
+          "central",
+          "equalized_both",
+          "floor"
+        ],
+        "basis": "municipal institutions and local works are provincial (s. 92(8), 92(10))"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "equalized both ways 100%": 0.192,
+            "floor 0.1": 0.167,
+            "central 0.3": 0.158,
+            "keep today's arrangement": 0.158,
+            "foundation 0.1": 0.15,
+            "matched 10%": 0.1,
+            "equalized 100%": 0.05,
+            "local": 0.025
+          },
+          "keeps_today": 0.158,
+          "mean_real_gain_vs_today": 0.01172
+        },
+        "all_politics": {
+          "picks": {
+            "keep today's arrangement": 0.217,
+            "floor 0.1": 0.158,
+            "foundation 0.1": 0.158,
+            "equalized both ways 100%": 0.15,
+            "matched 10%": 0.133,
+            "central 0.3": 0.108,
+            "equalized 100%": 0.058,
+            "local": 0.017
+          },
+          "keeps_today": 0.217,
+          "mean_real_gain_vs_today": 0.01076
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "equalized both ways 100%": 0.183,
+              "keep today's arrangement": 0.175,
+              "foundation 0.1": 0.15,
+              "floor 0.1": 0.142,
+              "matched 10%": 0.142,
+              "central 0.3": 0.117,
+              "equalized 100%": 0.058,
+              "local": 0.033
+            },
+            "keeps_today": 0.175,
+            "mean_real_gain_vs_today": 0.01078
+          },
+          "visible_payments": {
+            "picks": {
+              "keep today's arrangement": 0.217,
+              "floor 0.1": 0.158,
+              "foundation 0.1": 0.158,
+              "equalized both ways 100%": 0.15,
+              "matched 10%": 0.133,
+              "central 0.3": 0.108,
+              "equalized 100%": 0.058,
+              "local": 0.017
+            },
+            "keeps_today": 0.217,
+            "mean_real_gain_vs_today": 0.01076
+          },
+          "attachment": {
+            "picks": {
+              "keep today's arrangement": 0.217,
+              "equalized both ways 100%": 0.167,
+              "floor 0.1": 0.158,
+              "foundation 0.1": 0.158,
+              "central 0.3": 0.125,
+              "matched 10%": 0.117,
+              "equalized 100%": 0.042,
+              "local": 0.017
+            },
+            "keeps_today": 0.217,
+            "mean_real_gain_vs_today": 0.01076
+          },
+          "constitution": {
+            "picks": {
+              "keep today's arrangement": 0.208,
+              "floor 0.1": 0.158,
+              "foundation 0.1": 0.158,
+              "equalized both ways 100%": 0.15,
+              "matched 10%": 0.133,
+              "central 0.3": 0.117,
+              "equalized 100%": 0.058,
+              "local": 0.017
+            },
+            "keeps_today": 0.208,
+            "mean_real_gain_vs_today": 0.01079
+          },
+          "repeal": {
+            "picks": {
+              "keep today's arrangement": 0.217,
+              "floor 0.1": 0.158,
+              "foundation 0.1": 0.158,
+              "equalized both ways 100%": 0.15,
+              "matched 10%": 0.133,
+              "central 0.3": 0.108,
+              "equalized 100%": 0.058,
+              "local": 0.017
+            },
+            "keeps_today": 0.217,
+            "mean_real_gain_vs_today": 0.01076
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "keep today's arrangement": 0.192,
+              "floor 0.1": 0.183,
+              "foundation 0.1": 0.15,
+              "central 0.3": 0.142,
+              "equalized both ways 100%": 0.133,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.075,
+              "local": 0.025
+            },
+            "keeps_today": 0.192,
+            "mean_real_gain_vs_today": 0.01167
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "keep today's arrangement": 0.183,
+              "floor 0.1": 0.183,
+              "central 0.3": 0.15,
+              "equalized both ways 100%": 0.15,
+              "foundation 0.1": 0.15,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.058,
+              "local": 0.025
+            },
+            "keeps_today": 0.183,
+            "mean_real_gain_vs_today": 0.0117
+          },
+          "visible_payments": {
+            "picks": {
+              "equalized both ways 100%": 0.192,
+              "floor 0.1": 0.167,
+              "central 0.3": 0.158,
+              "keep today's arrangement": 0.158,
+              "foundation 0.1": 0.15,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.05,
+              "local": 0.025
+            },
+            "keeps_today": 0.158,
+            "mean_real_gain_vs_today": 0.01172
+          },
+          "attachment": {
+            "picks": {
+              "equalized both ways 100%": 0.175,
+              "floor 0.1": 0.167,
+              "central 0.3": 0.158,
+              "keep today's arrangement": 0.158,
+              "foundation 0.1": 0.15,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.067,
+              "local": 0.025
+            },
+            "keeps_today": 0.158,
+            "mean_real_gain_vs_today": 0.01172
+          },
+          "constitution": {
+            "picks": {
+              "equalized both ways 100%": 0.192,
+              "keep today's arrangement": 0.167,
+              "floor 0.1": 0.158,
+              "foundation 0.1": 0.15,
+              "central 0.3": 0.15,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.05,
+              "local": 0.033
+            },
+            "keeps_today": 0.167,
+            "mean_real_gain_vs_today": 0.01169
+          },
+          "repeal": {
+            "picks": {
+              "equalized both ways 100%": 0.192,
+              "floor 0.1": 0.167,
+              "central 0.3": 0.158,
+              "keep today's arrangement": 0.158,
+              "foundation 0.1": 0.15,
+              "matched 10%": 0.1,
+              "equalized 100%": 0.05,
+              "local": 0.025
+            },
+            "keeps_today": 0.158,
+            "mean_real_gain_vs_today": 0.01172
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "equalized both ways 100%": 0.2,
+              "keep today's arrangement": 0.158,
+              "foundation 0.1": 0.15,
+              "floor 0.1": 0.15,
+              "central 0.3": 0.142,
+              "matched 10%": 0.133,
+              "equalized 100%": 0.042,
+              "local": 0.025
+            },
+            "keeps_today": 0.158,
+            "mean_real_gain_vs_today": 0.01082
+          }
+        }
+      },
+      "rules": {
+        "local": {
+          "route": "Parliament",
+          "passes": 0.733,
+          "opposed_by": {
+            "NL": 0.258,
+            "PE": 0.275,
+            "NS": 0.192,
+            "NB": 0.192,
+            "QC": 0.242,
+            "ON": 0.267,
+            "MB": 0.225,
+            "SK": 0.442,
+            "AB": 0.233,
+            "BC": 0.25
+          }
+        },
+        "central 0.3": {
+          "route": "amendment",
+          "passes": 0.133,
+          "opposed_by": {
+            "NL": 0.775,
+            "PE": 0.758,
+            "NS": 0.783,
+            "NB": 0.808,
+            "QC": 0.75,
+            "ON": 0.817,
+            "MB": 0.808,
+            "SK": 0.808,
+            "AB": 0.733,
+            "BC": 0.758
+          }
+        },
+        "floor 0.1": {
+          "route": "amendment",
+          "passes": 0.708,
+          "opposed_by": {
+            "NL": 0.225,
+            "PE": 0.258,
+            "NS": 0.167,
+            "NB": 0.192,
+            "QC": 0.242,
+            "ON": 0.25,
+            "MB": 0.233,
+            "SK": 0.325,
+            "AB": 0.225,
+            "BC": 0.25
+          }
+        },
+        "ceiling 0.7": {
+          "route": "amendment",
+          "passes": 0.683,
+          "opposed_by": {
+            "NL": 0.275,
+            "PE": 0.283,
+            "NS": 0.2,
+            "NB": 0.2,
+            "QC": 0.25,
+            "ON": 0.267,
+            "MB": 0.242,
+            "SK": 0.475,
+            "AB": 0.25,
+            "BC": 0.25
+          }
+        },
+        "matched 10%": {
+          "route": "Parliament",
+          "passes": 0.717,
+          "opposed_by": {
+            "NL": 0.383,
+            "PE": 0.4,
+            "NS": 0.4,
+            "NB": 0.408,
+            "QC": 0.317,
+            "ON": 0.267,
+            "MB": 0.392,
+            "SK": 0.625,
+            "AB": 0.367,
+            "BC": 0.333
+          }
+        },
+        "equalized 100%": {
+          "route": "Parliament",
+          "passes": 0.733,
+          "opposed_by": {
+            "NL": 0.25,
+            "PE": 0.275,
+            "NS": 0.175,
+            "NB": 0.192,
+            "QC": 0.242,
+            "ON": 0.267,
+            "MB": 0.225,
+            "SK": 0.45,
+            "AB": 0.25,
+            "BC": 0.258
+          }
+        },
+        "equalized both ways 100%": {
+          "route": "amendment",
+          "passes": 0.7,
+          "opposed_by": {
+            "NL": 0.25,
+            "PE": 0.267,
+            "NS": 0.183,
+            "NB": 0.192,
+            "QC": 0.25,
+            "ON": 0.267,
+            "MB": 0.25,
+            "SK": 0.467,
+            "AB": 0.25,
+            "BC": 0.233
+          }
+        },
+        "foundation 0.1": {
+          "route": "Parliament",
+          "passes": 0.742,
+          "opposed_by": {
+            "NL": 0.242,
+            "PE": 0.283,
+            "NS": 0.2,
+            "NB": 0.208,
+            "QC": 0.233,
+            "ON": 0.242,
+            "MB": 0.225,
+            "SK": 0.358,
+            "AB": 0.258,
+            "BC": 0.267
+          }
+        }
+      }
+    },
+    "health": {
+      "status_quo": "foundation 0.1",
+      "status_quo_meaning": "provinces run health care; the Canada Health Transfer pays a per-person amount on condition of the Canada Health Act's standards",
+      "legal": {
+        "alone": [
+          "equalized",
+          "foundation",
+          "local",
+          "matched"
+        ],
+        "needs_amendment": [
+          "ceiling",
+          "central",
+          "equalized_both",
+          "floor"
+        ],
+        "basis": "hospitals are provincial (s. 92(7)); federal role through the spending power, as in the Canada Health Act"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "central 0.3": 0.375,
+            "equalized both ways 100%": 0.192,
+            "matched 10%": 0.175,
+            "keep today's arrangement": 0.125,
+            "floor 0.1": 0.083,
+            "equalized 100%": 0.042,
+            "local": 0.008
+          },
+          "keeps_today": 0.125,
+          "mean_real_gain_vs_today": 0.00505
+        },
+        "all_politics": {
+          "picks": {
+            "central 0.3": 0.267,
+            "matched 10%": 0.233,
+            "equalized both ways 100%": 0.225,
+            "keep today's arrangement": 0.133,
+            "floor 0.1": 0.075,
+            "local": 0.042,
+            "equalized 100%": 0.025
+          },
+          "keeps_today": 0.133,
+          "mean_real_gain_vs_today": 0.00321
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "central 0.3": 0.267,
+              "matched 10%": 0.233,
+              "equalized both ways 100%": 0.225,
+              "keep today's arrangement": 0.117,
+              "floor 0.1": 0.075,
+              "local": 0.058,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.117,
+            "mean_real_gain_vs_today": 0.0032
+          },
+          "visible_payments": {
+            "picks": {
+              "central 0.3": 0.267,
+              "matched 10%": 0.233,
+              "equalized both ways 100%": 0.225,
+              "keep today's arrangement": 0.133,
+              "floor 0.1": 0.075,
+              "local": 0.042,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.133,
+            "mean_real_gain_vs_today": 0.00321
+          },
+          "attachment": {
+            "picks": {
+              "central 0.3": 0.275,
+              "equalized both ways 100%": 0.25,
+              "matched 10%": 0.233,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "local": 0.017,
+              "equalized 100%": 0.017
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00324
+          },
+          "constitution": {
+            "picks": {
+              "central 0.3": 0.275,
+              "matched 10%": 0.233,
+              "equalized both ways 100%": 0.225,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.075,
+              "local": 0.042,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00324
+          },
+          "repeal": {
+            "picks": {
+              "central 0.3": 0.267,
+              "matched 10%": 0.233,
+              "equalized both ways 100%": 0.225,
+              "keep today's arrangement": 0.133,
+              "floor 0.1": 0.075,
+              "local": 0.042,
+              "equalized 100%": 0.025
+            },
+            "keeps_today": 0.133,
+            "mean_real_gain_vs_today": 0.00321
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "central 0.3": 0.367,
+              "equalized both ways 100%": 0.183,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "equalized 100%": 0.05,
+              "local": 0.017
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00503
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "central 0.3": 0.375,
+              "equalized both ways 100%": 0.192,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "equalized 100%": 0.042,
+              "local": 0.008
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00505
+          },
+          "visible_payments": {
+            "picks": {
+              "central 0.3": 0.375,
+              "equalized both ways 100%": 0.192,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "equalized 100%": 0.042,
+              "local": 0.008
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00505
+          },
+          "attachment": {
+            "picks": {
+              "central 0.3": 0.375,
+              "equalized both ways 100%": 0.183,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "equalized 100%": 0.05,
+              "local": 0.008
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00505
+          },
+          "constitution": {
+            "picks": {
+              "central 0.3": 0.367,
+              "equalized both ways 100%": 0.192,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.092,
+              "equalized 100%": 0.042,
+              "local": 0.008
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00503
+          },
+          "repeal": {
+            "picks": {
+              "central 0.3": 0.375,
+              "equalized both ways 100%": 0.192,
+              "matched 10%": 0.175,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "equalized 100%": 0.042,
+              "local": 0.008
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00505
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "central 0.3": 0.275,
+              "equalized both ways 100%": 0.25,
+              "matched 10%": 0.233,
+              "keep today's arrangement": 0.125,
+              "floor 0.1": 0.083,
+              "local": 0.017,
+              "equalized 100%": 0.017
+            },
+            "keeps_today": 0.125,
+            "mean_real_gain_vs_today": 0.00324
+          }
+        }
+      },
+      "rules": {
+        "local": {
+          "route": "Parliament",
+          "passes": 0.6,
+          "opposed_by": {
+            "NL": 0.317,
+            "PE": 0.425,
+            "NS": 0.417,
+            "NB": 0.367,
+            "QC": 0.317,
+            "ON": 0.45,
+            "MB": 0.408,
+            "SK": 0.325,
+            "AB": 0.325,
+            "BC": 0.408
+          }
+        },
+        "central 0.3": {
+          "route": "amendment",
+          "passes": 0.292,
+          "opposed_by": {
+            "NL": 0.6,
+            "PE": 0.658,
+            "NS": 0.617,
+            "NB": 0.642,
+            "QC": 0.683,
+            "ON": 0.667,
+            "MB": 0.7,
+            "SK": 0.708,
+            "AB": 0.725,
+            "BC": 0.7
+          }
+        },
+        "floor 0.1": {
+          "route": "amendment",
+          "passes": 0.475,
+          "opposed_by": {
+            "NL": 0.525,
+            "PE": 0.45,
+            "NS": 0.467,
+            "NB": 0.517,
+            "QC": 0.525,
+            "ON": 0.45,
+            "MB": 0.475,
+            "SK": 0.525,
+            "AB": 0.525,
+            "BC": 0.475
+          }
+        },
+        "ceiling 0.5": {
+          "route": "amendment",
+          "passes": 0.467,
+          "opposed_by": {
+            "NL": 0.533,
+            "PE": 0.458,
+            "NS": 0.5,
+            "NB": 0.533,
+            "QC": 0.533,
+            "ON": 0.45,
+            "MB": 0.483,
+            "SK": 0.533,
+            "AB": 0.533,
+            "BC": 0.483
+          }
+        },
+        "matched 10%": {
+          "route": "Parliament",
+          "passes": 0.658,
+          "opposed_by": {
+            "NL": 0.092,
+            "PE": 0.225,
+            "NS": 0.1,
+            "NB": 0.183,
+            "QC": 0.267,
+            "ON": 0.317,
+            "MB": 0.517,
+            "SK": 0.542,
+            "AB": 0.617,
+            "BC": 0.442
+          }
+        },
+        "equalized 100%": {
+          "route": "Parliament",
+          "passes": 0.567,
+          "opposed_by": {
+            "NL": 0.35,
+            "PE": 0.442,
+            "NS": 0.425,
+            "NB": 0.417,
+            "QC": 0.375,
+            "ON": 0.458,
+            "MB": 0.433,
+            "SK": 0.408,
+            "AB": 0.408,
+            "BC": 0.433
+          }
+        },
+        "equalized both ways 100%": {
+          "route": "amendment",
+          "passes": 0.542,
+          "opposed_by": {
+            "NL": 0.45,
+            "PE": 0.425,
+            "NS": 0.45,
+            "NB": 0.45,
+            "QC": 0.442,
+            "ON": 0.467,
+            "MB": 0.442,
+            "SK": 0.458,
+            "AB": 0.45,
+            "BC": 0.467
+          }
+        }
+      }
+    },
+    "redistribution": {
+      "status_quo": "central 0.25",
+      "status_quo_meaning": "mostly federal: income tax, Old Age Security, Employment Insurance, the Canada Child Benefit",
+      "legal": {
+        "alone": [
+          "central",
+          "local"
+        ],
+        "needs_amendment": [
+          "ceiling",
+          "floor"
+        ],
+        "basis": "federal taxing and spending (s. 91(3)), unemployment insurance (s. 91(2A), 1940) and pensions (s. 94A, 1951); a mandate on provincial welfare levels would need amendment"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "keep today's arrangement": 0.917,
+            "floor 0.3": 0.083
+          },
+          "keeps_today": 0.917,
+          "mean_real_gain_vs_today": 0.00027
+        },
+        "all_politics": {
+          "picks": {
+            "keep today's arrangement": 0.917,
+            "local": 0.075,
+            "floor 0.3": 0.008
+          },
+          "keeps_today": 0.917,
+          "mean_real_gain_vs_today": 0.00099
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "keep today's arrangement": 0.825,
+              "local": 0.167,
+              "floor 0.3": 0.008
+            },
+            "keeps_today": 0.825,
+            "mean_real_gain_vs_today": 0.00135
+          },
+          "visible_payments": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "local": 0.075,
+              "floor 0.3": 0.008
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00099
+          },
+          "attachment": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "local": 0.075,
+              "floor 0.3": 0.008
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00099
+          },
+          "constitution": {
+            "picks": {
+              "keep today's arrangement": 0.883,
+              "floor 0.3": 0.1,
+              "local": 0.008,
+              "ceiling 0.25": 0.008
+            },
+            "keeps_today": 0.883,
+            "mean_real_gain_vs_today": 0.00148
+          },
+          "repeal": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "local": 0.075,
+              "floor 0.3": 0.008
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00099
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "keep today's arrangement": 0.992,
+              "floor 0.3": 0.008
+            },
+            "keeps_today": 0.992,
+            "mean_real_gain_vs_today": 6e-05
+          },
+          "visible_payments": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "floor 0.3": 0.083
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00027
+          },
+          "attachment": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "floor 0.3": 0.083
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00027
+          },
+          "constitution": {
+            "picks": {
+              "keep today's arrangement": 0.975,
+              "local": 0.025
+            },
+            "keeps_today": 0.975,
+            "mean_real_gain_vs_today": 0.0001
+          },
+          "repeal": {
+            "picks": {
+              "keep today's arrangement": 0.917,
+              "floor 0.3": 0.083
+            },
+            "keeps_today": 0.917,
+            "mean_real_gain_vs_today": 0.00027
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "keep today's arrangement": 0.692,
+              "floor 0.3": 0.308
+            },
+            "keeps_today": 0.692,
+            "mean_real_gain_vs_today": 0.00215
+          }
+        }
+      },
+      "rules": {
+        "local": {
+          "route": "Parliament",
+          "passes": 0.775,
+          "opposed_by": {
+            "NL": 0.942,
+            "PE": 0.958,
+            "NS": 0.983,
+            "NB": 0.958,
+            "QC": 0.975,
+            "ON": 0.15,
+            "MB": 0.875,
+            "SK": 0.758,
+            "AB": 0.117,
+            "BC": 0.6
+          }
+        },
+        "floor 0.3": {
+          "route": "amendment",
+          "passes": 0.008,
+          "opposed_by": {
+            "NL": 0.942,
+            "PE": 0.958,
+            "NS": 0.95,
+            "NB": 0.95,
+            "QC": 0.958,
+            "ON": 0.208,
+            "MB": 0.85,
+            "SK": 0.675,
+            "AB": 0.175,
+            "BC": 0.475
+          }
+        },
+        "ceiling 0.25": {
+          "route": "amendment",
+          "passes": 0.008,
+          "opposed_by": {
+            "NL": 0.933,
+            "PE": 0.933,
+            "NS": 0.967,
+            "NB": 0.95,
+            "QC": 0.983,
+            "ON": 0.183,
+            "MB": 0.925,
+            "SK": 0.783,
+            "AB": 0.175,
+            "BC": 0.65
+          }
+        }
+      }
+    },
+    "climate": {
+      "status_quo": "floor 0.7",
+      "status_quo_meaning": "the consumer fuel charge was set to zero in April 2025 and repealed in March 2026 (Bill C-4); industrial output-based pricing and regulations remain, treated as a quantity floor",
+      "legal": {
+        "alone": [
+          "floor",
+          "local",
+          "price_floor"
+        ],
+        "needs_amendment": [
+          "central",
+          "price"
+        ],
+        "basis": "minimum national standards of carbon-price stringency upheld under peace, order and good government (Reference re Greenhouse Gas Pollution Pricing Act, 2021 SCC 11); a uniform federal price or standard displacing stricter provincial ones goes beyond what was upheld, so is treated as needing amendment"
+      },
+      "choices": {
+        "planner": {
+          "picks": {
+            "price 1.2": 0.883,
+            "keep today's arrangement": 0.117
+          },
+          "keeps_today": 0.117,
+          "mean_real_gain_vs_today": 0.03859
+        },
+        "all_politics": {
+          "picks": {
+            "keep today's arrangement": 1.0
+          },
+          "keeps_today": 1.0,
+          "mean_real_gain_vs_today": 0.0
+        },
+        "without": {
+          "loss_aversion": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          },
+          "visible_payments": {
+            "picks": {
+              "price floor 1.2": 0.767,
+              "keep today's arrangement": 0.233
+            },
+            "keeps_today": 0.233,
+            "mean_real_gain_vs_today": 0.03548
+          },
+          "attachment": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          },
+          "constitution": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          },
+          "repeal": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          }
+        },
+        "only": {
+          "loss_aversion": {
+            "picks": {
+              "price 1.2": 0.767,
+              "keep today's arrangement": 0.233
+            },
+            "keeps_today": 0.233,
+            "mean_real_gain_vs_today": 0.03548
+          },
+          "visible_payments": {
+            "picks": {
+              "keep today's arrangement": 1.0
+            },
+            "keeps_today": 1.0,
+            "mean_real_gain_vs_today": 0.0
+          },
+          "attachment": {
+            "picks": {
+              "price floor 1.2": 0.883,
+              "keep today's arrangement": 0.108,
+              "price 1.2": 0.008
+            },
+            "keeps_today": 0.108,
+            "mean_real_gain_vs_today": 0.03895
+          },
+          "constitution": {
+            "picks": {
+              "price 1.2": 0.658,
+              "price floor 1.2": 0.225,
+              "keep today's arrangement": 0.117
+            },
+            "keeps_today": 0.117,
+            "mean_real_gain_vs_today": 0.03859
+          },
+          "repeal": {
+            "picks": {
+              "price 1.2": 0.883,
+              "keep today's arrangement": 0.117
+            },
+            "keeps_today": 0.117,
+            "mean_real_gain_vs_today": 0.03859
+          },
+          "fiscal_crisis": {
+            "picks": {
+              "price 1.2": 0.883,
+              "keep today's arrangement": 0.117
+            },
+            "keeps_today": 0.117,
+            "mean_real_gain_vs_today": 0.03859
+          }
+        }
+      },
+      "rules": {
+        "local": {
+          "route": "Parliament",
+          "passes": 0,
+          "opposed_by": {
+            "NL": 0.942,
+            "PE": 0.967,
+            "NS": 1.0,
+            "NB": 0.992,
+            "QC": 1.0,
+            "ON": 1.0,
+            "MB": 1.0,
+            "SK": 0.133,
+            "AB": 0.15,
+            "BC": 1.0
+          }
+        },
+        "central 0.7": {
+          "route": "amendment",
+          "passes": 0,
+          "opposed_by": {
+            "NL": 0.958,
+            "PE": 0.933,
+            "NS": 1.0,
+            "NB": 0.975,
+            "QC": 1.0,
+            "ON": 1.0,
+            "MB": 0.992,
+            "SK": 0.167,
+            "AB": 0.133,
+            "BC": 1.0
+          }
+        },
+        "price 1.2": {
+          "route": "amendment",
+          "passes": 0,
+          "opposed_by": {
+            "NL": 1.0,
+            "PE": 0.867,
+            "NS": 1.0,
+            "NB": 1.0,
+            "QC": 0.875,
+            "ON": 1.0,
+            "MB": 1.0,
+            "SK": 1.0,
+            "AB": 1.0,
+            "BC": 1.0
+          }
+        },
+        "price floor 1.2": {
+          "route": "Parliament",
+          "passes": 0,
+          "survives_elections_if_adopted": 0,
+          "opposed_by": {
+            "NL": 1.0,
+            "PE": 0.867,
+            "NS": 1.0,
+            "NB": 1.0,
+            "QC": 0.867,
+            "ON": 1.0,
+            "MB": 1.0,
+            "SK": 1.0,
+            "AB": 1.0,
+            "BC": 1.0
+          }
+        }
+      }
+    }
+  }
+}

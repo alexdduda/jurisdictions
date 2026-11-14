@@ -15,6 +15,13 @@ the data in `data/raw/` (see the main README for downloads).
 | `politics.py` | Would each rule pass a vote, when voters see visible payments but not the rebate? |
 | `cost_of_funds.py` | What does a dollar cost to raise, federally and provincially, on one basis? |
 | `feasibility.py` | Under each recommended rule, which regions lose, and are the losses concentrated? |
+| `provinces_run.py` | Do the verdicts hold on the ten real provinces, sized by population with real borders? |
+| `political_realities.py` | Starting from today's arrangement, with loss aversion, visible payments, attachment to the province, the constitution, repeal and fiscal crises, what would Ottawa do? |
+| `country_run.py` | Rebuilt from US or Australian data on their real states, do the verdicts match how those federations divide powers? |
+| `calibrate_mobility.py` | Which mobility settings reproduce each country's migration and income spread? |
+| `housing.py` | Do the verdicts survive a housing market? |
+| `city_sensitivity.py`, `horizons.py`, `early_warning.py` | Does the city map matter; do verdicts hold in 2036 and 2046; what number would flip each verdict? |
+| `seed_stability.py` | Do verdicts hold on fresh random seeds? |
 
 ## Results
 

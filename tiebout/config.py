@@ -1,4 +1,4 @@
-"""The default world: four policy domains with deliberately different profiles.
+"""The default world: six policy domains with deliberately different profiles.
 
 These numbers are assumptions, not measurements. They are chosen so each
 domain sits in a different corner of the trade-off space; the phase maps in
@@ -28,6 +28,13 @@ TRANSIT = Domain(
     spillover=0.20,
     scale=0.30,          # networks are cheaper to build as one system
 )
+HEALTH = Domain(
+    "health",
+    heterogeneity=0.03,  # provinces spend alike; Canadians mostly want more
+    within=0.11,
+    spillover=0.05,      # little crosses borders except infectious disease
+    scale=0.03,          # some savings from buying drugs and equipment together
+)
 REDISTRIBUTION = Domain("redistribution", kind="redistribution")
 CLIMATE = Domain(
     "climate",
@@ -43,5 +50,5 @@ CLIMATE = Domain(
 # goods with a content cost (schools) or with a minority moving-cost multiplier.
 # So is its city profile (every census metropolitan area, tiebout/cities.py); it
 # only matters for goods with a city level (transit in the uncertainty analysis).
-DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, REDISTRIBUTION, CLIMATE),
+DEFAULT_WORLD = World(domains=(SCHOOLS, ENVIRONMENT, TRANSIT, HEALTH, REDISTRIBUTION, CLIMATE),
                       language_profile="canada", city_profile="canada")

@@ -1,0 +1,36 @@
+{
+  "source": "Statistics Canada 10-10-0005, Canada, consolidated provincial-territorial and local, 2015-2024",
+  "shares": {
+    "Waste management [7051]": 0.3119,
+    "Waste water management [7052]": 0.3149,
+    "Pollution abatement [7053]": 0.1322,
+    "Protection of biodiversity and landscape [7054]": 0.1166,
+    "Environmental protection not elsewhere classified [7055, 7056]": 0.1244
+  },
+  "part_ranges": {
+    "Waste management [7051]": [
+      0.0,
+      0.05
+    ],
+    "Waste water management [7052]": [
+      0.1,
+      0.3
+    ],
+    "Pollution abatement [7053]": [
+      0.3,
+      0.7
+    ],
+    "Protection of biodiversity and landscape [7054]": [
+      0.1,
+      0.4
+    ],
+    "Environmental protection not elsewhere classified [7055, 7056]": [
+      0.1,
+      0.5
+    ]
+  },
+  "spillover_range": [
+    0.095,
+    0.311
+  ]
+}

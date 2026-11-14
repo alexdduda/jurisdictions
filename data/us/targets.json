@@ -53,6 +53,23 @@
         0.0649,
         0.1058
       ]
+    },
+    "health": {
+      "functions": [
+        "Hospitals",
+        "Health"
+      ],
+      "years": 6,
+      "mean_per_capita": 946,
+      "cv": {
+        "levels": 0.5696,
+        "shares": 0.5051,
+        "residual": 0.5588
+      },
+      "heterogeneity_range": [
+        0.1263,
+        0.1424
+      ]
     }
   },
   "inequality": {
@@ -84,6 +101,10 @@
     },
     "transit": {
       "income_elasticity": 1.246,
+      "years": 6
+    },
+    "health": {
+      "income_elasticity": -0.003,
       "years": 6
     }
   },

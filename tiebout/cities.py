@@ -97,10 +97,10 @@ def _pool(rows):
             "transit": sum(r["pop"] * r["transit"] for r in rows) / pop}
 
 
-def group_places(group: str, rows=None) -> list[dict]:
+def group_places(group: str, rows=None, groups: dict | None = None) -> list[dict]:
     """Places of one region: (name, population share, transit share), largest first, countryside last."""
     rows = rows or _rows()
-    provinces = GROUPS[group]
+    provinces = (groups or GROUPS)[group]
     total = sum(PROVINCE_POP[p] for p in provinces)
     cmas = sorted((r for r in rows if r["province"] in provinces), key=lambda r: -r["pop"])
     big = [r for r in cmas if r["pop"] / total >= MIN_SHARE]
@@ -135,16 +135,24 @@ def offsets(places: list[dict], rows=None) -> list[tuple[float, float]]:
     return [(p["share"], (p["transit"] - m_rural) / (m_cma - m_rural) - 0.5) for p in places]
 
 
-def canada_profile(overrides: dict | None = None, spread: float = 1.0, year: int = 2016) -> tuple:
-    """The 16 regions' places. `overrides` replaces some areas' transit shares;
-    `spread` scales the gap between metropolitan areas around their average
-    (0 makes every metropolitan area alike, as in the two-place model)."""
+def canada_profile(overrides: dict | None = None, spread: float = 1.0, year: int = 2016, geography: str = "") -> tuple:
+    """The 16 regions' places, or with geography "provinces" each province's.
+    `overrides` replaces some areas' transit shares; `spread` scales the gap
+    between metropolitan areas around their average (0 makes every
+    metropolitan area alike, as in the two-place model)."""
     rows = _rows(overrides, year)
+    if geography == "provinces":
+        from .geography import PROVINCES
+        groups, order = {p: (p,) for p in PROVINCES}, PROVINCES
+    elif geography:
+        raise KeyError(f"no city profile for geography {geography!r}")
+    else:
+        groups, order = GROUPS, REGION_GROUPS
     by_group = {}
-    for g in GROUPS:
-        offs = offsets(group_places(g, rows), rows)
+    for g in groups:
+        offs = offsets(group_places(g, rows, groups), rows)
         by_group[g] = tuple(offs[:-1] and [(sh, 0.5 + spread * (o - 0.5)) for sh, o in offs[:-1]]) + (offs[-1],)
-    return tuple(by_group[g] for g in REGION_GROUPS)
+    return tuple(by_group[g] for g in order)
 
 
 # Sensitivity scenarios for how commuting has changed since 2016 (validation/city_sensitivity.py).
@@ -176,7 +184,7 @@ if __name__ == "__main__":
 
 CITY_PROFILES = {
     "canada": canada_profile,
-    "canada_2023_big3": lambda: canada_profile(overrides=LFS_2023),
-    "canada_half_spread": lambda: canada_profile(spread=0.5),
-    "canada_2041_trend": lambda: canada_profile(year=2041),
+    "canada_2023_big3": lambda **kw: canada_profile(overrides=LFS_2023, **kw),
+    "canada_half_spread": lambda **kw: canada_profile(spread=0.5, **kw),
+    "canada_2041_trend": lambda **kw: canada_profile(year=2041, **kw),
 }

@@ -9,16 +9,34 @@
         "schools": 1.5
       },
       "current": "1.007 to 1.021 for Canada as a whole; 0.684 to 1.363 province by province (2025 income tax, one method)",
-      "status": "schools: below the threshold everywhere, so provinces with equalization; environment: at the threshold for Canada as a whole, so a near-tie that a national standard narrowly wins",
+      "status": "schools: below the threshold everywhere, so provinces with equalization; environment: at the threshold for Canada as a whole, so a near-tie: a national standard wins most sampled worlds, but a 20% matching grant loses least across them",
       "watch": "Combined federal-provincial marginal rates (each budget) and new estimates of how taxable income responds to rates; sales and corporate taxes are not yet included."
+    },
+    {
+      "area": "environment",
+      "number": "Share of provincial environmental spending's benefit felt in other provinces (spillover)",
+      "flips": "at an excess-burden ratio of 1, a national standard wins from a spillover of 0.1; below a ratio of 1, provinces (with grants) win across the measured range",
+      "threshold": 0.1,
+      "current": "0.095 to 0.311: waste and wastewater, whose benefits mostly stay home, are about two thirds of the spending (table 10-10-0005); per-part spillovers are assumed",
+      "status": "the measured range is well below the 30% to 80% once assumed, so the case for a national standard now rests on the excess-burden ratio, not on spillover",
+      "watch": "Studies of how far provincial water and air pollution crosses provincial lines; table 10-10-0005 each year for the spending mix."
+    },
+    {
+      "area": "health",
+      "number": "Provincial cost of raising a dollar relative to federal (excess burden ratio), with no scale saving",
+      "flips": "national provision from a ratio of 2.0; matching grants or a floor below",
+      "threshold": 2.0,
+      "current": "1.007 to 1.021 for Canada as a whole",
+      "status": "well below the threshold, so provinces with a small matching grant; the threshold falls as scale savings rise (national from a ratio of 1 with a 5% saving), which is why health has no clear winner",
+      "watch": "The same tax-rate data as for schools; a Canadian estimate of administrative scale economies in health insurance."
     },
     {
       "area": "transit",
       "number": "Saving from one national transit system over separate city or provincial systems",
       "flips": "national from about 10%; below that, provinces (or cities)",
       "threshold": 0.1,
-      "current": "0 to 10%: cost studies find economies of scale only for small operators (Abrate et al. 2016; Berechman and Giuliano's review of large US systems)",
-      "status": "mostly below the threshold, so provinces and their cities; no Canadian estimate yet",
+      "current": "-10% to +5%: US bus operators' cost per vehicle-hour rises with size (elasticity +0.08 to +0.14, NTD 2023-2024, data/scripts/transit_scale.py); European studies find savings only for small operators (Abrate et al. 2016)",
+      "status": "below the threshold, so provinces and their cities; no Canadian estimate yet",
       "watch": "Cost benchmarking of Canadian transit agencies by network size (for example the Canadian Urban Transit Association's annual fact book)."
     },
     {

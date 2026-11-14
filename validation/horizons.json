@@ -2,39 +2,58 @@
   "horizons": {
     "2036": {
       "schools": {
-        "robust": "equalized 100%",
-        "robust_mode": "equalized",
-        "gain_captured": 0.101,
+        "robust": "equalized both ways 100%",
+        "robust_mode": "equalized_both",
+        "gain_captured": 0.121,
         "win_share": {
-          "local": 0.025,
-          "central": 0.425,
-          "floor": 0.055,
-          "matched": 0.135,
-          "equalized": 0.36
+          "central": 0.35,
+          "floor": 0.065,
+          "matched": 0.06,
+          "equalized": 0.005,
+          "foundation": 0.15,
+          "equalized_both": 0.37
         }
       },
       "environment": {
-        "robust": "central 0.3",
-        "robust_mode": "central",
-        "gain_captured": 0.721,
+        "robust": "matched 20%",
+        "robust_mode": "matched",
+        "gain_captured": 0.393,
         "win_share": {
-          "central": 0.645,
-          "floor": 0.335,
-          "matched": 0.02
+          "central": 0.545,
+          "floor": 0.19,
+          "matched": 0.19,
+          "equalized": 0.005,
+          "foundation": 0.015,
+          "equalized_both": 0.055
         }
       },
       "transit": {
-        "robust": "equalized 100%",
-        "robust_mode": "equalized",
-        "gain_captured": 0.019,
+        "robust": "equalized both ways 100%",
+        "robust_mode": "equalized_both",
+        "gain_captured": 0.041,
+        "win_share": {
+          "central": 0.085,
+          "floor": 0.125,
+          "ceiling": 0.07,
+          "matched": 0.06,
+          "equalized": 0.01,
+          "city": 0.18,
+          "foundation": 0.26,
+          "equalized_both": 0.21
+        }
+      },
+      "health": {
+        "robust": "matched 10%",
+        "robust_mode": "matched",
+        "gain_captured": 0.033,
         "win_share": {
           "local": 0.005,
-          "central": 0.35,
-          "floor": 0.17,
-          "ceiling": 0.08,
-          "matched": 0.065,
-          "equalized": 0.18,
-          "city": 0.15
+          "central": 0.595,
+          "floor": 0.195,
+          "ceiling": 0.005,
+          "matched": 0.075,
+          "equalized": 0.02,
+          "equalized_both": 0.105
         }
       },
       "redistribution": {
@@ -58,40 +77,56 @@
     },
     "2046": {
       "schools": {
-        "robust": "equalized 100%",
-        "robust_mode": "equalized",
-        "gain_captured": 0.102,
+        "robust": "equalized both ways 100%",
+        "robust_mode": "equalized_both",
+        "gain_captured": 0.12,
         "win_share": {
-          "local": 0.02,
-          "central": 0.43,
-          "floor": 0.07,
-          "ceiling": 0.005,
-          "matched": 0.125,
-          "equalized": 0.35
+          "central": 0.35,
+          "floor": 0.065,
+          "matched": 0.06,
+          "equalized": 0.02,
+          "foundation": 0.155,
+          "equalized_both": 0.35
         }
       },
       "environment": {
-        "robust": "central 0.3",
-        "robust_mode": "central",
-        "gain_captured": 0.72,
+        "robust": "matched 20%",
+        "robust_mode": "matched",
+        "gain_captured": 0.391,
         "win_share": {
-          "central": 0.64,
-          "floor": 0.345,
-          "matched": 0.015
+          "central": 0.54,
+          "floor": 0.19,
+          "matched": 0.195,
+          "foundation": 0.015,
+          "equalized_both": 0.06
         }
       },
       "transit": {
-        "robust": "equalized 100%",
-        "robust_mode": "equalized",
-        "gain_captured": 0.019,
+        "robust": "equalized both ways 100%",
+        "robust_mode": "equalized_both",
+        "gain_captured": 0.044,
+        "win_share": {
+          "central": 0.085,
+          "floor": 0.12,
+          "ceiling": 0.075,
+          "matched": 0.07,
+          "equalized": 0.02,
+          "city": 0.175,
+          "foundation": 0.265,
+          "equalized_both": 0.19
+        }
+      },
+      "health": {
+        "robust": "matched 10%",
+        "robust_mode": "matched",
+        "gain_captured": 0.033,
         "win_share": {
           "local": 0.005,
-          "central": 0.355,
-          "floor": 0.205,
-          "ceiling": 0.085,
+          "central": 0.595,
+          "floor": 0.2,
           "matched": 0.07,
-          "equalized": 0.135,
-          "city": 0.145
+          "equalized": 0.02,
+          "equalized_both": 0.11
         }
       },
       "redistribution": {
@@ -116,39 +151,59 @@
   },
   "now": {
     "schools": {
-      "robust": "equalized 100%",
-      "robust_mode": "equalized",
-      "gain_captured": 0.102,
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.122,
       "win_share": {
-        "local": 0.005,
-        "central": 0.425,
-        "floor": 0.06,
-        "matched": 0.135,
-        "equalized": 0.375
+        "central": 0.35,
+        "floor": 0.075,
+        "matched": 0.055,
+        "equalized": 0.015,
+        "foundation": 0.15,
+        "equalized_both": 0.355
       }
     },
     "environment": {
-      "robust": "central 0.3",
-      "robust_mode": "central",
-      "gain_captured": 0.722,
+      "robust": "matched 20%",
+      "robust_mode": "matched",
+      "gain_captured": 0.393,
       "win_share": {
-        "central": 0.645,
-        "floor": 0.34,
-        "matched": 0.015
+        "central": 0.545,
+        "floor": 0.195,
+        "matched": 0.19,
+        "equalized": 0.005,
+        "foundation": 0.01,
+        "equalized_both": 0.055
       }
     },
     "transit": {
-      "robust": "equalized 100%",
-      "robust_mode": "equalized",
-      "gain_captured": 0.02,
+      "robust": "equalized both ways 100%",
+      "robust_mode": "equalized_both",
+      "gain_captured": 0.042,
       "win_share": {
-        "local": 0.01,
-        "central": 0.35,
-        "floor": 0.17,
-        "ceiling": 0.075,
-        "matched": 0.065,
-        "equalized": 0.18,
-        "city": 0.15
+        "local": 0.005,
+        "central": 0.085,
+        "floor": 0.125,
+        "ceiling": 0.065,
+        "matched": 0.06,
+        "equalized": 0.035,
+        "city": 0.175,
+        "foundation": 0.265,
+        "equalized_both": 0.185
+      }
+    },
+    "health": {
+      "robust": "matched 10%",
+      "robust_mode": "matched",
+      "gain_captured": 0.033,
+      "win_share": {
+        "local": 0.005,
+        "central": 0.595,
+        "floor": 0.23,
+        "ceiling": 0.005,
+        "matched": 0.075,
+        "equalized": 0.01,
+        "equalized_both": 0.08
       }
     },
     "redistribution": {

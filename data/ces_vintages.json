@@ -22,6 +22,25 @@
         "rho": 0.2117,
         "corr_with_2019_province_means": 0.35
       },
+      "health": {
+        "question": "CPSL7D",
+        "proxy": true,
+        "respondents": 3742,
+        "province_means": {
+          "Newfoundland and Labrador": 1.699,
+          "Prince Edward Island": 1.66,
+          "Nova Scotia": 1.503,
+          "New Brunswick": 1.49,
+          "Quebec": 0.943,
+          "Ontario": 1.333,
+          "Manitoba": 1.58,
+          "Saskatchewan": 1.193,
+          "Alberta": 1.274,
+          "British Columbia": 1.397
+        },
+        "rho_raw": 0.2191,
+        "rho": 0.1838
+      },
       "environment_jobs": {
         "question": "MBSA12",
         "proxy": true,
@@ -84,6 +103,25 @@
         "rho": 0.178,
         "corr_with_2019_province_means": 0.5
       },
+      "health": {
+        "question": "pese6d",
+        "proxy": true,
+        "respondents": 2991,
+        "province_means": {
+          "Newfoundland and Labrador": 1.904,
+          "Prince Edward Island": 1.79,
+          "Nova Scotia": 1.736,
+          "New Brunswick": 1.773,
+          "Quebec": 1.341,
+          "Ontario": 1.367,
+          "Manitoba": 1.437,
+          "Saskatchewan": 1.65,
+          "Alberta": 1.389,
+          "British Columbia": 1.616
+        },
+        "rho_raw": 0.1931,
+        "rho": 0.1295
+      },
       "environment_jobs": {
         "question": "mbsa6",
         "proxy": true,
@@ -145,6 +183,25 @@
         "rho_raw": 0.2697,
         "rho": 0.2537,
         "corr_with_2019_province_means": -0.11
+      },
+      "health": {
+        "question": "pes_d1c",
+        "proxy": false,
+        "respondents": 3085,
+        "province_means": {
+          "Newfoundland and Labrador": 2.038,
+          "Prince Edward Island": 1.929,
+          "Nova Scotia": 1.836,
+          "New Brunswick": 1.498,
+          "Quebec": 1.585,
+          "Ontario": 1.391,
+          "Manitoba": 1.341,
+          "Saskatchewan": 1.249,
+          "Alberta": 1.237,
+          "British Columbia": 1.45
+        },
+        "rho_raw": 0.2711,
+        "rho": 0.2473
       },
       "environment": {
         "question": "pes_d1f",
@@ -227,6 +284,25 @@
         "rho_raw": 0.1714,
         "rho": 0.1235,
         "corr_with_2019_province_means": 0.29
+      },
+      "health": {
+        "question": "ces08_PES_D1C",
+        "proxy": false,
+        "respondents": 3638,
+        "province_means": {
+          "Newfoundland and Labrador": 1.906,
+          "Prince Edward Island": 1.438,
+          "Nova Scotia": 1.658,
+          "New Brunswick": 1.706,
+          "Quebec": 1.448,
+          "Ontario": 1.554,
+          "Manitoba": 1.37,
+          "Saskatchewan": 1.283,
+          "Alberta": 1.154,
+          "British Columbia": 1.305
+        },
+        "rho_raw": 0.2146,
+        "rho": 0.1859
       },
       "environment": {
         "question": "ces08_PES_D1F",
@@ -330,6 +406,25 @@
         "rho": 0.2001,
         "corr_with_2019_province_means": 0.47
       },
+      "health": {
+        "question": "CPS11_32",
+        "proxy": false,
+        "respondents": 4256,
+        "province_means": {
+          "Newfoundland and Labrador": 1.946,
+          "Prince Edward Island": 1.552,
+          "Nova Scotia": 1.745,
+          "New Brunswick": 1.757,
+          "Quebec": 1.426,
+          "Ontario": 1.481,
+          "Manitoba": 1.279,
+          "Saskatchewan": 1.188,
+          "Alberta": 1.225,
+          "British Columbia": 1.274
+        },
+        "rho_raw": 0.2459,
+        "rho": 0.2273
+      },
       "environment": {
         "question": "CPS11_35",
         "proxy": false,
@@ -411,6 +506,25 @@
         "rho_raw": 0.1293,
         "rho": 0.0594,
         "corr_with_2019_province_means": 0.69
+      },
+      "health": {
+        "question": "spnd_hlth",
+        "proxy": false,
+        "respondents": 7010,
+        "province_means": {
+          "Newfoundland and Labrador": 1.117,
+          "Prince Edward Island": 1.43,
+          "Nova Scotia": 1.317,
+          "New Brunswick": 1.411,
+          "Quebec": 1.285,
+          "Ontario": 1.195,
+          "Manitoba": 1.029,
+          "Saskatchewan": 1.297,
+          "Alberta": 1.123,
+          "British Columbia": 1.362
+        },
+        "rho_raw": 0.1279,
+        "rho": 0.0
       },
       "environment": {
         "question": "spnd_envi",

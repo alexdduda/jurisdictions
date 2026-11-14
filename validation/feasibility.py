@@ -7,8 +7,8 @@ policy area this samples worlds from the Canadian ranges, runs the robust rule
 seeds, and measures, for the people who started in each of the 16 regions,
 the change in average welfare. It reports:
 
-  share losing        share of regions (each starts with 1/16 of the people)
-                      worse off under the rule
+  share losing        share of people (by the region they started in) worse
+                      off under the rule
   worst loss          the hardest-hit region's loss, in units of the average
                       gain (2 means it loses twice what the average person gains)
   concentrated        cases where under a quarter of regions lose, but the
@@ -38,6 +38,8 @@ from statistics import mean
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "validation"))
+from calibrate_mobility import provinces_ranges  # noqa: E402
 from tiebout.config import DEFAULT_WORLD  # noqa: E402
 from tiebout.model import LOCAL, Policy, _Run  # noqa: E402
 from tiebout.optimize import make_pool  # noqa: E402
@@ -59,9 +61,15 @@ def _case(args):
     rule = _Run(world, {name: policy}, seed)
     a = rule.run()
     b = _Run(world, {}, seed).run()
-    n = world.agents_per_region
-    taste = [mean(rule.tastes[name][r * n:(r + 1) * n]) for r in range(rule.R)] if name in rule.tastes else None
+    taste = ([mean(t for t, o in zip(rule.tastes[name], rule.origin) if o == r) for r in range(rule.R)]
+             if name in rule.tastes else None)
+    if world.geography:
+        from tiebout.geography import layout
+        shares = list(layout(world.geography, world.grid ** 2 * world.agents_per_region)[3])
+    else:
+        shares = [1 / rule.R] * rule.R
     return {
+        "shares": shares,
         "delta": [x - y for x, y in zip(a.by_origin, b.by_origin)],
         "productivity": rule.productivity,
         "taste": taste,
@@ -72,25 +80,30 @@ def _case(args):
 def by_province(cases: list[dict]) -> dict:
     """Median change for each province group, in units of the average gain."""
     from tiebout.provinces import profile
-    names = profile("canada")["names"]
+    names = profile("canada", "provinces")["names"]
     out = {}
     for g in dict.fromkeys(names):
         idx = [r for r, n in enumerate(names) if n == g]
-        vals = sorted(mean(c["delta"][r] for r in idx) / mean(c["delta"]) for c in cases if mean(c["delta"]) > 0)
+        vals = sorted(mean(c["delta"][r] for r in idx) / gain(c) for c in cases if gain(c) > 0)
         out[g] = {"median_change_over_mean_gain": round(vals[len(vals) // 2], 2),
                   "share_of_worlds_losing": round(sum(v < 0 for v in vals) / len(vals), 3)}
     return out
+
+
+def gain(c: dict) -> float:
+    """Population-weighted average change."""
+    return sum(w * x for w, x in zip(c["shares"], c["delta"]))
 
 
 def summarise(cases: list[dict]) -> dict:
     rows = []
     for c in cases:
         d = c["delta"]
-        gain = mean(d)
-        if gain <= 0:
+        g = gain(c)
+        if g <= 0:
             continue  # the rule doesn't help in this world; nothing to distribute
-        losing = sum(x < 0 for x in d) / len(d)
-        worst = -min(d) / gain if min(d) < 0 else 0.0
+        losing = sum(w for w, x in zip(c["shares"], d) if x < 0)
+        worst = -min(d) / g if min(d) < 0 else 0.0
         row = {"losing": losing, "worst": worst, "concentrated": losing < 0.25 and worst > 1.0,
                "corr_productivity": corr(d, c["productivity"])}
         if c["taste"]:
@@ -98,7 +111,7 @@ def summarise(cases: list[dict]) -> dict:
         if c["abatement"]:
             row["corr_abatement"] = corr(d, c["abatement"])
             top = sorted(range(len(d)), key=lambda r: -c["abatement"][r])[:2]
-            row["top_cost_regions"] = mean(d[r] for r in top) / gain
+            row["top_cost_regions"] = mean(d[r] for r in top) / g
             row["top_cost_regions_lose"] = all(d[r] < 0 for r in top)
         rows.append(row)
     med = lambda xs: sorted(xs)[len(xs) // 2]
@@ -120,9 +133,9 @@ def summarise(cases: list[dict]) -> dict:
 
 
 def main(provinces: bool = False) -> dict:
-    base_world = replace(DEFAULT_WORLD, province_profile="canada") if provinces else DEFAULT_WORLD
+    base_world = replace(DEFAULT_WORLD, province_profile="canada", geography="provinces") if provinces else DEFAULT_WORLD
     saved = json.loads((ROOT / "results" / "uncertainty_canada.json").read_text())["domains"]
-    ranges = canada_ranges()
+    ranges = provinces_ranges() if provinces else canada_ranges()
     out = {"draws": DRAWS, "seeds": SEEDS, "against": "provinces decide (local)", "areas": {},
            "province_profile": provinces}
     with make_pool() as pool:

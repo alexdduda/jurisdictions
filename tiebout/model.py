@@ -16,6 +16,19 @@ scopelang):
     floor     regions decide, but not below a national minimum
     ceiling   regions decide, but not above a national maximum
     matched   regions decide, and the nation pays a share of their costs
+    equalized regions decide; the nation tops up poorer regions' ability to pay
+    equalized_both  the same, but richer regions' ability to pay is also pulled
+              down toward the average and the difference goes to the nation
+              (Hoxby's "levelling down" school-finance schemes)
+    legislature the nation provides, but levels are set by a legislature of
+              regional delegates (Besley and Coate 2003): a minimum winning
+              coalition of the regions that want the good most, holding over half
+              the people, gives each member the level its delegate wants, paid
+              from national taxes of which the region bears only its population
+              share (a common pool, so members overspend); the rest get nothing
+    foundation regions decide, never below a minimum level the nation pays for;
+              anything above it at their own cost (a foundation grant, or a
+              conditional block transfer like the Canada Health Transfer)
 
 The trade-offs that make the choice non-trivial (Oates' decentralisation
 theorem plus the classic objections to it):
@@ -45,7 +58,8 @@ import math
 import random
 from dataclasses import dataclass, field
 
-MODES = ("local", "central", "floor", "ceiling", "matched", "equalized", "city", "price", "price_floor")
+MODES = ("local", "central", "floor", "ceiling", "matched", "equalized", "city", "price", "price_floor",
+         "foundation", "equalized_both", "legislature")
 
 
 @dataclass(frozen=True)
@@ -105,6 +119,12 @@ class Policy:
             return f"matched {self.level:.0%}"
         if self.mode == "equalized":
             return f"equalized {self.level:.0%}"
+        if self.mode == "equalized_both":
+            return f"equalized both ways {self.level:.0%}"
+        if self.mode == "foundation":
+            return f"foundation {self.level:.3g}"
+        if self.mode == "legislature":
+            return "legislature"
         if self.mode == "city":
             return "city" if not self.level else f"city + {self.level:.0%} grant"
         if self.mode == "price":
@@ -134,6 +154,13 @@ class World:
     candidates: int = 4            # other regions each mover looks at
     moving_cost: float = 0.01
     congestion: float = 0.1        # utility cost per unit of (population / average)
+    # Housing. Each resident pays rent of housing x the region's mean income x
+    # (population / average): rents rise where people crowd in and where richer
+    # people live, which pushes back on sorting by income. Rent is a transfer, not
+    # a loss: it goes to landlords, taken to be the people who started in the
+    # region (homeowners), wherever they now live, so a rule that makes a region
+    # more attractive shows up as a gain for its owners. 0 turns it off.
+    housing: float = 0.0
     income_sigma: float = 0.6      # log-normal income spread
     deadweight: float = 0.5        # efficiency loss of redistributive taxes
     national_overhead: float = 0.1 # extra cost per unit of money run through the centre
@@ -165,6 +192,11 @@ class World:
     # "" (random regional tastes, costs and productivity, calibrated spreads) or
     # "canada": each region takes its province's measured values (tiebout/provinces.py).
     province_profile: str = ""
+    # "" (grid x grid equal regions on a torus) or a real geography from
+    # tiebout/geography.py: "provinces" (ten, sized by population, real borders)
+    # or "us_states" (fifty). The total number of agents stays about grid**2 x
+    # agents_per_region.
+    geography: str = ""
 
     def domain(self, name: str) -> Domain:
         for d in self.domains:
@@ -222,8 +254,16 @@ def torus_neighbors(grid: int) -> list[list[int]]:
     return out
 
 
+def _topped(policy: Policy, incomes: list[float], national: float) -> list[float]:
+    """Each region's ability to pay after equalization closes a share q of its gap."""
+    q = _clamp(policy.level, 0.0, 1.0)
+    if policy.mode == "equalized_both":
+        return [y + q * (national - y) for y in incomes]
+    return [y + q * max(0.0, national - y) for y in incomes]
+
+
 def _bound(local: list[float], policy: Policy) -> list[float]:
-    if policy.mode == "floor":
+    if policy.mode in ("floor", "foundation"):
         return [max(v, policy.level) for v in local]
     if policy.mode == "ceiling":
         return [min(v, policy.level) for v in local]
@@ -233,23 +273,60 @@ def _bound(local: list[float], policy: Policy) -> list[float]:
 class _Run:
     """One simulation of one arrangement with one seed."""
 
+    def legislature_levels(self, d: Domain, medians: list[float], pops: list[int], unit: float) -> list[float]:
+        """Levels a legislature of regional delegates sets (see the `legislature` mode)."""
+        w = self.world
+        order = sorted(range(self.R), key=lambda r: -medians[r])
+        coalition, held = set(), 0
+        for r in order:
+            if held * 2 > self.N:
+                break
+            coalition.add(r)
+            held += pops[r]
+        out = []
+        for r in range(self.R):
+            if r not in coalition or not pops[r]:
+                out.append(0.0)
+                continue
+            # The delegate weighs its residents' benefit (1 - s of own provision)
+            # against their share pops[r] / N of the national cost of p_r**2 per head.
+            own_share = pops[r] / self.N
+            out.append(_clamp(medians[r] * (1 - d.spillover) / (unit * (1 + w.national_overhead) * own_share),
+                              0, w.max_level))
+        return out
+
     def __init__(self, world: World, arrangement: dict[str, Policy], seed: int):
         self.world = world
         self.arrangement = arrangement
         rng = random.Random(seed)
         self.move_rng = random.Random(seed * 7919 + 17)
 
-        self.R = world.grid ** 2
-        self.nbrs = torus_neighbors(world.grid)
-        self.N = self.R * world.agents_per_region
-        self.region = [i // world.agents_per_region for i in range(self.N)]
+        if world.geography:
+            from .geography import layout
+            self.codes, counts, nbrs, shares = layout(world.geography, world.grid ** 2 * world.agents_per_region)
+            self.R = len(counts)
+            self.nbrs = [list(n) for n in nbrs]
+            self.region = [r for r, c in enumerate(counts) for _ in range(c)]
+            self.N = len(self.region)
+            self.home = list(counts)
+            # Population weights: each region's agents together carry its population share.
+            self.weight = [shares[r] * self.N / counts[r] for r in self.region]
+        else:
+            self.R = world.grid ** 2
+            self.nbrs = torus_neighbors(world.grid)
+            self.N = self.R * world.agents_per_region
+            self.region = [i // world.agents_per_region for i in range(self.N)]
+            self.home = [world.agents_per_region] * self.R
+            self.weight = [1.0] * self.N
+        self.origin = list(self.region)
+        self.origin_count = list(self.home)
         # Skill is portable; income also depends on the region's productivity.
         self.skill = [math.exp(rng.gauss(0, world.income_sigma)) for _ in range(self.N)]
         self.tastes: dict[str, list[float]] = {}
         prov = None
         if world.province_profile:
             from .provinces import profile as province_values
-            prov = province_values(world.province_profile)
+            prov = province_values(world.province_profile, world.geography)
         self.abatement: dict[str, list[float]] = {}
         for d in world.domains:
             if d.kind == "public_good":
@@ -283,7 +360,10 @@ class _Run:
         self.city_places = None
         if world.city_profile:
             from .cities import CITY_PROFILES
-            self.city_places = CITY_PROFILES[world.city_profile]()
+            self.city_places = (CITY_PROFILES[world.city_profile](geography=world.geography) if world.geography
+                                else CITY_PROFILES[world.city_profile]())
+            if world.geography and len(self.city_places) != self.R:
+                raise ValueError(f"city profile {world.city_profile!r} has {len(self.city_places)} regions, not {self.R}")
             self.city_cum = []
             for places in self.city_places:
                 acc, cum = 0.0, []
@@ -294,7 +374,10 @@ class _Run:
                 self.city_cum.append(cum)
         # Language group, fixed per person and kept when moving region.
         profile = LANGUAGE_PROFILES.get(world.language_profile, ())
-        if profile and world.province_profile:
+        if world.geography:
+            from .geography import LANGUAGE
+            profile = tuple(LANGUAGE[world.geography].get(c, 0.0) for c in self.codes) if world.language_profile else ()
+        elif profile and world.province_profile:
             # Region 15 stands for Quebec in the province profile (tiebout/cities.py).
             profile = profile[:15] + (profile[0],) + profile[16:]
         lang_rng = random.Random(seed * 65537 + 9)  # separate stream: worlds without a profile are unchanged
@@ -385,6 +468,10 @@ class _Run:
         if policy.mode == "central":
             p = [_clamp(policy.level, 0, w.max_level)] * self.R
             unit, local_share = 1.0 - d.scale, 0.0
+        elif policy.mode == "legislature":
+            unit, local_share = 1.0 - d.scale, 0.0
+            medians = [_median([theta[i] for i in res]) if res else 0.0 for res in residents]
+            p = self.legislature_levels(d, medians, pops, unit)
         else:
             match = policy.level if policy.mode == "matched" else 0.0
             local_share = 1.0 - match
@@ -401,12 +488,8 @@ class _Run:
         # difference in cost at the national cost of funds. With no fiscal-capacity
         # effect (k = 0) it is identical to letting regions decide.
         equalization_spend = 0.0
-        if policy.mode == "equalized" and k:
-            q = _clamp(policy.level, 0.0, 1.0)
-            topped = [
-                self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
-                for r in range(self.R)
-            ]
+        if policy.mode in ("equalized", "equalized_both") and k:
+            topped = _topped(policy, self.regional_income, self.national_income)
             eq_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(self.R)]
             local = [
                 _clamp(_median([theta[i] for i in res]) * (1 - s) / (price * eq_burden[r]), 0, w.max_level) if res else 0.0
@@ -421,11 +504,13 @@ class _Run:
         experienced = [
             (1 - s) * p[r] + s * _mean(p[n] for n in self.nbrs[r]) for r in range(self.R)
         ]
-        national_spend = sum(pops[r] * unit * (1 - local_share) * p[r] ** 2 for r in range(self.R)) / self.N
+        # Foundation grant: the nation pays for the first f units everywhere.
+        f = _clamp(policy.level, 0, w.max_level) if policy.mode == "foundation" else 0.0
+        national_spend = sum(pops[r] * unit * ((1 - local_share) * p[r] ** 2 + f * f) for r in range(self.R)) / self.N
         national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
         gain = [d.weight * 2 * experienced[r] for r in range(self.R)]
         local_cost = unit * local_share * (1 + w.local_overhead)
-        cost = [d.weight * (local_cost * burden[r] * p[r] ** 2 + national_tax) for r in range(self.R)]
+        cost = [d.weight * (local_cost * burden[r] * (p[r] ** 2 - f * f) + national_tax) for r in range(self.R)]
         penalty = 0.0
         if d.content_weight and policy.mode == "central":
             penalty = d.weight * d.content_weight * (1 - _clamp(d.national_accommodation, 0.0, 1.0)) * 0.25
@@ -457,6 +542,12 @@ class _Run:
             p = [_clamp(policy.level, 0, w.max_level)] * (2 * R)
             unit, local_share = 1.0 - d.scale, 0.0
             place_burden = [burden[j // 2] for j in range(2 * R)]
+        elif policy.mode == "legislature":
+            unit, local_share = 1.0 - d.scale, 0.0
+            medians = [_median([theta[i] for i in res]) if res else 0.0 for res in residents]
+            regional = self.legislature_levels(d, medians, pops, unit)
+            p = [regional[j // 2] for j in range(2 * R)]
+            place_burden = [burden[j // 2] for j in range(2 * R)]
         elif policy.mode == "city":
             local_share = 1.0 - _clamp(policy.level, 0.0, 0.95)
             unit = 1.0
@@ -474,12 +565,8 @@ class _Run:
             unit = 1.0
             price = max(local_share, 0.05) * (1 + w.local_overhead)
             eff_burden = burden
-            if policy.mode == "equalized" and k:
-                q = _clamp(policy.level, 0.0, 1.0)
-                topped = [
-                    self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
-                    for r in range(R)
-                ]
+            if policy.mode in ("equalized", "equalized_both") and k:
+                topped = _topped(policy, self.regional_income, self.national_income)
                 eff_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(R)]
             # One level per province: it internalises the city-suburb spillover
             # (a uniform level gives each place (1 - s) of its own provision).
@@ -506,11 +593,12 @@ class _Run:
             r, other = j // 2, j ^ 1
             nbr = _mean(regional_level[n] for n in self.nbrs[r])
             experienced.append((1 - s - sm) * p[j] + sm * p[other] + s * nbr)
-        national_spend = sum(place_pops[j] * unit * (1 - local_share) * p[j] ** 2 for j in range(2 * R)) / self.N
+        f = _clamp(policy.level, 0, w.max_level) if policy.mode == "foundation" else 0.0
+        national_spend = sum(place_pops[j] * unit * ((1 - local_share) * p[j] ** 2 + f * f) for j in range(2 * R)) / self.N
         national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
         local_cost = unit * local_share * (1 + w.local_overhead)
         gain = [d.weight * 2 * experienced[j] for j in range(2 * R)]
-        cost = [d.weight * (local_cost * place_burden[j] * p[j] ** 2 + national_tax) for j in range(2 * R)]
+        cost = [d.weight * (local_cost * place_burden[j] * (p[j] ** 2 - f * f) + national_tax) for j in range(2 * R)]
         return ("pg2", d.name, theta, gain, cost, 0.0, regional_level)
 
     def place_of(self, i: int, r: int) -> int:
@@ -547,6 +635,11 @@ class _Run:
         if policy.mode == "central":
             p = [[_clamp(policy.level, 0, w.max_level)] * npl[r] for r in range(R)]
             unit, local_share = 1.0 - d.scale, 0.0
+        elif policy.mode == "legislature":
+            unit, local_share = 1.0 - d.scale, 0.0
+            medians = [_median([t for ts in tastes[r] for t in ts]) if residents[r] else 0.0 for r in range(R)]
+            regional = self.legislature_levels(d, medians, pops, unit)
+            p = [[regional[r]] * npl[r] for r in range(R)]
         elif policy.mode == "city":
             local_share = 1.0 - _clamp(policy.level, 0.0, 0.95)
             unit = 1.0
@@ -560,12 +653,8 @@ class _Run:
             local_share = 1.0 - match
             unit = 1.0
             price = max(local_share, 0.05) * (1 + w.local_overhead)
-            if policy.mode == "equalized" and k:
-                q = _clamp(policy.level, 0.0, 1.0)
-                topped = [
-                    self.regional_income[r] + q * max(0.0, self.national_income - self.regional_income[r])
-                    for r in range(R)
-                ]
+            if policy.mode in ("equalized", "equalized_both") and k:
+                topped = _topped(policy, self.regional_income, self.national_income)
                 eff_burden = [(self.national_income / topped[r]) ** k if topped[r] > 0 else 1.0 for r in range(R)]
             regional = [
                 _clamp(_median([t for ts in tastes[r] for t in ts]) * (1 - s) / (price * eff_burden[r]), 0, w.max_level)
@@ -584,8 +673,9 @@ class _Run:
             for r in range(R)
         ]
         local_cost = unit * local_share * (1 + w.local_overhead)
+        f = _clamp(policy.level, 0, w.max_level) if policy.mode == "foundation" else 0.0
         national_spend = sum(
-            len(places[r][j]) * unit * (1 - local_share) * p[r][j] ** 2 for r in range(R) for j in range(npl[r])
+            len(places[r][j]) * unit * ((1 - local_share) * p[r][j] ** 2 + f * f) for r in range(R) for j in range(npl[r])
         ) / self.N
         national_tax = (national_spend + equalization_spend) * (1 + w.national_overhead)
         gain, cost = [], []
@@ -599,7 +689,7 @@ class _Run:
                 other = city_mean if j == last else p[r][last]
                 experienced = (1 - s - sm) * p[r][j] + sm * other + s * nbr
                 g.append(d.weight * 2 * experienced)
-                c.append(d.weight * (local_cost * eff_burden[r] * p[r][j] ** 2 + national_tax))
+                c.append(d.weight * (local_cost * eff_burden[r] * (p[r][j] ** 2 - f * f) + national_tax))
             gain.append(g)
             cost.append(c)
         return ("pgm", d.name, d, gain, cost, 0.0, regional_level)
@@ -628,11 +718,35 @@ class _Run:
 
     # --- agents ---
 
+    def housing_step(self, residents: list[list[int]], pops: list[int]) -> None:
+        """Mean resident income by region and each origin region's rent income per owner."""
+        h = self.world.housing
+        if not h:
+            return
+        self.mean_income = [_mean(self.income(i, r) for i in res) if res else self.national_income
+                            for r, res in enumerate(residents)]
+        self.owner_income = [h * self.mean_income[r] * pops[r] / self.home[r] * pops[r] / self.origin_count[r]
+                             for r in range(self.R)]
+
+    def net_rent(self, i: int, r: int, pops: list[int]) -> float:
+        """Rent income as an owner minus rent paid where i lives (money)."""
+        if not self.world.housing:
+            return 0.0
+        paid = self.world.housing * self.mean_income[r] * pops[r] / self.home[r]
+        return self.owner_income[self.origin[i]] - paid
+
     def utility(self, i: int, r: int, state: list[tuple], pops: list[int], parts: dict | None = None) -> float:
-        avg = self.N / self.R
+        avg = self.home[r]  # the region's starting population (all equal on the torus)
         u = -self.world.congestion * pops[r] / avg
+        rent = self.net_rent(i, r, pops)
+        money = self.private_consumption or any(e[0] == "red" for e in state)
+        if rent and not money:
+            # Quasi-linear worlds: money in units of the national mean income.
+            u += rent / self.national_income
+            if parts is not None:
+                parts["housing"] = parts.get("housing", 0.0) + rent / self.national_income
         if self.private_consumption:
-            v = math.log(self.income(i, r))
+            v = math.log(max(self.income(i, r) + rent, 1e-9))
             u += v
             if parts is not None:
                 parts["consumption"] = parts.get("consumption", 0.0) + v
@@ -650,7 +764,7 @@ class _Run:
                 v = gain[j] * theta[i] - cost[j]
             else:
                 _, name, weight, keep, transfer, _ = entry
-                c = self.income(i, r) * keep[r] + transfer[r]
+                c = max(self.income(i, r) * keep[r] + transfer[r] + rent, 1e-9)
                 a = self.world.inequality_aversion
                 v = weight * (math.log(c) if a == 1.0 else (c ** (1 - a) - 1) / (1 - a))
             u += v
@@ -687,9 +801,20 @@ class _Run:
     def measure(self, state: list[tuple], pops: list[int], residents) -> Outcome:
         parts: dict[str, float] = {}
         utils = [self.utility(i, self.region[i], state, pops, parts) for i in range(self.N)]
-        out = Outcome(welfare=sum(utils) / self.N, components={k: v / self.N for k, v in parts.items()})
-        n = self.world.agents_per_region
-        out.by_origin = [sum(utils[r * n:(r + 1) * n]) / n for r in range(self.R)]
+        if self.world.geography:
+            # Population-weighted (small regions were rounded up to a minimum of agents).
+            welfare = sum(w * u for w, u in zip(self.weight, utils)) / sum(self.weight)
+        else:
+            welfare = sum(utils) / self.N
+        out = Outcome(welfare=welfare, components={k: v / self.N for k, v in parts.items()})
+        if self.world.geography:
+            by = [[] for _ in range(self.R)]
+            for i, u in enumerate(utils):
+                by[self.origin[i]].append(u)
+            out.by_origin = [sum(x) / len(x) for x in by]
+        else:
+            n = self.world.agents_per_region
+            out.by_origin = [sum(utils[r * n:(r + 1) * n]) / n for r in range(self.R)]
         populated = [r for r in range(self.R) if pops[r]]
         for entry in state:
             levels = entry[-1]
@@ -697,7 +822,7 @@ class _Run:
             out.policy_sd[entry[1]] = _sd(levels[r] for r in populated)
         regional_income = [_mean(self.income(i, r) for i in residents[r]) for r in populated]
         out.income_sorting = _sd(regional_income) / self.national_income
-        out.crowding = max(pops) / (self.N / self.R)
+        out.crowding = max(pops[r] / self.home[r] for r in range(self.R))
         return out
 
     def run(self) -> Outcome:
@@ -708,6 +833,7 @@ class _Run:
             for i, r in enumerate(self.region):
                 residents[r].append(i)
             pops = [len(res) for res in residents]
+            self.housing_step(residents, pops)
             state = self.region_state(residents)
             measuring = step >= w.steps - w.measure_steps
             if measuring:

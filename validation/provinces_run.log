@@ -1,15 +1,19 @@
-    schools: 31800 runs in 341s
-      wins: local 8%, central 38%, floor 10%, ceiling 0%, matched 24%, equalized 20% | robust: matched 10% (captures 14% of the tailored gain)
-schools matched 10% 0.14
-    environment: 31800 runs in 358s
-      wins: central 62%, floor 30%, matched 8% | robust: central 0.3 (captures 72% of the tailored gain)
-environment central 0.3 0.716
-    transit: 34800 runs in 633s
-      wins: central 38%, floor 22%, ceiling 8%, matched 4%, equalized 12%, city 15% | robust: floor 0.1 (captures 2% of the tailored gain)
-transit floor 0.1 0.018
-    redistribution: 31200 runs in 401s
-      wins: central 100% | robust: central 0.3 (captures 91% of the tailored gain)
-redistribution central 0.3 0.909
-    climate: 29400 runs in 324s
-      wins: price 100% | robust: price 1.6 (captures 98% of the tailored gain)
-climate price 1.6 0.976
+=== provinces Fri Nov 13 22:24:23 EST 2026
+    schools: 42000 runs in 518s
+      wins: central 32%, floor 14%, matched 4%, equalized 2%, foundation 17%, equalized_both 31% | robust: equalized both ways 100% (captures 14% of the tailored gain)
+schools equalized both ways 100% 0.139
+    environment: 42000 runs in 519s
+      wins: central 52%, floor 17%, matched 22%, equalized 1%, foundation 0%, equalized_both 6% | robust: matched 20% (captures 40% of the tailored gain)
+environment matched 20% 0.404
+    transit: 45000 runs in 1015s
+      wins: local 0%, central 10%, floor 20%, ceiling 14%, matched 4%, equalized 1%, city 16%, foundation 25%, equalized_both 10% | robust: floor 0.1 (captures 5% of the tailored gain)
+transit floor 0.1 0.049
+    health: 42000 runs in 848s
+      wins: central 60%, floor 25%, matched 6%, equalized 2%, foundation 0%, equalized_both 6% | robust: matched 10% (captures 3% of the tailored gain)
+health matched 10% 0.033
+    redistribution: 31200 runs in 288s
+      wins: central 100% | robust: central 0.3 (captures 80% of the tailored gain)
+redistribution central 0.3 0.8
+    climate: 29400 runs in 352s
+      wins: price 100% | robust: price 1.2 (captures 99% of the tailored gain)
+climate price 1.2 0.99
