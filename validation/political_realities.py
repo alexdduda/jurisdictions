@@ -127,9 +127,14 @@ def attachment() -> list[float]:
     return [a[names[c]]["attachment"] for c in PROVINCES]
 
 
-def crisis_policy(p: Policy, cut: float) -> Policy | None:
-    """The rule after Ottawa cuts its own money by `cut`, or None if it spends none."""
-    if p.mode in NO_MONEY:
+def crisis_policy(p: Policy, cut: float, regulation: bool = False) -> Policy | None:
+    """The rule after Ottawa cuts its own money by `cut`, or None if it spends none.
+
+    In an area paid for by emitters (`regulation`, climate) every rule is a
+    regulation or a price, so none costs Ottawa money; a national quantity
+    standard there is not federal spending.
+    """
+    if regulation or p.mode in NO_MONEY:
         return None
     if p.mode == "foundation":
         return Policy(p.mode, p.level * (1 - cut) ** 0.5)   # Ottawa pays f^2 per person
@@ -150,7 +155,7 @@ def _case(args):
             cut = [_clamp(policy.level / (2 * a[r]), 0, world.max_level) for r in range(run.R)]
             scale = sum(cut) / (extra["abated"] * sum(a))
             pay = [d.weight * policy.level * max(a[r] * scale - cut[r], 0.0) for r in range(run.R)]
-        cp = crisis_policy(policy, extra["crisis_cut"])
+        cp = crisis_policy(policy, extra["crisis_cut"], d.private_costs)
         crisis = _Run(world, {name: cp}, seed).run().by_origin if cp else o.by_origin
         out.append({"u": o.by_origin, "pay": pay, "crisis": crisis})
     return {"base": base, "rules": out}
@@ -181,27 +186,30 @@ def perceived(case, i, ref, modes, x, seen, shares, att, off=()):
     return real, v
 
 
-def judge(case, i, ref, modes, area, x, shares, att, off=()):
-    """(passes, needs amendment, chance of surviving the next elections, real change, perceived change)."""
+def judge(case, i, ref, modes, area, x, shares, att, off=(), legal=None, elections=ELECTIONS):
+    """(passes, needs amendment, chance of surviving the next elections, real change, perceived change).
+
+    `legal` is the set of modes the centre can enact alone (default: Canada's, LEGAL[area][0])."""
     on = lambda m: m not in off
+    legal = LEGAL[area][0] if legal is None else legal
     real, v = perceived(case, i, ref, modes, x, x["rebate_seen"], shares, att, off)
-    amend = on("constitution") and modes[i] not in LEGAL[area][0]
+    amend = on("constitution") and modes[i] not in legal
     ok = amending(v, shares) if amend else support(v, shares) > 0.5
     survive = 1.0
     if ok and on("repeal") and on("visible_payments") and not amend and any(case["rules"][i]["pay"]):
         q = mean(support(perceived(case, i, ref, modes, x, s, shares, att, off)[1], shares) > 0.5 for s in SEEN_GRID)
-        survive = q ** ELECTIONS
+        survive = q ** elections
     return ok, amend, survive, real, v
 
 
-def decide(case, labels, modes, sq, area, x, shares, att, off=()):
+def decide(case, labels, modes, sq, area, x, shares, att, off=(), legal=None):
     """Ottawa's choice in one world, with the mechanisms in `off` switched off. Returns (label, real gain vs today)."""
     ref = sq if "status_quo" not in off else None
     best = (0.0, "keep today's arrangement" if ref is not None else "provinces decide", 0.0)
     for i, lab in enumerate(labels):
         if i == ref:
             continue
-        ok, _, survive, real, v = judge(case, i, ref, modes, area, x, shares, att, off)
+        ok, _, survive, real, v = judge(case, i, ref, modes, area, x, shares, att, off, legal)
         if ok and _nat(shares, v) * survive > best[0]:
             best = (_nat(shares, v) * survive, lab, _nat(shares, real) * survive)
     return best[1], best[2]
