@@ -379,6 +379,18 @@ politics keeps today's arrangement in 13% to 23% of worlds and gives up 7% to
 36% of a small gain; fiscal crises cost the most. Each part is also switched
 off on its own and run on its own.
 
+`validation/australia_politics.py` tests the layer on a case it wasn't built
+on: Australia's carbon price (July 2012 to July 2014), on Australia's six
+states with Australian data and rules. Its two predictions were committed
+(`bf8abe5`) before the first run. Both held: a price adopted from no national
+policy survives one election in 0.5% of worlds (it was repealed after the first
+election), and with politics the Commonwealth picks a national quantity
+standard in 78% of worlds and a price in none (Australia has had the Safeguard
+Mechanism since 2016). The first is weak evidence: a price needs voters to
+notice 85% to 100% of the compensation, so the layer predicts the repeal of any
+visible carbon price, which is wrong for British Columbia's (2008-2025) and
+Sweden's (since 1991).
+
 ### Other federations
 
 `validation/country_run.py us au` reruns every area with each country's own
