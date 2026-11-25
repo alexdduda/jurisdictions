@@ -391,6 +391,16 @@ notice 85% to 100% of the compensation, so the layer predicts the repeal of any
 visible carbon price, which is wrong for British Columbia's (2008-2025) and
 Sweden's (since 1991).
 
+Checked against 13 real carbon-price votes and elections (listed with sources
+in VERIFICATION.md), the layer gets direct votes on new prices right (3 of 3)
+and the one direct vote on repealing an existing price wrong (Washington kept
+its programme 62% to 38% in 2024). In the five elections where a major party
+pledged repeal, the price ended exactly when that party won. Prices end
+through parties, which the layer doesn't have, so it can say a price is
+unpopular but not when it ends: Canada's charge survived the 2019 and 2021
+elections. A party-competition model isn't built, because with 13 events it
+would be fitted to the cases rather than tested on them.
+
 ### Other federations
 
 `validation/country_run.py us au` reruns every area with each country's own
